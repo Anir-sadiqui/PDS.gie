@@ -28,7 +28,7 @@ public class App extends ResourceConfig {
 
 
         //   List<Contact> listClients = new ArrayList<>();
-        IContactService dao = new ContactService("ikram", "DHCBWJHBCWH",465765,"hdebwjedhj",454);
+        IContactService dao = new ContactService();
 
 
 
