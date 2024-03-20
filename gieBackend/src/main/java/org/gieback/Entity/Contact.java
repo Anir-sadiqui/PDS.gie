@@ -1,12 +1,12 @@
-package org.gieback.Entity.CRMEntity;
+package org.gieback.Entity;
 
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="Client")
-public class Client implements Serializable {
+public class Contact implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,11 +23,11 @@ public class Client implements Serializable {
     private int code_postal;
 
 
-    public Client(){
+    public Contact(){
 
     }
 
-    public Client(String nom, String adresse, String telephone, String email, int code_postal) {
+    public Contact(String nom, String adresse, String telephone, String email, int code_postal) {
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
@@ -98,4 +98,3 @@ public class Client implements Serializable {
                 '}';
     }
 }
-

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PDS2.iml" filepath="$PROJECT_DIR$/.idea/PDS2.iml" />
       <module fileurl="file://$PROJECT_DIR$/gieBackend.iml" filepath="$PROJECT_DIR$/gieBackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pds.gie.iml" filepath="$PROJECT_DIR$/.idea/pds.gie.iml" />
     </modules>
   </component>
 </project>
