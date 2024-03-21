@@ -97,4 +97,6 @@ public class Contact implements Serializable {
                 ", code_postal=" + code_postal +
                 '}';
     }
+
+
 }

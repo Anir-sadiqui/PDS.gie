@@ -15,24 +15,26 @@ public class ContactDao implements IContactDao {
         entityManager = HibernateUtil.getEntityManger();
     }
 
-
-
-
     @Override
-    public void create(Contact contact) {
-        entityManager.createQuery(" from Contact ").getResultList();
+    public void create(String nom, String adresse, String telephone, String email, int code_postal) {
+        entityManager.createQuery(" from Client ").getResultList();
     }
+
 
 
     @Override
     public List<Contact> getAll() {
-        return null;
+
+        return entityManager.createQuery(" from Client ").getResultList();
     }
 
+
+
     @Override
-    public void add(Contact client) {
+   public void add(Contact client) {
 
     }
 
 
 }
+

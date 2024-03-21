@@ -7,7 +7,8 @@ import java.util.List;
 
 
 
-     void create(Contact contact);
+     void create(String nom ,String adresse,String telephone,String email,int code_postal);
+
 
      List<Contact> getAll();
 

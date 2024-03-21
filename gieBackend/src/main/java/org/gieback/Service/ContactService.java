@@ -13,22 +13,22 @@ public class ContactService implements IContactService {
 
 
 
-
     @Override
-    public void create(Contact contact) {
-
-    }
-
-    @Override
-    public void ajouter(Contact client) {
+    public  void ajouter(Contact client) {
 
 
        dao.add(client);
     }
 
     @Override
+    public void create(String nom, String adresse, String telephone, String email, int code_postal) {
+            Contact c =new Contact(nom,adresse,telephone,email,code_postal);
+             dao.add(c);
+    }
+
+    @Override
     public List<Contact> getAll() {
-        return null;
+        return dao.getAll();
     }
 
     @Override

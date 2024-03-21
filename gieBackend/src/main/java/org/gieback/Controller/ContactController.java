@@ -26,9 +26,11 @@ public class ContactController {
     @POST
     @Path("/addContact")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void create( @EntityBody Contact contact) {
-     System.out.println(contact);
-        c.ajouter(contact);
+    public void create(String nom, String adresse, String telephone, String email, int code_postal) {
+        Contact c =new Contact(nom,adresse,telephone,email,code_postal);
+        this.c.ajouter(c);
+       System.out.println(c);
+
     }
 
 }
