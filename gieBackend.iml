@@ -18,12 +18,18 @@
         <webroots>
           <root url="file://$MODULE_DIR$/gieBackend/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/gieBackend/output/generated-sources/annotations" />
+          <root url="file://$MODULE_DIR$/gieBackend/src/main/java" />
+          <root url="file://$MODULE_DIR$/gieBackend/src/main/resources" />
+        </sourceRoots>
       </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="PU_SC" value="332c76c3-e5e4-407b-bbf8-b35e61a10422" />
           <factory-entry name="gie-backend" />
         </datasource-mapping>
         <naming-strategy-map />
