@@ -5,7 +5,9 @@ import java.util.List;
     public interface IDao<T > {
         List<T> getAll();
 
-        void    ajouter(T t);
+        void add(T t);
 
         T getById(int id);
-}
+
+        T delete(T t);
+    }

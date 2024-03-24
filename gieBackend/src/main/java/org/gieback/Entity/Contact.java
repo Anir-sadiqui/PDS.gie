@@ -2,71 +2,53 @@ package org.gieback.Entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.List;
 
-@Entity(name="Client")
-public class Contact implements Serializable {
+@Data
+@Entity
+public class Contact implements Serializable{
+//    public Contact(String phone, String email) {
+//        this.phone = phone;
+//        this.email = email;
+//    }
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-    @Column(name = "nom")
-    private String nom;
-    @Column(name="adresse")
-    private String adresse;
-    @Column(name="telephone")
-    private String telephone;
-    @Column(name="email")
-    private String email;
-    @Column(name="code_postal")
-    private int code_postal;
-
-
-    public Contact(){
-
-    }
-
-    public Contact(String nom, String adresse, String telephone, String email, int code_postal) {
-        this.nom = nom;
-        this.adresse = adresse;
-        this.telephone = telephone;
+    public Contact(String phone, String email, Adresse adresse) {
+        this.phone = phone;
         this.email = email;
-        this.code_postal = code_postal;
+        this.adresse = adresse;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "phone")
+    private String phone;
 
+    @Column(name = "email")
 
-    public int getId() {
+    private String email;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -77,26 +59,22 @@ public class Contact implements Serializable {
         this.email = email;
     }
 
-    public int getCode_postal() {
-        return code_postal;
+    public Adresse getAdresse() {
+        return adresse;
     }
 
-    public void setCode_postal(int code_postal) {
-        this.code_postal = code_postal;
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "adresse_id")
+    private Adresse adresse;
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", code_postal=" + code_postal +
-                '}';
+    public Contact() {
+
     }
 
-
+    // Getters and setters
 }

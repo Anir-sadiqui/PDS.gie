@@ -4,16 +4,22 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
 public class TestFront extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.initStyle(StageStyle.UNDECORATED);
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("afficherContact.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setHeight(800);
+        stage.setWidth(1300);
+        stage.setResizable(true);
         stage.setTitle("Test");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

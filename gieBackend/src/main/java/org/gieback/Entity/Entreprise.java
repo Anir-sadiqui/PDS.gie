@@ -1,41 +1,31 @@
 package org.gieback.Entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
+
 import java.io.Serializable;
-@Data
 
 @Entity
-@DiscriminatorValue("Entreprise")
-public class Entreprise extends Contactt implements Serializable{
+@Data
+@Table(name="Entreprise")
+public class Entreprise extends Contact  implements Serializable {
+    @Column(name = "formeJuridique")
 
-        @Column(name="raisonSociale")
-        private String raisonSociale;
-        @Column(name="formeJuridique")
-        private String formeJuridique;
-        @Id
-        private Long id;
+    private String formeJuridique;
+    @Column(name = "raisonSocial")
 
+    private String raisonSocial;
 
-        public Entreprise( String email,String phone,String fax,String raisonSociale,String formeJuridique ) {
-            super(email,phone,fax);
-            this.raisonSociale=raisonSociale;
-            this.formeJuridique=formeJuridique;
-
-        }
-
-        public Entreprise() {
-            super();
-        }
-
-
-
-
-
+    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial) {
+        super(phone, email,adresse);
+        this.formeJuridique = formeJuridique;
+        this.raisonSocial = raisonSocial;
     }
 
+    public Entreprise() {
 
-
+    }
+// Getters and setters
+}

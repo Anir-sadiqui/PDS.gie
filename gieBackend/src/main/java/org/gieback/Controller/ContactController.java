@@ -1,36 +1,36 @@
 package org.gieback.Controller;
 
-
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-
+import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Contact;
-import org.gieback.Service.ContactService;
-import org.gieback.Service.IContactService;
+import org.gieback.Entity.Entreprise;
+import org.gieback.Entity.Personne;
+import org.gieback.Service.EntrepriseService;
+import org.gieback.Service.IEntrepriseService;
+import org.gieback.Service.IPersonneService;
+import org.gieback.Service.PersonneService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Path("/contact")
 
 public class ContactController {
-    IContactService c = new ContactService();
-
+    IEntrepriseService entrepriseService=new EntrepriseService();
+    IPersonneService personneService=new PersonneService();
     @GET
-    @Path("/getClients")
+    @Path("/getAll")
+
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Contact> getAll() {
-        return c.getAll();
+    public List<Contact> getAllContacts() {
+        List<Contact> contacts=new ArrayList<>();
+        List<Personne> personnes=personneService.getAllPersonnes();
+        List<Entreprise> entreprises=entrepriseService.getAllEnterprises();
+        contacts.addAll(personnes);
+        contacts.addAll(entreprises);
+        return contacts;
     }
-
-
-    @POST
-    @Path("/addContact")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void create(String nom, String adresse, String telephone, String email, int code_postal) {
-        Contact c =new Contact(nom,adresse,telephone,email,code_postal);
-        this.c.ajouter(c);
-       System.out.println(c);
-
-    }
-
 }
