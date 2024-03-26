@@ -3,21 +3,26 @@ package org.gieback.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
-
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Personne.class, name = "personne"),
+        @JsonSubTypes.Type(value = Entreprise.class, name = "entreprise")
+})
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Contact implements Serializable{
-//    public Contact(String phone, String email) {
-//        this.phone = phone;
-//        this.email = email;
-//    }
 
     public Contact(String phone, String email, Adresse adresse) {
         this.phone = phone;
@@ -26,7 +31,7 @@ public class Contact implements Serializable{
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     @Column(name = "phone")
     private String phone;
@@ -67,14 +72,18 @@ public class Contact implements Serializable{
         this.adresse = adresse;
     }
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
+
+    @Override
+    public String toString() {
+        return this.getAdresse().getAdresse_id()+"";
+    }
 
     public Contact() {
 
     }
 
-    // Getters and setters
+
 }

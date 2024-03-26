@@ -44,7 +44,7 @@ public class EntrepriseController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addEnterprise(Entreprise entreprise) {
 
-        entrepriseService.addEnterprise(entreprise);
+       entrepriseService.addEnterprise(entreprise);
         return Response.status(Response.Status.CREATED).build();
     }
 

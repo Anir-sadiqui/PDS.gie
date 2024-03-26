@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="724.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ContactController">
+   <children>
+      <ChoiceBox fx:id="ChoiceBox_Contact" layoutX="238.0" layoutY="14.0" prefWidth="150.0" />
+      <TableView fx:id="tableView_E" layoutX="17.0" layoutY="297.0" prefHeight="229.0" prefWidth="486.0">
+         <columns>
+            <TableColumn fx:id="C_ID_E" prefWidth="42.39992904663086" text="ID" />
+            <TableColumn fx:id="C_FJ_E" prefWidth="112.00003814697266" text="Forme_Juridique" />
+            <TableColumn fx:id="C_RS_E" prefWidth="88.79998779296875" text="Raison_Social" />
+            <TableColumn fx:id="C_Email_E" prefWidth="62.39996337890625" text="Email" />
+            <TableColumn fx:id="C_Phone_E" prefWidth="104.0" text="Phone" />
+            <TableColumn fx:id="C_Adresse_E" prefWidth="78.39996337890625" text="Adresse_ID" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableView_P" layoutX="17.0" layoutY="102.0" prefHeight="182.0" prefWidth="422.0">
+        <columns>
+          <TableColumn fx:id="C_ID_P" prefWidth="42.39992904663086" text="ID" />
+          <TableColumn fx:id="C_Nom_P" prefWidth="62.4000244140625" text="Nom" />
+            <TableColumn fx:id="C_Prenom_P" prefWidth="62.4000244140625" text="Prenom" />
+            <TableColumn fx:id="c_Email_P" prefWidth="62.4000244140625" text="Email" />
+            <TableColumn fx:id="C_Phone_P" prefWidth="119.199951171875" text="Phone" />
+            <TableColumn fx:id="C_Adresse_P" prefWidth="71.20001220703125" text="Adresse_ID" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

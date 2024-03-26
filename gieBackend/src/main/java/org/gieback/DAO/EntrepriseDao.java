@@ -34,7 +34,7 @@ public class EntrepriseDao implements IEntrepriseDao {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
+      }
     }
 
     @Override

@@ -1,15 +1,18 @@
 package org.gieback.Entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name="Entreprise")
+@DiscriminatorValue("entreprise")
 public class Entreprise extends Contact  implements Serializable {
     @Column(name = "formeJuridique")
 
@@ -22,10 +25,23 @@ public class Entreprise extends Contact  implements Serializable {
         super(phone, email,adresse);
         this.formeJuridique = formeJuridique;
         this.raisonSocial = raisonSocial;
+
     }
 
     public Entreprise() {
 
     }
-// Getters and setters
+
+    @Override
+    public String toString() {
+        return "Entreprise{" +
+                "id=" + getId() +
+                ", phone='" + getPhone() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", adresse=" + this.getAdresse() +
+                ", formeJuridique='" + formeJuridique + '\'' +
+                ", raisonSocial='" + raisonSocial + '\'' +
+                '}';
+    }
+
 }

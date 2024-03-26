@@ -28,8 +28,12 @@ public   class PersonneDao implements IPersonneDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            System.out.println(p.getAdresse());
+            if (p.getAdresse() != null ) {
+                entityManager.persist(p.getAdresse());
+                p.setAdresse(p.getAdresse());
+            }
             entityManager.persist(p);
-           entityManager.merge(p);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -45,4 +49,3 @@ public   class PersonneDao implements IPersonneDao{
 
 
 }
-

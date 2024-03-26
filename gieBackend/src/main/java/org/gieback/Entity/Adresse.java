@@ -10,11 +10,10 @@ import java.util.List;
 @Entity
 @Data
 public class Adresse implements Serializable {
-    public Adresse(String numero, String quartier, String ville, List<Contact> contacts) {
+    public Adresse(String numero, String quartier, String ville) {
         this.numero = numero;
         this.quartier = quartier;
         this.ville = ville;
-        this.contacts = contacts;
     }
 
     @Id
@@ -32,12 +31,16 @@ public class Adresse implements Serializable {
 
 
     @JsonIgnore
-
     @OneToMany(mappedBy = "adresse")
     private List<Contact> contacts;
 
 
     public Adresse() {
 
+    }
+
+    @Override
+    public String toString() {
+        return this.getAdresse_id() +" ";
     }
 }

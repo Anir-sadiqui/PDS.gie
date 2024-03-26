@@ -2,12 +2,13 @@ package org.gieback.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import lombok.Data;
 import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Entreprise;
 import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.util.List;
-
+@Data
 public class AdressDao implements IAdressDao {
     EntityManager entityManager;
     public AdressDao() {

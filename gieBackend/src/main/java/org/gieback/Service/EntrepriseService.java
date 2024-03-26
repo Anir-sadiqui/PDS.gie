@@ -16,7 +16,7 @@ public class EntrepriseService implements IEntrepriseService{
         return entrepriseDao.getAll();
     }
 
-    @Override
+  @Override
     public void addEnterprise(Entreprise entreprise) {
         entrepriseDao.add(entreprise);
     }

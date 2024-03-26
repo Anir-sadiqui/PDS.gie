@@ -1,17 +1,18 @@
 package org.giefront;
-
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Contact;
 import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.Personne;
@@ -21,78 +22,95 @@ import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
 
 public class ContactController implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Contact> contactss=c.getAll();
-        for (Contact c:contactss){
-            if(c.getClass().equals("Entreprise")){
-                ObservableList<Entreprise> contactObservableList= FXCollections.observableList(e.getAll());
-                C_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                C_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                C_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-//                C_N.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//
-//                C_p.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                C_FJ.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                C_RS.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                C_id_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_id"));
-                C_TableContact.setItems(contactObservableList);
+    @FXML
+    private TableColumn<Entreprise, String> C_Adresse_E;
 
-            }
-            else{
-                ObservableList<Personne> contactObservableList= FXCollections.observableList(p.getAll());
-                C_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-                C_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-                C_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                C_N.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    @FXML
+    private TableColumn<Personne, String> C_Adresse_P;
 
-                C_p.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//                C_FJ.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-//                C_RS.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                C_id_adresse.setCellValueFactory(new PropertyValueFactory<>("adresse_id"));
-                C_TableContact.setItems(contactObservableList);
+    @FXML
+    private TableColumn<Entreprise, String> C_Email_E;
 
-            }
-        }
+    @FXML
+    private TableColumn<Entreprise, String> C_FJ_E;
 
+    @FXML
+    private TableColumn<Entreprise, Long> C_ID_E;
 
+    @FXML
+    private TableColumn<Personne, Long> C_ID_P;
 
+    @FXML
+    private TableColumn<Personne, String> C_Nom_P;
 
+    @FXML
+    private TableColumn<Personne, String> C_Phone_E;
 
+    @FXML
+    private TableColumn<Personne, String> C_Phone_P;
 
-    }
+    @FXML
+    private TableColumn<Personne, String> C_Prenom_P;
+
+    @FXML
+    private TableColumn<Entreprise, String> C_RS_E;
+
+    @FXML
+    private ChoiceBox<String> ChoiceBox_Contact;
+
+    @FXML
+    private TableColumn<Personne, String> c_Email_P;
+
+    @FXML
+    private TableView<Entreprise> tableView_E;
+    @FXML
+    private TableView<Personne> tableView_P;
     EntrepriseService e=new EntrepriseService();
     PersonneService p=new PersonneService();
     ContactService c=new ContactService();
 
 
-        @FXML
-        private TableColumn C_FJ;
 
-        @FXML
-        private TableColumn C_N;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableView_E.setVisible(false);
+        tableView_P.setVisible(false);
 
-        @FXML
-        private TableColumn C_RS;
-
-        @FXML
-        private TableView C_TableContact;
-
-        @FXML
-        private TableColumn C_email;
-
-        @FXML
-        private TableColumn C_id;
-
-        @FXML
-        private TableColumn C_p;
-
-        @FXML
-        private TableColumn C_phone;
-        @FXML
-       private TableColumn C_id_adresse;
-
-
-
+        remplirChoiceBox();
+//
+        ChoiceBox_Contact.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                if (newValue.equals("Entreprise")) {
+                    ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getAll());
+                    C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
+                    C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
+                    C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
+                    C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+                    C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+                    tableView_E.setItems(entrepriseObservableList);
+                    tableView_E.setVisible(true);
+                    tableView_P.setVisible(false);
+                } else if (newValue.equals("Personne")) {
+                    ObservableList<Personne> personneObservableList = FXCollections.observableList(p.getAll());
+                    C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
+                    c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
+                    C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
+                    C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                    C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+                    C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+                    tableView_P.setItems(personneObservableList);
+                    tableView_P.setVisible(true);
+                    tableView_E.setVisible(false);
+                }
+            }
+        });
+    }
+    private void remplirChoiceBox() {
+        ObservableList<String> options = FXCollections.observableArrayList();
+        options.add("Entreprise");
+        options.add("Personne");
+        ChoiceBox_Contact.setItems(options);
+    }
 
 }
