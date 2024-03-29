@@ -11,6 +11,7 @@ import org.gieback.Service.IEntrepriseService;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.*;
 import java.util.List;
+import java.util.Map;
 
 @Path("/entreprise")
 
@@ -46,6 +47,26 @@ public class EntrepriseController {
 
        entrepriseService.addEnterprise(entreprise);
         return Response.status(Response.Status.CREATED).build();
+    }
+    @PUT
+    @Path("/ModifierEntreprise{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response modifier(@PathParam("id") int id, Map<String, String> attributs) {
+        entrepriseService.modifier(id, attributs);
+        return Response.noContent().build();
+    }
+    @DELETE
+    @Path("/DeleteEntreprise{id}")
+    public Response deleteByid(@PathParam("id") int id) {
+        entrepriseService.deleteByid(id);
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path("/sortById")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Entreprise> sortById(@QueryParam("ordre") String ordre) {
+        return entrepriseService.sortById(ordre);
     }
 
 
