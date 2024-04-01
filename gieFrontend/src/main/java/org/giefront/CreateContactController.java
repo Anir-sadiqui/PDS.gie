@@ -44,11 +44,9 @@ public class CreateContactController implements Initializable {
                     }
                 } else if (newValue.equals("Entreprise")) {
                     try {
-                        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("createContact.fxml")));
-                        Stage stage = (Stage) choiceBox_TypeContact.getScene().getWindow();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("entreprise.fxml"));
+                        Parent root = loader.load();
+                        Anchorepane_Contact.getChildren().setAll(root);
                     }catch (IOException e){
                         e.printStackTrace();
                     }
