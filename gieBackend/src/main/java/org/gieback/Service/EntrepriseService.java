@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EntrepriseService implements IEntrepriseService{
-     IEntrepriseDao entrepriseDao=new EntrepriseDao();
+    IEntrepriseDao entrepriseDao=new EntrepriseDao();
 
 
 
@@ -17,7 +17,7 @@ public class EntrepriseService implements IEntrepriseService{
         return entrepriseDao.getAll();
     }
 
-  @Override
+    @Override
     public void addEnterprise(Entreprise entreprise) {
         entrepriseDao.add(entreprise);
     }
@@ -42,5 +42,15 @@ public class EntrepriseService implements IEntrepriseService{
     @Override
     public List<Entreprise> sortById(String ordre) {
         return entrepriseDao.sortById(ordre);
+    }
+
+    @Override
+    public List<Entreprise> sortByRs(String ordre) {
+        return entrepriseDao.sortByRs(ordre);
+    }
+
+    @Override
+    public Entreprise getEnterpriseByRs(String rs) {
+        return entrepriseDao.getByRs(rs);
     }
 }

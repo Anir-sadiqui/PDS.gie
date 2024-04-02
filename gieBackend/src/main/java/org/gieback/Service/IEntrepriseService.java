@@ -12,4 +12,7 @@ public interface IEntrepriseService {
     void modifier(int id, Map<String, String> attributs);
     void deleteByid (int id);
     List<Entreprise> sortById (String ordre);
+    List<Entreprise> sortByRs (String ordre);
+
+    Entreprise getEnterpriseByRs(String rs);
 }

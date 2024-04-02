@@ -14,5 +14,8 @@ public interface IEntrepriseDao {
     void modifier(int id, Map<String, String> attributs);
     void deleteByid (int id);
     List<Entreprise> sortById (String ordre);
+    List<Entreprise> sortByRs (String ordre);
+    Entreprise getByRs(String raisonSocial);
+
 
 }

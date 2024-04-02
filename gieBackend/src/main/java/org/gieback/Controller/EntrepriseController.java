@@ -45,7 +45,7 @@ public class EntrepriseController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addEnterprise(Entreprise entreprise) {
 
-       entrepriseService.addEnterprise(entreprise);
+        entrepriseService.addEnterprise(entreprise);
         return Response.status(Response.Status.CREATED).build();
     }
     @PUT
@@ -55,6 +55,7 @@ public class EntrepriseController {
         entrepriseService.modifier(id, attributs);
         return Response.noContent().build();
     }
+
     @DELETE
     @Path("/DeleteEntreprise{id}")
     public Response deleteByid(@PathParam("id") int id) {
@@ -68,6 +69,21 @@ public class EntrepriseController {
     public List<Entreprise> sortById(@QueryParam("ordre") String ordre) {
         return entrepriseService.sortById(ordre);
     }
-
-
+    @GET
+    @Path("/sortByRs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Entreprise> sortByRs(@QueryParam("ordre") String ordre) {
+        return entrepriseService.sortByRs(ordre);
+    }
+    @GET
+    @Path("getByRs/{Rs}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEnterpriseById(@PathParam("Rs") String Rs) {
+        Entreprise entreprise = entrepriseService.getEnterpriseByRs(Rs);
+        if (entreprise != null) {
+            return Response.ok(entreprise).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
 }

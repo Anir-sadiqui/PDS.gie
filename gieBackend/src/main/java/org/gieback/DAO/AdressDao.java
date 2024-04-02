@@ -69,31 +69,31 @@ public class AdressDao implements IAdressDao {
 
     @Override
     public void modifierAdresse(int id, Map<String, String> attributs) {
-            entityManager.getTransaction().begin();
-            Adresse adresse = entityManager.find(Adresse.class, id);
-            if (adresse != null) {
-                for (Map.Entry<String, String> entry : attributs.entrySet()) {
-                    String key = entry.getKey();
-                    String value = entry.getValue();
+        entityManager.getTransaction().begin();
+        Adresse adresse = entityManager.find(Adresse.class, id);
+        if (adresse != null) {
+            for (Map.Entry<String, String> entry : attributs.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue();
 
-                    switch (key) {
-                        case "ville":
-                            adresse.setVille(value);
-                            break;
-                        case "quartier":
-                            adresse.setQuartier(value);
-                            break;
-                        case "numero":
-                            adresse.setNumero(value);
-                            break;
+                switch (key) {
+                    case "ville":
+                        adresse.setVille(value);
+                        break;
+                    case "quartier":
+                        adresse.setQuartier(value);
+                        break;
+                    case "numero":
+                        adresse.setNumero(value);
+                        break;
 
-                    }
                 }
-                entityManager.merge(adresse);
             }
-            entityManager.getTransaction().commit();
-            entityManager.close();
+            entityManager.merge(adresse);
         }
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 
 
 

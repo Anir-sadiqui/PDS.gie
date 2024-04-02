@@ -60,25 +60,23 @@ public class AdresseController {
         return adresseService.getByQuartier(quartier, ville);
     }
     @GET
-    @Path("/sortByVille")
+    @Path("/sortByVille/{ordre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Adresse> sortByVille(@QueryParam("ordre") String ordre) {
+    public List<Adresse> sortByVille(@PathParam("ordre") String ordre) {
         return adresseService.sortByVille(ordre);
     }
 
     @DELETE
-    @Path("/DeleteById{id}")
+    @Path("/DeleteById/{id}")
     public Response deleteById(@PathParam("id") int id) {
         adresseService.deleteById(id);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
     @PUT
-    @Path("/ModifierAdresse{id}")
+    @Path("/ModifierAdresse/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response modifierAdresse(@PathParam("id") int id, Map<String, String> attributs) {
+    public Response modifierAdresse(@PathParam("id") int id,  Map<String, String> attributs) {
         adresseService.modifierAdresse(id, attributs);
         return Response.noContent().build();
-
     }
-
 }

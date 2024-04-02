@@ -68,9 +68,9 @@ public class PersonneController {
     }
 
     @GET
-    @Path("sortByid")
+    @Path("sortByid{ordre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> sortById(@QueryParam("ordre") String ordre) {
+    public List<Personne> sortById(@PathParam("ordre") String ordre) {
         return personneService.sortById(ordre);
     }
 

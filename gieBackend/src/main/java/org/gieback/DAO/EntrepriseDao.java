@@ -40,7 +40,7 @@ public class EntrepriseDao implements IEntrepriseDao {
                 transaction.rollback();
             }
             e.printStackTrace();
-      }
+        }
     }
 
     @Override
@@ -75,8 +75,8 @@ public class EntrepriseDao implements IEntrepriseDao {
             entityManager.merge(E);
         }
         else { System.out.println("id incorrect");}
-            entityManager.getTransaction().commit();
-            entityManager.close();
+        entityManager.getTransaction().commit();
+        entityManager.close();
 
 
     }
@@ -113,6 +113,27 @@ public class EntrepriseDao implements IEntrepriseDao {
         }
 
         return entityManager.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public List<Entreprise> sortByRs(String ordre) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Entreprise> cq = cb.createQuery(Entreprise.class);
+        Root<Entreprise> EntrepriseRoot = cq.from(Entreprise.class);
+        if ("asc".equalsIgnoreCase(ordre)) {
+            cq.orderBy(cb.asc(EntrepriseRoot.get("RaisonSocial")));
+        } else if ("desc".equalsIgnoreCase(ordre)) {
+            cq.orderBy(cb.desc(EntrepriseRoot.get("RaisonSocial")));
+        } else {
+            throw new IllegalArgumentException("Ordre de tri non reconnu. Utilisez 'asc' ou 'desc'.");
+        }
+
+        return entityManager.createQuery(cq).getResultList();
+    }
+
+    @Override
+    public Entreprise getByRs(String raisonSocial) {
+        return entityManager.find(Entreprise.class,raisonSocial);
     }
 
 }
