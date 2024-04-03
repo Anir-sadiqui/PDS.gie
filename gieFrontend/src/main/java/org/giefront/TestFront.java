@@ -12,7 +12,7 @@ public class TestFront extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("createContact.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("Interface.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setHeight(600);
         stage.setWidth(900);
