@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Annotation profile for gieBackend" enabled="true">
+        <sourceOutputDir name="output/generated-sources/annotations" />
+        <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gieBackend" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

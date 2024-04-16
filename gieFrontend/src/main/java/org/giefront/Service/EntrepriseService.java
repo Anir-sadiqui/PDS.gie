@@ -3,10 +3,10 @@ package org.giefront.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
-import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Entreprise;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -47,21 +47,27 @@ public class EntrepriseService implements IService<Entreprise> {
     private ObjectMapper mapper = new ObjectMapper();
 
     public Entreprise getById(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getById/").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getById/"+id).build();
+        Entreprise entreprise;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), Entreprise.class);
+            entreprise = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+
         }
-
+        return entreprise;
     }
-
     public void modifierEntreprise(int id, Map<String, String> attributs) throws IOException {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String json = mapper.writeValueAsString(attributs);
         RequestBody body = RequestBody.create(json, JSON);
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/ModifierEntreprise").patch(body).build();
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/ModifierEntreprise/"+id).patch(body).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -70,7 +76,7 @@ public class EntrepriseService implements IService<Entreprise> {
     }
 
     public void deleteEntreprise(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/DeleteEntreprise").delete().build();
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/DeleteEntreprise/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -79,35 +85,68 @@ public class EntrepriseService implements IService<Entreprise> {
         }
     }
     public List<Entreprise> sortById(String ordre) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/sortById").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/sortById/"+ordre).build();
+        List<Entreprise> entreprises;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), new TypeReference<List<Entreprise>>() {});
+            entreprises = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return entreprises;
     }
     public List<Entreprise> sortByRs(String ordre) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/sortByRs").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/sortByRs/"+ordre).build();
+        List<Entreprise> entreprises;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), new TypeReference<List<Entreprise>>() {});
+            entreprises = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return entreprises;
     }
+
     public Entreprise getByRs(String rs) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getByRs/").build();
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getByRs/" + rs).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response));
+                throw new IOException("Unexpected response code: " + response.code());
             }
-            return mapper.readValue(response.body().charStream(), Entreprise.class);
+            return mapper.readValue(response.body().string(), Entreprise.class);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to execute getByRs request", e);
         }
-
     }
+//    public List<Entreprise> getByFj(String fj) throws IOException {
+//        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getByFj/"+fj).build();
+//        try (Response response = okHttpClient.newCall(request).execute()) {
+//            if (!response.isSuccessful()) {
+//                throw new IOException(String.valueOf(response));
+//            }
+//            return Collections.singletonList(mapper.readValue(response.body().charStream(), Entreprise.class));
+//        }
+//
+//    }
+public List<Entreprise> getByFj(String fj) {
+    Request request = new Request.Builder().url("http://localhost:9998/entreprise/getByFj/" + fj).build();
+    try (Response response = okHttpClient.newCall(request).execute()) {
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected response code: " + response.code());
+        }
+        return mapper.readValue(response.body().string(), new TypeReference<List<Entreprise>>() {});
+    } catch (IOException e) {
+        throw new RuntimeException("Failed to execute getByFj request", e);
+    }
+}
 
 
 }

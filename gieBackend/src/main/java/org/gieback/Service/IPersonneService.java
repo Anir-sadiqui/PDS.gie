@@ -14,6 +14,6 @@ public interface IPersonneService {
     List<Personne> getByPrenom(String p);
     List<Personne> sortByNom(String ordre);
     List<Personne> sortById (String ordre);
-    void modifier(int id, Map<String, String> attributs);
+    void modifier(String  id, Map<String, String> attributs);
     void deleteById (int id);
 }

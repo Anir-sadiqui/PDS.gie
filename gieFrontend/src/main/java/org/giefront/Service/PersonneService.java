@@ -3,15 +3,19 @@ package org.giefront.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.Personne;
 
+
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class PersonneService implements IService<Personne>{
+    private OkHttpClient okHttpClient = new OkHttpClient();
+     ObjectMapper mapper = new ObjectMapper();
+
     @Override
     public List<Personne> getAll() {
         Request request = new Request.Builder().url("http://localhost:9998/personne/getAll").build();
@@ -42,72 +46,95 @@ public class PersonneService implements IService<Personne>{
             throw new RuntimeException(e);
         }
     }
-    private OkHttpClient okHttpClient = new OkHttpClient();
-    private ObjectMapper mapper = new ObjectMapper();
     public Personne getById (int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/getById/").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/getById/"+id).build();
+        Personne personne;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), Personne.class);
+            personne = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return personne;
     }
-    public Personne getBynom (String nom) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/GetBynom").build();
+    public List<Personne> getBynom (String nom) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/GetBynom/"+nom).build();
+        List<Personne> personnes;
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), Personne.class);
+            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return personnes;
     }
-    public Personne getByprenom (String Prenom) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/GetByprenom").build();
+    public List<Personne> getByprenom (String prenom)  {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/getPersonneByPrenom/"+prenom).build();
+        List<Personne> personnes;
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), Personne.class);
+            personnes = mapper.readValue(response.body().charStream(),  new TypeReference<>() {}
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+    return personnes;
     }
     public List<Personne> sortById(String ordre) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/sortById").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/sortByid/"+ordre).build();
+        List<Personne> personnes;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), new TypeReference<List<Personne>>() {});
+            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return personnes;
     }
     public List<Personne> sortBynom(String ordre) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/sortBynom").build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/sortBynom/"+ordre).build();
+        List<Personne> personnes;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            return mapper.readValue(response.body().charStream(), new TypeReference<List<Personne>>() {});
+            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
+        return personnes;
     }
-    public void modifierPersonne(int id, Map<String, String> attributs) throws IOException {
+    public void modifierPersonne(String id, HashMap<String, String> attributs) throws IOException {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String json = mapper.writeValueAsString(attributs);
         RequestBody body = RequestBody.create(json, JSON);
-        Request request = new Request.Builder().url("http://localhost:9998/personne/Modifier").patch(body).build();
+        Request request = new Request.Builder().url("http://localhost:9998/personne/Modifier/"+id).patch(body).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response));
+                throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
             }
+        } catch (IOException e) {
+            throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
         }
     }
 
     public void deletePersonne(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/DeletePersonne ").delete().build();
+        Request request = new Request.Builder().url("http://localhost:9998/personne/DeletePersonne/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));

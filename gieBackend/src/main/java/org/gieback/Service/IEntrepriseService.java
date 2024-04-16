@@ -15,4 +15,5 @@ public interface IEntrepriseService {
     List<Entreprise> sortByRs (String ordre);
 
     Entreprise getEnterpriseByRs(String rs);
+    List<Entreprise> getByFj(String Fj);
 }

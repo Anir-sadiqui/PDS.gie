@@ -50,7 +50,7 @@ public class PersonneService implements IPersonneService{
     }
 
     @Override
-    public void modifier(int id, Map<String, String> attributs) {
+    public void modifier(String id, Map<String, String> attributs) {
         personneeDao.modifier(id,attributs);
 
     }

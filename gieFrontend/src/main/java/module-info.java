@@ -4,6 +4,7 @@ module org.giefront {
     requires okhttp3;
     requires com.fasterxml.jackson.databind;
     requires gieBackend;
+    requires static lombok;
 
 
     opens org.giefront to javafx.fxml;

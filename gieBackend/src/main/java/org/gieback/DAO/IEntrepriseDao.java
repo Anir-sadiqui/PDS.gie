@@ -16,6 +16,7 @@ public interface IEntrepriseDao {
     List<Entreprise> sortById (String ordre);
     List<Entreprise> sortByRs (String ordre);
     Entreprise getByRs(String raisonSocial);
+    List<Entreprise> getByFj(String Fj);
 
 
 }

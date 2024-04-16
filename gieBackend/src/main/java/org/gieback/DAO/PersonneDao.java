@@ -64,10 +64,10 @@ public   class PersonneDao implements IPersonneDao{
     }
 
     @Override
-    public List<Personne> getByPrenom(String p) {
+    public List<Personne> getByPrenom(String pre) {
         String hql = "FROM Personne p WHERE p.prenom = :prenom";
         Query query = entityManager.createQuery(hql);
-        query.setParameter("prenom", p);
+        query.setParameter("prenom", pre);
         List<Personne> r = query.getResultList();
         return r;
     }
@@ -106,7 +106,7 @@ public   class PersonneDao implements IPersonneDao{
     }
 
     @Override
-    public void modifier(int id, Map<String, String> attributs) {
+    public void modifier(String id, Map<String, String> attributs) {
         entityManager.getTransaction().begin();
         Personne p = entityManager.find(Personne.class, id);
         if (p != null) {
@@ -132,7 +132,6 @@ public   class PersonneDao implements IPersonneDao{
         }
         else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
-        entityManager.close();
 
 
     }

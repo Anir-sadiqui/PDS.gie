@@ -72,7 +72,7 @@ public class AdresseController {
         adresseService.deleteById(id);
         return Response.status(Response.Status.NO_CONTENT).build();
     }
-    @PUT
+    @PATCH
     @Path("/ModifierAdresse/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response modifierAdresse(@PathParam("id") int id,  Map<String, String> attributs) {

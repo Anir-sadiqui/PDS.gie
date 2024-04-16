@@ -41,6 +41,8 @@ public class Adresse implements Serializable {
 
     @Override
     public String toString() {
-        return this.getAdresse_id() +" ";
+        return "Id: " + adresse_id + '\n' +
+                "Quartier: " + quartier + '\n' +
+                "Ville: " + ville + '\n' ;
     }
 }

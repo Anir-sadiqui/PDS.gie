@@ -46,7 +46,7 @@ public class AdresseService implements IService<Adresse> {
     private ObjectMapper mapper = new ObjectMapper();
 
     public Adresse getAdresseById(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/getById/").build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/getById/"+id).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -56,7 +56,7 @@ public class AdresseService implements IService<Adresse> {
     }
 
     public List<Adresse> getByVille(String ville) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/getByVille/").build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/getByVille/"+ville).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -67,7 +67,7 @@ public class AdresseService implements IService<Adresse> {
     }
 
     public List<Adresse> getByQuartier(String quartier, String ville) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/getByQuartier/").build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/getByQuartier/"+quartier+"/"+ville).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -81,17 +81,17 @@ public class AdresseService implements IService<Adresse> {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String json = mapper.writeValueAsString(attributs);
         RequestBody body = RequestBody.create(json, JSON);
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/ModifierAdresse/").patch(body).build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/ModifierAdresse/"+id).patch(body).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response));
+                throw new IOException(response.body().string());
             }
         }
     }
 
 
     public List<Adresse> sortByVille(String ordre) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/sortByVille/").build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/sortByVille/"+ordre).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -101,7 +101,7 @@ public class AdresseService implements IService<Adresse> {
     }
 
     public void deleteById(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/adresse/DeleteById/").delete().build();
+        Request request = new Request.Builder().url("http://localhost:9998/adresse/DeleteById/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));

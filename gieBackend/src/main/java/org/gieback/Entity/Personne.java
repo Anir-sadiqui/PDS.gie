@@ -35,6 +35,8 @@ public class Personne extends Contact implements Serializable {
 
     @Override
     public String toString() {
-        return this.getAdresse().getAdresse_id() + "";
+        return "nom: " + nom + " " + prenom + '\n' +
+                "phone: " + getPhone() + '\n' +
+                "email: " + getEmail() ;
     }
 }

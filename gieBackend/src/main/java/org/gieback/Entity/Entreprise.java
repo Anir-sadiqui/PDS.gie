@@ -34,14 +34,11 @@ public class Entreprise extends Contact  implements Serializable {
 
     @Override
     public String toString() {
-        return "Entreprise{" +
-                "id=" + getId() +
-                ", phone='" + getPhone() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", adresse=" + this.getAdresse() +
-                ", formeJuridique='" + formeJuridique + '\'' +
-                ", raisonSocial='" + raisonSocial + '\'' +
-                '}';
+        return  "Raison social: " + raisonSocial + '\n' +
+                "phone: " + getPhone() + '\n' +
+                "email: " + getEmail() + '\n' +
+                "Forme juridique: " + formeJuridique + '\n' ;
+
     }
 
 }

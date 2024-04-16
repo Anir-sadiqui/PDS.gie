@@ -20,7 +20,6 @@ public class PersonneController {
     IPersonneService personneService=new PersonneService();
     @GET
     @Path("/getAll")
-
     @Produces(MediaType.APPLICATION_JSON)
     public List<Personne> getAllEnterprises() {
         return personneService.getAllPersonnes();
@@ -47,43 +46,43 @@ public class PersonneController {
         return Response.status(Response.Status.CREATED).build();
     }
     @GET
-    @Path("GetBynom")
+    @Path("GetBynom/{n}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getByNom(@QueryParam("n") String nom) {
+    public List<Personne> getByNom(@PathParam("n") String nom) {
         return personneService.getByNom(nom);
     }
 
     @GET
-    @Path("GetByprenom")
+    @Path("getPersonneByPrenom/{prenom}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getByPrenom(@QueryParam("p") String prenom) {
+    public List<Personne> getByPrenom(@PathParam("prenom") String prenom) {
         return personneService.getByPrenom(prenom);
     }
 
     @GET
-    @Path("sortBynom")
+    @Path("sortBynom/{ordre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> sortByNom(@QueryParam("ordre") String ordre) {
+    public List<Personne> sortByNom(@PathParam("ordre") String ordre) {
         return personneService.sortByNom(ordre);
     }
 
     @GET
-    @Path("sortByid{ordre}")
+    @Path("sortByid/{ordre}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Personne> sortById(@PathParam("ordre") String ordre) {
         return personneService.sortById(ordre);
     }
 
-    @PUT
-    @Path("Modifier{id}")
+    @PATCH
+    @Path("Modifier/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response modifier(@PathParam("id") int id, Map<String, String> attributs) {
+    public Response modifier(@PathParam("id") String id, Map<String, String> attributs) {
         personneService.modifier(id, attributs);
         return Response.noContent().build();
     }
 
     @DELETE
-    @Path("DeletePersonne{id}")
+    @Path("DeletePersonne/{id}")
     public Response deleteById(@PathParam("id") int id) {
         personneService.deleteById(id);
         return Response.noContent().build();

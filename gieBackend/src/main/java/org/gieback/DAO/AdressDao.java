@@ -92,7 +92,6 @@ public class AdressDao implements IAdressDao {
             entityManager.merge(adresse);
         }
         entityManager.getTransaction().commit();
-        entityManager.close();
     }
 
 

@@ -16,20 +16,23 @@ import java.util.Map;
 
 public class EntrepriseDao implements IEntrepriseDao {
     EntityManager entityManager;
+
     public EntrepriseDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
+
     @Override
     public List<Entreprise> getAll() {
         return entityManager.createQuery("from Entreprise ", Entreprise.class).getResultList();
     }
+
     @Override
     public void add(Entreprise e1) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
             System.out.println(e1.getAdresse());
-            if (e1.getAdresse() != null ) {
+            if (e1.getAdresse() != null) {
                 entityManager.persist(e1.getAdresse());
                 e1.setAdresse(e1.getAdresse());
             }
@@ -73,13 +76,12 @@ public class EntrepriseDao implements IEntrepriseDao {
                 }
             }
             entityManager.merge(E);
+        } else {
+            System.out.println("id incorrect");
         }
-        else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
-        entityManager.close();
-
-
     }
+
     @Override
     public void deleteByid(int id) {
         String hql = "delete from Entreprise where id =:id";
@@ -96,7 +98,6 @@ public class EntrepriseDao implements IEntrepriseDao {
 
         }
     }
-
 
 
     @Override
@@ -121,9 +122,9 @@ public class EntrepriseDao implements IEntrepriseDao {
         CriteriaQuery<Entreprise> cq = cb.createQuery(Entreprise.class);
         Root<Entreprise> EntrepriseRoot = cq.from(Entreprise.class);
         if ("asc".equalsIgnoreCase(ordre)) {
-            cq.orderBy(cb.asc(EntrepriseRoot.get("RaisonSocial")));
+            cq.orderBy(cb.asc(EntrepriseRoot.get("raisonSocial")));
         } else if ("desc".equalsIgnoreCase(ordre)) {
-            cq.orderBy(cb.desc(EntrepriseRoot.get("RaisonSocial")));
+            cq.orderBy(cb.desc(EntrepriseRoot.get("raisonSocial")));
         } else {
             throw new IllegalArgumentException("Ordre de tri non reconnu. Utilisez 'asc' ou 'desc'.");
         }
@@ -132,8 +133,22 @@ public class EntrepriseDao implements IEntrepriseDao {
     }
 
     @Override
-    public Entreprise getByRs(String raisonSocial) {
-        return entityManager.find(Entreprise.class,raisonSocial);
+    public Entreprise getByRs(String rs) {
+
+        String hql = "FROM Entreprise e WHERE e.raisonSocial = :rs";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("rs", rs);
+        Entreprise e = (Entreprise) query.getSingleResult();
+        return e;
+    }
+
+    public List<Entreprise> getByFj(String Fj) {
+        String hql = "FROM Entreprise e WHERE e.formeJuridique = :fj";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("fj", Fj);
+        List<Entreprise> r = query.getResultList();
+        return r;
+
     }
 
 }

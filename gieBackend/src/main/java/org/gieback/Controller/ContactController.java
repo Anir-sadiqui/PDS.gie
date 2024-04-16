@@ -3,6 +3,7 @@ package org.gieback.Controller;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Contact;
@@ -33,4 +34,6 @@ public class ContactController {
         contacts.addAll(entreprises);
         return contacts;
     }
+
+
 }
