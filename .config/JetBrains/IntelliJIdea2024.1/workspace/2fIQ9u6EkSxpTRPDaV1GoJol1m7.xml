@@ -1,0 +1,197 @@
+<project version="4">
+  <component name="BookmarksManager">
+    <option name="groups">
+      <GroupState>
+        <option name="name" value="gieBackend" />
+      </GroupState>
+    </option>
+  </component>
+  <component name="FileEditorManager">
+    <leaf ideFingerprint="1ebw6k9eks59">
+      <file>
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/gieback/App.java">
+          <provider editor-type-id="text-editor" selected="true">
+            <state relative-caret-position="167">
+              <caret line="33" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
+          <provider editor-type-id="text-editor" selected="true">
+            <state relative-caret-position="-72" />
+          </provider>
+        </entry>
+      </file>
+      <file current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider editor-type-id="text-editor" selected="true">
+            <state relative-caret-position="-1416" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTypeUsageLocalSummary"><![CDATA[{
+  "data": {
+    "JAVA": {
+      "usageCount": 1,
+      "lastUsed": 1713486048451
+    },
+    "XML": {
+      "usageCount": 2,
+      "lastUsed": 1713486105439
+    }
+  }
+}]]></component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/src/main/java/org/gieback/App.java" />
+    </changedPaths>
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="LanguageUsageStatistics">
+    <language id="JAVA">
+      <summary usageCount="1" lastUsage="1713486048463" />
+    </language>
+    <language id="XML">
+      <summary usageCount="2" lastUsage="1713486105439" />
+    </language>
+  </component>
+  <component name="MavenProjectNavigator">
+    <option name="groupStructurally" value="true" />
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" />
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/java}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/java}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/java/org/gieback}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/resources}" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gieBackend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/resources}" type="462c0819:PsiDirectoryNode" />
+              <item name="dir{file:///home/mahjouby/gieBackend/src/main/resources/META-INF}" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="TerminalArrangementManager">
+    <option name="myTabStates">
+      <TerminalTabState tabName="Local" commandHistoryFileName="gieBackend-history">
+        <shellCommand>
+          <arg value="/bin/bash" />
+          <arg value="-i" />
+        </shellCommand>
+      </TerminalTabState>
+    </option>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1142000" />
+  </component>
+  <component name="ToolWindowManager">
+    <layoutV2>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3298611" />
+      <window_info id="Commit" order="1" weight="0.25" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Problems" order="1" />
+      <window_info anchor="bottom" id="Problems View" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.3299595" />
+      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.32186234" />
+      <window_info anchor="bottom" id="Services" order="4" />
+      <window_info anchor="bottom" id="Build" order="4" />
+      <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
+      <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
+      <window_info anchor="right" id="Database" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.25" />
+      <unified_weights bottom="0.32186234" left="0.3298611" />
+    </layoutV2>
+    <recentWindows>
+      <value>Project</value>
+      <value>Run</value>
+      <value>Terminal</value>
+    </recentWindows>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1416" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/gieback/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
