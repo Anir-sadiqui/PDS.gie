@@ -1,22 +1,29 @@
 package org.giefront;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Entreprise;
+
+import org.giefront.DTO.Adresse;
+import org.giefront.DTO.Entreprise;
 import org.giefront.Service.EntrepriseService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EntrepriseController implements Initializable {
 
+    @FXML
+    private AnchorPane mainAnchor;
     @FXML
     private Button BtnAddP;
 
@@ -102,5 +109,16 @@ public class EntrepriseController implements Initializable {
                 !Text_Field_N.getText().isEmpty() &&
                 !Text_Field_FJ.getText().isEmpty() &&
                 !Text_Field_Po.getText().isEmpty();
+    }
+
+    public void onReturn(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
+            Node node = fxmlLoader.load();
+            mainAnchor.getChildren().setAll(node);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

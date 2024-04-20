@@ -13,8 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+
+import org.giefront.DTO.Personne;
 import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
@@ -184,7 +184,7 @@ public class AdvancedSearchP implements Initializable {
         }
         else if(!Text_Prenom.getText().isEmpty() && Text_Id.getText().isEmpty()){
             if (Text_Nom.getText().isEmpty()  ) {
-                ObservableList<Personne> personneObservableList = FXCollections.observableList(ps.getByprenom(Text_Nom.getText()));
+                ObservableList<Personne> personneObservableList = FXCollections.observableList(ps.getByPrenom(Text_Prenom.getText()));
                 C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
                 c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
                 C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
@@ -194,25 +194,25 @@ public class AdvancedSearchP implements Initializable {
                 tableView_P.setItems(personneObservableList);
                 tableView_P.setVisible(true);
             }
-//            else if(!Text_Nom.getText().isEmpty() ) {
-//                List<Personne> l = ps.getBynom(Text_Nom.getText());
-//
-//                List<Personne> l2 = new ArrayList<>();
-//                for (Personne p : l){
-//                    if (p.getPrenom().equals(Text_Prenom.getText())){
-//                        l2.add(p);
-//                    }
-//                }
-//                ObservableList<Personne> personneObservableList = FXCollections.observableList(l2);
-//                C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-//                c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-//                C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-//                C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//                C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//                C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-//                tableView_P.setItems(personneObservableList);
-//                tableView_P.setVisible(true);
-//            }
+            else if(!Text_Nom.getText().isEmpty() ) {
+                List<Personne> l = ps.getBynom(Text_Nom.getText());
+
+                List<Personne> l2 = new ArrayList<>();
+                for (Personne p : l){
+                    if (p.getPrenom().equals(Text_Prenom.getText())){
+                        l2.add(p);
+                    }
+                }
+                ObservableList<Personne> personneObservableList = FXCollections.observableList(l2);
+                C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
+                c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
+                C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
+                C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+                C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+                tableView_P.setItems(personneObservableList);
+                tableView_P.setVisible(true);
+            }
         }
     }
 

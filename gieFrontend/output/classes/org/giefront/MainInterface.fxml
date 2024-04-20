@@ -54,18 +54,6 @@
                 <TableColumn fx:id="C_Adresse_P" prefWidth="71.3333740234375" text="Adresse_ID" />
             </columns>
         </TableView>
-    <TableView fx:id="tableView_C" layoutX="20.0" layoutY="226.0" prefHeight="165.0" prefWidth="590.0">
-        <columns>
-            <TableColumn fx:id="C_ID_C" prefWidth="51.666656494140625" text="ID" />
-            <TableColumn fx:id="C_FJ_C" prefWidth="100.0" text="Forme_Juridique" />
-            <TableColumn fx:id="C_RS_C" prefWidth="106.99996948242188" text="Raison_Social" />
-            <TableColumn fx:id="C_Email_C" prefWidth="135.0" text="Email" />
-            <TableColumn fx:id="C_Phone_C" prefWidth="129.33331298828125" text="Phone" />
-            <TableColumn fx:id="C_Nom_C" prefWidth="93.0" text="Nom" />
-            <TableColumn fx:id="C_Prenom_C" prefWidth="102.99996948242188" text="Prenom" />
-
-        </columns>
-    </TableView>
       <TextArea fx:id="detailsC" layoutX="629.0" layoutY="286.0" prefHeight="84.0" prefWidth="241.0" />
       <Button fx:id="adresse" layoutX="618.0" layoutY="372.0" mnemonicParsing="false" onAction="#onAdress" text="Adresse" />
       <TextArea fx:id="adresseDetails" layoutX="678.0" layoutY="380.0" prefHeight="56.0" prefWidth="211.0" />

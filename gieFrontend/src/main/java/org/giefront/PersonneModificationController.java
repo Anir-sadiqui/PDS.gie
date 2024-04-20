@@ -10,9 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.giefront.DTO.Adresse;
+import org.giefront.DTO.Personne;
 import org.giefront.Service.AdresseService;
 import org.giefront.Service.PersonneService;
 

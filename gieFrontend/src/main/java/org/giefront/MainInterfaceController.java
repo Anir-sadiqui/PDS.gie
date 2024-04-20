@@ -18,9 +18,9 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.gieback.Entity.Contact;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.giefront.DTO.Contact;
+import org.giefront.DTO.Entreprise;
+import org.giefront.DTO.Personne;
 import org.giefront.Service.ContactService;
 import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
@@ -34,24 +34,7 @@ import java.util.ResourceBundle;
 import lombok.Data;
 @Data
 public class MainInterfaceController implements Initializable {
-    @FXML
-    private  TableView tableView_C;
-    @FXML
-    private  TableColumn C_FJ_C;
-    @FXML
-    private  TableColumn C_RS_C;
-    @FXML
-    private  TableColumn C_Email_C;
-    @FXML
-    private  TableColumn C_Phone_C;
-    @FXML
-    private TableColumn C_Adresse_C;
-    @FXML
-    private TableColumn C_Nom_C;
-    @FXML
-    private  TableColumn C_Prenom_C;
-    @FXML
-    private   TableColumn C_ID_C ;
+
     @FXML
     private  Button returnBtn;
     @FXML
@@ -138,7 +121,6 @@ public class MainInterfaceController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        tableView_C.setVisible(false);
         tableView_E.setVisible(false);
         tableView_P.setVisible(false);
         detailsC.setVisible(false);
@@ -170,16 +152,7 @@ public class MainInterfaceController implements Initializable {
             });
             return row;
         });
-        tableView_C.setRowFactory(tv -> {
-            TableRow<Personne> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (!row.isEmpty() && event.getClickCount() == 1) {
-                    Personne clickedRow = row.getItem();
-                    showPDetails(clickedRow);
-                }
-            });
-            return row;
-        });
+
 
     }
 
@@ -227,7 +200,6 @@ public class MainInterfaceController implements Initializable {
         ObservableList<String> options = FXCollections.observableArrayList();
         options.add("Entreprise");
         options.add("Personne");
-        options.add("Tout");
         typeChoiceBox.setItems(options);
     }
 
@@ -251,7 +223,6 @@ public class MainInterfaceController implements Initializable {
                 tableView_P.setItems(personneObservableList);
                 tableView_P.setVisible(true);
                 tableView_E.setVisible(false);
-                tableView_C.setVisible(false);
                 break;
             case "Entreprise":
                 ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getAll());
@@ -264,22 +235,7 @@ public class MainInterfaceController implements Initializable {
                 tableView_E.setItems(entrepriseObservableList);
                 tableView_E.setVisible(true);
                 tableView_P.setVisible(false);
-                tableView_C.setVisible(false);
                 break;
-            case "Tout":
-                ObservableList<Contact> ContactObservableList = FXCollections.observableList(c.getAll());
-                C_ID_C.setCellValueFactory(new PropertyValueFactory<>("id"));
-                C_Email_C.setCellValueFactory(new PropertyValueFactory<>("email"));
-                C_Phone_C.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                C_FJ_C.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                C_RS_C.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                C_Nom_C.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                C_Prenom_C.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                tableView_C.setItems(ContactObservableList);
-                tableView_C.setVisible(true);
-                tableView_P.setVisible(false);
-                tableView_E.setVisible(false);
-
 
         }
         applyFilter();
@@ -422,11 +378,22 @@ public class MainInterfaceController implements Initializable {
 
 
     public void onCreateBtnClick(ActionEvent event) {
+        String selectedType = typeChoiceBox.getValue();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("createContact.fxml"));
-            Node node = fxmlLoader.load();
-            mainAnchor.getChildren().setAll(node);
+            if ("Personne".equals(selectedType)) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("personne.fxml"));
+                Node node = fxmlLoader.load();
+                mainAnchor.getChildren().setAll(node);
+            } else if ("Entreprise".equals(selectedType)) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("entreprise.fxml"));
+                Node node = fxmlLoader.load();
+                mainAnchor.getChildren().setAll(node);
+            }
+            else {
+                showMessage("Veuillez selectionner un type pour la création");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -475,9 +442,3 @@ public class MainInterfaceController implements Initializable {
 
 
 }
-
-
-
-
-
-

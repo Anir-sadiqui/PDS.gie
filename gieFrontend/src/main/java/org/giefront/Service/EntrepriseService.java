@@ -3,14 +3,15 @@ package org.giefront.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
-import org.gieback.Entity.Entreprise;
+
+import org.giefront.DTO.Entreprise;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class EntrepriseService implements IService<Entreprise> {
+public class EntrepriseService implements IService {
     @Override
     public List<Entreprise> getAll() {
         Request request = new Request.Builder().url("http://localhost:9998/entreprise/getAll").build();

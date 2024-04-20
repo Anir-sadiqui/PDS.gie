@@ -7,8 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Entreprise;
+
+import org.giefront.DTO.Adresse;
+import org.giefront.DTO.Entreprise;
 import org.giefront.Service.AdresseService;
 import org.giefront.Service.EntrepriseService;
 

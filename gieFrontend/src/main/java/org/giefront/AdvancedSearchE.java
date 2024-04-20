@@ -13,8 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.giefront.DTO.Entreprise;
 import org.giefront.Service.EntrepriseService;
 
 import java.io.IOException;
@@ -54,14 +53,13 @@ public class AdvancedSearchE implements Initializable {
     private TableColumn<Entreprise, Long> C_ID_E;
 
     @FXML
-    private TableColumn<Entreprise, String> C_Phone_E;
+    private TableColumn<String, String> C_Phone_E;
 
 
     @FXML
     private TableColumn<Entreprise, String> C_RS_E;
 
-    @FXML
-    private TableColumn<Personne, String> c_Email_P;
+
 
     @FXML
     public TableView<Entreprise> tableView_E;
