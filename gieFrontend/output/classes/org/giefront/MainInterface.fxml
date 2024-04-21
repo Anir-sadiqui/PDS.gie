@@ -21,7 +21,7 @@
                 <items>
                     <MenuItem text="Messagerie" />
                     <MenuItem text="Paramètres" />
-                    <MenuItem text="Se déconnecter" />
+                    <MenuItem fx:id="deco" text="Se déconnecter" onAction="#onDeco" />
                     <!-- Ajoutez d'autres options de menu ici si nécessaire -->
                 </items>
              </MenuButton>
