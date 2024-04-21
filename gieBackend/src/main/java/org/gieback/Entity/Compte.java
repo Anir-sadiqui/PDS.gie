@@ -15,7 +15,7 @@ public class Compte implements Serializable {
     public Compte(String email, Long compte_id, String MDP, Contact c) {
         this.email = email;
         this.Compte_id = compte_id;
-        this.contact=c;
+//        this.contact=c;
         this.MDP=MDP;
 
     }
@@ -32,9 +32,9 @@ public class Compte implements Serializable {
 
     private String MDP;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "compte")
-    private Contact contact;
+//    @JsonIgnore
+//    @OneToOne(mappedBy = "compte")
+//    private Contact contact;
 
     public Compte() {
 
