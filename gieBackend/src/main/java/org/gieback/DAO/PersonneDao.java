@@ -6,10 +6,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Contact;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.gieback.Entity.*;
 import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.util.List;
@@ -155,6 +152,15 @@ public   class PersonneDao implements IPersonneDao{
         }
     }
 
+    @Override
+    public Personne getByEmail(String email) {
+        String hql = "FROM Personne p WHERE p.email = :email";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("email", email);
+        Personne r = (Personne) query.getSingleResult();
+        return r;
     }
+
+}
 
 

@@ -151,4 +151,12 @@ public class EntrepriseDao implements IEntrepriseDao {
 
     }
 
+    @Override
+    public Entreprise getByEmail(String email) {
+        String hql = "FROM Entreprise e WHERE e.email = :email";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("email", email);
+        return (Entreprise) query.getSingleResult();
+    }
+
 }

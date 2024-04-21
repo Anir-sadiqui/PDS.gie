@@ -19,7 +19,7 @@
         <!-- Profile Icon -->
         <MenuButton fx:id="profileMenuButton" layoutX="813.0" layoutY="50.0" prefHeight="30.0" prefWidth="58.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="50.0">
                 <items>
-                    <MenuItem text="Messagerie" />
+                    <MenuItem text="Messagerie" onAction="#onMess" />
                     <MenuItem text="Paramètres" />
                     <MenuItem fx:id="deco" text="Se déconnecter" onAction="#onDeco" />
                     <!-- Ajoutez d'autres options de menu ici si nécessaire -->

@@ -1,5 +1,6 @@
 package org.gieback.Controller;
 import jakarta.ws.rs.core.Response;
+import org.gieback.Entity.Compte;
 import org.gieback.Entity.Personne;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Produces;
@@ -87,6 +88,13 @@ public class PersonneController {
         personneService.deleteById(id);
         return Response.noContent().build();
     }
+    @GET
+    @Path("/getByemail/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Personne getByEmail(@PathParam("email") String email) {
+        return personneService.getByEmail(email);
+    }
+
 }
 
 

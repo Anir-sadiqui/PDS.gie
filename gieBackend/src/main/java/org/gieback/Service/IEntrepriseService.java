@@ -16,4 +16,6 @@ public interface IEntrepriseService {
 
     Entreprise getEnterpriseByRs(String rs);
     List<Entreprise> getByFj(String Fj);
+
+    Entreprise getByEmail(String email);
 }

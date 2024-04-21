@@ -38,10 +38,10 @@ public class App extends ResourceConfig {
 //        adresse1.setVille("Rabat");
 //        adresse1.setNumero("N1");
 //
-//        Adresse adresse2 = new Adresse();
-//        adresse2.setQuartier("456 Avenue Agdal");
-//        adresse2.setVille("Rabat");
-//        adresse2.setNumero("N2");
+        Adresse adresse2 = new Adresse();
+        adresse2.setQuartier("456 Avenue Agdal");
+        adresse2.setVille("Rabat");
+        adresse2.setNumero("N2");
 //
 //
 //        Adresse adresse3 = new Adresse();
@@ -57,7 +57,7 @@ public class App extends ResourceConfig {
 //
 //       Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse1,"Entreprise 1","Apple");
 //
-//        Entreprise entreprise2 = new Entreprise("0987654321", "entreprise2@gmail.com",adresse2,"Entreprise 2","SA");
+//        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse2,"Entreprise 2","SA");
 
 //
 //        entrepriseService.addEnterprise(entreprise2);
@@ -76,7 +76,7 @@ public class App extends ResourceConfig {
 //        p.addPersonne(personne1);
 //        p.addPersonne(personne2);
 //        e.addEnterprise(entreprise1);
-//        e.addEnterprise(entreprise2);
+
 //       Map <String, String> attributs = new HashMap<>();
 //        attributs.put("Nom","Said");
 //        attributs.put("email","said@gmail.com");
@@ -87,6 +87,9 @@ public class App extends ResourceConfig {
 //        System.out.println(a.sortByVille("desc"));
 //        System.out.println(entreprise2);
 //        System.out.println(entreprise2.getAdresse());
+//        EntrepriseService e = new EntrepriseService();
+//        System.out.println(e.getByEmail("anirsadiqui2@gmail.com"));
+//        e.addEnterprise(entreprise2);
 
 
 

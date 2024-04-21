@@ -91,4 +91,11 @@ public class EntrepriseController {
         return entrepriseService.getByFj(Fj);
     }
 
+    @GET
+    @Path("/getByemail/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Entreprise getByEmail(@PathParam("email") String email) {
+        return entrepriseService.getByEmail(email);
+    }
+
 }

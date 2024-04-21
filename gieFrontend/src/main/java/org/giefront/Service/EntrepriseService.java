@@ -148,6 +148,23 @@ public List<Entreprise> getByFj(String fj) {
         throw new RuntimeException("Failed to execute getByFj request", e);
     }
 }
+    public Entreprise getByEmail (String email)  {
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/getByemail/"+email).build();
+        Entreprise entreprise;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            entreprise = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+
+        }
+        return entreprise;
+    }
 
 
 }

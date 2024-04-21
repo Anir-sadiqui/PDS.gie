@@ -16,4 +16,5 @@ public interface IPersonneService {
     List<Personne> sortById (String ordre);
     void modifier(String  id, Map<String, String> attributs);
     void deleteById (int id);
+    Personne getByEmail(String email);
 }

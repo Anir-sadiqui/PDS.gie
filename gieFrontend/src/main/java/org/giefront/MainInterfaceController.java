@@ -453,4 +453,15 @@ public class MainInterfaceController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    public void onMess(ActionEvent event) {
+        try {
+            FXMLLoader f = new FXMLLoader();
+            f.setLocation(getClass().getResource("Messagerie.fxml"));
+            Node n = f.load();
+            mainAnchor.getChildren().setAll(n);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

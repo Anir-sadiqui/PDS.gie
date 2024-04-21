@@ -58,4 +58,9 @@ public class EntrepriseService implements IEntrepriseService{
     public List<Entreprise> getByFj(String Fj) {
         return entrepriseDao.getByFj(Fj);
     }
+
+    @Override
+    public Entreprise getByEmail(String email) {
+        return entrepriseDao.getByEmail(email);
+    }
 }

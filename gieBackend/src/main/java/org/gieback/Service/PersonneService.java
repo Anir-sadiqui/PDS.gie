@@ -60,4 +60,9 @@ public class PersonneService implements IPersonneService{
         personneeDao.deleteById(id);
 
     }
+
+    @Override
+    public Personne getByEmail(String email) {
+        return personneeDao.getByEmail(email);
+    }
 }

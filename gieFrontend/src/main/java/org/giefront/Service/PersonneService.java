@@ -141,6 +141,21 @@ public class PersonneService implements IService{
             }
         }
     }
+    public Personne getByEmail (String email)  {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/getByemail/"+email).build();
+        Personne personne;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            personne = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return personne;
+    }
 
 
 }
