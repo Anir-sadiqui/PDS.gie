@@ -37,6 +37,7 @@ public class EntrepriseDao implements IEntrepriseDao {
                 e1.setAdresse(e1.getAdresse());
             }
             entityManager.persist(e1);
+            entityManager.flush();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
