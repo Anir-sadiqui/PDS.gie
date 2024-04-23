@@ -18,8 +18,8 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @Enumerated(EnumType.STRING) // Ensures enum values are stored as text in the database
+    @Column(name = "category")
     private Category category;
 
     public Product() {}
@@ -35,6 +35,15 @@ public class Product implements Serializable {
         return "Product ID: " + id + '\n' +
                 "Name: " + name + '\n' +
                 "Description: " + description + '\n' +
-                "Category: " + category.getName() + '\n';
+                "Category: " + category.name() + '\n';
+    }
+
+    public enum Category {
+        MOBILE_DEVICES,
+        COMPUTERS,
+        HOME_ELECTRONICS,
+        AUDIO_VIDEO,
+        WEARABLES,
+        OTHER_ELECTRONICS
     }
 }

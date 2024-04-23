@@ -1,19 +1,21 @@
 package org.gieback.Entity;
 
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Data
 public class Inventory implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generates the primary key
+    private Long id;
+
     @OneToMany
     @JoinColumn(name = "inventory_id")
-    private List<Achat> Achats;
+    private List<Achat> achats; // Corrected variable naming
 
     @OneToMany
     @JoinColumn(name = "inventory_id")
@@ -21,26 +23,20 @@ public class Inventory implements Serializable {
 
     @OneToMany
     @JoinColumn(name = "inventory_id")
-    private List<Category> categories;
-
-    @OneToMany
-    @JoinColumn(name = "inventory_id")
     private List<Contact> contacts;
 
     public Inventory() {}
 
-    public Inventory(List<Achat> Achats, List<Product> products, List<Category> categories, List<Contact> contacts) {
-        this.Achats = Achats;
+    public Inventory(List<Achat> achats, List<Product> products, List<Contact> contacts) {
+        this.achats = achats;
         this.products = products;
-        this.categories = categories;
         this.contacts = contacts;
     }
 
     @Override
     public String toString() {
-        return "Achats: " + Achats.size() + '\n' +
+        return "Achats: " + achats.size() + '\n' +
                 "Products: " + products.size() + '\n' +
-                "Categories: " + categories.size() + '\n' +
                 "Contacts: " + contacts.size() + '\n';
     }
 }
