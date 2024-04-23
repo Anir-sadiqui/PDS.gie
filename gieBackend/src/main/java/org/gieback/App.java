@@ -92,8 +92,5 @@ public class App extends ResourceConfig {
 //        e.addEnterprise(entreprise2);
 
 
-
-
-
   }
 }

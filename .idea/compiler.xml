@@ -12,6 +12,7 @@
         <sourceOutputDir name="output/generated-sources/annotations" />
         <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="gieFrontEnd" />
         <module name="gieBackend" />
         <module name="gieFrontend" />
       </profile>
