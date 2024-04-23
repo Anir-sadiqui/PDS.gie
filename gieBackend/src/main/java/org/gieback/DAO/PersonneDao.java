@@ -38,6 +38,7 @@ public   class PersonneDao implements IPersonneDao{
                 p.setAdresse(p.getAdresse());
             }
             entityManager.persist(p);
+            entityManager.flush();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
