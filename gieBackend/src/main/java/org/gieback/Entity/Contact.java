@@ -1,7 +1,6 @@
 package org.gieback.Entity;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -24,10 +23,11 @@ import java.util.List;
 
 public class Contact implements Serializable{
 
-    public Contact(String phone, String email, Adresse adresse) {
+    public Contact(String phone, String email, Adresse adresse, ContactType contactType) {
         this.phone = phone;
         this.email = email;
         this.adresse = adresse;
+        this.contactType = contactType ;
     }
 
     @Id
@@ -76,9 +76,12 @@ public class Contact implements Serializable{
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
-    @Override
+    @Enumerated(EnumType.STRING) // Store enum as a String in the database
+    @Column(name = "contact_type")
+    private ContactType contactType; // The new field
+
     public String toString() {
-        return this.getAdresse().getAdresse_id()+"";
+        return "Phone: " + phone + ", Email: " + email + ", Type: " + contactType;
     }
 
     public Contact() {

@@ -15,8 +15,8 @@ import java.io.Serializable;
 @DiscriminatorValue("personne")
 
 public class Personne extends Contact implements Serializable {
-    public Personne(String phone, String email, Adresse adresse, String nom, String prenom) {
-        super(phone, email, adresse);
+    public Personne(String phone, String email, Adresse adresse, String nom, String prenom , ContactType contactType) {
+        super(phone, email, adresse , contactType);
         this.nom = nom;
         this.prenom = prenom;
 
@@ -35,8 +35,8 @@ public class Personne extends Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "nom: " + nom + " " + prenom + '\n' +
-                "phone: " + getPhone() + '\n' +
-                "email: " + getEmail() ;
+        return "Nom: " + nom + " " + prenom + ", Type: " + getContactType() + "\n" +
+                "Phone: " + getPhone() + "\n" +
+                "Email: " + getEmail();
     }
 }
