@@ -18,6 +18,21 @@ public class Entreprise  extends Contact implements Serializable {
 
     }
 
+    public String getFormeJuridique() {
+        return formeJuridique;
+    }
+
+    public void setFormeJuridique(String formeJuridique) {
+        this.formeJuridique = formeJuridique;
+    }
+
+    public String getRaisonSocial() {
+        return raisonSocial;
+    }
+
+    public void setRaisonSocial(String raisonSocial) {
+        this.raisonSocial = raisonSocial;
+    }
 
     public Entreprise() {
 

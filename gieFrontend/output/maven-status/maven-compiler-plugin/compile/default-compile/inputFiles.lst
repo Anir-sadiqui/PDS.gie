@@ -6,6 +6,7 @@ C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Servi
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\DTO\Personne.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\DTO\Contact.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\PersonneController.java
+C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Service\MailService.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\DTO\Entreprise.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\AdvancedSearchP.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Service\AdresseService.java
@@ -13,6 +14,9 @@ C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Perso
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\AdvancedSearchE.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\TestFront.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\EntrepriseController.java
+C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\MessagerieController.java
+C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\NotifierController.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Service\EntrepriseService.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\Service\PersonneService.java
+C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\LoginConroller.java
 C:\Users\dell\Desktop\PDSV1\pds.gie\gieFrontend\src\main\java\org\giefront\DTO\Adresse.java
