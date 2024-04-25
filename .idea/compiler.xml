@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for gieFrontEnd" enabled="true">
+      <profile name="Annotation profile for gieBackend" enabled="true">
         <sourceOutputDir name="output/generated-sources/annotations" />
         <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
