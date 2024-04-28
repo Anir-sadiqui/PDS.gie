@@ -11,8 +11,8 @@ public class Entreprise  extends Contact implements Serializable {
 
     private String raisonSocial;
 
-    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial) {
-        super(phone, email,adresse);
+    public Entreprise(String phone, String email, Adresse adresse,ContactType contactType,String formeJuridique, String raisonSocial) {
+        super(phone, email,adresse , contactType);
         this.formeJuridique = formeJuridique;
         this.raisonSocial = raisonSocial;
 

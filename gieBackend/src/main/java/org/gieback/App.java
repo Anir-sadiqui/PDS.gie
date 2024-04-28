@@ -38,10 +38,10 @@ public class App extends ResourceConfig {
 //        adresse1.setVille("Rabat");
 //        adresse1.setNumero("N1");
 //
-//        Adresse adresse2 = new Adresse();
-//        adresse2.setQuartier("456 Avenue Agdal");
-//        adresse2.setVille("Rabat");
-//        adresse2.setNumero("N2");
+        Adresse adresse2 = new Adresse();
+        adresse2.setQuartier("456 Avenue Agdal");
+        adresse2.setVille("Rabat");
+        adresse2.setNumero("N2");
 //
 //
 //        Adresse adresse3 = new Adresse();

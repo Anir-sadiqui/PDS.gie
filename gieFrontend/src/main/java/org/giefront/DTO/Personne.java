@@ -10,8 +10,8 @@ public class Personne extends Contact implements Serializable {
     private String prenom;
 
 
-    public Personne(String phone, String email, Adresse adresse, String nom, String prenom) {
-        super(phone, email, adresse);
+    public Personne(String phone, String email, Adresse adresse, ContactType contactType,String nom, String prenom) {
+        super(phone, email, adresse , contactType);
         this.nom = nom;
         this.prenom = prenom;
     }
@@ -33,6 +33,8 @@ public class Personne extends Contact implements Serializable {
     }
 
     public Personne() {
+
+
 
     }
 }

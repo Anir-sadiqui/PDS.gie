@@ -16,10 +16,49 @@ public class Contact implements Serializable {
 
     private Adresse adresse;
 
-    public Contact(String phone, String email, Adresse adresse) {
+    private ContactType contactType ;
+
+    public Contact(String phone, String email, Adresse adresse, ContactType contactType) {
         this.phone = phone;
         this.email = email;
         this.adresse = adresse;
+        this.contactType = contactType ;
+    }
+
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getPhone() {
+//        return phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        this.phone = phone;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public Adresse getAdresse() {
+//        return adresse;
+//    }
+//
+//    public void setAdresse(Adresse adresse) {
+//        this.adresse = adresse;
+//    }
+
+    public Contact(){
+
     }
 
     public Long getId() {
@@ -54,9 +93,11 @@ public class Contact implements Serializable {
         this.adresse = adresse;
     }
 
-    public Contact(){
-
+    public ContactType getContactType() {
+        return contactType;
     }
 
-
+    public void setContactType(ContactType contactType) {
+        this.contactType = contactType;
+    }
 }

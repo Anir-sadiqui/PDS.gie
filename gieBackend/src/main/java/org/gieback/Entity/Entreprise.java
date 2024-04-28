@@ -21,8 +21,8 @@ public class Entreprise extends Contact  implements Serializable {
 
     private String raisonSocial;
 
-    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial) {
-        super(phone, email,adresse);
+    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial , ContactType contactType) {
+        super(phone, email,adresse , contactType );
         this.formeJuridique = formeJuridique;
         this.raisonSocial = raisonSocial;
 
@@ -34,11 +34,10 @@ public class Entreprise extends Contact  implements Serializable {
 
     @Override
     public String toString() {
-        return  "Raison social: " + raisonSocial + '\n' +
-                "phone: " + getPhone() + '\n' +
-                "email: " + getEmail() + '\n' +
-                "Forme juridique: " + formeJuridique + '\n' ;
-
+        return "Raison Social: " + raisonSocial + ", Type: " + getContactType() + "\n" +
+                "Phone: " + getPhone() + "\n" +
+                "Email: " + getEmail() + "\n" +
+                "Forme Juridique: " + formeJuridique;
     }
 
 }
