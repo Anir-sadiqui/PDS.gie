@@ -2,7 +2,9 @@ package org.giefront;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -12,8 +14,10 @@ public class TestFront extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        //FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("fournisseur.fxml"));
+        Parent root  = FXMLLoader.load(getClass().getResource("fournisseur.fxml"));
+        Scene scene = new Scene(root);
+        //Scene scene = new Scene(fxmlLoader.load());
         stage.setHeight(600);
         stage.setWidth(900);
         stage.setResizable(true);

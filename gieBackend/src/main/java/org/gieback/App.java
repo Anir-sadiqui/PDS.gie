@@ -37,8 +37,8 @@ public class App extends ResourceConfig {
             entityManager.getTransaction().begin();
 
             // Create some Addresses
-            Adresse addr1 = new Adresse("123", "Main St", "Cityville");
-            Adresse addr2 = new Adresse("456", "Second St", "Townsville");
+            Adresse addr1 = new Adresse("000", "Oled  khadour", "OUtat El Haj");
+            Adresse addr2 = new Adresse("111", "SIDI Ali", "Misour");
 
             // Create Contacts with ContactType
             Personne person1 = new Personne("1234567890", "person1@example.com", addr1, "John", "Doe", ContactType.CLIENT); // As a client
@@ -47,6 +47,14 @@ public class App extends ResourceConfig {
             Entreprise company1 = new Entreprise("1112223333", "company1@example.com", addr1, "LLC", "ABC Corp.", ContactType.FOURNISSEUR); // As a supplier
             Entreprise company2 = new Entreprise("4445556666", "company2@example.com", addr2, "Inc.", "XYZ Corp.", ContactType.FOURNISSEUR); // As a supplier
 
+            // Create Contacts with ContactType
+            Personne person3 = new Personne("07653122", "yesgo@example.com", addr1, "omar", "mahmod", ContactType.FOURNISSEUR); //
+            Personne person4 = new Personne("098871656253", "mohamed6@example.com", addr2, "jihan", "abderahim", ContactType.FOURNISSEUR); // As a supplier
+
+            Entreprise company5 = new Entreprise("+9999999999", "amazon@example.com", addr1, "LLKIC", "natio Corp.", ContactType.CLIENT); // As a client
+            Entreprise company6 = new Entreprise("+88888888888", "google@example.com", addr2, "INTZ.", "mpooe Corp.", ContactType.CLIENT); //
+
+
             // Persist Addresses and Contacts
             entityManager.persist(addr1);
             entityManager.persist(addr2);
@@ -54,6 +62,11 @@ public class App extends ResourceConfig {
             entityManager.persist(person2);
             entityManager.persist(company1);
             entityManager.persist(company2);
+
+            entityManager.persist(person3);
+            entityManager.persist(person4);
+            entityManager.persist(company5);
+            entityManager.persist(company6);
 
             // Commit the transaction
             entityManager.getTransaction().commit();
