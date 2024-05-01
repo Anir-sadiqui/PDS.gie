@@ -23,23 +23,23 @@ public class AchatDetail implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "unit_price")
-    private double unitPrice;
+    @Column(name = "Prix Total")
+    private double TotalPrice;
 
     public AchatDetail() {}
 
-    public AchatDetail(Long id, Achat achat, Product product, int quantity, double unitPrice) {
+    public AchatDetail(Long id, Achat achat, Product product, int quantity, double TotalPrice) {
         this.id = id;
         this.achat = achat;
         this.product = product;
         this.quantity = quantity;
-        this.unitPrice = unitPrice;
+        this.TotalPrice = TotalPrice;
     }
 
     @Override
     public String toString() {
         return "Id: " + id + '\n' +
                 "Quantity: " + quantity + '\n' +
-                "Unit Price: " + unitPrice + '\n';
+                "Unit Price: " + TotalPrice + '\n';
     }
 }
