@@ -29,6 +29,9 @@ public class Contact implements Serializable{
         this.adresse = adresse;
         this.contactType = contactType ;
     }
+    public Contact(String phone, String email, Adresse adresse){
+        this(phone,email,adresse,null);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
