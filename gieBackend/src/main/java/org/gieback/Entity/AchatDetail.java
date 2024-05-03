@@ -4,15 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
 public class AchatDetail implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "purchase_id")
     private Achat achat;
 
@@ -23,13 +21,12 @@ public class AchatDetail implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "Prix Total")
+    @Column(name = "Prix_Total")
     private double TotalPrice;
 
     public AchatDetail() {}
 
     public AchatDetail(Long id, Achat achat, Product product, int quantity, double TotalPrice) {
-        this.id = id;
         this.achat = achat;
         this.product = product;
         this.quantity = quantity;
@@ -38,8 +35,8 @@ public class AchatDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "Id: " + id + '\n' +
+        return "Id: " + achat + '\n' +
                 "Quantity: " + quantity + '\n' +
-                "Unit Price: " + TotalPrice + '\n';
+                "Total Price: " + TotalPrice + '\n';
     }
 }

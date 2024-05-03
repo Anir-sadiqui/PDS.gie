@@ -16,7 +16,6 @@ public class Achat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "purchase_date")
     private Date purchaseDate;
 
@@ -24,18 +23,12 @@ public class Achat implements Serializable {
     @JoinColumn(name = "supplier_id")
     private Contact supplier;
 
-    @JsonIgnore
-    //@OneToMany(mappedBy = "purchase")
-    //private List<AchatDetail> details;
-    @OneToMany(mappedBy = "achat")
-    private Set<AchatDetail> details ;
+    @OneToOne
+    @JoinColumn(name = "Details_achats")
+    private AchatDetail details ;
 
     public Achat() {}
 
-   // public Achat(Long id, Date purchaseDate) {
-    //this.id = id;
-      //  this.purchaseDate = purchaseDate;
-    //}
     public Achat(Date purchaseDate, Contact supplier) {
         this.purchaseDate = purchaseDate;
         this.supplier = supplier;

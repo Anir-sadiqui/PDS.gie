@@ -22,7 +22,7 @@ public class Product implements Serializable {
     @Column(name = "category")
     private Category category;
 
-    @Column(name = "Quantite en stock")
+    @Column(name = "Quantite_stock")
     private int q;
 
     public Product() {}
