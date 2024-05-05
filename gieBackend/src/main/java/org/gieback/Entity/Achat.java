@@ -1,13 +1,10 @@
 package org.gieback.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
-//import javax.persistence.*;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -27,11 +24,14 @@ public class Achat implements Serializable {
     @JoinColumn(name = "Details_achats")
     private AchatDetail details ;
 
+
+
     public Achat() {}
 
-    public Achat(Date purchaseDate, Contact supplier) {
+    public Achat(Date purchaseDate, Contact supplier, AchatDetail details ) {
         this.purchaseDate = purchaseDate;
         this.supplier = supplier;
+        this.details=details;
     }
 
     @Override

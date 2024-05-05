@@ -9,8 +9,11 @@ import jakarta.persistence.criteria.Root;
 import org.gieback.Entity.*;
 import org.gieback.HibernateUtility.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.gieback.Entity.ContactType.FOURNISSEUR;
 
 public   class PersonneDao implements IPersonneDao{
 
@@ -162,6 +165,61 @@ public   class PersonneDao implements IPersonneDao{
         return r;
     }
 
+    @Override
+    public List<Personne> getByType(ContactType type) {
+            String hql = "FROM Personne p WHERE p.contactType = :type ";
+            Query query = entityManager.createQuery(hql);
+            query.setParameter("type", type);
+            List<Personne> result = query.getResultList();
+            return result;
+    }
+
+    @Override
+    public void addType(String id, ContactType type) {
+        entityManager.getTransaction().begin();
+        Personne p = entityManager.find(Personne.class, id);
+        if (p != null) {
+            p.setContactType(type);
+            entityManager.merge(p);
+        }
+        else { System.out.println("id incorrect");}
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void DeleteType(String id) {
+        entityManager.getTransaction().begin();
+        Personne p = entityManager.find(Personne.class, id);
+        if (p != null) {
+            p.setContactType(null);
+            entityManager.merge(p);
+        }
+        else { System.out.println("id incorrect");}
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public List<Personne> getTypeByNom(String n, ContactType type) {
+        String hql = "FROM Personne p WHERE p.nom = :nom AND p.contactType = :type";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("nom", n);
+        query.setParameter("type", type);
+        List<Personne> r = query.getResultList();
+        return r;
+    }
+
+    @Override
+    public List<Personne> getTypeByPrenom(String p, ContactType type) {
+        String hql = "FROM Personne p WHERE p.prenom = :prenom AND p.contactType = :type";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("prenom", p);
+        query.setParameter("type", type);
+        List<Personne> r = query.getResultList();
+        return r;
+    }
+
+
 }
+
 
 

@@ -26,7 +26,7 @@ public class AchatDetail implements Serializable {
 
     public AchatDetail() {}
 
-    public AchatDetail(Long id, Achat achat, Product product, int quantity, double TotalPrice) {
+    public AchatDetail(Achat achat, Product product, int quantity, double TotalPrice) {
         this.achat = achat;
         this.product = product;
         this.quantity = quantity;

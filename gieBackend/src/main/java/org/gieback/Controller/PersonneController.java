@@ -1,6 +1,7 @@
 package org.gieback.Controller;
 import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Compte;
+import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Personne;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Produces;
@@ -93,6 +94,40 @@ public class PersonneController {
     @Produces(MediaType.APPLICATION_JSON)
     public Personne getByEmail(@PathParam("email") String email) {
         return personneService.getByEmail(email);
+    }
+
+    @GET
+    @Path("GetByType/{t}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Personne> getByType(@PathParam("t") ContactType type) {
+        return personneService.getByType(type);
+    }
+    @PATCH
+    @Path("/addType/{id}/{t}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addType(@PathParam("id") String id, @PathParam("t") ContactType type ){
+        personneService.addType(id, type);
+        return Response.noContent().build();
+    }
+    @PATCH
+    @Path("/addType/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addType(@PathParam("id") String id ){
+        personneService.DeleteType(id);
+        return Response.noContent().build();
+    }
+    @GET
+    @Path("GetTypeBynom/{n}/{t}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Personne> getTypeByNom(@PathParam("n") String nom , @PathParam("t") ContactType type ) {
+        return personneService.getTypeByNom(nom, type);
+    }
+
+    @GET
+    @Path("getTypeByPrenom/{prenom}/{t}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Personne> getTypeByPrenom(@PathParam("prenom") String prenom , @PathParam("t") ContactType type ) {
+        return personneService.getTypeByPrenom(prenom, type);
     }
 
 }

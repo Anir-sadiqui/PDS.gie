@@ -1,6 +1,7 @@
 package org.gieback.DAO;
 
 import org.gieback.Entity.Contact;
+import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.Personne;
 
@@ -18,6 +19,13 @@ public interface IEntrepriseDao {
     Entreprise getByRs(String raisonSocial);
     List<Entreprise> getByFj(String Fj);
     Entreprise getByEmail(String email);
+    List<Entreprise> getByType(ContactType type);
+    void addType (String id, ContactType type);
+    void DeleteType (String id );
+    Entreprise getTypeByRs(String raisonSocial , ContactType type);
+    List<Entreprise> getTypeByFj(String Fj, ContactType type);
+
+
 
 
 }

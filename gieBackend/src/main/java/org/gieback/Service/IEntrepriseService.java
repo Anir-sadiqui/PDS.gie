@@ -1,5 +1,6 @@
 package org.gieback.Service;
 
+import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Entreprise;
 
 import java.util.List;
@@ -18,4 +19,9 @@ public interface IEntrepriseService {
     List<Entreprise> getByFj(String Fj);
 
     Entreprise getByEmail(String email);
+    List<Entreprise> getByType(ContactType type);
+    void addType (String id, ContactType type);
+    void DeleteType (String id );
+    Entreprise getTypeByRs(String raisonSocial , ContactType type);
+    List<Entreprise> getTypeByFj(String Fj, ContactType type);
 }

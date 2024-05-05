@@ -2,6 +2,7 @@ package org.gieback.Service;
 
 import org.gieback.DAO.EntrepriseDao;
 import org.gieback.DAO.IEntrepriseDao;
+import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Entreprise;
 
 import java.util.List;
@@ -63,4 +64,30 @@ public class EntrepriseService implements IEntrepriseService{
     public Entreprise getByEmail(String email) {
         return entrepriseDao.getByEmail(email);
     }
+
+    @Override
+    public List<Entreprise> getByType(ContactType type) {
+        return entrepriseDao.getByType(type);
+    }
+
+    @Override
+    public void addType(String id, ContactType type) {
+        entrepriseDao.addType(id, type);
+    }
+
+    @Override
+    public void DeleteType(String id) {
+        entrepriseDao.DeleteType(id);
+    }
+
+    @Override
+    public Entreprise getTypeByRs(String rs, ContactType type) {
+        return entrepriseDao.getTypeByRs(rs, type);
+    }
+
+    @Override
+    public List<Entreprise> getTypeByFj(String Fj, ContactType type) {
+        return entrepriseDao.getTypeByFj(Fj, type);
+    }
+
 }

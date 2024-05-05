@@ -3,6 +3,7 @@ package org.gieback.Service;
 import org.gieback.DAO.IEntrepriseDao;
 import org.gieback.DAO.IPersonneDao;
 import org.gieback.DAO.PersonneDao;
+import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.Personne;
 
@@ -64,5 +65,30 @@ public class PersonneService implements IPersonneService{
     @Override
     public Personne getByEmail(String email) {
         return personneeDao.getByEmail(email);
+    }
+
+    @Override
+    public List<Personne> getByType(ContactType type) {
+        return personneeDao.getByType(type);
+    }
+
+    @Override
+    public void addType(String id, ContactType type) {
+        personneeDao.addType(id, type);
+    }
+
+    @Override
+    public void DeleteType(String id) {
+        personneeDao.DeleteType(id);
+    }
+
+    @Override
+    public List<Personne> getTypeByNom(String n, ContactType type) {
+        return personneeDao.getTypeByNom(n, type);
+    }
+
+    @Override
+    public List<Personne> getTypeByPrenom(String p, ContactType type) {
+        return personneeDao.getTypeByPrenom(p, type);
     }
 }

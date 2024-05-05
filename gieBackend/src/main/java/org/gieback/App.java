@@ -3,20 +3,12 @@ import com.sun.net.httpserver.HttpServer;
 import jakarta.ws.rs.core.UriBuilder;
 
 
-import org.gieback.Entity.Adresse;
-
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
-import org.gieback.Service.AdresseService;
-import org.gieback.Service.EntrepriseService;
+import org.gieback.Entity.ContactType;
 import org.gieback.Service.PersonneService;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import java.net.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class App extends ResourceConfig {
@@ -38,11 +30,11 @@ public class App extends ResourceConfig {
 //        adresse1.setVille("Rabat");
 //        adresse1.setNumero("N1");
 //
-        Adresse adresse2 = new Adresse();
-        adresse2.setQuartier("456 Avenue Agdal");
-        adresse2.setVille("Rabat");
-        adresse2.setNumero("N2");
-//
+//        Adresse adresse2 = new Adresse();
+//        adresse2.setQuartier("456 Avenue Agdal");
+//        adresse2.setVille("Rabat");
+//        adresse2.setNumero("N2");
+
 //
 //        Adresse adresse3 = new Adresse();
 //        adresse3.setQuartier("123 Rue de la Paix");
@@ -55,15 +47,16 @@ public class App extends ResourceConfig {
 //        adresse1.setVille("Paris");
 //        adresse1.setNumero("N2");
 //
-//       Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse1,"Entreprise 1","Apple");
-//
+//       Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse2,"Entreprise 1","Apple", ContactType.FOURNISSEUR);
+//        Personne p1 = new Personne("1234567890", "entreprise1@gmail.com",adresse2,"Ayoub","mah", ContactType.FOURNISSEUR);
 //        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse2,"Entreprise 2","SA");
 
-//
-//        entrepriseService.addEnterprise(entreprise2);
+
+//        EntrepriseService entrepriseService = new EntrepriseService();
+//        entrepriseService.addEnterprise(entreprise1);
 //
 //        PersonneService personneService = new PersonneService();
-//        personneService.addPersonne(personne1);
+//        personneService.addPersonne(p1);
 //        personneService.addPersonne(personne2);
 //
 //
@@ -90,8 +83,8 @@ public class App extends ResourceConfig {
 //        EntrepriseService e = new EntrepriseService();
 //        System.out.println(e.getByEmail("anirsadiqui2@gmail.com"));
 //        e.addEnterprise(entreprise2);
-
-
+//       PersonneService fs = new PersonneService();
+//       fs.DeleteType(String.valueOf(52));
 
 
 

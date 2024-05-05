@@ -6,13 +6,14 @@ import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.gieback.Entity.*;
 import org.gieback.HibernateUtility.HibernateUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.gieback.Entity.ContactType.FOURNISSEUR;
 
 public class EntrepriseDao implements IEntrepriseDao {
     EntityManager entityManager;
@@ -158,6 +159,61 @@ public class EntrepriseDao implements IEntrepriseDao {
         Query query = entityManager.createQuery(hql);
         query.setParameter("email", email);
         return (Entreprise) query.getSingleResult();
+    }
+
+    @Override
+    public List<Entreprise> getByType(ContactType type) {
+            String hql1 = "FROM Entreprise e WHERE e.contactType = :FOURNISSEUR";
+            Query query1 = entityManager.createQuery(hql1);
+            query1.setParameter("FOURNISSEUR", FOURNISSEUR);
+            List<Entreprise> result = query1.getResultList();
+            return result;
+
+    }
+
+    @Override
+    public void addType(String id, ContactType type) {
+        entityManager.getTransaction().begin();
+        Entreprise p = entityManager.find(Entreprise.class, id);
+        if (p != null) {
+            p.setContactType(type);
+            entityManager.merge(p);
+        }
+        else { System.out.println("id incorrect");}
+        entityManager.getTransaction().commit();
+    }
+
+    @Override
+    public void DeleteType(String id) {
+        entityManager.getTransaction().begin();
+        Entreprise p = entityManager.find(Entreprise.class, id);
+        if (p != null) {
+            p.setContactType(null);
+            entityManager.merge(p);
+        }
+        else { System.out.println("id incorrect");}
+        entityManager.getTransaction().commit();
+
+    }
+
+    @Override
+    public Entreprise getTypeByRs(String rs ,ContactType type) {
+        String hql = "FROM Entreprise e WHERE e.raisonSocial = :rs AND e.contactType = :type";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("rs", rs);
+        query.setParameter("type",type );
+        Entreprise e = (Entreprise) query.getSingleResult();
+        return e;
+    }
+
+    @Override
+    public List<Entreprise> getTypeByFj(String Fj , ContactType type) {
+        String hql = "FROM Entreprise e WHERE e.formeJuridique = :fj AND e.contactType = :type";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("fj", Fj);
+        query.setParameter("type",type );
+        List<Entreprise> r = query.getResultList();
+        return r;
     }
 
 }
