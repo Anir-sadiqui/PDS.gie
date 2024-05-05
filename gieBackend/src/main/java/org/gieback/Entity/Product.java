@@ -24,14 +24,17 @@ public class Product implements Serializable {
 
     @Column(name = "Quantite_stock")
     private int q;
+    @Column(name ="Prix_unitaire")
+    private double prix;
 
     public Product() {}
 
-    public Product(String name, String description, Category category, int q) {
+    public Product(String name, String description, Category category, int q,double prix ) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.q=q;
+        this.prix=prix;
     }
 
     @Override
@@ -40,15 +43,9 @@ public class Product implements Serializable {
                 "Name: " + name + '\n' +
                 "Description: " + description + '\n' +
                 "Category: " + category.name() + '\n'+
-                "Quantite en stock: " + q ;
+                "Quantite en stock: " + q + '\n'+
+                "Prix unitaire: " + prix;
     }
 
-    public enum Category {
-        MOBILE_DEVICES,
-        COMPUTERS,
-        HOME_ELECTRONICS,
-        AUDIO_VIDEO,
-        WEARABLES,
-        OTHER_ELECTRONICS
-    }
+
 }

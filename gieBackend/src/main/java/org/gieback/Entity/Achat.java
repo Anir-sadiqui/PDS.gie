@@ -24,14 +24,19 @@ public class Achat implements Serializable {
     @JoinColumn(name = "Details_achats")
     private AchatDetail details ;
 
+    @ManyToOne
+    @JoinColumn(name = "Commande")
+    private  Commande c;
+
 
 
     public Achat() {}
 
-    public Achat(Date purchaseDate, Contact supplier, AchatDetail details ) {
+    public Achat(Date purchaseDate, Contact supplier, AchatDetail details, Commande c ) {
         this.purchaseDate = purchaseDate;
         this.supplier = supplier;
         this.details=details;
+        this.c=c;
     }
 
     @Override
