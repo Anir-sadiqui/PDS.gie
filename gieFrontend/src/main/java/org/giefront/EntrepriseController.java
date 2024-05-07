@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.Entreprise;
-import org.giefront.Service.EntrepriseService;
+import org.giefront.Service.FournisseurPersoService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,7 +64,7 @@ public class EntrepriseController implements Initializable {
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                EntrepriseService entrepriseService = new EntrepriseService();
+                FournisseurPersoService fournisseurPersoService = new FournisseurPersoService();
                 Entreprise entreprise = new Entreprise();
                 entreprise.setEmail(Text_Field_Email.getText());
                 entreprise.setRaisonSocial(Text_Field_RS.getText());
@@ -77,7 +77,7 @@ public class EntrepriseController implements Initializable {
                 entreprise.setAdresse(a);
                 System.out.println(entreprise);
 
-                entrepriseService.add(entreprise);
+                fournisseurPersoService.add(entreprise);
 
                 System.out.println("Entreprise ajoutée avec succès!");
             } else {

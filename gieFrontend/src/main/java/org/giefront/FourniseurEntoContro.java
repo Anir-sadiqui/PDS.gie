@@ -16,7 +16,7 @@ public class FourniseurEntoContro {
 
     public void switchToFornEntro(ActionEvent event) throws IOException {
 
-        fxmlLoader = new FXMLLoader(TestFront.class.getResource("fournisseur.fxml"));
+        fxmlLoader = new FXMLLoader(TestFront.class.getResource("fournisseurPerso.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
         scene = new Scene(fxmlLoader.load()) ;
         stage.setScene(scene);

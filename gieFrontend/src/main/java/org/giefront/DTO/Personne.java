@@ -16,6 +16,12 @@ public class Personne extends Contact implements Serializable {
         this.prenom = prenom;
     }
 
+    public Personne(String phone, String email, Adresse adresse, String nom, String prenom){
+        super(phone, email, adresse );
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
     public String getNom() {
         return nom;
     }

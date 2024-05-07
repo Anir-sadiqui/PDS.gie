@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.giefront.Service.EntrepriseService;
+import org.giefront.Service.FournisseurPersoService;
 import org.giefront.Service.MailService;
 import org.giefront.Service.PersonneService;
 
@@ -21,7 +21,7 @@ public class NotifierController implements Initializable {
     @FXML
     private TextField objet;
     PersonneService p = new PersonneService();
-    EntrepriseService e = new EntrepriseService();
+    FournisseurPersoService e = new FournisseurPersoService();
     MailService ms = new MailService();
 
 

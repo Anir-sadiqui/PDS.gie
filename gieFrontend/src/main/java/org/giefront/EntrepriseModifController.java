@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.Entreprise;
 import org.giefront.Service.AdresseService;
-import org.giefront.Service.EntrepriseService;
+import org.giefront.Service.FournisseurPersoService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,7 +65,7 @@ public class EntrepriseModifController implements Initializable {
             confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                EntrepriseService entrepriseService = new EntrepriseService();
+                FournisseurPersoService fournisseurPersoService = new FournisseurPersoService();
                 Entreprise entr = AdvancedSearchE.entr;
                 AdresseService as = new AdresseService();
                 Adresse a = entr.getAdresse();
@@ -94,7 +94,7 @@ public class EntrepriseModifController implements Initializable {
                 }
 
                 try {
-                    entrepriseService.modifierEntreprise(Math.toIntExact(entr.getId()),attributs);
+                    fournisseurPersoService.modifierEntreprise(Math.toIntExact(entr.getId()),attributs);
                     as.modifierAdresse(Math.toIntExact(a.getAdresse_id()),attributsA);
                 } catch (IOException e) {
                     throw new RuntimeException(e);

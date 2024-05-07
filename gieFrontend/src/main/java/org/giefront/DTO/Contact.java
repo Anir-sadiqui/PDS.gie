@@ -25,6 +25,11 @@ public class Contact implements Serializable {
         this.contactType = contactType ;
     }
 
+
+    public Contact(String phone, String email, Adresse adresse){
+        this(phone,email,adresse,null);
+    }
+
 //    public Long getId() {
 //        return id;
 //    }

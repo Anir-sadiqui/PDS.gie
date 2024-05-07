@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.Entreprise;
-import org.giefront.Service.EntrepriseService;
+import org.giefront.Service.FournisseurPersoService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -78,7 +78,7 @@ public class AdvancedSearchE implements Initializable {
     @FXML
     private TextArea adresseDetails;
 
-    EntrepriseService e = new EntrepriseService();
+    FournisseurPersoService e = new FournisseurPersoService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
