@@ -116,19 +116,7 @@ public class PersonneController {
         personneService.DeleteType(id);
         return Response.noContent().build();
     }
-    @GET
-    @Path("GetTypeBynom/{n}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getTypeByNom(@PathParam("n") String nom , @PathParam("t") ContactType type ) {
-        return personneService.getTypeByNom(nom, type);
-    }
 
-    @GET
-    @Path("getTypeByPrenom/{prenom}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getTypeByPrenom(@PathParam("prenom") String prenom , @PathParam("t") ContactType type ) {
-        return personneService.getTypeByPrenom(prenom, type);
-    }
 
 }
 

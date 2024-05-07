@@ -29,11 +29,11 @@ public class Product implements Serializable {
 
     public Product() {}
 
-    public Product(String name, String description, Category category, int q,double prix ) {
+    public Product(String name, String description, Category category,double prix ) {
         this.name = name;
         this.description = description;
         this.category = category;
-        this.q=q;
+        this.q=0;
         this.prix=prix;
     }
 

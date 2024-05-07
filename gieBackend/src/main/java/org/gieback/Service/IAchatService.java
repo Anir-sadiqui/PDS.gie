@@ -11,5 +11,5 @@ public interface IAchatService {
     void modifyPurchase(int id, Date newDate, Contact newFournisseur);
     List<Achat> searchPurchasesByDate(Date date);
     List<Achat> searchPurchasesById(int id);
-    List<Achat> searchPurchasesBySupplier(String fournisseurNom);
+    List<Achat> searchPurchasesBySupplier(Contact f);
 }

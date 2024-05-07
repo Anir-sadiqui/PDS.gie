@@ -41,7 +41,7 @@ public class AchatService implements IAchatService {
     }
 
     @Override
-    public List<Achat> searchPurchasesBySupplier(String fournisseurNom) {
-        return achatDao.chercherParFournisseur(fournisseurNom);
+    public List<Achat> searchPurchasesBySupplier(Contact f) {
+        return achatDao.chercherParFournisseur(f);
     }
 }

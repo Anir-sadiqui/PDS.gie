@@ -196,24 +196,8 @@ public class EntrepriseDao implements IEntrepriseDao {
 
     }
 
-    @Override
-    public Entreprise getTypeByRs(String rs ,ContactType type) {
-        String hql = "FROM Entreprise e WHERE e.raisonSocial = :rs AND e.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("rs", rs);
-        query.setParameter("type",type );
-        Entreprise e = (Entreprise) query.getSingleResult();
-        return e;
-    }
 
-    @Override
-    public List<Entreprise> getTypeByFj(String Fj , ContactType type) {
-        String hql = "FROM Entreprise e WHERE e.formeJuridique = :fj AND e.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("fj", Fj);
-        query.setParameter("type",type );
-        List<Entreprise> r = query.getResultList();
-        return r;
-    }
+
+
 
 }

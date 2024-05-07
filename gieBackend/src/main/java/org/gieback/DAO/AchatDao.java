@@ -95,9 +95,9 @@ public class AchatDao implements IAchatDao {
     }
 
     @Override
-    public List<Achat> chercherParFournisseur(String fournisseurNom) {
-        Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.supplier.nom = :nom", Achat.class);
-        query.setParameter("nom", fournisseurNom);
+    public List<Achat> chercherParFournisseur(Contact f) {
+        Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.supplier = :f", Achat.class);
+        query.setParameter("f", f);
         return query.getResultList();
     }
 }

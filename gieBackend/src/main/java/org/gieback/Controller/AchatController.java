@@ -5,6 +5,8 @@ import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Achat;
 import java.util.Date;
 import java.util.List;
+
+import org.gieback.Entity.Contact;
 import org.gieback.Service.AchatService;
 import org.gieback.Service.IAchatService;
 
@@ -58,10 +60,10 @@ public class AchatController{
     }
 
     @GET
-    @Path("/chercherParFournisseur/{fournisseurNom}")
+    @Path("/chercherParFournisseur")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesBySupplier(@PathParam("fournisseurNom") String fournisseurNom) {
-        return achatService.searchPurchasesBySupplier(fournisseurNom);
+    public List<Achat> searchPurchasesBySupplier(Contact f) {
+        return achatService.searchPurchasesBySupplier(f);
     }
 
 

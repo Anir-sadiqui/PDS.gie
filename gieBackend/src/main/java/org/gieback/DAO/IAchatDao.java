@@ -11,9 +11,6 @@ public interface IAchatDao {
     void deleteById(int id);
     void modifier(int id, Date newDate, Contact newFournisseur);
     List<Achat> chercherParDate(Date date);
-    // List<Achat> chercherParId(int id);
-    List<Achat> chercherParFournisseur(String fournisseurNom);
-
-
+    List<Achat> chercherParFournisseur(Contact f);
     List<Achat> chercherParId(int id);
 }

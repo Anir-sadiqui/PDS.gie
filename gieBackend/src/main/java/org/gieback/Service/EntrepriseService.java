@@ -80,14 +80,4 @@ public class EntrepriseService implements IEntrepriseService{
         entrepriseDao.DeleteType(id);
     }
 
-    @Override
-    public Entreprise getTypeByRs(String rs, ContactType type) {
-        return entrepriseDao.getTypeByRs(rs, type);
-    }
-
-    @Override
-    public List<Entreprise> getTypeByFj(String Fj, ContactType type) {
-        return entrepriseDao.getTypeByFj(Fj, type);
-    }
-
 }
