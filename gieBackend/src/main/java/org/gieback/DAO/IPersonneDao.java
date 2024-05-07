@@ -21,8 +21,7 @@ public interface IPersonneDao {
     List<Personne> getByType (ContactType type);
     void addType (String id, ContactType type);
     void DeleteType (String id );
-    List<Personne> getTypeByNom(String n , ContactType type);
-    List<Personne> getTypeByPrenom(String p , ContactType type);
+
 
 
  }

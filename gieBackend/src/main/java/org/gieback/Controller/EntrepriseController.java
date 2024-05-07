@@ -122,23 +122,7 @@ public class EntrepriseController {
         return Response.noContent().build();
     }
 
-    @GET
-    @Path("getTypeByRs/{Rs}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getTypeByRs(@PathParam("Rs") String Rs, @PathParam("t") ContactType type) {
-        Entreprise entreprise = entrepriseService.getTypeByRs(Rs, type);
-        if (entreprise != null) {
-            return Response.ok(entreprise).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-    }
-    @GET
-    @Path("getTypeByFj/{Fj}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Entreprise> getTypeByFj(@PathParam("Fj") String Fj, @PathParam("t") ContactType type) {
-        return entrepriseService.getTypeByFj(Fj, type);
-    }
+
 
 
 

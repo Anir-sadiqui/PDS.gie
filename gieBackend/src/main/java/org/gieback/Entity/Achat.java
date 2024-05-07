@@ -3,6 +3,8 @@ package org.gieback.Entity;
 
 import lombok.Data;
 import jakarta.persistence.*;
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +15,7 @@ public class Achat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     @Column(name = "purchase_date")
     private Date purchaseDate;
 
@@ -24,14 +27,19 @@ public class Achat implements Serializable {
     @JoinColumn(name = "Details_achats")
     private AchatDetail details ;
 
+    @ManyToOne
+    @JoinColumn(name = "Commande")
+    private  Commande c;
+
 
 
     public Achat() {}
 
-    public Achat(Date purchaseDate, Contact supplier, AchatDetail details ) {
+    public Achat(Date purchaseDate, Contact supplier, AchatDetail details, Commande c ) {
         this.purchaseDate = purchaseDate;
         this.supplier = supplier;
         this.details=details;
+        this.c=c;
     }
 
     @Override
@@ -39,5 +47,7 @@ public class Achat implements Serializable {
         return "Id: " + id + '\n' +
                 "Purchase Date: " + purchaseDate + '\n';
     }
+
+
 }
 

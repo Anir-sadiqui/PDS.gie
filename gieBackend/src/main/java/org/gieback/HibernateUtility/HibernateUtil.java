@@ -3,22 +3,23 @@ package org.gieback.HibernateUtility;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
-
 
 public class HibernateUtil {
+    private static EntityManagerFactory entityManagerFactory;
 
-    @PersistenceContext
-    private static EntityManager entityManager;
-    public static EntityManager getEntityManger() {
-        if (entityManager == null) {
+    public static EntityManager getEntityManager() {
+        if (entityManagerFactory == null) {
             try {
-                EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU_SC");
-                entityManager = factory.createEntityManager();
-            } catch (Exception e){
+                entityManagerFactory = Persistence.createEntityManagerFactory("PU_SC");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return entityManager;
+        return entityManagerFactory.createEntityManager();
+    }
+
+    public static EntityManager getEntityManger() {
+        return getEntityManager();
     }
 }
+

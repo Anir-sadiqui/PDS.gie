@@ -10,9 +10,8 @@ import org.gieback.Entity.Personne;
 import java.util.List;
 import java.util.Map;
 
-public class PersonneService implements IPersonneService{
-    IPersonneDao personneeDao=new PersonneDao();
-
+public class PersonneService implements IPersonneService {
+    IPersonneDao personneeDao = new PersonneDao();
 
 
     @Override
@@ -52,7 +51,7 @@ public class PersonneService implements IPersonneService{
 
     @Override
     public void modifier(String id, Map<String, String> attributs) {
-        personneeDao.modifier(id,attributs);
+        personneeDao.modifier(id, attributs);
 
     }
 
@@ -82,13 +81,4 @@ public class PersonneService implements IPersonneService{
         personneeDao.DeleteType(id);
     }
 
-    @Override
-    public List<Personne> getTypeByNom(String n, ContactType type) {
-        return personneeDao.getTypeByNom(n, type);
-    }
-
-    @Override
-    public List<Personne> getTypeByPrenom(String p, ContactType type) {
-        return personneeDao.getTypeByPrenom(p, type);
-    }
 }

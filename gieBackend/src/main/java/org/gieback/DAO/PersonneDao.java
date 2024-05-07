@@ -198,25 +198,6 @@ public   class PersonneDao implements IPersonneDao{
         entityManager.getTransaction().commit();
     }
 
-    @Override
-    public List<Personne> getTypeByNom(String n, ContactType type) {
-        String hql = "FROM Personne p WHERE p.nom = :nom AND p.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("nom", n);
-        query.setParameter("type", type);
-        List<Personne> r = query.getResultList();
-        return r;
-    }
-
-    @Override
-    public List<Personne> getTypeByPrenom(String p, ContactType type) {
-        String hql = "FROM Personne p WHERE p.prenom = :prenom AND p.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("prenom", p);
-        query.setParameter("type", type);
-        List<Personne> r = query.getResultList();
-        return r;
-    }
 
 
 }
