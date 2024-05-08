@@ -46,6 +46,4 @@ public class Product implements Serializable {
                 "Quantite en stock: " + q + '\n'+
                 "Prix unitaire: " + prix;
     }
-
-
 }

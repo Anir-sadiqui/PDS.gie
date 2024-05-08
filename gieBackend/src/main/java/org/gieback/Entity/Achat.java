@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ public class Achat implements Serializable {
 
     @Getter
     @Column(name = "purchase_date")
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
@@ -35,8 +36,8 @@ public class Achat implements Serializable {
 
     public Achat() {}
 
-    public Achat(Date purchaseDate, Contact supplier, AchatDetail details, Commande c ) {
-        this.purchaseDate = purchaseDate;
+    public Achat(Contact supplier, AchatDetail details, Commande c ) {
+        this.purchaseDate = LocalDate.now();
         this.supplier = supplier;
         this.details=details;
         this.c=c;
