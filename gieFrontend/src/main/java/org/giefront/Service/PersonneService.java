@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
+import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Personne;
 
 
@@ -155,6 +156,39 @@ public class PersonneService implements IService{
             throw new RuntimeException(e);
         }
         return personne;
+    }
+    public List<Personne> getByType(ContactType t){
+        Request request = new Request.Builder().url("http://localhost:9998/personne/GetByType/"+t).build();
+        List<Personne> personnes;
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return personnes;
+    }
+    public void addType(int id , ContactType t) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/addType/" + id + "/" + t).build();
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
+        }
+    }
+    public void deleteType (int id) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/deleteType/" + id ).build();
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
+        }
     }
 
 

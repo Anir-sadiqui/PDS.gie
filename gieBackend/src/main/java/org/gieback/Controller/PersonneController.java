@@ -110,7 +110,7 @@ public class PersonneController {
         return Response.noContent().build();
     }
     @PATCH
-    @Path("/addType/{id}")
+    @Path("/deleteType/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addType(@PathParam("id") String id ){
         personneService.DeleteType(id);
