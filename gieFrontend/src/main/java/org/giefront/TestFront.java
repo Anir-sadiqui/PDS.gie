@@ -14,7 +14,7 @@ public class TestFront extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("homePage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("Dashbord.fxml"));
 //        Parent root  = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 //        Scene scene = new Scene(root);
         Scene scene = new Scene(fxmlLoader.load());
