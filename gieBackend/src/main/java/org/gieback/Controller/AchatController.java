@@ -5,6 +5,7 @@ import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Achat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.gieback.Entity.Contact;
 import org.gieback.Service.AchatService;
@@ -40,8 +41,8 @@ public class AchatController{
     @PATCH
     @Path("/modifier/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response modifyPurchase(@PathParam("id") int id, Achat modifiedAchat) {
-        achatService.modifyPurchase(id, modifiedAchat.getPurchaseDate(), modifiedAchat.getSupplier());
+    public Response modifyPurchase(@PathParam("id") String id, Map<String, Integer> attributs) {
+        achatService.modifier(id, attributs);
         return Response.noContent().build();
     }
 

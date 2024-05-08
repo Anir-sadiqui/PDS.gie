@@ -5,11 +5,14 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.gieback.Entity.Achat;
+import org.gieback.Entity.AchatDetail;
 import org.gieback.Entity.Contact;
+import org.gieback.Entity.Personne;
 import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class AchatDao implements IAchatDao {
 
@@ -60,26 +63,31 @@ public class AchatDao implements IAchatDao {
     }
 
     @Override
-    public void modifier(int id, Date newDate, Contact newFournisseur) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            Achat achat = entityManager.find(Achat.class, id);
-            if (achat != null) {
-                achat.setPurchaseDate(newDate);
-                achat.setSupplier(newFournisseur);
-                entityManager.merge(achat);
-                entityManager.flush();
-            }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-    }
+    public void modifier(String id, Map<String, Integer> attributs) {
+        entityManager.getTransaction().begin();
+        Achat p = entityManager.find(Achat.class, id);
+        if (p != null) {
+            for (Map.Entry<String, Integer> entry : attributs.entrySet()) {
+                String key = entry.getKey();
+                int value = entry.getValue();
+                switch (key) {
+                    case "Quantite":
+                        p.getDetails().setQuantity(value);
+                        p.getDetails().setTotalPrice(value * p.getDetails().getProduct().getPrix() );
+                        break;
+                    case "Fournisseur":
+                        p.getSupplier().setId((long) value);
+                        break;
 
+                }
+            }
+            entityManager.merge(p);
+        }
+        else { System.out.println("id incorrect");}
+        entityManager.getTransaction().commit();
+
+
+    }
     @Override
     public List<Achat> chercherParDate(Date date) {
         Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.purchaseDate = :date", Achat.class);

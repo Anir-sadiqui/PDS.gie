@@ -2,10 +2,12 @@ package org.gieback.Service;
 import org.gieback.DAO.AchatDao;
 import org.gieback.DAO.IAchatDao;
 import org.gieback.Entity.Achat;
+import org.gieback.Entity.AchatDetail;
 import org.gieback.Entity.Contact;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class AchatService implements IAchatService {
     IAchatDao achatDao = new AchatDao();
@@ -26,8 +28,8 @@ public class AchatService implements IAchatService {
     }
 
     @Override
-    public void modifyPurchase(int id, Date newDate, Contact newFournisseur) {
-        achatDao.modifier(id, newDate, newFournisseur);
+    public void modifier(String id, Map<String, Integer> attributs) {
+        achatDao.modifier(id, attributs);
     }
 
     @Override
