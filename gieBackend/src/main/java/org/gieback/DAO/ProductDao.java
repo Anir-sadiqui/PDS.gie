@@ -6,6 +6,10 @@ import jakarta.persistence.Query;
 import org.gieback.Entity.Category;
 import org.gieback.Entity.Product;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +70,13 @@ public class ProductDao implements IProductDao{
         }
         entityManager.getTransaction().commit();
     }
-
+    public List<Product> getByName(String na) {
+        String requet = "FROM Product p WHERE p.name = :na";
+        Query query = entityManager.createQuery(requet);
+        query.setParameter("na", na);
+        List<Product> q = query.getResultList();
+        return q;
+    }
     @Override
     public List<Product> getbyCat(Category cat) {
         String hql = "FROM Product p WHERE p.category = :cat";

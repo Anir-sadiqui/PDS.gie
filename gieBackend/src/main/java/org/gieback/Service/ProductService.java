@@ -42,4 +42,9 @@ public class ProductService implements IProductService{
         pdao.deleteProduct(id);
 
     }
+
+    @Override
+    public List<Product> getByName(String na) {
+        return pdao.getByName(na);
+    }
 }
