@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1027.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="689.0" layoutY="142.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="176.0" text="Afficher achat(s)" />
+      <ChoiceBox layoutX="808.0" layoutY="57.0" prefHeight="39.0" prefWidth="205.0" />
+      <Text layoutX="818.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer par fornisseur" />
+      <Button layoutX="791.0" layoutY="657.0" mnemonicParsing="false" text="Ajouter achat" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d6dd" height="100.0" layoutX="42.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Text fill="#2c2626" layoutX="81.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color:: red;" text="Achat">
+         <font>
+            <Font name="System Bold Italic" size="75.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="107.0" fitWidth="116.0" layoutX="371.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@2157277-200.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="35.0" layoutY="194.0" prefHeight="370.0" prefWidth="583.0">
+        <columns>
+          <TableColumn prefWidth="91.0" text="ID" />
+          <TableColumn prefWidth="91.0" text="Date" />
+            <TableColumn prefWidth="87.0" text="Produit" />
+            <TableColumn prefWidth="97.0" text="Quantité" />
+            <TableColumn prefWidth="107.0" text="Fornisseur" />
+            <TableColumn prefWidth="109.0" text="Prix totale" />
+        </columns>
+      </TableView>
+      <Text layoutX="35.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Clicker seulement sur &quot;Afficher achat(s)&quot; pour afficher tous les achats." wrappingWidth="570.205078125" />
+      <Text layoutX="35.0" layoutY="693.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Utiliser un des filtre puis cliquer sur &quot;Afficher achat(s)&quot; pour afficher des achats spécifiques." wrappingWidth="733.2958984375" />
+      <DatePicker layoutX="514.0" layoutY="57.0" />
+      <Text layoutX="567.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter par date" />
+      <Button layoutX="716.0" layoutY="522.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="107.0" text="Modifier" />
+      <Button layoutX="875.0" layoutY="524.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="107.0" text="Suprimer" />
+      <TextArea layoutX="690.0" layoutY="236.0" prefHeight="270.0" prefWidth="314.0" />
+   </children>
+</Pane>
