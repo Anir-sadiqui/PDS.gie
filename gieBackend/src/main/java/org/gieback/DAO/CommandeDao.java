@@ -7,6 +7,7 @@ import org.gieback.Entity.Achat;
 import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class CommandeDao implements ICommandeDao{
     }
 
     @Override
-    public List<Commande> getComByDate(Date d) {
+    public List<Commande> getComByDate(LocalDate d) {
         String hql = "FROM Commande c WHERE c.purchaseDate = :d";
         Query query = entityManager.createQuery(hql);
         query.setParameter("d", d);

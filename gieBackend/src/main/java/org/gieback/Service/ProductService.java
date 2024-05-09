@@ -40,6 +40,11 @@ public class ProductService implements IProductService{
     @Override
     public void deleteProduct(int id) {
         pdao.deleteProduct(id);
-
     }
+
+    @Override
+    public List<Product> getByName(String nom) {
+        return pdao.getByName(nom);
+    }
+
 }

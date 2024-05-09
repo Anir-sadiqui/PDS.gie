@@ -13,5 +13,6 @@ public interface  IProductService {
     List<Product> getbyCat(Category cat);
     List<Product> getAllProd();
     void deleteProduct(int id);
+    List<Product> getByName (String nom);
 
 }

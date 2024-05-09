@@ -11,6 +11,7 @@ import org.gieback.Entity.EtatCommande;
 import org.gieback.Service.CommandeService;
 
 import javax.ws.rs.PathParam;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class CommandeController {
         return cs.getAllachats(id);
     }
     @GET
-    @Path("/CommandeBydate/{d}")
+    @Path("/CommandeBydate")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByDate(@PathParam("d") Date d){
+    public List<Commande> getByDate( LocalDate d){
         return cs.getComByDate(d);
     }
 
@@ -49,10 +50,12 @@ public class CommandeController {
     public void deleteComm(@PathParam("id")int id){
         cs.deleteComm(id);
     }
+
+
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addEnterprise(Commande c) {
+    public Response addComm(Commande c) {
         cs.addComm(c);
         return Response.status(Response.Status.CREATED).build();
     }

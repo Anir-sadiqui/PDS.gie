@@ -58,5 +58,13 @@ public class ProductController {
         ps.deleteProduct(id);
     }
 
+    @GET
+    @Path("/getByName/{n}")
+    @Produces (MediaType.APPLICATION_JSON)
+    public List<Product> getbyName(@PathParam("n")String n){
+        return ps.getByName(n);
+    }
+
+
 
 }

@@ -5,6 +5,7 @@ import org.gieback.Entity.Achat;
 import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class CommandeService implements ICommandeService{
     }
 
     @Override
-    public List<Commande> getComByDate(Date d) {
+    public List<Commande> getComByDate(LocalDate d) {
         return cdao.getComByDate(d);
     }
 
