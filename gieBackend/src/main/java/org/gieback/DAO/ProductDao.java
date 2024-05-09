@@ -16,8 +16,8 @@ import java.util.Map;
 public class ProductDao implements IProductDao{
     EntityManager entityManager;
     @Override
-    public boolean isAvailable(int id) {
-        Product p = entityManager.find(Product.class, id);
+    public boolean isAvailable(int i) {
+        Product p = entityManager.find(Product.class, i);
         if (p.getQ()>0){
             return true;
         }
@@ -25,11 +25,11 @@ public class ProductDao implements IProductDao{
     }
 
     @Override
-    public void add(Product p) {
+    public void add(Product pe) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(p);
+            entityManager.persist(pe);
             transaction.commit();
 
         }catch (Exception e){
@@ -41,11 +41,11 @@ public class ProductDao implements IProductDao{
     }
 
     @Override
-    public void modify(int id, Map<String, String> attributs) {
+    public void modify(int id, Map<String, String> attribut) {
         entityManager.getTransaction().begin();
         Product E = entityManager.find(Product.class, id);
         if (E != null) {
-            for (Map.Entry<String, String> entry : attributs.entrySet()) {
+            for (Map.Entry<String, String> entry : attribut.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 switch (key) {
@@ -78,10 +78,10 @@ public class ProductDao implements IProductDao{
         return q;
     }
     @Override
-    public List<Product> getbyCat(Category cat) {
+    public List<Product> getbyCat(Category ca) {
         String hql = "FROM Product p WHERE p.category = :cat";
         Query query = entityManager.createQuery(hql);
-        query.setParameter("cat", cat);
+        query.setParameter("cat", ca);
         List<Product> p = query.getResultList();
         return p;
     }
@@ -89,7 +89,6 @@ public class ProductDao implements IProductDao{
     @Override
     public List<Product> getAllProd() {
         return entityManager.createQuery("From Product ", Product.class).getResultList();
-
     }
 
     @Override
@@ -105,7 +104,9 @@ public class ProductDao implements IProductDao{
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             System.out.println(e);
+
         }
+
     }
 
 
