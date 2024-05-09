@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1027.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="689.0" layoutY="142.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="176.0" text="Show products" />
+      <ChoiceBox layoutX="808.0" layoutY="57.0" prefHeight="39.0" prefWidth="196.0" />
+      <Text layoutX="818.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Cathegory" />
+      <Button layoutX="852.0" layoutY="644.0" mnemonicParsing="false" text="Add a product" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d6dd" height="100.0" layoutX="42.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Text fill="#2c2626" layoutX="50.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color:: red;" text="Product">
+         <font>
+            <Font name="System Bold Italic" size="75.0" />
+         </font>
+      </Text>
+      <TextField layoutX="568.0" layoutY="59.0" prefHeight="39.0" prefWidth="196.0" />
+      <Text layoutX="605.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter by Name" />
+      <ImageView fitHeight="107.0" fitWidth="116.0" layoutX="371.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@2157277-200.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="41.0" layoutY="236.0" prefHeight="370.0" prefWidth="624.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Text layoutX="35.0" layoutY="664.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Click on show products alone to fetch all product without any filter " wrappingWidth="570.205078125" />
+      <Text layoutX="34.0" layoutY="690.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Use the filters than click on show products to fetch specific product(s)" wrappingWidth="707.2958984375" />
+   </children>
+</Pane>
