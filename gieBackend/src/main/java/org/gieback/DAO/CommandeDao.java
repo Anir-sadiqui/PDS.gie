@@ -78,4 +78,9 @@ public class CommandeDao implements ICommandeDao{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Commande> getAllCom() {
+        return entityManager.createQuery("FROM Commande , Commande.class").getResultList();
+    }
 }
