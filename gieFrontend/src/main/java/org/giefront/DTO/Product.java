@@ -1,79 +1,84 @@
 package org.giefront.DTO;
+import lombok.Data;
+
+import java.io.Serializable;
+    @Data
+    public class Product implements Serializable {
+        private Long id;
+
+        private String name;
+
+        private String description;
+
+        private Category category;
+
+        private int q;
+
+        private double prix;
 
 
+        public Product() {}
 
-public class Product {
+        public Product(String name, String description, Category category, int q,double prix ) {
+            this.name = name;
+            this.description = description;
+            this.category = category;
+            this.q=q;
+            this.prix=prix;
+        }
 
-    private Long id;
+        public void setName(String name) {
+            this.name = name;
+        }
 
+        public void setCategory(Category category) {
+            this.category = category;
+        }
 
-    private String name;
+        public void setDescription(String description) {
+            this.description = description;
+        }
 
+        public void setPrix(double prix) {
+            this.prix = prix;
+        }
 
-    private String description;
+        public void setQ(int q) {
+            this.q = q;
+        }
 
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-    private Category category;
+        public Long getId() {
+            return id;
+        }
 
+        public String getName() {
+            return name;
+        }
 
-    private int q;
+        public String getDescription() {
+            return description;
+        }
 
-    private double prix;
+        public Category getCategory() {
+            return category;
+        }
 
-    public Product(Long id, String name, String description, Category category, int q, double prix) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.category = category;
-        this.q = q;
-        this.prix = prix;
+        public int getQ() {
+            return q;
+        }
+
+        public double getPrix() {
+            return prix;
+        }
+
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public int getQ() {
-        return q;
-    }
 
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setQ(int q) {
-        this.q = q;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-}
