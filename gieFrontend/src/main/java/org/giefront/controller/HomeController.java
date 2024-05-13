@@ -1,10 +1,11 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.giefront.TestFront;
 
 import java.io.IOException;
 
