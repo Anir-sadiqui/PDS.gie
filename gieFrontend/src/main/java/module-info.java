@@ -6,6 +6,7 @@ module org.giefront {
     requires static lombok;
 
 
+
     opens org.giefront to javafx.fxml;
     exports org.giefront;
     exports org.giefront.DTO to com.fasterxml.jackson.databind;
