@@ -75,6 +75,9 @@ import java.io.Serializable;
             return prix;
         }
 
+        public int getIdProduct() {
+            return 0;
+        }
     }
 
 

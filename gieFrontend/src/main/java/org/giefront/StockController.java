@@ -2,63 +2,67 @@ package org.giefront;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.TableCellSkin;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.giefront.DTO.Category;
+import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Product;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import org.giefront.Service.IProductService;
 import org.giefront.Service.ProductService;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class StockController implements Initializable {
-
 
     @FXML
     private Button Add;
 
     @FXML
-    private Button Btnn_Delete;
-
-    @FXML
     private Button Bttn_Fetch;
 
     @FXML
-    private Button Bttn_update;
+    private TableView<Product> C_TableProduct = new TableView<>();
 
     @FXML
-    private TableColumn<Product, String> C_D;
+    private TableColumn<Product, Category> CategoryColumn= new TableColumn<>();
 
     @FXML
-    private TableColumn< Product,String> C_Name;
+    private ChoiceBox<Product> ChoiceBox_PD;
 
     @FXML
-    private TableColumn<Product, Double> C_P;
+    private ChoiceBox<Category> ChoiceBox_SC;
 
     @FXML
-    private TableColumn<Product, Integer> C_Q;
+    private TableColumn<Product, String> DescrpColumn = new TableColumn<>();
 
     @FXML
-    private TableView<Product> C_TableProduct;
+    private TableColumn<Product, Integer> IdColumn = new TableColumn<>();
 
     @FXML
-    private TableColumn<Product, Category> C_ca;
+    private TableColumn<Product, Double> Prix_unitaireColumn = new TableColumn<>();
 
     @FXML
-    private TableColumn<Product, Long> C_id;
+    private TableColumn<Product, Integer> QuantiteColumn = new TableColumn<>();
+
     @FXML
-    private TableColumn<Product, String> C_model;
+    private Label Text_Field_C;
+
+    @FXML
+    private Label Text_Field_PD;
 
     @FXML
     private Label Text_Field_S;
@@ -67,40 +71,35 @@ public class StockController implements Initializable {
     private TextField Text_Field_Search;
 
     @FXML
-    void DeleteOnAction(ActionEvent event) {
-
-    }
+    private TableColumn<Product, Button> buttonColumn = new TableColumn<>();
 
     @FXML
-    void Fetch_OnAction(ActionEvent event) {
-        ProductService productService = new ProductService();
-        ObservableList<Product> productList = FXCollections.observableArrayList(productService.getAll());
+    private TableColumn<Product, String> nameColumn = new TableColumn<>();
 
-        C_TableProduct.setItems(productList);
-    }
+    private IProductService productService = new ProductService();
 
-    @FXML
-    void OnBtnPClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    void UpdateOnAction(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        C_TableProduct.setRowFactory(tv -> {
+            TableRow<Product> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 1) {
+                    Product clickedRow = row.getItem();
+                    showAction(clickedRow);
+
+                }
+            });
+            return row;
+        });
+
+
+
+
+}
+
+    private void showAction(Product clickedRow) {
 
     }
-}
+    }
 
