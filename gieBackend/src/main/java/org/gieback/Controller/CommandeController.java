@@ -60,4 +60,12 @@ public class CommandeController {
         return Response.status(Response.Status.CREATED).build();
     }
 
+    @GET
+    @Path("/Commandes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Commande> getAllCom( ){
+        return cs.getAllCom();
+    }
+
+
 }
