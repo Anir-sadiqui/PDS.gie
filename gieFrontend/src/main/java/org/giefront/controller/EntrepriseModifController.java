@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +11,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.Adresse;
-import org.giefront.DTO.Personne;
+import org.giefront.DTO.Entreprise;
 import org.giefront.Service.AdresseService;
-import org.giefront.Service.PersonneService;
+import org.giefront.Service.EntrepriseService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,31 +21,36 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PersonneModificationController implements Initializable {
+public class EntrepriseModifController implements Initializable {
 
-
+    @FXML
+    private Button BtnModE;
+    @FXML
+    private Button BtnRetour;
     @FXML
     private AnchorPane mainAnchor;
+
     @FXML
     private TextField Text_Field_Email;
+
+
+    @FXML
+    private TextField Text_Field_FJ;
 
     @FXML
     private TextField Text_Field_N;
 
     @FXML
-    private TextField Text_Field_N1;
-
-    @FXML
-    private TextField Text_Field_N11;
-
-    @FXML
-    private TextField Text_Field_N111;
-
-    @FXML
-    private TextField Text_Field_P;
-
-    @FXML
     private TextField Text_Field_Po;
+
+    @FXML
+    private TextField Text_Field_Q;
+
+    @FXML
+    private TextField Text_Field_RS;
+
+    @FXML
+    private TextField Text_Field_V;
 
     @FXML
     private Button adresse;
@@ -54,80 +59,78 @@ public class PersonneModificationController implements Initializable {
     private AnchorPane anchorepane_Adresse;
 
     @FXML
-    public void OnMod(ActionEvent event) {
-        if (areFieldsFilled()) {
+    public void OnMod() {
+        if (areEntrFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette personne ?");
+            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette entreprise ?");
             confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
-
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                PersonneService personneService = new PersonneService();
-                Personne per = AdvancedSearchP.pers;
+                EntrepriseService entrepriseService = new EntrepriseService();
+                Entreprise entr = AdvancedSearchE.entr;
                 AdresseService as = new AdresseService();
-                Adresse a = per.getAdresse();
+                Adresse a = entr.getAdresse();
                 HashMap<String,String> attributs = new HashMap<>();
                 HashMap<String,String> attributsA = new HashMap<>();
                 if (!Text_Field_Email.getText().isEmpty()){
                     attributs.put("email",Text_Field_Email.getText());
                 }
-                if (!Text_Field_N.getText().isEmpty()){
-                    attributs.put("Nom",Text_Field_N.getText());
+                if (!Text_Field_RS.getText().isEmpty()){
+                    attributs.put("raisonSocial",Text_Field_RS.getText());
                 }
-                if (!Text_Field_P.getText().isEmpty()){
-                    attributs.put("Prenom",Text_Field_P.getText());
+                if (!Text_Field_FJ.getText().isEmpty()){
+                    attributs.put("formeJuridique",Text_Field_FJ.getText());
                 }
                 if (!Text_Field_Po.getText().isEmpty()){
                     attributs.put("phone",Text_Field_Po.getText());
                 }
-                if (!Text_Field_N1.getText().isEmpty()){
-                    attributsA.put("ville",Text_Field_N1.getText());
+                if (!Text_Field_V.getText().isEmpty()){
+                    attributsA.put("ville",Text_Field_V.getText());
                 }
-                if (!Text_Field_N11.getText().isEmpty()){
-                    attributsA.put("quartier",Text_Field_N11.getText());
+                if (!Text_Field_N.getText().isEmpty()){
+                    attributsA.put("numero",Text_Field_N.getText());
                 }
-                if (!Text_Field_N111.getText().isEmpty()){
-                    attributsA.put("numero",Text_Field_N111.getText());
+                if (!Text_Field_Q.getText().isEmpty()){
+                    attributsA.put("quartier",Text_Field_Q.getText());
                 }
 
                 try {
-                    personneService.modifierPersonne(String.valueOf(per.getId()),attributs);
+                    entrepriseService.modifierEntreprise(Math.toIntExact(entr.getId()),attributs);
                     as.modifierAdresse(Math.toIntExact(a.getAdresse_id()),attributsA);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                System.out.println("Client modifie avec succès!");
+                System.out.println("Entreprise modifiee avec succès!");
             } else {
-                System.out.println("La modification de la personne a été annulé.");
+                System.out.println("La modification de l'entreprise a été annulé.");
             }
+
         }
     }
 
     @FXML
-    void onClick_Adresse(ActionEvent event) {
+    void onClick_Adresse() {
         anchorepane_Adresse.setVisible(!anchorepane_Adresse.isVisible());
-
-
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anchorepane_Adresse.setVisible(false);
 
     }
 
-    private boolean areFieldsFilled() {
+    private boolean areEntrFieldsFilled() {
         return !Text_Field_Email.getText().isEmpty() ||
+                !Text_Field_RS.getText().isEmpty() ||
+                !Text_Field_V.getText().isEmpty() ||
+                !Text_Field_Q.getText().isEmpty() ||
                 !Text_Field_N.getText().isEmpty() ||
-                !Text_Field_N1.getText().isEmpty() ||
-                !Text_Field_N11.getText().isEmpty() ||
-                !Text_Field_N111.getText().isEmpty() ||
-                !Text_Field_P.getText().isEmpty() ||
+                !Text_Field_FJ.getText().isEmpty() ||
                 !Text_Field_Po.getText().isEmpty();
     }
-    @FXML
-    private void onReturn(ActionEvent event) {
+
+    public void OnReturn(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));

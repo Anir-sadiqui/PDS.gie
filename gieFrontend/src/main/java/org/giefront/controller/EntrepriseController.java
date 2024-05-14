@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.Entreprise;
 import org.giefront.Service.EntrepriseService;
