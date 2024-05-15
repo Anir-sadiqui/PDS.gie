@@ -47,11 +47,7 @@ public class ProductController {
         return ps.getbyCat(c);
     }
 
-    /* add 08/05/2024 */
-    @GET
-    @Path("/getByName/{na}")
-    @Produces (MediaType.APPLICATION_JSON)
-    public List<Product> getByName(@PathParam("na")String na) {return ps.getByName(na);}
+
 
 
     @GET

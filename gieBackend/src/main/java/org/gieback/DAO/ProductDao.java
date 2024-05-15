@@ -70,13 +70,7 @@ public class ProductDao implements IProductDao{
         }
         entityManager.getTransaction().commit();
     }
-    public List<Product> getByName(String na) {
-        String requet = "FROM Product p WHERE p.name = :na";
-        Query query = entityManager.createQuery(requet);
-        query.setParameter("na", na);
-        List<Product> q = query.getResultList();
-        return q;
-    }
+
     @Override
     public List<Product> getbyCat(Category ca) {
         String hql = "FROM Product p WHERE p.category = :cat";
