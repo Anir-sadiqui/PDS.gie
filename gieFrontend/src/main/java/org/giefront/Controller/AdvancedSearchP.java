@@ -149,6 +149,10 @@ public class AdvancedSearchP implements Initializable {
         }
     }
 
+
+
+
+
     public void onAdress(ActionEvent event) {
         adresseDetails.setVisible(true);
         adresseDetails.setEditable(false);
