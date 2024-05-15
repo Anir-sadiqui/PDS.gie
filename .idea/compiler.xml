@@ -8,13 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gieFrontEnd" />
+        <module name="gieFrontend" />
       </profile>
       <profile name="Annotation profile for gieBackend" enabled="true">
         <sourceOutputDir name="output/generated-sources/annotations" />
         <sourceTestOutputDir name="output/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gieBackend" />
-        <module name="gieFrontend" />
       </profile>
     </annotationProcessing>
   </component>
