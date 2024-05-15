@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" prefHeight="335.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ProductController">
+<AnchorPane fx:id="rootPane" prefHeight="335.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.Controller.ProductController">
    <children>
       <Label layoutX="14.0" layoutY="35.0" prefWidth="82.0" text="name" />
       <Label layoutX="12.0" layoutY="69.0" prefHeight="18.0" prefWidth="89.0" text="description" />

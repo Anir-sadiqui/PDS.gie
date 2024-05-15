@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="507.0" prefWidth="776.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FournisseurController">
+<AnchorPane prefHeight="507.0" prefWidth="776.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.Controller.FournisseurController">
    <children>
       <Pane layoutX="41.0" layoutY="16.0" prefHeight="475.0" prefWidth="221.0" style="-fx-background-color: #ffffff;">
          <children>

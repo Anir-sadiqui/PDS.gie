@@ -109,14 +109,8 @@ public class ProductDao implements IProductDao{
 
     }
 
-    @Override
-    public List<Product> getByName(String nom) {
-        String hql = "FROM Product p WHERE p.name = :nom";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("nom", nom);
-        List<Product> p = query.getResultList();
-        return p;
+
     }
 
 
-}
+
