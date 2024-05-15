@@ -47,7 +47,7 @@
       <TextField fx:id="Text_Field_P" layoutX="85.0" layoutY="65.0" prefHeight="18.0" prefWidth="150.0" />
       <TextField fx:id="Text_Field_Email" layoutX="85.0" layoutY="100.0" prefHeight="18.0" prefWidth="150.0" />
       <TextField fx:id="Text_Field_Po" layoutX="85.0" layoutY="133.0" prefHeight="18.0" prefWidth="150.0" />
-      <Button fx:id="Return" layoutX="6.0" layoutY="455.0" onAction="#onReturn" prefHeight="25.0" prefWidth="88.0" text="Retour" />
+      <Button fx:id="Return" layoutX="6.0" layoutY="455.0" onAction="#retour" prefHeight="25.0" prefWidth="88.0" text="Retour" />
       <Button fx:id="addPerson" layoutX="197.0" layoutY="405.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="50.0" prefWidth="77.0" text="Add" visible="true" />
       <Label layoutX="16.0" layoutY="177.0" prefHeight="18.0" prefWidth="50.0" text="Type" />
       <ChoiceBox fx:id="choiceBox" layoutX="83.0" layoutY="174.0" prefHeight="24.0" prefWidth="156.0" />
