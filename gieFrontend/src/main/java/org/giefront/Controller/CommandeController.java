@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CommandeController {
 
-    private CommandeService c;
+    private CommandeService commandService;
 
 
     @FXML
@@ -81,17 +81,24 @@ public class CommandeController {
 
     }
 
+
+
+
     @FXML
-     List<Commande>  getall(ActionEvent action){
+    public void setColumn(){
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         etatColumn.setCellValueFactory(new PropertyValueFactory<>("état"));
         totalPrixColumn.setCellValueFactory(new PropertyValueFactory<>("prix totale"));
-
         commandeTableView.getColumns().setAll(idColumn, dateColumn, etatColumn, totalPrixColumn);
 
-        List<Commande> l = c.getAll();
-        ObservableList<Commande> fournisseurList = FXCollections.observableArrayList(c);
+    }
+
+    @FXML
+     List<Commande>  getall(ActionEvent action){
+
+        List<Commande> commands = commandService.getAll();
+        ObservableList<Commande> commandList = FXCollections.observableArrayList(commandService);
 
 
     }
