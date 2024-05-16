@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="378.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ProductController">
+   <children>
+      <Label layoutX="14.0" layoutY="24.0" prefWidth="82.0" text="name" textAlignment="CENTER" />
+      <Label layoutX="12.0" layoutY="59.0" prefHeight="18.0" prefWidth="89.0" text="description" />
+      <Label layoutX="13.0" layoutY="98.0" prefHeight="18.0" prefWidth="76.0" text="category" />
+      <TextField fx:id="Text_Field_N" layoutX="117.0" layoutY="22.0" prefHeight="18.0" prefWidth="150.0" />
+      <TextField fx:id="Text_Field_D" layoutX="117.0" layoutY="56.0" prefHeight="18.0" prefWidth="150.0" />
+      <TextField fx:id="Text_Field_Q" layoutX="117.0" layoutY="138.0" prefHeight="18.0" prefWidth="150.0" />
+      <Button fx:id="BtnAddP" layoutX="280.0" layoutY="265.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="25.0" prefWidth="76.0" text="Add" />
+      <Label layoutX="9.0" layoutY="142.0" prefHeight="18.0" prefWidth="96.0" text="Price" />
+      <ChoiceBox fx:id="choiceBox" layoutX="117.0" layoutY="94.0" prefWidth="150.0" />
+      <Button layoutX="14.0" layoutY="189.0" mnemonicParsing="false" text="Add image" />
+<!--      <Button fx:id="BtnRtrn" layoutX="14.0" layoutY="265.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="37.0" prefWidth="76.0" text="Return" />-->
+   </children>
+</AnchorPane>

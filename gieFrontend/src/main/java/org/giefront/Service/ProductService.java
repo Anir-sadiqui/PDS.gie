@@ -35,7 +35,7 @@ public class ProductService  implements IProductService {
 
         @Override
         public List<Product> getAll() {
-            Request request = new Request.Builder().url("http://localhost:9998/entreprise/getAll").build();
+            Request request = new Request.Builder().url("http://localhost:9998/Product/getAllprod").build();
             List<Product> products;
             try {
                 Response response = okHttpClient.newCall(request).execute();
@@ -88,7 +88,7 @@ public class ProductService  implements IProductService {
         try {
             String descriptionEncoded = URLEncoder.encode(description, StandardCharsets.UTF_8.toString());
             String nameEncoded = URLEncoder.encode(name, StandardCharsets.UTF_8.toString());
-            String categoryEncoded = URLEncoder.encode(category.getCategoryName(), StandardCharsets.UTF_8.toString()); // Utilise getCategoryName() pour obtenir le nom de la catégorie
+            String categoryEncoded = URLEncoder.encode(category.name(), StandardCharsets.UTF_8.toString()); // Utilise getCategoryName() pour obtenir le nom de la catégorie
 
             String url = String.format("http://localhost:9998/produit/modify/%d/%s/%s/%s/%f/%d", id, nameEncoded, descriptionEncoded, categoryEncoded, prix, quantite);
             Request request = new Request.Builder().url(url).build();

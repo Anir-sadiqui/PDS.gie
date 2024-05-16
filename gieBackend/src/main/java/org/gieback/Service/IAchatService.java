@@ -13,5 +13,5 @@ public interface IAchatService {
     void modifier(String id, Map<String, Integer> attributs);
     List<Achat> searchPurchasesByDate(Date date);
     List<Achat> searchPurchasesById(int id);
-    List<Achat> searchPurchasesBySupplier(Contact f);
+    List<Achat> searchPurchasesBySupplier(int idf);
 }
