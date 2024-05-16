@@ -10,19 +10,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
 
 import java.io.IOException;
 
-public class EditDeleteCell extends TableCell<Personne, Void> {
+public class EditDeleteCellEnt extends TableCell<Entreprise, Void> {
 
     @FXML
-    private TableView<Personne> fournisseurTable;
+    private TableView<Entreprise> fournisseurTable;
 
     private final Button editButton = new Button("Edit");
     private final Button deleteButton = new Button("Delete");
 
-    public EditDeleteCell(TableColumn<Personne, Void> column) {
+    public EditDeleteCellEnt(TableColumn<Entreprise, Void> column) {
         // Add styling if necessary
         editButton.getStyleClass().add("edit-delete-button");
         deleteButton.getStyleClass().add("edit-delete-button");
@@ -30,14 +31,14 @@ public class EditDeleteCell extends TableCell<Personne, Void> {
         // Add behavior when buttons are clicked
         editButton.setOnAction(event -> {
             // Get the fournisseur item for the current row
-            Personne fournisseur = getTableView().getItems().get(getIndex());
-            switchToEditPersonne(fournisseur) ;
+            Entreprise fournisseur = getTableView().getItems().get(getIndex());
+            switchToEditEntro(fournisseur) ;
 
         });
 
         deleteButton.setOnAction(event -> {
             // Get the fournisseur item for the current row
-            Personne fournisseur = getTableView().getItems().get(getIndex());
+            Entreprise fournisseur = getTableView().getItems().get(getIndex());
 
         });
     }
@@ -47,14 +48,14 @@ public class EditDeleteCell extends TableCell<Personne, Void> {
     private FXMLLoader fxmlLoader;
 
     @FXML
-    private void switchToEditPersonne(Personne personne) {
+    private void switchToEditEntro(Entreprise entreprise) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/personneModification.fxml")); // Correct path to your FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/EntrepriseModification.fxml")); // Correct path to your FXML
             Parent root = fxmlLoader.load();
 
             // Get the controller and pass the data
-            PersonneModificationController modificationController = fxmlLoader.getController();
-            modificationController.setPersonne(personne);
+            EntropriseModificationController modificationController = fxmlLoader.getController();
+            modificationController.setEntroprise(entreprise);
 
             stage = (Stage) fournisseurTable.getScene().getWindow();
             scene = new Scene(root);

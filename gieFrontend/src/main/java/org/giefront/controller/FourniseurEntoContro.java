@@ -13,13 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
-import org.giefront.DTO.Personne;
 import org.giefront.Service.FournisseurEntroService;
-import org.giefront.Service.FournisseurPersoService;
 import org.giefront.TestFront;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FourniseurEntoContro {
@@ -180,20 +177,14 @@ public class FourniseurEntoContro {
 
     private void deleteFournisseur(Entreprise fournisseur) {
         System.out.println("Deleting fournisseur: " + fournisseur.getRaisonSocial());
-        /*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setContentText("Are you sure you want to delete this fournisseur?");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                fournisseurService.deletePersonne(fournisseur.getId());
-                fetchFournisseurs(null);
-            }
-        });
-
-         */
+        try {
+            fournisseurService.deleteEntro(fournisseur.getId()); // Assuming getId() returns the ID of the fournisseur
+            fetchFournisseurs(null); // Refresh the table after deletion
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
     }
+
     @FXML
     private void showAddressFields() {
         quartier.setVisible(true);

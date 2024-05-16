@@ -35,7 +35,7 @@ public class EntrepriseService implements IEntrepriseService{
     }
 
     @Override
-    public void deleteByid(int id) {
+    public void deleteByid(Long id) {
         entrepriseDao.deleteByid(id);
 
     }

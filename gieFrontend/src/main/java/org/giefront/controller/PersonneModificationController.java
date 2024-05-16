@@ -23,6 +23,8 @@ import java.util.ResourceBundle;
 
 public class PersonneModificationController implements Initializable {
 
+    public static Personne pers ;
+
 
     @FXML
     private AnchorPane mainAnchor;
@@ -53,6 +55,23 @@ public class PersonneModificationController implements Initializable {
     @FXML
     private AnchorPane anchorepane_Adresse;
 
+    private Personne currentPersonne;
+
+    public void setPersonne(Personne personne) {
+        this.currentPersonne = personne;
+        if (personne != null) {
+            Text_Field_N.setText(personne.getNom());
+            Text_Field_P.setText(personne.getPrenom());
+            Text_Field_Email.setText(personne.getEmail());
+            Text_Field_Po.setText(personne.getPhone());
+            if (personne.getAdresse() != null) {
+                Text_Field_N1.setText(personne.getAdresse().getVille());
+                Text_Field_N11.setText(personne.getAdresse().getQuartier());
+                Text_Field_N111.setText(personne.getAdresse().getNumero());
+            }
+        }
+    }
+
     @FXML
     public void OnMod(ActionEvent event) {
         if (areFieldsFilled()) {
@@ -64,7 +83,8 @@ public class PersonneModificationController implements Initializable {
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 PersonneService personneService = new PersonneService();
-                Personne per = AdvancedSearchP.pers;
+                //Personne per = PersonneModificationController.pers;
+                Personne per  = currentPersonne ;
                 AdresseService as = new AdresseService();
                 Adresse a = per.getAdresse();
                 HashMap<String,String> attributs = new HashMap<>();
@@ -109,7 +129,6 @@ public class PersonneModificationController implements Initializable {
     void onClick_Adresse(ActionEvent event) {
         anchorepane_Adresse.setVisible(!anchorepane_Adresse.isVisible());
 
-
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -137,4 +156,5 @@ public class PersonneModificationController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 }

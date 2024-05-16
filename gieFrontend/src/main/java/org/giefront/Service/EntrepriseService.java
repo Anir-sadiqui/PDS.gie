@@ -66,7 +66,7 @@ public class EntrepriseService implements IService {
         }
         return entreprise;
     }
-    public void modifierEntreprise(int id, Map<String, String> attributs) throws IOException {
+    public void modifierEntreprise(Long id, Map<String, String> attributs) throws IOException {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String json = mapper.writeValueAsString(attributs);
         RequestBody body = RequestBody.create(json, JSON);
@@ -78,7 +78,7 @@ public class EntrepriseService implements IService {
         }
     }
 
-    public void deleteEntreprise(int id) throws IOException {
+    public void deleteEntreprise(Long id) throws IOException {
         Request request = new Request.Builder().url("http://localhost:9998/entreprise/DeleteEntreprise/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
