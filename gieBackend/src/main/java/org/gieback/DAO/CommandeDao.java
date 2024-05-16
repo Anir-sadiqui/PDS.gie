@@ -8,11 +8,15 @@ import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class CommandeDao implements ICommandeDao{
     EntityManager entityManager;
+
+    @Override
+    public List<Commande> getAll(){
+        return entityManager.createQuery("from Commande", Commande.class).getResultList();
+    }
     @Override
     public List<Achat> getAllachats(int id) {
         Commande c = entityManager.find(Commande.class,id);

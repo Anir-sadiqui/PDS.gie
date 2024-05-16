@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface ICommandeDao {
+    List<Commande> getAll();
+
     List<Achat> getAllachats(int id);
     List<Commande> getComByDate(LocalDate d);
     void validerComm(int id);

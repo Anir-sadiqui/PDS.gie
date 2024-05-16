@@ -9,7 +9,6 @@ import jakarta.persistence.criteria.Root;
 import lombok.Data;
 import org.gieback.Entity.Adresse;
 import org.gieback.Entity.Entreprise;
-import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.util.List;
 import java.util.Map;
