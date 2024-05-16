@@ -72,7 +72,7 @@
                         <Line endX="69.0" layoutX="121.0" layoutY="178.0" startX="-100.0" stroke="WHITE" />
                         <VBox layoutX="15.0" layoutY="213.0" prefHeight="283.0" prefWidth="182.0" spacing="25.0">
                            <children>
-                              <Button fx:id="CRM_BTTN" mnemonicParsing="false" onAction="#onCRMBtnClick" prefHeight="26.0" prefWidth="177.0" text="CRM" />
+                              <Button fx:id="CRM_BTTN" mnemonicParsing="false" onAction="#onCRMBtnClick" prefHeight="26.0" prefWidth="177.0" text="CRM" VBox.vgrow="ALWAYS" />
                               <Button fx:id="AchatBtn" mnemonicParsing="false" onAction="#onAchatBtnClick" prefHeight="35.0" prefWidth="180.0" text="ACHAT" VBox.vgrow="ALWAYS">
 
                               </Button>

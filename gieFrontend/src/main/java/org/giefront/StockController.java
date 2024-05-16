@@ -16,8 +16,7 @@ import javafx.stage.Stage;
 import org.giefront.DTO.Category;
 import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Product;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
 import org.giefront.Service.IProductService;
 import org.giefront.Service.ProductService;
 import java.io.IOException;

@@ -1,4 +1,5 @@
 package org.giefront;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,50 +19,50 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
    @FXML
-   private Button AchatBtn;
+   public Button AchatBtn; // Modifier la visibilité en public
 
    @FXML
-   private Button CRM_BTTN;
+   public Button CRM_BTTN;
 
    @FXML
-   private Button ClientBtn;
+   public Button ClientBtn;
 
    @FXML
-   private Button FrBtn;
+   public Button FrBtn;
 
    @FXML
-   private Button StockBtn;
+   public Button StockBtn;
 
    @FXML
-   private Button VenteBtn;
+   public Button VenteBtn;
 
    @FXML
-   private Button closeBtn;
+   public Button closeBtn;
 
    @FXML
-   private BorderPane dashboardBorderPane;
+   public  BorderPane dashboardBorderPane;
 
    @FXML
-   private AnchorPane mainAnchor;
+   public AnchorPane mainAnchor;
 
    @FXML
-   private Button maximizeBtn;
+   public Button maximizeBtn;
 
    @FXML
-   private Button minimizeBtn;
+   public Button minimizeBtn;
 
    @FXML
-   private Label username;
+   public  Label username;
 
    @FXML
-   void ClientBtnClick(ActionEvent event) {
+   public void ClientBtnClick(ActionEvent event) {
 
    }
 
    @FXML
-   void FRBtnClick(ActionEvent event) {
+  public void FRBtnClick(ActionEvent event) {
       try {
-         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fournisseur.fxml"));
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fournisseurEntro.fxml"));
          Parent root = fxmlLoader.load();
          Stage stage = new Stage();
          stage.setScene(new Scene(root));
@@ -73,41 +74,53 @@ public class DashboardController implements Initializable {
    }
 
    @FXML
-   void close () {
+    public void close () {
       System.exit(0);
    }
 
    @FXML
-   void maximize (ActionEvent event){
+   public void maximize (ActionEvent event){
       Stage stage = (Stage) dashboardBorderPane.getScene().getWindow();
       Boolean maximized = stage.isMaximized();
       stage.setMaximized(!maximized);
    }
 
    @FXML
-   void minimize (ActionEvent event){
+   public void minimize (ActionEvent event){
       Stage stage = (Stage) mainAnchor.getScene().getWindow();
       stage.setIconified(true);
    }
 
    @FXML
-   void onAchatBtnClick (ActionEvent event){
+   public void onAchatBtnClick (ActionEvent event){
 
    }
 
    @FXML
-   void onCRMBtnClick (ActionEvent event){
-      FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("CrmEntro.fxml"));
-      try {
-         dashboardBorderPane.setCenter(fxmlLoader.load());
+  public void onCRMBtnClick (ActionEvent event){
+//      FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("ContactEntreprise.fxml"));
+//      try {
+//         dashboardBorderPane.setCenter(fxmlLoader.load());
+//
+//      } catch (IOException e) {
+//         throw new RuntimeException(e);
+//      }
+       try {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/ContactEntreprise.fxml"));
+           Parent root = loader.load();
 
-      } catch (IOException e) {
-         throw new RuntimeException(e);
-      }
+           Stage stage = new Stage();
+           stage.setTitle("Contact Entreprise");
+           stage.setScene(new Scene(root));
+           stage.show();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+
    }
 
    @FXML
-   void onStockButtonclick(ActionEvent event){
+   public void onStockButtonclick(ActionEvent event){
       try {
          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Stock.fxml"));
          AnchorPane root = fxmlLoader.load(); // Charger la racine en tant qu'AnchorPane
@@ -121,7 +134,7 @@ public class DashboardController implements Initializable {
 
 
    @FXML
-   void onVenteBtnClick (ActionEvent event){
+   public void onVenteBtnClick (ActionEvent event){
 
    }
 

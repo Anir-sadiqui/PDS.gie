@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="939.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FournisseurPersoControlleur">
+<fx:root prefHeight="550.0" prefWidth="939.0" style="-fx-background-color: #808080;" type="AnchorPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ContactPersoController">
    <children>
-      <Pane fx:id="pane1" layoutX="4.0" layoutY="16.0" prefHeight="475.0" prefWidth="341.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="pane1" layoutX="9.0" layoutY="16.0" prefHeight="475.0" prefWidth="341.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView fx:id="sup" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,7 +45,7 @@
       </Pane>
       <Pane fx:id="pane2" layoutX="352.0" layoutY="16.0" prefHeight="475.0" prefWidth="575.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="fournisseurTable" layoutX="27.0" layoutY="75.0" prefHeight="265.0" prefWidth="527.0">
+            <TableView fx:id="PersonneTable" layoutX="27.0" layoutY="75.0" prefHeight="265.0" prefWidth="527.0">
                <columns>
                   <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
                   <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
@@ -56,8 +56,8 @@
                   <TableColumn fx:id="colDelete" prefWidth="75.0" text="Delete" />
                </columns>
             </TableView>
-            <Button fx:id="retchbtn" layoutX="27.0" layoutY="25.0" mnemonicParsing="false" onAction="#fetchFournisseurs" prefHeight="37.0" prefWidth="65.0" text="Fetch" />
-            <Button fx:id="addFournisseurPerso" layoutX="376.0" layoutY="25.0" mnemonicParsing="false" onAction="#addFournisseur" prefHeight="37.0" prefWidth="172.0" text="Add a new Fournisseur">
+            <Button fx:id="retchbtn" layoutX="27.0" layoutY="25.0" mnemonicParsing="false" onAction="#fetchContacts" prefHeight="37.0" prefWidth="65.0" text="Fetch" />
+            <Button fx:id="addPersonne" layoutX="376.0" layoutY="25.0" mnemonicParsing="false" onAction="#addPersonne" prefHeight="37.0" prefWidth="172.0" text="Add a new Fournisseur">
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,4 +67,4 @@
                </graphic></Button>
          </children></Pane>
    </children>
-</AnchorPane>
+</fx:root>
