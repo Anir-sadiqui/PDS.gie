@@ -133,7 +133,7 @@ public class PersonneService {
         }
     }
 
-    public void deletePersonne(int id) throws IOException {
+    public void deletePersonne(Long id) throws IOException {
         Request request = new Request.Builder().url("http://localhost:9998/personne/DeletePersonne/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
@@ -190,6 +190,8 @@ public class PersonneService {
             throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
         }
     }
+
+
 
 
 }

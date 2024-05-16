@@ -1,19 +1,15 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.Adresse;
-import org.giefront.DTO.Personne;
+import org.giefront.DTO.Entreprise;
 import org.giefront.Service.AdresseService;
-import org.giefront.Service.PersonneService;
+import org.giefront.Service.EntrepriseService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,33 +17,59 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PersonneModificationController implements Initializable {
+public class EntropriseModificationController implements IEntropriseModificationController {
+    public static Entreprise ents ;
 
-    public static Personne pers ;
+
+    @FXML
+    private TextField Text_FJ;
+
+    @FXML
+    private TextField Text_RS;
+
+    @FXML
+    private TextField Text_id;
+
+    @FXML
+    private TextField Text_Field_Email;
+
+    @FXML
+    private TextField Text_Field_Po;
+
+    @FXML
+    private TextField Text_Field_V;
+
+    @FXML
+    private TextField Text_Field_Q;
+
+    @FXML
+    private TextField Text_Field_N;
+
 
 
     @FXML
     private AnchorPane mainAnchor;
     @FXML
-    private TextField Text_Field_Email;
+    private TableColumn<Entreprise, String> C_Adresse_E;
+
+
 
     @FXML
-    private TextField Text_Field_N;
+    private TableColumn<Entreprise, String> C_Email_E;
 
     @FXML
-    private TextField Text_Field_N1;
+    private TableColumn<Entreprise, String> C_FJ_E;
 
     @FXML
-    private TextField Text_Field_N11;
+    private TableColumn<Entreprise, Long> C_ID_E;
 
     @FXML
-    private TextField Text_Field_N111;
+    private TableColumn<String, String> C_Phone_E;
+
 
     @FXML
-    private TextField Text_Field_P;
+    private TableColumn<Entreprise, String> C_RS_E;
 
-    @FXML
-    private TextField Text_Field_Po;
 
     @FXML
     private Button adresse;
@@ -55,19 +77,19 @@ public class PersonneModificationController implements Initializable {
     @FXML
     private AnchorPane anchorepane_Adresse;
 
-    private Personne currentPersonne;
+    private Entreprise currentEntroprise;
 
-    public void setPersonne(Personne personne) {
-        this.currentPersonne = personne;
-        if (personne != null) {
-            Text_Field_N.setText(personne.getNom());
-            Text_Field_P.setText(personne.getPrenom());
-            Text_Field_Email.setText(personne.getEmail());
-            Text_Field_Po.setText(personne.getPhone());
-            if (personne.getAdresse() != null) {
-                Text_Field_N1.setText(personne.getAdresse().getVille());
-                Text_Field_N11.setText(personne.getAdresse().getQuartier());
-                Text_Field_N111.setText(personne.getAdresse().getNumero());
+    public void setEntroprise(Entreprise entreprise) {
+        this.currentEntroprise = entreprise;
+        if (entreprise != null) {
+            Text_RS.setText(entreprise.getRaisonSocial());
+            Text_FJ.setText(entreprise.getFormeJuridique());
+            Text_Field_Email.setText(entreprise.getEmail());
+            Text_Field_Po.setText(entreprise.getPhone());
+            if (entreprise.getAdresse() != null) {
+                Text_Field_V.setText(entreprise.getAdresse().getVille());
+                Text_Field_Q.setText(entreprise.getAdresse().getQuartier());
+                Text_Field_N.setText(entreprise.getAdresse().getNumero());
             }
         }
     }
@@ -77,16 +99,16 @@ public class PersonneModificationController implements Initializable {
         if (areFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette personne ?");
+            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette entroprise ?");
             confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                PersonneService personneService = new PersonneService();
+                EntrepriseService entrepriseService = new EntrepriseService();
                 //Personne per = PersonneModificationController.pers;
-                Personne per  = currentPersonne ;
+                Entreprise ent  = currentEntroprise ;
                 AdresseService as = new AdresseService();
-                Adresse a = per.getAdresse();
+                Adresse a = ent.getAdresse();
                 HashMap<String,String> attributs = new HashMap<>();
                 HashMap<String,String> attributsA = new HashMap<>();
                 if (!Text_Field_Email.getText().isEmpty()){
@@ -95,24 +117,24 @@ public class PersonneModificationController implements Initializable {
                 if (!Text_Field_N.getText().isEmpty()){
                     attributs.put("Nom",Text_Field_N.getText());
                 }
-                if (!Text_Field_P.getText().isEmpty()){
-                    attributs.put("Prenom",Text_Field_P.getText());
+                if (!Text_FJ.getText().isEmpty()){
+                    attributs.put("Prenom",Text_FJ.getText());
                 }
                 if (!Text_Field_Po.getText().isEmpty()){
                     attributs.put("phone",Text_Field_Po.getText());
                 }
-                if (!Text_Field_N1.getText().isEmpty()){
-                    attributsA.put("ville",Text_Field_N1.getText());
+                if (!Text_Field_V.getText().isEmpty()){
+                    attributsA.put("ville",Text_Field_V.getText());
                 }
-                if (!Text_Field_N11.getText().isEmpty()){
-                    attributsA.put("quartier",Text_Field_N11.getText());
+                if (!Text_Field_Q.getText().isEmpty()){
+                    attributsA.put("quartier",Text_Field_Q.getText());
                 }
-                if (!Text_Field_N111.getText().isEmpty()){
-                    attributsA.put("numero",Text_Field_N111.getText());
+                if (!Text_Field_N.getText().isEmpty()){
+                    attributsA.put("numero",Text_Field_N.getText());
                 }
 
                 try {
-                    personneService.modifierPersonne(String.valueOf(per.getId()),attributs);
+                    entrepriseService.modifierEntreprise(Long.valueOf(ent.getId()),attributs);
                     as.modifierAdresse(Math.toIntExact(a.getAdresse_id()),attributsA);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -138,11 +160,11 @@ public class PersonneModificationController implements Initializable {
 
     private boolean areFieldsFilled() {
         return !Text_Field_Email.getText().isEmpty() ||
+                !Text_RS.getText().isEmpty() ||
+                !Text_Field_V.getText().isEmpty() ||
+                !Text_Field_Q.getText().isEmpty() ||
                 !Text_Field_N.getText().isEmpty() ||
-                !Text_Field_N1.getText().isEmpty() ||
-                !Text_Field_N11.getText().isEmpty() ||
-                !Text_Field_N111.getText().isEmpty() ||
-                !Text_Field_P.getText().isEmpty() ||
+                !Text_FJ.getText().isEmpty() ||
                 !Text_Field_Po.getText().isEmpty();
     }
     @FXML
@@ -156,5 +178,4 @@ public class PersonneModificationController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
 }

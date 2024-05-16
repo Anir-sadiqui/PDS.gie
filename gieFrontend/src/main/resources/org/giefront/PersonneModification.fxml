@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="541.0"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.controller.PersonneModificationController">
+   <children>
+      <Label layoutX="14.0" layoutY="93.0" prefHeight="17.0" prefWidth="58.0" text="  Nom:" textAlignment="CENTER" />
+      <Label layoutX="12.0" layoutY="137.0" prefHeight="17.0" prefWidth="58.0" text="  Prenom:" textAlignment="CENTER" />
+      <Label layoutX="5.0" layoutY="177.0" prefHeight="17.0" prefWidth="75.0" text="     Email:" textAlignment="CENTER" />
+      <Label layoutX="16.0" layoutY="218.0" prefHeight="18.0" prefWidth="75.0" text="Num de tel:" textAlignment="CENTER" />
+      <AnchorPane fx:id="anchorepane_Adresse" layoutX="108.0" layoutY="264.0" prefHeight="121.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="14.0" layoutY="10.0" prefHeight="0.0" prefWidth="34.0" text="Ville:" />
+            <Label layoutX="14.0" layoutY="42.0" prefHeight="18.0" prefWidth="50.0" text="Quartier:" />
+            <Label layoutX="14.0" layoutY="78.0" prefHeight="18.0" prefWidth="50.0" text="Numero:" />
+            <TextField fx:id="Text_Field_N1" layoutX="68.0" layoutY="6.0" prefHeight="18.0" prefWidth="150.0" />
+            <TextField fx:id="Text_Field_N11" layoutX="68.0" layoutY="40.0" prefHeight="18.0" prefWidth="150.0" />
+            <TextField fx:id="Text_Field_N111" layoutX="68.0" layoutY="75.0" prefHeight="18.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+      <TextField fx:id="Text_Field_N" layoutX="93.0" layoutY="89.0" prefHeight="18.0" prefWidth="150.0" />
+      <Button fx:id="adresse" contentDisplay="RIGHT" layoutX="16.0" layoutY="256.0" mnemonicParsing="false" onAction="#onClick_Adresse" text="Adresse" textOverrun="CENTER_WORD_ELLIPSIS"/>
+      <TextField fx:id="Text_Field_P" layoutX="93.0" layoutY="132.0" prefHeight="18.0" prefWidth="150.0" />
+      <TextField fx:id="Text_Field_Email" layoutX="94.0" layoutY="172.0" prefHeight="18.0" prefWidth="150.0" />
+      <TextField fx:id="Text_Field_Po" layoutX="94.0" layoutY="214.0" prefHeight="18.0" prefWidth="150.0" />
+      <Button fx:id="BtnMod" layoutX="160.0" layoutY="391.0" mnemonicParsing="false" onAction="#OnMod" prefHeight="26.0" prefWidth="82.0" text="Modifier" visible="true" />
+      <Button fx:id="return" layoutX="13.0" layoutY="439.0" mnemonicParsing="false" onAction="#onReturn" prefHeight="25.0" prefWidth="82.0" text="Retour" />
+   </children>
+</AnchorPane>

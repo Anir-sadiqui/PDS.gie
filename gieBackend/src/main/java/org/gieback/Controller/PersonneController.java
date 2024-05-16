@@ -101,7 +101,7 @@ public class PersonneController {
 
     @DELETE
     @Path("DeletePersonne/{id}")
-    public Response deleteById(@PathParam("id") int id) {
+    public Response deleteById(@PathParam("id") Long id) {
         personneService.deleteById(id);
         return Response.noContent().build();
     }

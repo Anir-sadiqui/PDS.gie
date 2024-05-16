@@ -156,7 +156,7 @@ public   class PersonneDao implements IPersonneDao{
 
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         String hql = "delete from Personne where id =:id";
         try {
             entityManager.getTransaction().begin();

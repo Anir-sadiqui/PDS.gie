@@ -39,6 +39,7 @@ public class FournisseurPersoControlleur {
     private TableColumn<Personne, String> colNom, colPrenom, colPhone, colEmail;
 
     private FournisseurPersoService fournisseurService;
+
     private Personne selectedFournisseur;
 
     private final Button editButton = new Button("Edit");
@@ -136,27 +137,37 @@ public class FournisseurPersoControlleur {
         }
     }
 
+
     private void editFournisseur(Personne fournisseur) {
-        System.out.println("Editing fournisseur: " + fournisseur.getNom());
-        // Load the fournisseur data into the input fields and enable editing
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/PersonneModification.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller for PersonneModification.fxml
+            PersonneModificationController modificationController = loader.getController();
+
+            // Pass the selected Personne data to the modification controller
+            modificationController.setPersonne(fournisseur);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteFournisseur(Personne fournisseur) {
         System.out.println("Deleting fournisseur: " + fournisseur.getNom());
-        /*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setContentText("Are you sure you want to delete this fournisseur?");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                fournisseurService.deletePersonne(fournisseur.getId());
-                fetchFournisseurs(null);
-            }
-        });
-
-         */
+        try {
+            fournisseurService.deletePersonne(fournisseur.getId()); // Assuming getId() returns the ID of the fournisseur
+            fetchFournisseurs(null); // Refresh the table after deletion
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
     }
+
 
     private Stage stage;
     private Scene scene;
@@ -176,6 +187,33 @@ public class FournisseurPersoControlleur {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void SwitchToEdit(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/PersonneModification.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void switchToEditPersonne(Personne personne) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/personneModification.fxml")); // Correct path to your FXML
+            Parent root = fxmlLoader.load();
+
+            // Get the controller and pass the data
+            PersonneModificationController modificationController = fxmlLoader.getController();
+            modificationController.setPersonne(personne);
+
+            stage = (Stage) fournisseurTable.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

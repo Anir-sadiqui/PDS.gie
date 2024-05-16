@@ -49,7 +49,6 @@ public class PersonneController implements Initializable {
     private AnchorPane anchorepane_Adresse;
 
 
-
     private final PersonneService personneService = new PersonneService();
 
     @FXML
@@ -118,8 +117,6 @@ public class PersonneController implements Initializable {
         choiceBox.getItems().addAll(ContactType.FOURNISSEUR, ContactType.CLIENT);
     }
 
-
-
     private boolean areFieldsFilled() {
         return !Text_Field_Email.getText().isEmpty() &&
                 !Text_Field_N.getText().isEmpty() &&
@@ -129,17 +126,6 @@ public class PersonneController implements Initializable {
                 !Text_Field_P.getText().isEmpty() &&
                 !Text_Field_Po.getText().isEmpty();
     }
-
-//    public void onReturn(ActionEvent event) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
-//            Node node = fxmlLoader.load();
-//            mainAnchor.getChildren().setAll(node);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     private Stage stage;
     private Scene scene;
@@ -151,6 +137,13 @@ public class PersonneController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void setPersonne(Personne personne) {
+        Text_Field_N.setText(personne.getNom());
+        Text_Field_P.setText(personne.getPrenom());
+        Text_Field_Email.setText(personne.getEmail());
+        Text_Field_Po.setText(personne.getPhone());
     }
 
 

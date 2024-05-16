@@ -131,8 +131,8 @@ public class FournisseurEntroService  {
         }
     }
 
-    public void deletePersonne(int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/DeletePersonne/"+id).delete().build();
+    public void deleteEntro(Long id) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/DeleteEntreprise/"+id).delete().build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
