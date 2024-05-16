@@ -4,6 +4,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Category;
+import org.gieback.Entity.EtatStock;
 import org.gieback.Entity.Product;
 import org.gieback.Service.ProductService;
 
@@ -24,10 +25,10 @@ public class ProductController {
     }
 
     @GET
-    @Path("/isAvailable/{id}")
+    @Path("/isAvailable/{t}")
     @Produces (MediaType.APPLICATION_JSON)
-    public boolean isAvailable(@PathParam("id") int id){
-        return ps.isAvailable(id);
+    public List<Product> isAvailable(@PathParam("t") String t){
+        return ps.isAvailable(t);
     }
 
 
@@ -43,7 +44,7 @@ public class ProductController {
     @GET
     @Path("/getByCat/{c}")
     @Produces (MediaType.APPLICATION_JSON)
-    public List<Product> getbyCat(@PathParam("c")Category c){
+    public List<Product> getbyCat(@PathParam("c")String c){
         return ps.getbyCat(c);
     }
 
@@ -60,18 +61,13 @@ public class ProductController {
     public List<Product> getAllProd(){
         return ps.getAllProd();
     }
+
     @DELETE
     @Path("/deleteProd/{id}")
     public void deleteProduct(@PathParam("id")int id){
         ps.deleteProduct(id);
     }
 
-    @GET
-    @Path("/getByName/{n}")
-    @Produces (MediaType.APPLICATION_JSON)
-    public List<Product> getbyName(@PathParam("n")String n){
-        return ps.getByName(n);
-    }
 
 
 

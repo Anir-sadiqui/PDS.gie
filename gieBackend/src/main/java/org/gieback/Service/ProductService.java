@@ -2,6 +2,7 @@ package org.gieback.Service;
 
 import org.gieback.DAO.ProductDao;
 import org.gieback.Entity.Category;
+import org.gieback.Entity.EtatStock;
 import org.gieback.Entity.Product;
 
 import java.util.List;
@@ -11,8 +12,8 @@ public class ProductService implements IProductService{
     ProductDao pdao = new ProductDao();
 
     @Override
-    public boolean isAvailable(int id) {
-        return pdao.isAvailable(id);
+    public List<Product> isAvailable(String t) {
+        return pdao.isAvailable(t);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public List<Product> getbyCat(Category cat) {
+    public List<Product> getbyCat(String cat) {
         return pdao.getbyCat(cat);
     }
 

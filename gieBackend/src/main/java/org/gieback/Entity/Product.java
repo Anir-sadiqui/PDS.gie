@@ -27,6 +27,8 @@ public class Product implements Serializable {
     @Column(name ="Prix_unitaire")
     private double prix;
 
+
+
     public Product() {}
 
     public Product(String name, String description, Category category,double prix ) {

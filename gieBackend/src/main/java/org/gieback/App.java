@@ -1,13 +1,11 @@
 package org.gieback;
 import com.sun.net.httpserver.HttpServer;
 import jakarta.ws.rs.core.UriBuilder;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.ContactType;
-import org.gieback.Entity.Entreprise;
-import org.gieback.Entity.Personne;
+import org.gieback.Entity.*;
 import org.gieback.Service.AdresseService;
 import org.gieback.Service.EntrepriseService;
 import org.gieback.Service.PersonneService;
+import org.gieback.Service.ProductService;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -91,6 +89,9 @@ public class App extends ResourceConfig {
 //        e.addEnterprise(entreprise2);
 //       PersonneService fs = new PersonneService();
 //       fs.DeleteType(String.valueOf(52));
+        Product p = new Product("Iphone 15","gris metal 126go ",Category.CATEGORY1,18900.00);
+        ProductService ps = new ProductService();
+        ps.add(p);
 
 
 

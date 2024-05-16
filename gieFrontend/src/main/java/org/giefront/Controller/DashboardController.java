@@ -60,17 +60,17 @@ public class DashboardController implements Initializable {
 
    @FXML
    void FRBtnClick(ActionEvent event) {
-         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fournisseur.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
-
+      try {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fournisseur.fxml"));
+         Parent root = fxmlLoader.load();
+         Stage stage = new Stage();
+         stage.setScene(new Scene(root));
+         stage.show();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
+
+   }
 
    @FXML
    void close () {
@@ -108,22 +108,16 @@ public class DashboardController implements Initializable {
 
    @FXML
    void onStockButtonclick(ActionEvent event){
-
-         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Stock.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-         } catch (IOException e) {
-            e.printStackTrace();
-         }
-
+      try {
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Stock.fxml"));
+         AnchorPane root = fxmlLoader.load(); // Charger la racine en tant qu'AnchorPane
+         Stage stage = new Stage();
+         stage.setScene(new Scene(root));
+         stage.show();
+      } catch (IOException e) {
+         e.printStackTrace();
       }
-
-
-
-
+   }
 
 
    @FXML

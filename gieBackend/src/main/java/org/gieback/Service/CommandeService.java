@@ -42,4 +42,9 @@ public class CommandeService implements ICommandeService{
     public void addComm(Commande c) {
         cdao.addComm(c);
     }
+
+    @Override
+    public List<Commande> getAllCom() {
+        return cdao.getAllCom();
+    }
 }

@@ -13,6 +13,6 @@ public interface IAchatDao {
     void deleteById(int id);
     void modifier(String id, Map<String, Integer> attributs);
     List<Achat> chercherParDate(Date date);
-    List<Achat> chercherParFournisseur(Contact f);
+    List<Achat> chercherParFournisseur(int idf);
     List<Achat> chercherParId(int id);
 }

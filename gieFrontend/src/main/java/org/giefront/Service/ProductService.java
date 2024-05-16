@@ -1,15 +1,20 @@
 package org.giefront.Service;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
-
 import java.io.IOException;
+
+import org.giefront.DTO.Category;
 import org.giefront.DTO.Product;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
-    public class ProductService  implements IService {
+import static org.giefront.Service.IService.okHttpClient;
+
+public class ProductService  implements IProductService {
         private OkHttpClient okHttpClient = new OkHttpClient();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -30,7 +35,7 @@ import java.util.Map;
 
         @Override
         public List<Product> getAll() {
-            Request request = new Request.Builder().url("http://localhost:9998/entreprise/getAll").build();
+            Request request = new Request.Builder().url("http://localhost:9998/Product/getAllprod").build();
             List<Product> products;
             try {
                 Response response = okHttpClient.newCall(request).execute();
@@ -59,9 +64,46 @@ import java.util.Map;
         }
 
 
+        @Override
+        public void deleteProduct(int idProduct) {
+                try {
+                    Request request = new Request.Builder().url("http://localhost:9998/lit/delete/"+idProduct ).delete().build();
+                    Response response = okHttpClient.newCall(request).execute();
+                    System.out.println(response.body().string());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        @Override
+        public List<Product> getbyname(String name) {
+            return null;
+        }
+
+        @Override
+        public List<Product> getbyCat(Category cat) {
+            return null;
+        }
+    @Override
+    public void update(int id, String name, String description, Category category, int quantite, Double prix) {
+        try {
+            String descriptionEncoded = URLEncoder.encode(description, StandardCharsets.UTF_8.toString());
+            String nameEncoded = URLEncoder.encode(name, StandardCharsets.UTF_8.toString());
+            String categoryEncoded = URLEncoder.encode(category.name(), StandardCharsets.UTF_8.toString()); // Utilise getCategoryName() pour obtenir le nom de la catégorie
+
+            String url = String.format("http://localhost:9998/produit/modify/%d/%s/%s/%s/%f/%d", id, nameEncoded, descriptionEncoded, categoryEncoded, prix, quantite);
+            Request request = new Request.Builder().url(url).build();
+            Response response = okHttpClient.newCall(request).execute();
+
+            System.out.println(response.body().string());
+            System.out.println(response.code());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
+
+}
 
 
 

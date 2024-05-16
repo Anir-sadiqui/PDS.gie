@@ -15,5 +15,7 @@ public interface ICommandeDao {
     List<Commande> getByEtat (EtatCommande e);
    void deleteComm(int id);
    void addComm(Commande c);
+    List<Commande> getAllCom();
+
 
 }

@@ -6,11 +6,11 @@ module org.giefront {
     requires static lombok;
 
 
-    opens org.giefront to javafx.fxml;
+
     exports org.giefront;
     exports org.giefront.DTO to com.fasterxml.jackson.databind;
     requires javafx.base;
+    requires de.jensd.fx.glyphs.fontawesome;
     opens org.giefront.DTO to javafx.base;
-    exports org.giefront.Controller;
-    opens org.giefront.Controller to javafx.fxml;
+    opens org.giefront to javafx.fxml;
 }

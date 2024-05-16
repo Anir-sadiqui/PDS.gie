@@ -4,24 +4,35 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import org.gieback.Entity.Category;
+import org.gieback.Entity.EtatStock;
 import org.gieback.Entity.Product;
+import org.gieback.HibernateUtility.HibernateUtil;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ProductDao implements IProductDao{
-    EntityManager entityManager;
+    EntityManager entityManager = HibernateUtil.getEntityManger();
     @Override
-    public boolean isAvailable(int i) {
-        Product p = entityManager.find(Product.class, i);
-        if (p.getQ()>0){
-            return true;
+    public  List<Product> isAvailable(String t) {
+        List<Product> p = new ArrayList<>();
+        if (t.equals(EtatStock.Disponible.name())){
+            String hql = "FROM Product WHERE q>0";
+            Query query = entityManager.createQuery(hql);
+             p = query.getResultList();
         }
-        return false;
+        else if (t.equals(EtatStock.Epuise.name())) {
+            String hql = "FROM Product WHERE q=0";
+            Query query = entityManager.createQuery(hql);
+             p = query.getResultList();
+        }
+
+        return p;
     }
 
     @Override
@@ -70,15 +81,9 @@ public class ProductDao implements IProductDao{
         }
         entityManager.getTransaction().commit();
     }
-    public List<Product> getByName(String na) {
-        String requet = "FROM Product p WHERE p.name = :na";
-        Query query = entityManager.createQuery(requet);
-        query.setParameter("na", na);
-        List<Product> q = query.getResultList();
-        return q;
-    }
+
     @Override
-    public List<Product> getbyCat(Category ca) {
+    public List<Product> getbyCat(String ca) {
         String hql = "FROM Product p WHERE p.category = :cat";
         Query query = entityManager.createQuery(hql);
         query.setParameter("cat", ca);

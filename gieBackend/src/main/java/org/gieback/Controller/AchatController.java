@@ -61,10 +61,10 @@ public class AchatController{
     }
 
     @GET
-    @Path("/chercherParFournisseur")
+    @Path("/chercherParFournisseur/{idf}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesBySupplier(Contact f) {
-        return achatService.searchPurchasesBySupplier(f);
+    public List<Achat> searchPurchasesBySupplier(@PathParam("idf") int idf) {
+        return achatService.searchPurchasesBySupplier(idf);
     }
 
 
