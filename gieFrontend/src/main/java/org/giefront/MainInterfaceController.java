@@ -308,7 +308,7 @@ public class MainInterfaceController implements Initializable {
                     C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
                     C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
                     C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+                     C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
                     C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
                     tableView_E.setItems(entrepriseObservableList);
                     tableView_E.setVisible(true);

@@ -1,0 +1,56 @@
+/* Style pour le label "GIE" */
+.label {
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 14px;
+}
+
+/* Style pour les boutons de fermeture, réduction et maximisation */
+#closeBtn, #minimizeBtn, #maximizeBtn {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Style pour les boutons de fermeture, réduction et maximisation au survol */
+#closeBtn:hover {
+    -fx-background-color: #33e7ff; /* Rouge */
+}
+ #minimizeBtn:hover, #maximizeBtn:hover{
+     -fx-background-color:  #333333; /*gris*/
+ }
+
+
+/* Style pour le panneau de gauche */
+.left-pane {
+    -fx-background-color: #333333; /* Gris foncé */
+}
+
+/* Style pour les labels dans le panneau de gauche */
+.left-pane Label {
+    -fx-font-family: "Arial Bold";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+/* Style pour la ligne dans le panneau de gauche */
+.left-pane Line {
+    -fx-stroke: white;
+}
+
+/* Style pour les boutons verts dans le panneau de gauche */
+.left-pane Button {
+    -fx-pref-width: 180px;
+    -fx-pref-height: 35px;
+    -fx-font-size: 14px;
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-background-color: #2ECC71; /* Couleur verte */
+}
+
+/* Style pour les boutons verts au survol dans le panneau de gauche */
+.left-pane Button:hover {
+    -fx-background-color: #27AE60; /* Couleur verte plus foncée au survol */
+}
+
+/* Style pour le curseur du panneau de gauche */
+.left-pane .cursor {
+    -fx-cursor: hand;
+}
