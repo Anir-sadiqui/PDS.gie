@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -8,30 +8,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import org.giefront.DTO.Contact;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import lombok.Data;
 import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
-import org.giefront.Service.ContactService;
 import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import lombok.Data;
 @Data
 public class MainInterfaceController implements Initializable {
 
@@ -117,6 +108,7 @@ public class MainInterfaceController implements Initializable {
     public TableView<Entreprise> tableView_E;
     @FXML
     public TableView<Personne> tableView_P;
+
     EntrepriseService e = new EntrepriseService();
     PersonneService p = new PersonneService();
 

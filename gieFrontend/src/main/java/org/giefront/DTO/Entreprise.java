@@ -7,6 +7,12 @@ import java.io.Serializable;
 
 @Data
 public class Entreprise  extends Contact implements Serializable {
+
+    private Long id;
+
+    private String phone;
+    private String email;
+
     private String formeJuridique;
 
     private String raisonSocial;
@@ -17,6 +23,8 @@ public class Entreprise  extends Contact implements Serializable {
         this.raisonSocial = raisonSocial;
 
     }
+
+
 
     public String getFormeJuridique() {
         return formeJuridique;
@@ -32,6 +40,31 @@ public class Entreprise  extends Contact implements Serializable {
 
     public void setRaisonSocial(String raisonSocial) {
         this.raisonSocial = raisonSocial;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Entreprise() {

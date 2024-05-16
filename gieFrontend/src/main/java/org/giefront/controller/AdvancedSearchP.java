@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import org.giefront.DTO.Personne;
 import org.giefront.Service.PersonneService;
 
@@ -120,7 +119,7 @@ public class AdvancedSearchP implements Initializable {
     public void onDelete(ActionEvent event) throws IOException {
         Personne selectedPerson =  tableView_P.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            ps.deletePersonne(Math.toIntExact(selectedPerson.getId()));
+            ps.deletePersonne((long) Math.toIntExact(selectedPerson.getId()));
             tableView_P.getItems().remove(selectedPerson);
             showAlert("Suppression reussie");
         }

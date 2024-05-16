@@ -16,7 +16,7 @@ public interface IPersonneService {
     List<Personne> sortByNom(String ordre);
     List<Personne> sortById (String ordre);
     void modifier(String  id, Map<String, String> attributs);
-    void deleteById (int id);
+    void deleteById (Long id);
     Personne getByEmail(String email);
     List<Personne> getByType (ContactType type);
     void addType (String id, ContactType type);

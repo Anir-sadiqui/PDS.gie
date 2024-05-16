@@ -85,7 +85,7 @@ public class EntrepriseDao implements IEntrepriseDao {
     }
 
     @Override
-    public void deleteByid(int id) {
+    public void deleteByid(Long id) {
         String hql = "delete from Entreprise where id =:id";
         try {
             entityManager.getTransaction().begin();

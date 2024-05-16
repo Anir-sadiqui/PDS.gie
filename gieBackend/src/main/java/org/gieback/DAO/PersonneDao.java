@@ -2,6 +2,7 @@ package org.gieback.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -22,8 +23,6 @@ public   class PersonneDao implements IPersonneDao{
     public PersonneDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
-
-
 
     @Override
     public List<Personne> getAll() {
@@ -50,6 +49,23 @@ public   class PersonneDao implements IPersonneDao{
             e.printStackTrace();
         }
     }
+
+
+//    @Override
+//    public void add(Personne p) throws PersistenceException {
+//        EntityTransaction transaction = entityManager.getTransaction();
+//        try {
+//            transaction.begin();
+//            if (p.getAdresse() != null) {
+//                entityManager.persist(p.getAdresse());
+//            }
+//            entityManager.persist(p);
+//            transaction.commit();
+//        } catch (Exception e) {
+//            transaction.rollback();
+//            throw new PersistenceException("Failed to add Personne", e);
+//        }
+//    }
     @Override
     public Personne getById(int id) {
         return entityManager.find(Personne.class, id);
@@ -140,7 +156,7 @@ public   class PersonneDao implements IPersonneDao{
 
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         String hql = "delete from Personne where id =:id";
         try {
             entityManager.getTransaction().begin();
@@ -197,8 +213,6 @@ public   class PersonneDao implements IPersonneDao{
         else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
     }
-
-
 
 }
 

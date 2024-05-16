@@ -6,9 +6,7 @@ import java.io.Serializable;
 @Data
 public class Personne extends Contact implements Serializable {
     private String nom;
-
     private String prenom;
-
 
     public Personne(String phone, String email, Adresse adresse, ContactType contactType,String nom, String prenom) {
         super(phone, email, adresse , contactType);
@@ -33,8 +31,6 @@ public class Personne extends Contact implements Serializable {
     }
 
     public Personne() {
-
-
 
     }
 }
