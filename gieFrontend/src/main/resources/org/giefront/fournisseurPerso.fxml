@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="939.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FournisseurPersoControlleur">
+<AnchorPane prefHeight="550.0" prefWidth="939.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.controller.FournisseurPersoControlleur">
    <children>
       <Pane fx:id="pane1" layoutX="4.0" layoutY="16.0" prefHeight="475.0" prefWidth="341.0" style="-fx-background-color: #ffffff;">
          <children>

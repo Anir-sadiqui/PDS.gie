@@ -1,9 +1,10 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,9 +22,7 @@ import java.util.List;
 
 public class ContactEntroController {
 
-    private Stage stage;
-    private Scene scene;
-    private FXMLLoader fxmlLoader;
+
 
     @FXML
     private TextField formeJuridique, raisonSocial, phone, email, ville, quartier, num;
@@ -53,7 +52,7 @@ public class ContactEntroController {
     @FXML
     public void initialize() {
         setupTableColumns();
-       // fetchContacts(null);
+        fetchContacts(null);
         setupRowSelection();
     }
 
@@ -101,12 +100,29 @@ public class ContactEntroController {
 //        return entrepriseList;
         return null;
     }
+    private Stage stage;
+    private Scene scene;
+    private FXMLLoader fxmlLoader;
+    public void switchToFornEntro(ActionEvent event) throws IOException {
 
-    public void switchToFornEntro(ActionEvent actionEvent) {
+        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/ContactPersonne.fxml"));
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
+        scene = new Scene(fxmlLoader.load()) ;
+        stage.setScene(scene);
+        stage.show();
+
     }
 
-    public void addContact(ActionEvent actionEvent) {
+
+
+    public void addContact(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/entreprise.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
 
     private class EditButtonCell extends TableCell<Entreprise, Void> {
         private final Button editButton = new Button("Edit");
@@ -148,21 +164,15 @@ public class ContactEntroController {
     }
 
     private void deleteEntreprise(Entreprise entreprise) {
-        System.out.println("Deleting entreprise: " + entreprise.getRaisonSocial());
-        /*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setContentText("Are you sure you want to delete this fournisseur?");
 
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                fournisseurService.deletePersonne(fournisseur.getId());
-                fetchFournisseurs(null);
+            System.out.println("Deleting entreprie: " + entreprise.getRaisonSocial());
+            try {
+                entrepriseService.deleteEntro(entreprise.getId()); // Assuming getId() returns the ID of the fournisseur
+                fetchContacts(null); // Refresh the table after deletion
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle the exception appropriately
             }
-        });
-
-         */
-    }
+        }
 
     @FXML
     private void showAddressFields() {
@@ -171,9 +181,12 @@ public class ContactEntroController {
         num.setVisible(true);
     }
 
-    // Méthode pour ajouter un nouveau contact à la table
-    public void addNewContact(Entreprise newEntreprise) {
-        // Ajouter le nouveau contact à la liste des contacts de la table
-        ContactTable.getItems().add(newEntreprise);
+    public void switchToFornPerso(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/ContactPersonne.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
+

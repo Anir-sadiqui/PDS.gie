@@ -43,7 +43,7 @@ public class FourniseurEntoContro {
         stage.show();
     }
 
-//
+
 //    public void switchToFornPerso(ActionEvent event) throws IOException {
 //
 //        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurEntro.fxml"));

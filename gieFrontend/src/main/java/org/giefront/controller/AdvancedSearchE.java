@@ -116,7 +116,7 @@ public class AdvancedSearchE implements Initializable {
     public void onDelete(ActionEvent event) throws IOException {
         Entreprise selectedEntreprise = tableView_E.getSelectionModel().getSelectedItem();
         if (selectedEntreprise != null) {
-            e.deleteEntreprise((long) Math.toIntExact(selectedEntreprise.getId()));
+            e.deleteEntro((long) Math.toIntExact(selectedEntreprise.getId()));
             tableView_E.getItems().remove(selectedEntreprise);
             showAlert("Suppression reussie");
         }
@@ -164,42 +164,42 @@ public class AdvancedSearchE implements Initializable {
         }
     }
 
-    public void onSearch(ActionEvent event) throws IOException {
-        if (!Text_id.getText().isEmpty()){
-            ObservableList<Entreprise> entrObservableList = FXCollections.observableList(Collections.singletonList(e.getById(Integer.parseInt(Text_id.getText()))));
-            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-            tableView_E.setItems(entrObservableList);
-            tableView_E.setVisible(true);
-        }
-        else if(!Text_RS.getText().isEmpty() && Text_id.getText().isEmpty()){
-            ObservableList<Entreprise> entrObservableList = FXCollections.observableList(Collections.singletonList(e.getByRs(Text_RS.getText())));
-            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-            tableView_E.setItems(entrObservableList);
-            tableView_E.setVisible(true);
-        }
-        else if (!Text_FJ.getText().isEmpty() && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
-            ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getByFj(Text_FJ.getText()));
-            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-            tableView_E.setItems(entrepriseObservableList);
-            tableView_E.setVisible(true);
-        }
-        else if (Text_RS.getText().isEmpty() && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
-            showAlert("Veuillez indiquer un champ de recherche");
-        }
-    }
+//    public void onSearch(ActionEvent event) throws IOException {
+//        if (!Text_id.getText().isEmpty()){
+//            ObservableList<Entreprise> entrObservableList = FXCollections.observableList(Collections.singletonList(e.getById(Integer.parseInt(Text_id.getText()))));
+//            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
+//            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
+//            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+//            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+//            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+//            tableView_E.setItems(entrObservableList);
+//            tableView_E.setVisible(true);
+//        }
+//        else if(!Text_RS.getText().isEmpty() && Text_id.getText().isEmpty()){
+//            ObservableList<Entreprise> entrObservableList = FXCollections.observableList(Collections.singletonList(e.getByRs(Text_RS.getText())));
+//            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
+//            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
+//            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+//            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+//            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+//            tableView_E.setItems(entrObservableList);
+//            tableView_E.setVisible(true);
+//        }
+//        else if (!Text_FJ.getText().isEmpty() && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
+//            ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getByFj(Text_FJ.getText()));
+//            C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
+//            C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
+//            C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+//            C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+//            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
+//            tableView_E.setItems(entrepriseObservableList);
+//            tableView_E.setVisible(true);
+//        }
+//        else if (Text_RS.getText().isEmpty() && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
+//            showAlert("Veuillez indiquer un champ de recherche");
+//        }
+//    }
 }

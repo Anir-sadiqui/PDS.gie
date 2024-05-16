@@ -12,4 +12,6 @@ module org.giefront {
     requires javafx.base;
     opens org.giefront.DTO to javafx.base;
     opens org.giefront to javafx.fxml;
+    exports org.giefront.controller;
+    opens org.giefront.controller to javafx.fxml;
 }
