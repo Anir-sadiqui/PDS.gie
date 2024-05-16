@@ -58,6 +58,24 @@ public class EntrepriseModifController implements Initializable {
     @FXML
     private AnchorPane anchorepane_Adresse;
 
+
+    private Entreprise currentEntroprise;
+
+    public void setEntroprise(Entreprise entreprise) {
+        this.currentEntroprise = entreprise;
+        if (entreprise != null) {
+            Text_Field_RS.setText(entreprise.getRaisonSocial());
+            Text_Field_FJ.setText(entreprise.getFormeJuridique());
+            Text_Field_Email.setText(entreprise.getEmail());
+            Text_Field_Po.setText(entreprise.getPhone());
+            if (entreprise.getAdresse() != null) {
+                Text_Field_V.setText(entreprise.getAdresse().getVille());
+                Text_Field_Q.setText(entreprise.getAdresse().getQuartier());
+                Text_Field_N.setText(entreprise.getAdresse().getNumero());
+            }
+        }
+    }
+
     @FXML
     public void OnMod() {
         if (areEntrFieldsFilled()) {
@@ -68,7 +86,7 @@ public class EntrepriseModifController implements Initializable {
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 EntrepriseService entrepriseService = new EntrepriseService();
-                Entreprise entr = AdvancedSearchE.entr;
+                Entreprise entr = currentEntroprise;
                 AdresseService as = new AdresseService();
                 Adresse a = entr.getAdresse();
                 HashMap<String,String> attributs = new HashMap<>();

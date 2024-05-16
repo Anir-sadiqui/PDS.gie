@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,7 +12,7 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="939.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.controller.FourniseurEntoContro">
     <children>
-        <Pane fx:id="pane1" layoutX="4.0" layoutY="16.0" prefHeight="475.0" prefWidth="341.0" style="-fx-background-color: #ffffff;">
+        <Pane fx:id="pane1" layoutX="4.0" layoutY="16.0" prefHeight="475.0" prefWidth="224.0" style="-fx-background-color: #ffffff;">
             <children>
                 <ImageView fx:id="sup" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -24,26 +23,10 @@
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label layoutX="67.0" layoutY="143.0" prefHeight="16.0" prefWidth="35.0" text="Nom" />
-                <TextField fx:id="nom" layoutX="103.0" layoutY="139.0" prefHeight="24.0" prefWidth="152.0" />
-                <Label layoutX="48.0" layoutY="180.0" prefHeight="16.0" prefWidth="51.0" text="Prenom" />
-                <TextField fx:id="prenom" layoutX="103.0" layoutY="176.0" prefHeight="24.0" prefWidth="152.0" />
-                <Label layoutX="50.0" layoutY="214.0" prefHeight="16.0" prefWidth="43.0" text="Phone" />
-                <TextField fx:id="phone" layoutX="103.0" layoutY="210.0" prefHeight="24.0" prefWidth="152.0" />
-                <Label layoutX="52.0" layoutY="250.0" prefHeight="16.0" prefWidth="43.0" text="Email" />
-                <TextField fx:id="email" layoutX="103.0" layoutY="246.0" prefHeight="24.0" prefWidth="152.0" />
                 <Button fx:id="entroToPerso" layoutX="44.0" layoutY="66.0" mnemonicParsing="false" onAction="#switchToFornEntro" prefHeight="43.0" prefWidth="172.0" style="-fx-background-color: #000000;" text="EntroToPerson" textFill="WHITE" />
-                <Button fx:id="address" layoutX="103.0" layoutY="278.0" mnemonicParsing="false" onAction="#showAddressFields" prefHeight="24.0" prefWidth="152.0" text="Address" />
-                <Pane fx:id="pane" layoutX="110.0" layoutY="316.0" prefHeight="145.0" prefWidth="201.0">
-                    <children>
-                        <TextField fx:id="ville" layoutX="25.0" layoutY="20.0" prefHeight="24.0" prefWidth="152.0" promptText="ville" visible="false" />
-                        <TextField fx:id="quartier" layoutX="25.0" layoutY="61.0" prefHeight="24.0" prefWidth="152.0" promptText="quartier" visible="false" />
-                        <TextField fx:id="num" layoutX="25.0" layoutY="98.0" prefHeight="24.0" prefWidth="152.0" promptText="numéro" visible="false" />
-                    </children>
-                </Pane>
             </children>
         </Pane>
-        <Pane fx:id="pane2" layoutX="352.0" layoutY="16.0" prefHeight="475.0" prefWidth="575.0" style="-fx-background-color: #ffffff;">
+        <Pane fx:id="pane2" layoutX="235.0" layoutY="16.0" prefHeight="475.0" prefWidth="575.0" style="-fx-background-color: #ffffff;">
             <children>
                 <TableView fx:id="fournisseurTable" layoutX="27.0" layoutY="75.0" prefHeight="265.0" prefWidth="527.0">
                     <columns>
