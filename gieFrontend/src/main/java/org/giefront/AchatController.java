@@ -1,5 +1,9 @@
 package org.giefront;
 
+import javafx.scene.control.Alert;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,16 +15,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+
+import org.giefront.DTO.Achat;
+import org.giefront.DTO.AchatDetail;
+import org.giefront.DTO.Contact;
+import org.giefront.Service.AchatService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AchatController implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> DateColmn;
+    private TableView<Achat> achatsTableView; // Define TableView for displaying achats
+
+    private final AchatService achatService = new AchatService();
+
+    @FXML
+    private TableColumn<Achat, ?> DateColmn;
 
     @FXML
     private DatePicker FiltrerParDateDatePicker;
@@ -29,19 +48,19 @@ public class AchatController implements Initializable {
     private ChoiceBox<?> FiltrerParFournisseurComboBox;
 
     @FXML
-    private TableColumn<?, ?> FornisseurColmn;
+    private TableColumn<Achat, ?> FornisseurColmn;
 
     @FXML
-    private TableColumn<?, ?> IDColmn;
+    private TableColumn<Achat, ?> IDColmn;
 
     @FXML
-    private TableColumn<?, ?> PrixTotaleColmn;
+    private TableColumn<Achat, ?> PrixTotaleColmn;
 
     @FXML
-    private TableColumn<?, ?> ProduitColmn;
+    private TableColumn<Achat, ?> ProduitColmn;
 
     @FXML
-    private TableColumn<?, ?> QuantiteColmn;
+    private TableColumn<Achat, ?> QuantiteColmn;
 
     @FXML
     private Button btnAfficherAchat;
@@ -57,8 +76,51 @@ public class AchatController implements Initializable {
 
     @FXML
     void afficherAchat(ActionEvent event) {
+        // Step 1: Retrieve the list of purchases from the database
+        List<Achat> achats = retrieveAchatsFromDatabase();
 
+        // Step 2: Populate the table view with the retrieved purchases
+        populateAchatsTableView(achats);
     }
+
+    private List<Achat> retrieveAchatsFromDatabase() {
+
+        return achatService.getAllAchats(); // Example method to retrieve all purchases
+    }
+
+    private void populateAchatsTableView(List<Achat> achats) {
+        // Clear any existing items in the table view
+        achatsTableView.getItems().clear();
+
+
+        ObservableList<Achat> observableList = FXCollections.observableArrayList(achats);
+
+
+        achatsTableView.setItems(observableList);
+
+
+        TableColumn<Achat, Long> idColumn = new TableColumn<>("ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        TableColumn<Achat, LocalDate> dateColumn = new TableColumn<>("Date");
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
+
+        TableColumn<Achat, AchatDetail> productColumn = new TableColumn<>("Product");
+        productColumn.setCellValueFactory(new PropertyValueFactory<>("details"));
+
+        TableColumn<Achat, Integer> quantityColumn = new TableColumn<>("Quantity");
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+        TableColumn<Achat, Contact> supplierColumn = new TableColumn<>("Supplier");
+        supplierColumn.setCellValueFactory(new PropertyValueFactory<>("supplier"));
+
+        TableColumn<Achat, Double> totalPriceColumn = new TableColumn<>("Total Price");
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+
+        // Add the columns to the table view
+        achatsTableView.getColumns().setAll(idColumn, dateColumn, productColumn, quantityColumn, supplierColumn, totalPriceColumn);
+    }
+
 
     @FXML
     void filtrer(ActionEvent event) {
@@ -69,11 +131,32 @@ public class AchatController implements Initializable {
     void modifier(ActionEvent event) {
         // Code to handle "Modifier" button action
     }
-
     @FXML
     void supprimer(ActionEvent event) {
-        // Code to handle "Supprimer" button action
+        // Assuming you have access to the selected Achat's ID
+        int idToDelete = 123; // Replace 123 with the actual ID of the Achat to delete
+
+        try {
+            AchatService achatService = new AchatService();
+            achatService.deleteAchatById(idToDelete);
+            showAlert("Achat supprimé avec succès!");
+
+            // Optionally, refresh the table view or update the UI
+            // Example: achatsTableView.refresh();
+        } catch (IOException e) {
+            showAlert("Erreur lors de la suppression de l'achat: " + e.getMessage());
+        }
     }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

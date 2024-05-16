@@ -2,12 +2,9 @@ package org.gieback.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
 import org.gieback.Entity.Achat;
 import org.gieback.Entity.AchatDetail;
 import org.gieback.Entity.Contact;
-import org.gieback.Entity.Personne;
 import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.util.Date;
@@ -32,11 +29,11 @@ public class AchatDao implements IAchatDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+            // Persist the Achat, which will also persist the details due to CascadeType.ALL
             entityManager.persist(achat);
-            entityManager.flush();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
@@ -51,11 +48,10 @@ public class AchatDao implements IAchatDao {
             Achat achat = entityManager.find(Achat.class, id);
             if (achat != null) {
                 entityManager.remove(achat);
-                entityManager.flush();
             }
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();
@@ -72,41 +68,41 @@ public class AchatDao implements IAchatDao {
                 int value = entry.getValue();
                 switch (key) {
                     case "Quantite":
-                        p.getDetails().setQuantity(value);
-                        p.getDetails().setTotalPrice(value * p.getDetails().getProduct().getPrix() );
+                        // Assuming only one detail for simplicity
+                        AchatDetail detail = p.getDetails().get(0);
+                        detail.setQuantity(value);
+                        detail.setTotalPrice(value * detail.getProduct().getPrix());
                         break;
                     case "Fournisseur":
                         p.getSupplier().setId((long) value);
                         break;
-
                 }
             }
             entityManager.merge(p);
+        } else {
+            System.out.println("id incorrect");
         }
-        else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
-
-
     }
+
     @Override
     public List<Achat> chercherParDate(Date date) {
-        Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.purchaseDate = :date", Achat.class);
-        ((TypedQuery<?>) query).setParameter("date", date);
-        return query.getResultList();
+        return entityManager.createQuery("SELECT a FROM Achat a WHERE a.purchaseDate = :date", Achat.class)
+                .setParameter("date", date)
+                .getResultList();
     }
 
     @Override
     public List<Achat> chercherParId(int id) {
-        Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.id = :id", Achat.class);
-        query.setParameter("id", id);
-        return query.getResultList();
+        return entityManager.createQuery("SELECT a FROM Achat a WHERE a.id = :id", Achat.class)
+                .setParameter("id", id)
+                .getResultList();
     }
 
     @Override
     public List<Achat> chercherParFournisseur(Contact f) {
-        Query query = entityManager.createQuery("SELECT a FROM Achat a WHERE a.supplier = :f", Achat.class);
-        query.setParameter("f", f);
-        return query.getResultList();
+        return entityManager.createQuery("SELECT a FROM Achat a WHERE a.supplier = :f", Achat.class)
+                .setParameter("f", f)
+                .getResultList();
     }
 }
-

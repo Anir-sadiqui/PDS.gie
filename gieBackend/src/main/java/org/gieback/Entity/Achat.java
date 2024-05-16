@@ -1,54 +1,73 @@
 package org.gieback.Entity;
 
-
-import lombok.Data;
 import jakarta.persistence.*;
-import lombok.Getter;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-
+import java.util.List;
 
 @Entity
-@Data
-public class Achat implements Serializable {
+public class Achat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Getter
-    @Column(name = "purchase_date")
-    private LocalDate purchaseDate;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Contact supplier;
 
-    @OneToOne
-    @JoinColumn(name = "Details_achats")
-    private AchatDetail details ;
+    @OneToMany(mappedBy = "achat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AchatDetail> details;
 
-    @ManyToOne
-    @JoinColumn(name = "Commande")
-    private  Commande c;
+    private LocalDate purchaseDate;
 
+    // Constructors, getters, and setters...
 
+    public Achat() {
+        // Default constructor
+    }
 
-    public Achat() {}
-
-    public Achat(Contact supplier, AchatDetail details, Commande c ) {
-        this.purchaseDate = LocalDate.now();
+    public Achat(Contact supplier, List<AchatDetail> details, LocalDate purchaseDate) {
         this.supplier = supplier;
-        this.details=details;
-        this.c=c;
+        this.details = details;
+        this.purchaseDate = purchaseDate;
+        if (details != null) {
+            for (AchatDetail detail : details) {
+                detail.setAchat(this);
+            }
+        }
     }
 
-    @Override
-    public String toString() {
-        return "Id: " + id + '\n' +
-                "Purchase Date: " + purchaseDate + '\n';
+    // Getters and Setters...
+
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public Contact getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Contact supplier) {
+        this.supplier = supplier;
+    }
+
+    public List<AchatDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<AchatDetail> details) {
+        this.details = details;
+    }
+
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
 }
-
