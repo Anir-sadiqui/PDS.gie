@@ -96,7 +96,7 @@ public class EntrepriseModifController implements Initializable {
                 }
 
                 try {
-                    entrepriseService.modifierEntreprise(Math.toIntExact(entr.getId()),attributs);
+                    entrepriseService.modifierEntreprise((long) Math.toIntExact(entr.getId()),attributs);
                     as.modifierAdresse(Math.toIntExact(a.getAdresse_id()),attributsA);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
