@@ -1,25 +1,15 @@
 package org.giefront.DTO;
 
-
-
 public class AchatDetail {
-
     private Achat achat;
-
-
     private Product product;
-
-
     private int quantity;
-
-
     private double TotalPrice;
 
-    public AchatDetail(Achat achat, Product product, int quantity, double totalPrice) {
-        this.achat = achat;
+    public AchatDetail(Product product, int quantity, double totalPrice) {
         this.product = product;
         this.quantity = quantity;
-        TotalPrice = totalPrice;
+        this.TotalPrice = totalPrice;
     }
 
     public Achat getAchat() {

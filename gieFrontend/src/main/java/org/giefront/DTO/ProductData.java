@@ -14,4 +14,11 @@ public class ProductData {
         products.add(new Product("Bread", "Whole grain bread", Category.FOOD, 30, 2.99));
         return products;
     }
+
+    public static Product getProductByName(String name) {
+        return getProducts().stream()
+                .filter(product -> product.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
 }

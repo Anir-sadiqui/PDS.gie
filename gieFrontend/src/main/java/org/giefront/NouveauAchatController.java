@@ -15,14 +15,14 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import org.giefront.DTO.Category;
-import org.giefront.DTO.Product;
-import org.giefront.DTO.ProductData;
+import org.giefront.DTO.*;
+import org.giefront.Service.NouveauAchatService;
 import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -32,6 +32,7 @@ public class NouveauAchatController implements Initializable {
 
     private final PersonneService personneService = new PersonneService();
     private final EntrepriseService entrepriseService = new EntrepriseService();
+    private final NouveauAchatService achatService = new NouveauAchatService();
 
     @FXML
     private ComboBox<String> FournisseurComboBox;
@@ -135,13 +136,45 @@ public class NouveauAchatController implements Initializable {
             return;
         }
 
-        RadioButton selectedType = (RadioButton) Type.getSelectedToggle();
-        String type = selectedType.getText();
+        try {
+            // Get selected supplier
+            RadioButton selectedType = (RadioButton) Type.getSelectedToggle();
+            String type = selectedType.getText();
+            String fournisseurName = FournisseurComboBox.getValue();
+            Contact fournisseur;
 
-        String fournisseur = FournisseurComboBox.getValue();
-        String categorie = CategorieComboBox.getValue();
-        String produit = NomComboBox.getValue();
-        String quantite = txtQuantite.getText();
+            if (type.equals("Entreprise")) {
+                fournisseur = entrepriseService.getByRs(fournisseurName);
+            } else {
+                List<Personne> personnes = personneService.getBynom(fournisseurName);
+                fournisseur = personnes.isEmpty() ? null : personnes.get(0); // Assuming the name is unique, otherwise handle appropriately
+            }
+
+            if (fournisseur == null) {
+                showAlert("Fournisseur not found!");
+                return;
+            }
+
+            // Get selected product and quantity
+            String produitName = NomComboBox.getValue();
+            Product produit = ProductData.getProductByName(produitName);
+            int quantite = Integer.parseInt(txtQuantite.getText());
+
+            // Create AchatDetail
+            AchatDetail details = new AchatDetail(produit, quantite, produit.getPrix() * quantite);
+
+            // Create Achat
+            Achat achat = new Achat(null, LocalDate.now(), fournisseur, details, null);
+
+            // Send to backend
+            achatService.ajouter(achat);
+
+            showAlert("Achat ajouté avec succès!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors de l'ajout de l'achat!");
+        }
     }
 
     private void showAlert(String message) {
@@ -160,35 +193,17 @@ public class NouveauAchatController implements Initializable {
 
     private void loadEntreprises() {
         FournisseurComboBox.getItems().clear();
-        List<String> entrepriseNames = Arrays.asList(
-                "ABC Company",
-                "XYZ Corporation",
-                "123 Enterprises",
-                "Smith & Sons",
-                "Johnson Ltd.",
-                "Miller Inc.",
-                "Davis Co.",
-                "Garcia Group",
-                "Martinez Enterprises",
-                "Lopez Industries"
-        );
+        List<String> entrepriseNames = entrepriseService.getAll().stream()
+                .map(Entreprise::getRaisonSocial)
+                .collect(Collectors.toList());
         FournisseurComboBox.getItems().addAll(entrepriseNames);
     }
 
     private void loadPersonnes() {
         FournisseurComboBox.getItems().clear();
-        List<String> personneNames = Arrays.asList(
-                "John Doe",
-                "Alice Smith",
-                "Bob Johnson",
-                "Emily Brown",
-                "Michael Wilson",
-                "Sophia Miller",
-                "William Davis",
-                "Olivia Garcia",
-                "James Martinez",
-                "Emma Lopez"
-        );
+        List<String> personneNames = personneService.getAll().stream()
+                .map(Personne::getNom)
+                .collect(Collectors.toList());
         FournisseurComboBox.getItems().addAll(personneNames);
     }
 
