@@ -36,12 +36,20 @@ public class Contact implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
     @Column(name = "phone")
     private String phone;
 
     @Column(name = "email")
-
     private String email;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "adresse_id")
+    private Adresse adresse;
+
+    @Enumerated(EnumType.STRING) // Store enum as a String in the database
+    @Column(name = "contact_type")
+    private ContactType contactType; // The new field
 
     public Long getId() {
         return id;
@@ -75,13 +83,7 @@ public class Contact implements Serializable{
         this.adresse = adresse;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "adresse_id")
-    private Adresse adresse;
 
-    @Enumerated(EnumType.STRING) // Store enum as a String in the database
-    @Column(name = "contact_type")
-    private ContactType contactType; // The new field
 
     public String toString() {
         return "Phone: " + phone + ", Email: " + email + ", Type: " + contactType;

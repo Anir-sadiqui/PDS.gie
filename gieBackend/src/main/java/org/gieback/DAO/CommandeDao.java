@@ -6,13 +6,14 @@ import jakarta.persistence.Query;
 import org.gieback.Entity.Achat;
 import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
+import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class CommandeDao implements ICommandeDao{
-    EntityManager entityManager;
+    EntityManager entityManager = HibernateUtil.getEntityManager();
     @Override
     public List<Achat> getAllachats(int id) {
         Commande c = entityManager.find(Commande.class,id);
@@ -68,8 +69,8 @@ public class CommandeDao implements ICommandeDao{
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(c);
-            entityManager.flush();
+            entityManager.merge(c);
+            // entityManager.flush();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

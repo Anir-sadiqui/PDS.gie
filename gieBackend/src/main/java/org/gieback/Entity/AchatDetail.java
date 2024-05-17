@@ -10,11 +10,12 @@ import java.util.List;
 @Data
 public class AchatDetail implements Serializable {
     @Id
-    @OneToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "purchase_id")
     private Achat achat;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 

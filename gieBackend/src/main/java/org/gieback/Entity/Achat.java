@@ -1,12 +1,18 @@
 package org.gieback.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -18,17 +24,19 @@ public class Achat implements Serializable {
 
     @Getter
     @Column(name = "purchase_date")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate purchaseDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id")
     private Contact supplier;
 
-    @OneToOne
-    @JoinColumn(name = "Details_achats")
-    private AchatDetail details ;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "achat", fetch = FetchType.LAZY)
+    private List<AchatDetail> details ;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Commande")
     private  Commande c;
 
@@ -36,7 +44,7 @@ public class Achat implements Serializable {
 
     public Achat() {}
 
-    public Achat(Contact supplier, AchatDetail details, Commande c ) {
+    public Achat(Contact supplier, List<AchatDetail> details, Commande c ) {
         this.purchaseDate = LocalDate.now();
         this.supplier = supplier;
         this.details=details;

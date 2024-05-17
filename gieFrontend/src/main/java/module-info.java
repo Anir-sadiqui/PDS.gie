@@ -11,6 +11,7 @@ module org.giefront {
     exports org.giefront;
     exports org.giefront.DTO to com.fasterxml.jackson.databind;
     requires javafx.base;
+    requires com.fasterxml.jackson.datatype.jsr310;
     opens org.giefront.DTO to javafx.base;
     exports org.giefront.controller;
 }
