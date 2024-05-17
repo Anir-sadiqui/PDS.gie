@@ -4,18 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import org.giefront.DTO.Category;
 import org.giefront.DTO.EtatStock;
-import org.giefront.DTO.Personne;
 import org.giefront.DTO.Product;
-import org.giefront.Service.IProductService;
 import org.giefront.Service.ProductService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -76,7 +78,8 @@ public class StockController implements Initializable {
     @FXML
     private TableColumn<Product, String> nameColumn = new TableColumn<>();
 
-    private IProductService productService = new ProductService();
+    private ProductService productService = new ProductService();
+    public static Product product;
 
 
     @Override
@@ -87,6 +90,7 @@ public class StockController implements Initializable {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
                     Product clickedRow = row.getItem();
                     showAction(clickedRow);
+                    product=row.getItem();
 
                 }
             });
@@ -94,9 +98,6 @@ public class StockController implements Initializable {
         });
         getAll();
         remplirType();
-
-
-
 }
 
     private void showAction(Product clickedRow) {
@@ -126,30 +127,32 @@ public class StockController implements Initializable {
     @FXML
     private void Fetch_OnAction(){
         if (!Text_Field_S.getText().isEmpty()){
-            if (!ChoiceBox_SC.getValue().isEmpty() && ChoiceBox_PD.getValue().isEmpty()) {
-                List<Product> p = productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()));
-                for (Product produit : p ){
-                    if (!Objects.equals(produit.getName(), Text_Field_S.getText())){
-                        p.remove(produit);
-                    }
-                }
-                remplirTAb(FXCollections.observableList(p));
-            }
-            remplirTAb(FXCollections.observableList(productService.getbyname(Text_Field_S.getText())));
+//            if (ChoiceBox_SC.getValue(). && ChoiceBox_PD.getValue().equals(null) ) {
+//                List<Product> p = productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()));
+//                for (Product produit : p ){
+//                    if (!Objects.equals(produit.getName(), Text_Field_S.getText())){
+//                        p.remove(produit);
+//                    }
+//                }
+//                remplirTAb(FXCollections.observableList(p));
+//            }
+//            else if (ChoiceBox_SC.getValue().equals(null) && ChoiceBox_PD.getValue().equals(null)) {
+                remplirTAb(FXCollections.observableList(productService.getbyname(Text_Field_S.getText())));
+//            }
         }
+
         else {
             if (!ChoiceBox_SC.getValue().isEmpty() && ChoiceBox_PD.getValue().isEmpty()){
                 remplirTAb(FXCollections.observableList(productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()))));
             } else if (ChoiceBox_SC.getValue().isEmpty() && !ChoiceBox_PD.getValue().isEmpty()) {
-                if (ChoiceBox_SC.getValue()==EtatStock.Epuise.name()){
-                    remplirTAb(FXCollections.observableList(productService.);
+                if (Objects.equals(ChoiceBox_SC.getValue(), EtatStock.Epuise.name())){
+                    remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Epuise.name())));
                 }
-                remplirTAb(FXCollections.observableList(p));
+                remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Disponible.name())));
             }
-
         }
-
     }
+
     @FXML
     private void OnDelete(){
         Product selectedPerson =  C_TableProduct.getSelectionModel().getSelectedItem();
@@ -169,6 +172,16 @@ public class StockController implements Initializable {
     }
 
     public void OnBtnPClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Interfaces/Product.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void remplirTAb(ObservableList<Product> products){
@@ -178,6 +191,18 @@ public class StockController implements Initializable {
         QuantiteColumn.setCellValueFactory(new PropertyValueFactory<>("q"));
         Prix_unitaireColumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
         C_TableProduct.setItems(products);
+    }
+
+    public void OnmodiFy(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Interfaces/ProductModif.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

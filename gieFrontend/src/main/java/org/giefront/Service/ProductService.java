@@ -5,6 +5,7 @@ import okhttp3.*;
 import java.io.IOException;
 
 import org.giefront.DTO.Category;
+import org.giefront.DTO.Personne;
 import org.giefront.DTO.Product;
 
 import java.net.URLEncoder;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 import static org.giefront.Service.IService.okHttpClient;
 
-public class ProductService  implements IProductService {
+public class ProductService   {
         private OkHttpClient okHttpClient = new OkHttpClient();
         ObjectMapper mapper = new ObjectMapper();
 
@@ -33,7 +34,7 @@ public class ProductService  implements IProductService {
             }
         }
 
-        @Override
+
         public List<Product> getAll() {
             Request request = new Request.Builder().url("http://localhost:9998/Product/getAllprod").build();
             List<Product> products;
@@ -64,46 +65,64 @@ public class ProductService  implements IProductService {
         }
 
 
-        @Override
+
         public void deleteProduct(int idProduct) {
                 try {
-                    Request request = new Request.Builder().url("http://localhost:9998/lit/delete/"+idProduct ).delete().build();
+                    Request request = new Request.Builder().url("http://localhost:9998/Product/delete/"+idProduct ).delete().build();
                     Response response = okHttpClient.newCall(request).execute();
                     System.out.println(response.body().string());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
-        @Override
+
         public List<Product> getbyname(String name) {
-            return null;
+            Request request = new Request.Builder().url("http://localhost:9998/Product/getByName/"+name).build();
+            List<Product> personnes;
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    throw new IOException(String.valueOf(response));
+                }
+                personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return personnes;
         }
 
-        @Override
+
         public List<Product> getbyCat(Category cat) {
-            return null;
+            Request request = new Request.Builder().url("http://localhost:9998/Product/getByCat/"+cat).build();
+            List<Product> personnes;
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    throw new IOException(String.valueOf(response));
+                }
+                personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return personnes;
         }
-    @Override
-    public void update(int id, String name, String description, Category category, int quantite, Double prix) {
-        try {
-            String descriptionEncoded = URLEncoder.encode(description, StandardCharsets.UTF_8.toString());
-            String nameEncoded = URLEncoder.encode(name, StandardCharsets.UTF_8.toString());
-            String categoryEncoded = URLEncoder.encode(category.name(), StandardCharsets.UTF_8.toString()); // Utilise getCategoryName() pour obtenir le nom de la catégorie
-
-            String url = String.format("http://localhost:9998/produit/modify/%d/%s/%s/%s/%f/%d", id, nameEncoded, descriptionEncoded, categoryEncoded, prix, quantite);
-            Request request = new Request.Builder().url(url).build();
-            Response response = okHttpClient.newCall(request).execute();
-
-            System.out.println(response.body().string());
-            System.out.println(response.code());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        public List<Product> isAvailable(String t){ Request request = new Request.Builder().url("http://localhost:9998/Product//isAvailable/"+t).build();
+            List<Product> personnes;
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    throw new IOException(String.valueOf(response));
+                }
+                personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return personnes;
         }
-    }
-
-
-
 }
+
+
+
+
+
+
 
 
 

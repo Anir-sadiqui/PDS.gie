@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.StockController">
     <children>
         <Button fx:id="Add" layoutX="474.0" layoutY="520.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="25.0" prefWidth="91.0" text="AddProduct" />
-        <TableView fx:id="C_TableProduct" layoutX="14.0" layoutY="196.0" prefHeight="269.0" prefWidth="433.0">
+        <TableView fx:id="C_TableProduct" layoutX="10.0" layoutY="196.0" prefHeight="269.0" prefWidth="433.0">
             <columns>
                 <TableColumn fx:id="IdColumn" prefWidth="56.0" text="Id" />
                 <TableColumn fx:id="nameColumn" prefWidth="112.33332824707031" text="name" />
@@ -25,7 +25,7 @@
         <Label fx:id="Text_Field_PD" layoutX="120.0" layoutY="120.0" prefHeight="25.0" prefWidth="91.0" text="PoductDisp" />
         <TextArea fx:id="DetailsC" layoutX="461.0" layoutY="315.0" prefHeight="119.0" prefWidth="257.0" />
         <ImageView fx:id="IconC" fitHeight="119.0" fitWidth="179.0" layoutX="501.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
-        <Button fx:id="modify" layoutX="491.0" layoutY="453.0" mnemonicParsing="false" text="Modify" />
-        <Button fx:id="delete" layoutX="614.0" layoutY="453.0" onAction="#OnDelete" mnemonicParsing="false" text="Delete" />
+        <Button fx:id="modify" layoutX="491.0" layoutY="453.0" mnemonicParsing="false" onAction="#OnmodiFy" text="Modify" />
+        <Button fx:id="delete" layoutX="614.0" layoutY="453.0" mnemonicParsing="false" onAction="#OnDelete" text="Delete" />
     </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package org.giefront.DTO;
 
+
+
 public enum Category {
 
         CATEGORY1,
@@ -7,7 +9,8 @@ public enum Category {
         CATEGORY3;
 
 
-    }
+
+}
 
 
 
