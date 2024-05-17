@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,13 @@ public class TestFront extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
+<<<<<<< HEAD:gieFrontend/src/main/java/org/giefront/Controller/TestFront.java
         FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/Stock.fxml"));
+=======
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("NouveauAchat.fxml"));
+//        Parent root  = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+//        Scene scene = new Scene(root);
+>>>>>>> origin/HamzaBranch:gieFrontend/src/main/java/org/giefront/TestFront.java
         Scene scene = new Scene(fxmlLoader.load());
         stage.setHeight(600);
         stage.setWidth(900);

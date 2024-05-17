@@ -7,7 +7,7 @@ import org.giefront.DTO.Achat;
 
 import java.io.IOException;
 
-public class AchatService{
+public class NouveauAchatService {
     private OkHttpClient okHttpClient = new OkHttpClient();
      ObjectMapper mapper = new ObjectMapper();
 

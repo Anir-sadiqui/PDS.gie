@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainAnchor" prefHeight="469.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.Controller.AdvancedSearchP">
+<AnchorPane fx:id="mainAnchor" prefHeight="469.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.AdvancedSearchP">
    <children>
       <Text layoutX="44.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" textAlignment="CENTER" wrappingWidth="64.3333740234375" />
       <Text layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" textAlignment="CENTER" wrappingWidth="152.13671875" />

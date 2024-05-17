@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
 import org.giefront.Service.FournisseurEntroService;
-import org.giefront.TestFront;
 
 import java.io.IOException;
 import java.util.List;

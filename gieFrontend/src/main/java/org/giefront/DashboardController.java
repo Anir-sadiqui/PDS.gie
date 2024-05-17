@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

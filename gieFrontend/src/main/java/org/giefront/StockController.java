@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

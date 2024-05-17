@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

@@ -1,19 +1,20 @@
 package org.gieback.Controller;
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Achat;
+import org.gieback.Service.AchatService;
+import org.gieback.Service.IAchatService;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.gieback.Entity.Contact;
-import org.gieback.Service.AchatService;
-import org.gieback.Service.IAchatService;
-
 
 @Path("/achat")
-public class AchatController{
+public class AchatController {
     IAchatService achatService = new AchatService();
 
     @GET
@@ -47,16 +48,16 @@ public class AchatController{
     }
 
     @GET
-    @Path("/chercherParDate/{date}")
+    @Path("/chercherParDate")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesByDate(@PathParam("date") Date date) {
+    public List<Achat> searchPurchasesByDate(@QueryParam("date") Date date) {
         return achatService.searchPurchasesByDate(date);
     }
 
     @GET
-    @Path("/chercherParId/{id}")
+    @Path("/chercherParId")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesById(@PathParam("id") int id) {
+    public List<Achat> searchPurchasesById(@QueryParam("id") int id) {
         return achatService.searchPurchasesById(id);
     }
 
@@ -66,9 +67,4 @@ public class AchatController{
     public List<Achat> searchPurchasesBySupplier(@PathParam("idf") int idf) {
         return achatService.searchPurchasesBySupplier(idf);
     }
-
-
 }
-
-
-

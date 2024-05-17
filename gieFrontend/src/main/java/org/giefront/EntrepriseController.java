@@ -1,4 +1,4 @@
-package org.giefront.Controller;
+package org.giefront;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.ContactType;
+import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
+import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
@@ -20,7 +22,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PersonneController implements Initializable {
+public class EntrepriseController implements Initializable {
+
     @FXML
     private AnchorPane mainAnchor;
     @FXML
@@ -49,43 +52,44 @@ public class PersonneController implements Initializable {
     private AnchorPane anchorepane_Adresse;
 
 
-    private final PersonneService personneService = new PersonneService();
+
+    private final EntrepriseService personneService = new EntrepriseService();
 
     @FXML
     void OnBtnPClick(ActionEvent event) {
         if (areFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir ajouter cette personne ?");
+            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir ajouter cette Entreprise ?");
             confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                Personne personne = new Personne();
-                personne.setEmail(Text_Field_Email.getText());
-                personne.setNom(Text_Field_N.getText());
-                personne.setPrenom(Text_Field_P.getText());
-                personne.setPhone(Text_Field_Po.getText());
-                personne.setContactType(choiceBox.getValue());
+                Entreprise entreprise = new Entreprise();
+                entreprise.setEmail(Text_Field_Email.getText());
+                entreprise.setRaisonSocial(Text_Field_N.getText());
+                entreprise.setFormeJuridique(Text_Field_P.getText());
+                entreprise.setPhone(Text_Field_Po.getText());
+                entreprise.setContactType(choiceBox.getValue());
 
                 Adresse a = new Adresse();
                 a.setVille(Text_Field_N1.getText());
                 a.setNumero(Text_Field_N111.getText());
                 a.setQuartier(Text_Field_N11.getText());
-                personne.setAdresse(a);
+                entreprise.setAdresse(a);
 
-                personneService.add(personne);
+                personneService.add(entreprise);
 
-                System.out.println("Personne ajoutée avec succès!");
+                System.out.println("Entreprise ajoutée avec succès!");
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Ajout réussi");
                 successAlert.setHeaderText(null);
-                successAlert.setContentText("La personne a été ajoutée avec succès.");
+                successAlert.setContentText("L'entreprise a été ajoutée avec succès.");
                 successAlert.showAndWait();
 
                 clearFields();
             } else {
-                System.out.println("L'ajout de la personne a été annulé.");
+                System.out.println("L'ajout de l'entreprise a été annulé.");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -117,6 +121,8 @@ public class PersonneController implements Initializable {
         choiceBox.getItems().addAll(ContactType.FOURNISSEUR, ContactType.CLIENT);
     }
 
+
+
     private boolean areFieldsFilled() {
         return !Text_Field_Email.getText().isEmpty() &&
                 !Text_Field_N.getText().isEmpty() &&
@@ -127,24 +133,26 @@ public class PersonneController implements Initializable {
                 !Text_Field_Po.getText().isEmpty();
     }
 
+//    public void onReturn(ActionEvent event) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
+//            Node node = fxmlLoader.load();
+//            mainAnchor.getChildren().setAll(node);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
     private Stage stage;
     private Scene scene;
     private FXMLLoader fxmlLoader;
 
     public void retour(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/fournisseurPerso.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/fournisseurEntro.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
-    public void setPersonne(Personne personne) {
-        Text_Field_N.setText(personne.getNom());
-        Text_Field_P.setText(personne.getPrenom());
-        Text_Field_Email.setText(personne.getEmail());
-        Text_Field_Po.setText(personne.getPhone());
-    }
-
-
 }
