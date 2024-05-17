@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.Controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -147,6 +147,10 @@ public class AdvancedSearchP implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+
+
+
 
     public void onAdress(ActionEvent event) {
         adresseDetails.setVisible(true);

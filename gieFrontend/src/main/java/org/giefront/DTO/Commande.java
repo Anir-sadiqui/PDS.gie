@@ -1,56 +1,55 @@
 package org.giefront.DTO;
 
+import lombok.Data;
 
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Commande {
 
-    private Long id;
+@Data
+public class Commande implements Serializable {
 
-
+    private long id;
     private List<Achat> achats;
-
-
     private LocalDate purchaseDate;
-
-
     private EtatCommande e;
 
-    public Commande(Long id, List<Achat> achats, LocalDate purchaseDate, EtatCommande e) {
-        this.id = id;
+    public Commande(){}
+
+    public Commande(List<Achat> achats) {
         this.achats = achats;
-        this.purchaseDate = purchaseDate;
-        this.e = e;
+        this.purchaseDate = LocalDate.now();
+        this.e=EtatCommande.Initialise;
     }
 
-    public Long getId() {
+
+    public long getId() {
         return id;
     }
 
-    public List<Achat> getAchats() {
-        return achats;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public EtatCommande getE() {
-        return e;
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public List<Achat> getAchats() {
+        return achats;
     }
 
     public void setAchats(List<Achat> achats) {
         this.achats = achats;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public EtatCommande getE() {
+        return e;
     }
 
     public void setE(EtatCommande e) {

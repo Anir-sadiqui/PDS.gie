@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.Controller;
 
 import javafx.fxml.Initializable;
 

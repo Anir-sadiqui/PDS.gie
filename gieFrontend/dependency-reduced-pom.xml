@@ -23,7 +23,7 @@
           <execution>
             <id>default-cli</id>
             <configuration>
-              <mainClass>org.giefront.TestFront</mainClass>
+              <mainClass>org.giefront.Controller.TestFront</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
@@ -46,7 +46,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.giefront.TestFront</mainClass>
+                  <mainClass>org.giefront.Controller.TestFront</mainClass>
                 </transformer>
               </transformers>
             </configuration>
