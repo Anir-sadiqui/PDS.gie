@@ -13,7 +13,7 @@ public interface IEntrepriseDao {
     void add(Entreprise e);
     Entreprise getById(int id);
     void modifier(int id, Map<String, String> attributs);
-    void deleteByid (int id);
+    void deleteByid (Long id);
     List<Entreprise> sortById (String ordre);
     List<Entreprise> sortByRs (String ordre);
     Entreprise getByRs(String raisonSocial);

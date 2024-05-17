@@ -11,7 +11,7 @@ public interface IEntrepriseService {
     void addEnterprise(Entreprise entreprise);
     Entreprise getEnterpriseById(int id);
     void modifier(int id, Map<String, String> attributs);
-    void deleteByid (int id);
+    void deleteByid (Long id);
     List<Entreprise> sortById (String ordre);
     List<Entreprise> sortByRs (String ordre);
 

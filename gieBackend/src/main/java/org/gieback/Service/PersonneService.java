@@ -68,7 +68,7 @@ public void addPersonne(Personne p) throws ServiceException {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         personneeDao.deleteById(id);
 
     }

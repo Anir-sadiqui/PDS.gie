@@ -56,7 +56,7 @@ public class EntrepriseController {
 
     @DELETE
     @Path("DeleteEntreprise/{id}")
-    public Response deleteByid(@PathParam("id") int id) {
+    public Response deleteByid(@PathParam("id") Long id) {
         entrepriseService.deleteByid(id);
         return Response.noContent().build();
     }
