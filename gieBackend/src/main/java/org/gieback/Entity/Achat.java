@@ -1,5 +1,10 @@
 package org.gieback.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -11,14 +16,18 @@ public class Achat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "supplier_id")
     private Contact supplier;
 
     @OneToMany(mappedBy = "achat", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AchatDetail> details;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate purchaseDate;
+
 
     // Constructors, getters, and setters...
 

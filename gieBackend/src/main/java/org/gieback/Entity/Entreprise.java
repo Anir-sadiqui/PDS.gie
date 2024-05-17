@@ -1,9 +1,6 @@
 package org.gieback.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import lombok.Data;
@@ -17,8 +14,7 @@ public class Entreprise extends Contact  implements Serializable {
     @Column(name = "formeJuridique")
 
     private String formeJuridique;
-    @Column(name = "raisonSocial")
-
+    @Column(name = "raisonSocial", unique = true)
     private String raisonSocial;
 
     public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial , ContactType contactType) {

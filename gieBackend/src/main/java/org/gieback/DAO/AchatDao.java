@@ -32,6 +32,7 @@ public class AchatDao implements IAchatDao {
             // Persist the Achat, which will also persist the details due to CascadeType.ALL
             entityManager.persist(achat);
             transaction.commit();
+            System.out.println("Commited");
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();

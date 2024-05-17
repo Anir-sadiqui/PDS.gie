@@ -26,7 +26,7 @@ public class App extends ResourceConfig {
         System.out.println("server launched Successfully ");
 
         // Create products
-        Product product1 = new Product("Product 1", "Description 1", Category.ELECTRONICS, 10.0);
+       /* Product product1 = new Product("Product 1", "Description 1", Category.ELECTRONICS, 10.0);
         Product product2 = new Product("Product 2", "Description 2", Category.ELECTRONICS, 20.0);
         Product product3 = new Product("Product 3", "Description 3", Category.CLOTHING, 30.0);
         Product product4 = new Product("Product 4", "Description 4", Category.CLOTHING, 40.0);
@@ -56,5 +56,7 @@ public class App extends ResourceConfig {
         achatService.addPurchase(achat3);
         achatService.addPurchase(achat4);
         achatService.addPurchase(achat5);
+        */
+
     }
 }
