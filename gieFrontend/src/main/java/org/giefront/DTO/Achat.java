@@ -35,6 +35,10 @@ public class Achat {
         this.c = c;
     }
 
+    public Achat(Object id, String name) {
+
+    }
+
     public Long getId() {
         return id;
     }

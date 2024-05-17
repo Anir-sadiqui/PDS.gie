@@ -1,8 +1,8 @@
 package org.giefront.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import okhttp3.Request;
-import okhttp3.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import okhttp3.*;
 import org.giefront.DTO.Commande;
 import org.giefront.DTO.EtatCommande;
 
@@ -14,8 +14,14 @@ import static org.giefront.Service.IService.okHttpClient;
 
 public class CommandeService {
 
+    private final OkHttpClient okHttpClient = new OkHttpClient();
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    private static final String API_URL = "http://localhost:9998/Commande/"; // Replace with your actual backend URL
+
+
     public List<Commande> getAll() {
-        Request request = new Request.Builder().url("http://localhost:9998/Commande/Commandes").build();
+        Request request = new Request.Builder().url(API_URL+"Commandes").build();
         List<Commande> cmnds;
         try {
             Response response = okHttpClient.newCall(request).execute();
@@ -63,4 +69,22 @@ public class CommandeService {
     }
 
 
+    public void addComm(Commande commande) throws IOException {
+        String jsonInputString = mapper.writeValueAsString(commande);
+        MediaType JSON = MediaType.get("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(jsonInputString, JSON);
+        Request request = new Request.Builder()
+                .url(API_URL + "add")
+                .post(body)
+                .build();
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
+        }
+    }
+
+    public CommandeService() {
+    }
 }
