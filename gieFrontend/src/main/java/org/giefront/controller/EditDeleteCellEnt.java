@@ -54,7 +54,7 @@ public class EditDeleteCellEnt extends TableCell<Entreprise, Void> {
             Parent root = fxmlLoader.load();
 
             // Get the controller and pass the data
-            EntropriseModificationController modificationController = fxmlLoader.getController();
+            EntrepriseModifController modificationController = fxmlLoader.getController();
             modificationController.setEntroprise(entreprise);
 
             stage = (Stage) fournisseurTable.getScene().getWindow();

@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
+import org.giefront.DTO.Personne;
 import org.giefront.Service.FournisseurEntroService;
 import org.giefront.TestFront;
 
@@ -171,8 +172,23 @@ public class FourniseurEntoContro {
     }
 
     private void editFournisseur(Entreprise fournisseur) {
-        System.out.println("Editing fournisseur: " + fournisseur.getRaisonSocial());
-        // Load the fournisseur data into the input fields and enable editing
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/EntrepriseModification.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller for PersonneModification.fxml
+            EntrepriseModifController modificationController = loader.getController();
+
+            // Pass the selected Personne data to the modification controller
+            modificationController.setEntroprise(fournisseur);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void deleteFournisseur(Entreprise fournisseur) {

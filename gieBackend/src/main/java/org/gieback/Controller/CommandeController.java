@@ -56,6 +56,7 @@ public class CommandeController {
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addComm(Commande c) {
+        System.out.println(c);
         cs.addComm(c);
         return Response.status(Response.Status.CREATED).build();
     }

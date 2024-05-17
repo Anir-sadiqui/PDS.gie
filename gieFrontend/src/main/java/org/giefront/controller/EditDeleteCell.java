@@ -49,7 +49,7 @@ public class EditDeleteCell extends TableCell<Personne, Void> {
     @FXML
     private void switchToEditPersonne(Personne personne) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/personneModification.fxml")); // Correct path to your FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/PersonneModification.fxml")); // Correct path to your FXML
             Parent root = fxmlLoader.load();
 
             // Get the controller and pass the data
