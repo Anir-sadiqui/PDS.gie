@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="541.0"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.controller.PersonneModificationController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="541.0"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.PersonneModificationController">
    <children>
       <Label layoutX="14.0" layoutY="93.0" prefHeight="17.0" prefWidth="58.0" text="  Nom:" textAlignment="CENTER" />
       <Label layoutX="12.0" layoutY="137.0" prefHeight="17.0" prefWidth="58.0" text="  Prenom:" textAlignment="CENTER" />

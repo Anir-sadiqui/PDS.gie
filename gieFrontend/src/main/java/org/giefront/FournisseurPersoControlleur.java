@@ -10,9 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Personne;
+import org.giefront.PersonneModificationController;
 import org.giefront.Service.FournisseurPersoService;
 import org.giefront.DTO.ContactType;
 

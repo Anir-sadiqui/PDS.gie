@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class EntropriseModificationController implements IEntropriseModificationController {
+public class EntropriseModificationController  {
     public static Entreprise ents ;
 
 
@@ -134,7 +134,7 @@ public class EntropriseModificationController implements IEntropriseModification
                 }
 
                 try {
-                    entrepriseService.modifierEntreprise(Long.valueOf(ent.getId()),attributs);
+                    entrepriseService.modifierPersonne(String.valueOf(Long.valueOf(ent.getId())),attributs);
                     as.modifierAdresse(Math.toIntExact(a.getAdresse_id()),attributsA);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -152,7 +152,7 @@ public class EntropriseModificationController implements IEntropriseModification
         anchorepane_Adresse.setVisible(!anchorepane_Adresse.isVisible());
 
     }
-    @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anchorepane_Adresse.setVisible(false);
 
