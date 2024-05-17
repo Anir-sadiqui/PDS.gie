@@ -6,7 +6,6 @@ import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class CommandeService implements ICommandeService{
@@ -42,4 +41,9 @@ public class CommandeService implements ICommandeService{
     public void addComm(Commande c) {
         cdao.addComm(c);
     }
+
+    @Override
+    public List<Commande> getAllCom() {
+        return cdao.getAllCom();
+            }
 }

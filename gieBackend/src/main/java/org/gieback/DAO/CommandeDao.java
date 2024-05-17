@@ -9,7 +9,6 @@ import org.gieback.Entity.EtatCommande;
 import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class CommandeDao implements ICommandeDao{
@@ -79,4 +78,9 @@ public class CommandeDao implements ICommandeDao{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Commande> getAllCom() {
+        return entityManager.createQuery("FROM Commande , Commande.class").getResultList();
+            }
 }
