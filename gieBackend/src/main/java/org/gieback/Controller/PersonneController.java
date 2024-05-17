@@ -1,6 +1,7 @@
 package org.gieback.Controller;
 import jakarta.ws.rs.core.Response;
 import org.gieback.Entity.Compte;
+import org.gieback.Entity.Contact;
 import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Personne;
 import jakarta.ws.rs.GET;
@@ -69,6 +70,25 @@ public class PersonneController {
     public List<Personne> getByNom(@PathParam("n") String nom) {
         return personneService.getByNom(nom);
     }
+        @GET
+        @Path("getPersonneAsContact/{nom}/here")
+        @Produces(MediaType.APPLICATION_JSON)
+        public Response getPersonneAsContact(@PathParam("nom") String nom) {
+            Personne personne = personneService.getByNom(nom).get(0);
+            if (personne != null) {
+                Contact contact = new Contact(
+                        personne.getPhone(),
+                        personne.getEmail(),
+                        personne.getAdresse(),
+                        personne.getContactType()
+                );
+                contact.setId(personne.getId());
+                return Response.ok(contact).build();
+            } else {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+        }
+
 
     @GET
     @Path("getPersonneByPrenom/{prenom}")

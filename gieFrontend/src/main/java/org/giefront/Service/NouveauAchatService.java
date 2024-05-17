@@ -23,19 +23,20 @@ public class NouveauAchatService {
             // Configure the connection
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Content-Type", "application/json");;
 
+            String jsonString = mapper.writeValueAsString(achat);
             // Write the request body
             try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = mapper.writeValueAsBytes(achat);
+                byte[] input = jsonString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
 
             // Get the response code
             int responseCode = connection.getResponseCode();
-
+            System.out.println("responseCode.   " + responseCode);
             // Handle the response
-            if (responseCode == HttpURLConnection.HTTP_OK) {
+            if (responseCode == 201) {
                 // Read the response body
                 try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                     String inputLine;

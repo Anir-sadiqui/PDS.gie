@@ -100,4 +100,15 @@ public class Contact implements Serializable {
     public void setContactType(ContactType contactType) {
         this.contactType = contactType;
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", adresse=" + adresse +
+                ", contactType=" + contactType +
+                '}';
+    }
 }

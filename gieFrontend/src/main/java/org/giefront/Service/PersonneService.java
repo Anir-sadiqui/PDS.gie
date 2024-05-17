@@ -2,17 +2,16 @@ package org.giefront.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.ObservableList;
 import okhttp3.*;
 
+import org.giefront.DTO.Contact;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Personne;
 
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PersonneService implements IService{
     private OkHttpClient okHttpClient = new OkHttpClient();
@@ -90,18 +89,33 @@ public class PersonneService implements IService{
         }
         return personne;
     }
-    public List<Personne> getBynom (String nom) {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/GetBynom/"+nom).build();
-        List<Personne> personnes;
+    public Contact getAsContactBynom (String nom) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/getPersonneAsContact/"+nom+"/here").build();
+        Contact personne;
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
             }
-            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+            personne = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return personnes;
+        System.out.println(personne);
+        return personne;
+    }
+    public Personne getBynom (String nom) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/GetBynom/"+nom).build();
+        Personne personne;
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            personne = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(personne);
+        return personne;
     }
     public List<Personne> getByPrenom (String prenom) {
         Request request = new Request.Builder().url("http://localhost:9998/personne/getPersonneByPrenom/"+prenom).build();
@@ -217,8 +231,4 @@ public class PersonneService implements IService{
             throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
         }
     }
-
-
-
-
 }

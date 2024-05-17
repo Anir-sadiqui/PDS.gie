@@ -11,6 +11,7 @@ public class HibernateUtil {
         if (entityManagerFactory == null) {
             try {
                 entityManagerFactory = Persistence.createEntityManagerFactory("PU_SC");
+                System.out.println(entityManagerFactory);
             } catch (Exception e) {
                 e.printStackTrace();
             }

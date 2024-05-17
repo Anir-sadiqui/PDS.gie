@@ -1,5 +1,7 @@
 package org.gieback.Entity;
 
 public enum Category {
-    IT
+    ELECTRONICS,
+    CLOTHING,
+    FOOD
 }

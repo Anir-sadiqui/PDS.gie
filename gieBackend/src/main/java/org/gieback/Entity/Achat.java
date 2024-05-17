@@ -53,10 +53,13 @@ public class Achat implements Serializable {
 
     @Override
     public String toString() {
-        return "Id: " + id + '\n' +
-                "Purchase Date: " + purchaseDate + '\n';
+        return "Achat{" +
+                "id=" + id +
+                ", purchaseDate=" + purchaseDate +
+                ", supplier=" + supplier +
+                ", details=" + details +
+                ", c=" + c +
+                '}';
     }
-
-
 }
 

@@ -171,7 +171,7 @@ public class AdvancedSearchP implements Initializable {
             tableView_P.setVisible(true);
         }
         else if(!Text_Nom.getText().isEmpty() && Text_Id.getText().isEmpty() ){
-            ObservableList<Personne> personneObservableList =  FXCollections.observableList(ps.getBynom(Text_Nom.getText()));
+            ObservableList<Personne> personneObservableList =  FXCollections.observableList(List.of(ps.getBynom(Text_Nom.getText())));
             C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
             c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
             C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
@@ -194,7 +194,7 @@ public class AdvancedSearchP implements Initializable {
                 tableView_P.setVisible(true);
             }
             else if(!Text_Nom.getText().isEmpty() ) {
-                List<Personne> l = ps.getBynom(Text_Nom.getText());
+                List<Personne> l = List.of(ps.getBynom(Text_Nom.getText()));
 
                 List<Personne> l2 = new ArrayList<>();
                 for (Personne p : l){

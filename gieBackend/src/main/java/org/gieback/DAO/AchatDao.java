@@ -32,8 +32,8 @@ public class AchatDao implements IAchatDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(achat);
-            entityManager.flush();
+            System.out.println(achat);
+            entityManager.merge(achat);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

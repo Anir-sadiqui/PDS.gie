@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Achat {
     private Long id;
@@ -17,22 +18,27 @@ public class Achat {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate purchaseDate;
 
-
     private Contact supplier;
 
 
-    private AchatDetail details ;
+    private List<AchatDetail> details ;
 
 
     private Commande c;
 
 
-    public Achat(Long id, LocalDate purchaseDate, Contact supplier, AchatDetail details, Commande c) {
+    public Achat(Long id, LocalDate purchaseDate, Contact supplier, List<AchatDetail> details, Commande c) {
         this.id = id;
         this.purchaseDate = purchaseDate;
         this.supplier = supplier;
         this.details = details;
         this.c = c;
+    }
+
+    public Achat(Contact supplier, List<AchatDetail> details, LocalDate purchaseDate) {
+        this.supplier = supplier;
+        this.details = details;
+        this.purchaseDate = purchaseDate;
     }
 
     public Long getId() {
@@ -47,7 +53,7 @@ public class Achat {
         return supplier;
     }
 
-    public AchatDetail getDetails() {
+    public List<AchatDetail> getDetails() {
         return details;
     }
 
@@ -67,7 +73,7 @@ public class Achat {
         this.supplier = supplier;
     }
 
-    public void setDetails(AchatDetail details) {
+    public void setDetails(List<AchatDetail> details) {
         this.details = details;
     }
 
@@ -76,5 +82,16 @@ public class Achat {
     }
     public Achat(){
 
+    }
+
+    @Override
+    public String toString() {
+        return "Achat{" +
+                "id=" + id +
+                ", purchaseDate=" + purchaseDate +
+                ", supplier=" + supplier +
+                ", details=" + details +
+                ", c=" + c +
+                '}';
     }
 }

@@ -1,11 +1,8 @@
 package org.gieback.Controller;
 import jakarta.ws.rs.core.Response;
-import org.gieback.Entity.Adresse;
-import org.gieback.Entity.ContactType;
-import org.gieback.Entity.Entreprise;
+import org.gieback.Entity.*;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Produces;
-import org.gieback.Entity.Personne;
 import org.gieback.Service.AdresseService;
 import org.gieback.Service.EntrepriseService;
 import org.gieback.Service.IAdresseService;
@@ -120,6 +117,27 @@ public class EntrepriseController {
     public Response addType(@PathParam("id") String id ){
         entrepriseService.DeleteType(id);
         return Response.noContent().build();
+    }
+
+    @GET
+    @Path("getPersonneAsContact/{nom}/here")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getEntropriseAsContact(@PathParam("nom") String nom) {
+        List<Entreprise> entreprises = (List<Entreprise>) entrepriseService.getEnterpriseByRs(nom);
+
+        if (entreprises.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        Entreprise entreprise = entreprises.get(0);
+        Contact contact = new Contact(
+                entreprise.getPhone(),
+                entreprise.getEmail(),
+                entreprise.getAdresse(),
+                entreprise.getContactType()
+        );
+        contact.setId(entreprise.getId());
+        return Response.ok(contact).build();
     }
 
 

@@ -1,9 +1,6 @@
 package org.gieback.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import lombok.Data;
@@ -15,6 +12,7 @@ import java.io.Serializable;
 @DiscriminatorValue("personne")
 
 public class Personne extends Contact implements Serializable {
+
     public Personne(String phone, String email, Adresse adresse, String nom, String prenom , ContactType contactType) {
         super(phone, email, adresse , contactType);
         this.nom = nom;
@@ -27,12 +25,13 @@ public class Personne extends Contact implements Serializable {
         this.prenom = prenom;
     }
 
-    @Column(name = "nom")
 
+    @Column(name = "nom", unique = true)
     private String nom;
-    @Column(name = "prenom")
 
+    @Column(name = "prenom")
     private String prenom;
+
 
     public Personne() {
 

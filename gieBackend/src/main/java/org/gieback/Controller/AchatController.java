@@ -28,6 +28,7 @@ public class AchatController {
     @Path("/ajouter")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addPurchase(Achat achat) {
+        System.out.println(achat);
         achatService.addPurchase(achat);
         return Response.status(Response.Status.CREATED).build();
     }

@@ -24,6 +24,7 @@ import org.giefront.Service.PersonneService;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -147,10 +148,10 @@ public class NouveauAchatController implements Initializable {
             Contact fournisseur;
 
             if (type.equals("Entreprise")) {
-                fournisseur = entrepriseService.getByRs(fournisseurName);
+                fournisseur = (Contact) entrepriseService.getByRs(fournisseurName);
             } else {
-                List<Personne> personnes = personneService.getBynom(fournisseurName);
-                fournisseur = personnes.isEmpty() ? null : personnes.get(0); // Assuming the name is unique, otherwise handle appropriately
+                fournisseur = personneService.getAsContactBynom(fournisseurName);
+                System.out.println(fournisseur);
             }
 
             if (fournisseur == null) {
@@ -164,11 +165,13 @@ public class NouveauAchatController implements Initializable {
             int quantite = Integer.parseInt(txtQuantite.getText());
 
             // Create AchatDetail
-            AchatDetail details = new AchatDetail(produit, quantite, produit.getPrix() * quantite);
+            List<AchatDetail> details = new ArrayList<>();
+            AchatDetail detail = new AchatDetail(produit, quantite, produit.getPrix() * quantite);
+            details.add(detail);
 
             // Create Achat
-            Achat achat = new Achat(null, LocalDate.now(), fournisseur, details, null);
-
+            Achat achat = new Achat(fournisseur, details, LocalDate.now());
+            System.out.println(achat);
             // Send to backend
             achatService.ajouter(achat);
 
