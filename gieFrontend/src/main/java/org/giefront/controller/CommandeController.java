@@ -189,4 +189,20 @@ public class CommandeController {
                 stage.show();
         }
 
+
+        @FXML
+        private Button closeButton;
+
+        @FXML
+        private void handleCloseButtonAction() {
+                // Get the current stage
+                Stage stage = (Stage) closeButton.getScene().getWindow();
+                // Close the stage
+                stage.close();
+        }
+
+
+
+
+
 }
