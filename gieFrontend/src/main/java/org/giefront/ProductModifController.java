@@ -49,7 +49,8 @@ public class ProductModifController implements Initializable {
         attributs.put("Description",Text_Field_D.getText());
         attributs.put("Price",Text_Field_Q.getText());
         attributs.put("Category", choiceBox.getValue().toString());
-        ps.modify(p.getIdProduct(),attributs);
+        ps.modify(Math.toIntExact(p.getId()),attributs);
+        StockController.C_TableProduct.refresh();
     }
 
 

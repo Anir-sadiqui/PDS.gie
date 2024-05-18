@@ -24,19 +24,23 @@ public class Product implements Serializable {
 
     @Column(name = "Quantite_stock")
     private int q;
+
     @Column(name ="Prix_unitaire")
     private double prix;
+
+    private String imagePath;
 
 
 
     public Product() {}
 
-    public Product(String name, String description, Category category,double prix ) {
+    public Product(String name, String description, Category category,double prix, String ipath ) {
         this.name = name;
         this.description = description;
         this.category = category;
         this.q=0;
         this.prix=prix;
+        this.imagePath= ipath;
     }
 
     @Override

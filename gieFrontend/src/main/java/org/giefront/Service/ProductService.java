@@ -21,16 +21,27 @@ public class ProductService   {
 
         public void add(Product p) {
             try {
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), mapper.writeValueAsString(p));
+                RequestBody requestBody = RequestBody.create(
+                        MediaType.parse("application/json"), mapper.writeValueAsString(p));
 
-                Request request = new Request.Builder().url("http://localhost:9998/Product/add").post(requestBody).build();
-                Call call = okHttpClient.newCall(request);
-                Response response = call.execute();
-                System.out.println(response.code());
-                System.out.println(response.body().toString());
+                Request request = new Request.Builder()
+                        .url("http://localhost:9998/Product/add")
+                        .post(requestBody)
+                        .build();
 
+                try (Response response = okHttpClient.newCall(request).execute()) {
+                    if (!response.isSuccessful()) {
+                        System.err.println("Failed to add person: HTTP " + response.code());
+                        if (response.body() != null) {
+                            System.err.println("Response body: " + response.body().string());
+                        }
+                    } else {
+                        System.out.println("Product added successfully!");
+                    }
+                }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
+                throw new RuntimeException("Failed to communicate with the server", e);
             }
         }
 
@@ -66,15 +77,15 @@ public class ProductService   {
 
 
 
-        public void deleteProduct(int idProduct) {
-                try {
-                    Request request = new Request.Builder().url("http://localhost:9998/Product/delete/"+idProduct ).delete().build();
-                    Response response = okHttpClient.newCall(request).execute();
-                    System.out.println(response.body().string());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+        public void deleteProduct(int idProduct) throws IOException {
+            Request request = new Request.Builder().url("http://localhost:9998/Product/deleteProd/"+idProduct).delete().build();
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    throw new IOException(String.valueOf(response));
+
                 }
             }
+        }
 
         public List<Product> getbyname(String name) {
             Request request = new Request.Builder().url("http://localhost:9998/Product/getByName/"+name).build();

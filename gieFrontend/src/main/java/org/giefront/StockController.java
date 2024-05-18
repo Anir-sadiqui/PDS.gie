@@ -40,7 +40,7 @@ public class StockController implements Initializable {
     private Button Bttn_Fetch;
 
     @FXML
-    private TableView<Product> C_TableProduct = new TableView<>();
+    public static TableView<Product> C_TableProduct = new TableView<>();
 
     @FXML
     private TableColumn<Product, Category> CategoryColumn= new TableColumn<>();
@@ -102,7 +102,7 @@ public class StockController implements Initializable {
 
     private void showAction(Product clickedRow) {
         IconC.setVisible(true);
-//        IconC.setImage(new Image(clickedRow.getImagePath()));
+//      IconC.setImage(new Image(clickedRow.getImagePath()));
         DetailsC.setVisible(true);
         DetailsC.setEditable(false);
         DetailsC.setText(clickedRow.getName() + "\n" + clickedRow.getDescription());
@@ -127,34 +127,44 @@ public class StockController implements Initializable {
     @FXML
     private void Fetch_OnAction(){
         if (!Text_Field_S.getText().isEmpty()){
-//            if (ChoiceBox_SC.getValue(). && ChoiceBox_PD.getValue().equals(null) ) {
-//                List<Product> p = productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()));
-//                for (Product produit : p ){
-//                    if (!Objects.equals(produit.getName(), Text_Field_S.getText())){
-//                        p.remove(produit);
-//                    }
-//                }
-//                remplirTAb(FXCollections.observableList(p));
-//            }
-//            else if (ChoiceBox_SC.getValue().equals(null) && ChoiceBox_PD.getValue().equals(null)) {
-                remplirTAb(FXCollections.observableList(productService.getbyname(Text_Field_S.getText())));
-//            }
-        }
-
-        else {
-            if (!ChoiceBox_SC.getValue().isEmpty() && ChoiceBox_PD.getValue().isEmpty()){
-                remplirTAb(FXCollections.observableList(productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()))));
-            } else if (ChoiceBox_SC.getValue().isEmpty() && !ChoiceBox_PD.getValue().isEmpty()) {
-                if (Objects.equals(ChoiceBox_SC.getValue(), EtatStock.Epuise.name())){
-                    remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Epuise.name())));
-                }
-                remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Disponible.name())));
+            if (ChoiceBox_SC.getValue() != null){
+               ObservableList<Product> products = FXCollections.observableList(productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue())));
+               for (Product p : products){
+                   if (!p.getName().equals(Text_Field_S.getText())){
+                       products.remove(p);
+                   }
+                   return;
+               }
+               remplirTAb(products);
             }
+            ObservableList<Product> products2 = FXCollections.observableList(productService.getbyname(Text_Field_S.getText()));
+            remplirTAb(products2);
+        }
+        else {
+            if (ChoiceBox_SC.getValue() != null && ChoiceBox_PD.getValue() != null){
+                ObservableList<Product> products = FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                for (Product p : products){
+                    if (p.getCategory().name() != ChoiceBox_SC.getValue()){
+                        products.remove(p);
+                    }
+                    return;
+                }
+                remplirTAb(products);
+            }
+            else if (ChoiceBox_SC.getValue() != null && ChoiceBox_PD.getValue() == null) {
+                ObservableList<Product> products = FXCollections.observableList(productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue())));
+                remplirTAb(products);
+            }
+            else if (ChoiceBox_SC.getValue() == null && ChoiceBox_PD.getValue() != null) {
+                ObservableList<Product> products = FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                remplirTAb(products);
+            }
+            getAll();
         }
     }
 
     @FXML
-    private void OnDelete(){
+    private void OnDelete() throws IOException {
         Product selectedPerson =  C_TableProduct.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
             productService.deleteProduct(Math.toIntExact(selectedPerson.getId()));

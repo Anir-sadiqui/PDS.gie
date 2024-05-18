@@ -126,9 +126,9 @@ public class App extends ResourceConfig {
 //        e.addEnterprise(entreprise2);
 //       PersonneService fs = new PersonneService();
 //       fs.DeleteType(String.valueOf(52));
-        Product p = new Product("Iphone 11","noir 256go ",Category.CATEGORY1,18900.00);
-        ProductService ps = new ProductService();
-        ps.add(p);
+//        Product p = new Product("Iphone 13","noir 256go ",Category.CATEGORY1,18900.00);
+//        ProductService ps = new ProductService();
+//        ps.add(p);
 
 
 

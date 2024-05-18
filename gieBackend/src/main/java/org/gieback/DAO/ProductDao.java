@@ -41,6 +41,7 @@ public class ProductDao implements IProductDao{
         try {
             transaction.begin();
             entityManager.persist(pe);
+            entityManager.merge(pe);
             entityManager.flush();
             transaction.commit();
 

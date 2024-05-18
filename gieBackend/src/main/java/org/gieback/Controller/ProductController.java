@@ -60,8 +60,9 @@ public class ProductController {
 
     @DELETE
     @Path("/deleteProd/{id}")
-    public void deleteProduct(@PathParam("id")int id){
+    public Response deleteProduct(@PathParam("id")int id){
         ps.deleteProduct(id);
+        return Response.noContent().build();
     }
 
 

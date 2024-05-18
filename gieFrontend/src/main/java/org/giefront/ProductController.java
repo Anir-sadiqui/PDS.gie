@@ -68,6 +68,7 @@ public class ProductController implements Initializable {
                 product.setPrix(Double.parseDouble(Text_Field_Q.getText())); // Convertir en double
                 product.setImagePath(imagePath);
                 productService.add(product);
+                StockController.C_TableProduct.getItems().add(product);
 
 
                 System.out.println("Product added successfully!");
@@ -89,9 +90,6 @@ public class ProductController implements Initializable {
         boolean fieldsFilled = !Text_Field_N.getText().isEmpty() &&
                 !Text_Field_D.getText().isEmpty() &&
                 choiceBox.getValue() != null ;
-
-        // Si les champs sont remplis, désactiver les champs de texte de quantité et de prix
-
         return fieldsFilled;
     }
 
