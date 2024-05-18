@@ -86,7 +86,7 @@ public class AchatController implements Initializable {
 
     private List<Achat> retrieveAchatsFromDatabase() {
 
-        return achatService.getAllAchats(); // Example method to retrieve all purchases
+        return achatService.getAll(); // Example method to retrieve all purchases
     }
 
     private void populateAchatsTableView(List<Achat> achats) {
@@ -167,7 +167,7 @@ public class AchatController implements Initializable {
     @FXML
     void ajouterAchat(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NouveauAchat.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/NouveauAchat.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
 

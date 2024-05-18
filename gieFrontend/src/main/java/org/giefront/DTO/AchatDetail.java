@@ -43,4 +43,5 @@ public class AchatDetail {
     public void setTotalPrice(double totalPrice) {
         TotalPrice = totalPrice;
     }
+    public AchatDetail(){}
 }

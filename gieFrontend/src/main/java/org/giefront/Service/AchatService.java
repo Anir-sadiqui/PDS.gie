@@ -13,17 +13,19 @@ import static org.giefront.Service.IService.mapper;
 import static org.giefront.Service.IService.okHttpClient;
 
 public class AchatService {
-    public List<Achat> getAllAchats() {
-        Request request = new Request.Builder().url("http://localhost:9998/achat/getAll").build(); // Corrected URL
-        List<Achat> achats; // Corrected variable type
+    public List<Achat> getAll() {
+        Request request = new Request.Builder().url("http://localhost:9998/achat/getAll").build();
+        List<Achat> achats;
         try {
             Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
                 throw new IOException("Failed to retrieve data: " + response);
             }
-            achats = mapper.readValue(response.body().string(), new TypeReference<List<Achat>>() {}); // Corrected TypeReference
+            achats = mapper.readValue(response.body().string(), new TypeReference<List<Achat>>() {});
         } catch (IOException e) {
-            throw new RuntimeException("Error while retrieving achats: " + e.getMessage(), e); // Improved exception handling
+            // Log the error or handle it appropriately
+            e.printStackTrace();
+            throw new RuntimeException("Error while retrieving achats: " + e.getMessage(), e);
         }
         return achats;
     }

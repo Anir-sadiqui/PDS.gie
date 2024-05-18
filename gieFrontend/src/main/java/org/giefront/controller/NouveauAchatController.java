@@ -95,7 +95,7 @@ public class NouveauAchatController implements Initializable {
     @FXML
     void Back(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Achat.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/Achat.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
