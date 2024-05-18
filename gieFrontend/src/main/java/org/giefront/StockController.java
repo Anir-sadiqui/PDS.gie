@@ -248,6 +248,9 @@ public class StockController implements Initializable {
 
     public void onref(ActionEvent event) {
         getAll();
+        Text_Field_Search.setText(null);
+        ChoiceBox_SC.setValue(null);
+        ChoiceBox_PD.setValue(null);
     }
 }
 

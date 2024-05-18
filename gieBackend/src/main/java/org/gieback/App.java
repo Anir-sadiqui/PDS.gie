@@ -2,14 +2,12 @@ package org.gieback;
 import com.sun.net.httpserver.HttpServer;
 import jakarta.ws.rs.core.UriBuilder;
 import org.gieback.Entity.*;
-import org.gieback.Service.AdresseService;
-import org.gieback.Service.EntrepriseService;
-import org.gieback.Service.PersonneService;
-import org.gieback.Service.ProductService;
+import org.gieback.Service.*;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +92,12 @@ public class App extends ResourceConfig {
 ////        ps.add(p);
 //        String c = Category.CATEGORY1.name();
 //        System.out.println( ps.isAvailable(EtatStock.Epuise.name()));
+//        List<Achat> a = new ArrayList<>();
+//        Commande c = new Commande(a);
+//        CommandeService cs = new CommandeService();
+//        System.out.println(cs.getAllCom());
+//        cs.addComm(c);
+//        cs.deleteComm(5);
 
 
 

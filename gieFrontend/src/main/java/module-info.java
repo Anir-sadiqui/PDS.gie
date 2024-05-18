@@ -11,6 +11,7 @@ module org.giefront {
     exports org.giefront.DTO to com.fasterxml.jackson.databind;
     requires javafx.base;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires com.fasterxml.jackson.datatype.jsr310;
     opens org.giefront.DTO to javafx.base;
     opens org.giefront to javafx.fxml;
 }

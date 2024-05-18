@@ -47,10 +47,10 @@ public class CommandeController {
 
     @DELETE
     @Path("/deleteComm/{id}")
-    public void deleteComm(@PathParam("id")int id){
-        cs.deleteComm(id);
-    }
-
+    public Response deleteComm(@PathParam("id") int id ) {
+            cs.deleteComm(id);
+            return Response.noContent().build();
+        }
 
     @POST
     @Path("/add")

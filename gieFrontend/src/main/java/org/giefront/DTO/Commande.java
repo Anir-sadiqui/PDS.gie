@@ -2,9 +2,13 @@ package org.giefront.DTO;
 
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
-
+@Data
 public class Commande {
 
     private Long id;
@@ -12,48 +16,20 @@ public class Commande {
 
     private List<Achat> achats;
 
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate purchaseDate;
 
 
     private EtatCommande e;
 
-    public Commande(Long id, List<Achat> achats, LocalDate purchaseDate, EtatCommande e) {
-        this.id = id;
+
+    @JsonCreator
+    public Commande( List<Achat> achats) {
         this.achats = achats;
-        this.purchaseDate = purchaseDate;
-        this.e = e;
+        this.purchaseDate=LocalDate.now();
+        this.e=EtatCommande.Initialise;
     }
+    public Commande(){}
 
-    public Long getId() {
-        return id;
-    }
 
-    public List<Achat> getAchats() {
-        return achats;
-    }
-
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public EtatCommande getE() {
-        return e;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAchats(List<Achat> achats) {
-        this.achats = achats;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public void setE(EtatCommande e) {
-        this.e = e;
-    }
 }

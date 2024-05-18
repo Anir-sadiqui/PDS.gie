@@ -6,13 +6,13 @@ import jakarta.persistence.Query;
 import org.gieback.Entity.Achat;
 import org.gieback.Entity.Commande;
 import org.gieback.Entity.EtatCommande;
+import org.gieback.HibernateUtility.HibernateUtil;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class CommandeDao implements ICommandeDao{
-    EntityManager entityManager;
+    EntityManager entityManager = HibernateUtil.getEntityManager();
     @Override
     public List<Achat> getAllachats(int id) {
         Commande c = entityManager.find(Commande.class,id);
@@ -31,11 +31,14 @@ public class CommandeDao implements ICommandeDao{
 
     @Override
     public void validerComm(int id) {
+        entityManager.getTransaction().begin();
         Commande c = entityManager.find(Commande.class,id);
         if (c.getE()== EtatCommande.En_Cours){
             c.setE(EtatCommande.Livre);
+            entityManager.merge(c);
         }
         System.out.println("Commande deja validee");
+        entityManager.getTransaction().commit();
     }
 
     @Override
@@ -46,7 +49,6 @@ public class CommandeDao implements ICommandeDao{
         List<Commande> c = query.getResultList();
         return c;
     }
-
     @Override
     public void deleteComm(int id) {
         String hql = "delete from Commande where id =:id";
@@ -81,6 +83,7 @@ public class CommandeDao implements ICommandeDao{
 
     @Override
     public List<Commande> getAllCom() {
-        return entityManager.createQuery("FROM Commande , Commande.class").getResultList();
+        return entityManager.createQuery("FROM Commande" ,Commande.class).getResultList();
     }
+
 }
