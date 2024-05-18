@@ -85,7 +85,7 @@ public class ProductService   {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-            }
+        }
 
         public List<Product> getbyname(String name) {
             Request request = new Request.Builder().url("http://localhost:9998/Product/getByName/"+name).build();

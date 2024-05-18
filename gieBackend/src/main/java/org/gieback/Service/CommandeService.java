@@ -34,8 +34,8 @@ public class CommandeService implements ICommandeService{
     }
 
     @Override
-    public void deleteComm(int id) {
-        cdao.deleteComm(id);
+    public void deleteComm(int id ) {
+        cdao.deleteComm(id );
     }
 
     @Override
