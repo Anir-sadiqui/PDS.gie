@@ -1,6 +1,5 @@
 package org.gieback.Controller;
 
-
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -10,9 +9,7 @@ import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.EtatCommande;
 import org.gieback.Service.CommandeService;
 
-import javax.ws.rs.PathParam;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Path("/Commande")
@@ -22,35 +19,37 @@ public class CommandeController {
     @GET
     @Path("/achats/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> getAllachats(@PathParam("id")int id){
+    public List<Achat> getAllachats(@PathParam("id") int id) {
         return cs.getAllachats(id);
     }
+
     @GET
-    @Path("/CommandeBydate")
+    @Path("/CommandeByDate")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByDate( LocalDate d){
-        return cs.getComByDate(d);
+    public List<Commande> getByDate(@QueryParam("date") String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return cs.getComByDate(localDate);
     }
 
     @PATCH
     @Path("/validerComm/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void validerComm(@PathParam("id")int id) {
+    public void validerComm(@PathParam("id") int id) {
         cs.validerComm(id);
     }
+
     @GET
     @Path("/CommandeByEtat/{e}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByEtat(@PathParam("e")EtatCommande e){
+    public List<Commande> getByEtat(@PathParam("e") EtatCommande e) {
         return cs.getByEtat(e);
     }
 
     @DELETE
     @Path("/deleteComm/{id}")
-    public void deleteComm(@PathParam("id")int id){
+    public void deleteComm(@PathParam("id") int id) {
         cs.deleteComm(id);
     }
-
 
     @POST
     @Path("/add")
@@ -63,9 +62,7 @@ public class CommandeController {
     @GET
     @Path("/Commandes")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getAllCom( ){
+    public List<Commande> getAllCom() {
         return cs.getAllCom();
     }
-
-
 }
