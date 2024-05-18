@@ -1,5 +1,7 @@
 package org.giefront;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +10,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import org.giefront.DTO.Category;
+import org.giefront.DTO.EtatStock;
 import org.giefront.DTO.Product;
 import org.giefront.Service.ProductService;
 
@@ -39,17 +43,30 @@ public class ProductModifController implements Initializable {
         Text_Field_N.setText(p.getName());
         Text_Field_D.setText(p.getDescription());
         Text_Field_Q.setText(String.valueOf(p.getPrix()));
+        ObservableList<String> options = FXCollections.observableArrayList();
+        for (Category c : Category.values()) {
+            options.add(c.name());
+        }
+        choiceBox.setItems(options);
         choiceBox.setValue(p.getCategory());
 
     }
 
     public void OnBtnPClick(ActionEvent event) throws IOException {
         Map<String,String> attributs = new HashMap<>();
-        attributs.put("Name",Text_Field_N.getText());
-        attributs.put("Description",Text_Field_D.getText());
-        attributs.put("Price",Text_Field_Q.getText());
-        attributs.put("Category", choiceBox.getValue().toString());
-        ps.modify(p.getIdProduct(),attributs);
+        if (!Text_Field_N.getText().isEmpty()) {
+            attributs.put("Name", Text_Field_N.getText());
+        }
+        if (!Text_Field_D.getText().isEmpty()) {
+            attributs.put("Description", Text_Field_D.getText());
+        }
+        if (!Text_Field_Q.getText().isEmpty()) {
+            attributs.put("Price", Text_Field_Q.getText());
+        }
+        if (choiceBox.getValue() != null) {
+            attributs.put("Category", choiceBox.getValue().toString());
+        }
+        ps.modify(Math.toIntExact(p.getId()),attributs);
     }
 
 

@@ -22,65 +22,16 @@ import java.io.Serializable;
 
         public Product() {}
 
-        public Product(String name, String description, Category category, int q,double prix ) {
+        public Product(String name, String description, Category category, int q,double prix, String imagePath ) {
             this.name = name;
             this.description = description;
             this.category = category;
             this.q=q;
             this.prix=prix;
+            this.imagePath=imagePath;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
 
-        public void setCategory(Category category) {
-            this.category = category;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        public void setPrix(double prix) {
-            this.prix = prix;
-        }
-
-        public void setQ(int q) {
-            this.q = q;
-        }
-
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public Long getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public Category getCategory() {
-            return category;
-        }
-
-        public int getQ() {
-            return q;
-        }
-
-        public double getPrix() {
-            return prix;
-        }
-
-        public int getIdProduct() {
-            return 0;
-        }
     }
 
 

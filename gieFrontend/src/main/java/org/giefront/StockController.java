@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.giefront.DTO.Category;
@@ -19,12 +20,15 @@ import org.giefront.Service.ProductService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class StockController implements Initializable {
 
+    @FXML
+    private Button refresh;
     @FXML
     private  Button modify;
     @FXML
@@ -91,6 +95,7 @@ public class StockController implements Initializable {
                     Product clickedRow = row.getItem();
                     showAction(clickedRow);
                     product=row.getItem();
+                    IconC.setImage(new Image(row.getItem().getImagePath()));
 
                 }
             });
@@ -98,11 +103,11 @@ public class StockController implements Initializable {
         });
         getAll();
         remplirType();
+
 }
 
     private void showAction(Product clickedRow) {
         IconC.setVisible(true);
-//        IconC.setImage(new Image(clickedRow.getImagePath()));
         DetailsC.setVisible(true);
         DetailsC.setEditable(false);
         DetailsC.setText(clickedRow.getName() + "\n" + clickedRow.getDescription());
@@ -126,31 +131,67 @@ public class StockController implements Initializable {
 
     @FXML
     private void Fetch_OnAction(){
-        if (!Text_Field_S.getText().isEmpty()){
-//            if (ChoiceBox_SC.getValue(). && ChoiceBox_PD.getValue().equals(null) ) {
-//                List<Product> p = productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()));
-//                for (Product produit : p ){
-//                    if (!Objects.equals(produit.getName(), Text_Field_S.getText())){
-//                        p.remove(produit);
-//                    }
-//                }
-//                remplirTAb(FXCollections.observableList(p));
-//            }
-//            else if (ChoiceBox_SC.getValue().equals(null) && ChoiceBox_PD.getValue().equals(null)) {
-                remplirTAb(FXCollections.observableList(productService.getbyname(Text_Field_S.getText())));
-//            }
-        }
-
-        else {
-            if (!ChoiceBox_SC.getValue().isEmpty() && ChoiceBox_PD.getValue().isEmpty()){
-                remplirTAb(FXCollections.observableList(productService.getbyCat(Category.valueOf(ChoiceBox_SC.getValue()))));
-            } else if (ChoiceBox_SC.getValue().isEmpty() && !ChoiceBox_PD.getValue().isEmpty()) {
-                if (Objects.equals(ChoiceBox_SC.getValue(), EtatStock.Epuise.name())){
-                    remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Epuise.name())));
+        if (ChoiceBox_SC.getValue() != null){
+            ObservableList<Product> products =FXCollections.observableList(productService.getbyCat(ChoiceBox_SC.getValue()));
+            if (Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null){
+                remplirTAb(products);
+            }
+            else if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null) {
+                List<Product> p2 = new ArrayList<>();
+                for (Product p : products){
+                    if (p.getName().equals(Text_Field_Search.getText())){
+                        p2.add(p);
+                    }
                 }
-                remplirTAb(FXCollections.observableList(productService.isAvailable(EtatStock.Disponible.name())));
+                remplirTAb(FXCollections.observableList(p2));
+            }
+            else if (Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() != null) {
+                ObservableList<Product> products2 =FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                List<Product> p2 = new ArrayList<>();
+                for (Product p : products2){
+                    if (p.getCategory().name().equals(ChoiceBox_SC.getValue())){
+                        p2.add(p);
+                    }
+                }
+                remplirTAb(FXCollections.observableList(p2));
+            }
+            else {
+                ObservableList<Product> products2 =FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                List<Product> p2 = new ArrayList<>();
+                for (Product p : products2){
+                    if (p.getCategory().name().equals(ChoiceBox_SC.getValue()) && p.getName().equals(Text_Field_Search.getText())){
+                        p2.add(p);
+                    }
+                }
+                remplirTAb(FXCollections.observableList(p2));
             }
         }
+
+        else if (ChoiceBox_SC.getValue() == null) {
+            if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null){
+                ObservableList<Product> products =FXCollections.observableList(productService.getbyname(Text_Field_Search.getText()));
+                remplirTAb(products);
+            }
+            else if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() != null) {
+                ObservableList<Product> products2 =FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                List<Product> p2 = new ArrayList<>();
+                for (Product p : products2){
+                    if (p.getName().equals(Text_Field_Search.getText())){
+                        p2.add(p);
+                    }
+                }
+                remplirTAb(FXCollections.observableList(p2));
+            }
+            else if (Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() != null) {
+                ObservableList<Product> products2 =FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
+                products2.removeIf(p -> p.getName() != Text_Field_Search.getText());
+                remplirTAb(products2);
+            }
+            else {
+                showMessage("Veuillez remplir un champs");
+            }
+        }
+
     }
 
     @FXML
@@ -203,6 +244,10 @@ public class StockController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onref(ActionEvent event) {
+        getAll();
     }
 }
 

@@ -67,6 +67,7 @@ public class ProductController implements Initializable {
                 product.setName(Text_Field_N.getText());
                 product.setPrix(Double.parseDouble(Text_Field_Q.getText())); // Convertir en double
                 product.setImagePath(imagePath);
+                product.setCategory(Category.valueOf(choiceBox.getValue()));
                 productService.add(product);
 
 

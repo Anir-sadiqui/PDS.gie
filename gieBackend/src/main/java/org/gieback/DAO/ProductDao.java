@@ -87,7 +87,7 @@ public class ProductDao implements IProductDao{
     public List<Product> getbyCat(String ca) {
         String hql = "FROM Product p WHERE p.category = :cat";
         Query query = entityManager.createQuery(hql);
-        query.setParameter("cat", ca);
+        query.setParameter("cat", Category.valueOf(ca));
         List<Product> p = query.getResultList();
         return p;
     }
