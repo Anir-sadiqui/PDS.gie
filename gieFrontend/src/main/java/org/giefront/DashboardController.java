@@ -1,5 +1,6 @@
 package org.giefront;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -65,7 +66,7 @@ public class DashboardController implements Initializable {
     public void FRBtnClick(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/fournisseurPerso.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/fournisseurPerso.fxml"));
             Parent content = loader.load();
 
             // Ajoute le contenu du bouton CRM à votre interface principale
@@ -79,7 +80,7 @@ public class DashboardController implements Initializable {
     @FXML
     public void onCRMBtnClick(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/MainInterface.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/MainInterface.fxml"));
             Parent content = loader.load();
 
             // Ajoute le contenu du bouton CRM à votre interface principale
@@ -102,7 +103,7 @@ public class DashboardController implements Initializable {
 //            throw new RuntimeException(e);
 //        }
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/Stock.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Stock.fxml"));
             Parent content = loader.load();
 
             // Ajoute le contenu du bouton CRM à votre interface principale
@@ -120,6 +121,15 @@ public class DashboardController implements Initializable {
 
     @FXML
     public void onAchatBtnClick (ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Achat.fxml"));
+            Parent content = loader.load();
+
+            // Ajoute le contenu du bouton CRM à votre interface principale
+            dashboardBorderPane.setCenter(content);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

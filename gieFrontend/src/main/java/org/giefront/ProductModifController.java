@@ -1,4 +1,5 @@
 package org.giefront;
+import javafx.scene.control.Alert;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,8 +53,10 @@ public class ProductModifController implements Initializable {
 
     }
 
+
+
     public void OnBtnPClick(ActionEvent event) throws IOException {
-        Map<String,String> attributs = new HashMap<>();
+        Map<String, String> attributs = new HashMap<>();
         if (!Text_Field_N.getText().isEmpty()) {
             attributs.put("Name", Text_Field_N.getText());
         }
@@ -66,8 +69,22 @@ public class ProductModifController implements Initializable {
         if (choiceBox.getValue() != null) {
             attributs.put("Category", choiceBox.getValue().toString());
         }
-        ps.modify(Math.toIntExact(p.getId()),attributs);
+
+        // Modifier les attributs
+        ps.modify(Math.toIntExact(p.getId()), attributs);
+
+
+        showAlert("Modification successfully completed");
     }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 
     public void modImg(ActionEvent event) {
