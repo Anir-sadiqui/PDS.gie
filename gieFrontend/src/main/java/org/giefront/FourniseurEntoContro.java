@@ -28,7 +28,7 @@ public class FourniseurEntoContro {
 
     public void switchToFornEntro(ActionEvent event) throws IOException {
 
-        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurPerso.fxml"));
+        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/fournisseurPerso.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
         scene = new Scene(fxmlLoader.load()) ;
         stage.setScene(scene);
@@ -37,22 +37,14 @@ public class FourniseurEntoContro {
     }
 
     public void addFournisseur(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/entreprise.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/entreprise.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-//
-//    public void switchToFornPerso(ActionEvent event) throws IOException {
-//
-//        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurEntro.fxml"));
-//        stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
-//        scene = new Scene(fxmlLoader.load()) ;
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
@@ -97,8 +89,8 @@ public class FourniseurEntoContro {
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        colEdit.setCellFactory(param -> new FourniseurEntoContro.EditButtonCell());
-        colDelete.setCellFactory(param -> new FourniseurEntoContro.DeleteButtonCell());
+        colEdit.setCellFactory(param -> new EditButtonCell());
+        colDelete.setCellFactory(param -> new DeleteButtonCell());
 
         fournisseurTable.getColumns().setAll(colId, colFormJ, colRaisonS, colPhone, colEmail, colEdit, colDelete);
 
@@ -132,6 +124,16 @@ public class FourniseurEntoContro {
         fournisseurTable.setItems(fournisseurList);
         return fournisseurs;
     }
+
+    public void OnReturnAction(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     private class EditButtonCell extends TableCell<Entreprise, Void> {
         private final Button editButton = new Button("Edit");
@@ -173,11 +175,11 @@ public class FourniseurEntoContro {
 
     private void editFournisseur(Entreprise fournisseur) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/EntrepriseModification.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/EntrepriseModification.fxml"));
             Parent root = loader.load();
 
             // Get the controller for PersonneModification.fxml
-            org.giefront.controller.EntrepriseModifController modificationController = loader.getController();
+            EntrepriseModifController modificationController = loader.getController();
 
             // Pass the selected Personne data to the modification controller
             modificationController.setEntroprise(fournisseur);

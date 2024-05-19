@@ -1,4 +1,4 @@
-package org.giefront.controller;
+package org.giefront;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

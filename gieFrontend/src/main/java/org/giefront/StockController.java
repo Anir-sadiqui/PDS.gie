@@ -1,5 +1,7 @@
 package org.giefront;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 public class StockController implements Initializable {
 
@@ -133,7 +139,7 @@ public class StockController implements Initializable {
     private void Fetch_OnAction(){
         if (ChoiceBox_SC.getValue() != null){
             ObservableList<Product> products =FXCollections.observableList(productService.getbyCat(ChoiceBox_SC.getValue()));
-            if (Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null){
+            if (Text_Field_Search.getText()== null && ChoiceBox_PD.getValue() == null){
                 remplirTAb(products);
             }
             else if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null) {
@@ -184,7 +190,6 @@ public class StockController implements Initializable {
             }
             else if (Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() != null) {
                 ObservableList<Product> products2 =FXCollections.observableList(productService.isAvailable(ChoiceBox_PD.getValue()));
-                products2.removeIf(p -> p.getName() != Text_Field_Search.getText());
                 remplirTAb(products2);
             }
             else {
@@ -195,22 +200,52 @@ public class StockController implements Initializable {
     }
 
     @FXML
-    private void OnDelete(){
-        Product selectedPerson =  C_TableProduct.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            productService.deleteProduct(Math.toIntExact(selectedPerson.getId()));
-            C_TableProduct.getItems().remove(selectedPerson);
-            showMessage("Suppression reussie");
+    private void OnDelete() {
+        Product selectedProduct = C_TableProduct.getSelectionModel().getSelectedItem();
+        if (selectedProduct != null) {
+            // Create the confirmation dialog
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("Are you sure you want to delete this product?");
+            alert.setContentText("Product: " + selectedProduct.getName());
+
+            // Button options in the dialog
+            ButtonType buttonTypeYes = new ButtonType("Yes");
+            ButtonType buttonTypeNo = new ButtonType("No", ButtonType.CANCEL.getButtonData());
+
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+            // Wait for the user's response
+            alert.showAndWait().ifPresent(type -> {
+                if (type == buttonTypeYes) {
+                    productService.deleteProduct(Math.toIntExact(selectedProduct.getId()));
+                    C_TableProduct.getItems().remove(selectedProduct);
+                    showMessage("Deletion successful");
+                } else {
+                    showMessage("Deletion cancelled");
+                }
+            });
+        } else {
+            showMessage("No product selected");
         }
     }
 
+    // Method to display a message
     private void showMessage(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+//    private void showMessage(String message) {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Information");
+//        alert.setHeaderText(null);
+//        alert.setContentText(message);
+//        alert.showAndWait();
+//    }
 
     public void OnBtnPClick(ActionEvent event) {
         try {

@@ -132,7 +132,7 @@ public class PersonneController implements Initializable {
     private FXMLLoader fxmlLoader;
 
     public void retour(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/fournisseurPerso.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/fournisseurPerso.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

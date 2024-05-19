@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Personne;
-import org.giefront.PersonneModificationController;
 import org.giefront.Service.FournisseurPersoService;
 import org.giefront.DTO.ContactType;
 
@@ -142,7 +141,7 @@ public class FournisseurPersoControlleur {
 
     private void editFournisseur(Personne fournisseur) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/PersonneModification.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/PersonneModification.fxml"));
             Parent root = loader.load();
 
             // Get the controller for PersonneModification.fxml
@@ -176,7 +175,7 @@ public class FournisseurPersoControlleur {
     private FXMLLoader fxmlLoader;
 
     public void switchToFornPerso(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/fournisseurEntro.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/fournisseurEntro.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -184,7 +183,7 @@ public class FournisseurPersoControlleur {
     }
 
     public void addFournisseur(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/personne.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/personne.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -192,7 +191,7 @@ public class FournisseurPersoControlleur {
     }
 
     public void SwitchToEdit(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/PersonneModification.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/PersonneModification.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -202,7 +201,7 @@ public class FournisseurPersoControlleur {
     @FXML
     private void switchToEditPersonne(Personne personne) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/giefront/personneModification.fxml")); // Correct path to your FXML
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Interfaces/personneModification.fxml")); // Correct path to your FXML
             Parent root = fxmlLoader.load();
 
             // Get the controller and pass the data

@@ -26,6 +26,13 @@ public class App extends ResourceConfig {
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
         System.out.println("server launched Successfully ");
 
+        Product phone1 = new Product("iPhone 12", "Noir 256Go", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
+        Product laptop1 = new Product("MacBook Pro 13 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
+        Product mouse1 = new Product("Logitech MX Master 3", "Souris sans fil avancée", Category.ACCESSORIES, 99.99, "https://example.com/mxmaster3.jpg");
+        ProductService ps = new ProductService();
+        ps.add(phone1);
+        ps.add(laptop1 );
+        ps.add(mouse1);
 
 //      Adresse adresse1 = new Adresse();
 //      adresse1.setQuartier("123 Avenue Allal ELfassi");

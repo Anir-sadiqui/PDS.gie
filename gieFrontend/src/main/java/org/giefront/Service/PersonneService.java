@@ -34,6 +34,20 @@ public class PersonneService implements IService{
         }
         return personnes;
     }
+//    public void add(Personne p){
+//        try {
+//            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(p));
+//
+//            Request request = new Request.Builder().url("http://localhost:9998/personne/add").post(requestBody).build();
+//            Call call = okHttpClient.newCall(request);
+//            Response response = call.execute();
+//            System.out.println(response.code());
+//            System.out.println(response.body().toString());
+//
+//        }catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public void add(Personne p) {
         try {
