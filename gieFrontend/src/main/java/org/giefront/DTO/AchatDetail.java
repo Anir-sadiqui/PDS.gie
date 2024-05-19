@@ -22,6 +22,10 @@ public class AchatDetail {
         TotalPrice = totalPrice;
     }
 
+    public AchatDetail() {
+
+    }
+
     public Achat getAchat() {
         return achat;
     }

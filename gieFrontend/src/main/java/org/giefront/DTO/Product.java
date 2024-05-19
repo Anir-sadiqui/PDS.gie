@@ -22,11 +22,10 @@ import java.io.Serializable;
 
         public Product() {}
 
-        public Product(String name, String description, Category category, int q,double prix, String imagePath ) {
+        public Product(String name, String description, Category category, double prix, String imagePath ) {
             this.name = name;
             this.description = description;
             this.category = category;
-            this.q=q;
             this.prix=prix;
             this.imagePath=imagePath;
         }

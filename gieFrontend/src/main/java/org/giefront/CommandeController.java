@@ -11,11 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import org.giefront.DTO.Achat;
-import org.giefront.DTO.Commande;
+import org.giefront.DTO.*;
 import org.giefront.DTO.EtatCommande;
-import org.giefront.DTO.Product;
 import org.giefront.Service.CommandeService;
+import org.giefront.Service.EntrepriseService;
+import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 
 public class CommandeController implements Initializable{
 
-
+    public static Commande c;
     @FXML
     private TextArea Details;
     @FXML
@@ -63,6 +63,8 @@ public class CommandeController implements Initializable{
         });
         getAll();
         Details.setEditable(false);
+        loadEntreprises();
+        loadPersonnes();
     }
 
     private void showAction(Commande clickedRow) {
@@ -73,6 +75,7 @@ public class CommandeController implements Initializable{
                     + "Contenant :" + "\n" + s);
         }
     }
+
 
 
     public void onAfch(ActionEvent event) {
@@ -95,6 +98,7 @@ public class CommandeController implements Initializable{
     }
 
     public void OnMod(ActionEvent event) {
+        c= (Commande) Tab.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader f = new FXMLLoader();
             f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
@@ -113,7 +117,6 @@ public class CommandeController implements Initializable{
         getAll();
         CB_four.setValue(null);
         Calendrier.setValue(null);
-
     }
 
     private void getAll(){
@@ -132,6 +135,31 @@ public class CommandeController implements Initializable{
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    private void loadEntreprises() {
+        EntrepriseService ps = new EntrepriseService();
+        List<String> personneNames = new ArrayList<>();
+        for (Entreprise p : ps.getAll()){
+            if (p.getContactType()== ContactType.FOURNISSEUR){
+                personneNames.add(p.getRaisonSocial() );
+                int id = Math.toIntExact(p.getId());
+            }
+        }
+        CB_four.getItems().addAll(personneNames);
+
+    }
+
+
+    private void loadPersonnes() {
+        PersonneService ps = new PersonneService();
+        List<String> personneNames = new ArrayList<>();
+        for (Personne p : ps.getAll()){
+            if (p.getContactType()== ContactType.FOURNISSEUR){
+                personneNames.add(p.getNom() + " " + p.getPrenom());
+                int id = Math.toIntExact(p.getId());
+            }
+        }
+        CB_four.getItems().addAll(personneNames);
     }
 }
 

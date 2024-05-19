@@ -1,8 +1,11 @@
 package org.giefront.DTO;
 
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class Achat {
     private Long id;
 
@@ -10,7 +13,7 @@ public class Achat {
     private LocalDate purchaseDate;
 
 
-    private Contact supplier;
+    private String supplier;
 
 
     private AchatDetail details ;
@@ -18,52 +21,15 @@ public class Achat {
 
     private Commande c;
 
+    public Achat(){}
 
-    public Achat(Long id, LocalDate purchaseDate, Contact supplier, AchatDetail details, Commande c) {
-        this.id = id;
-        this.purchaseDate = purchaseDate;
-        this.supplier = supplier;
+
+    public Achat( AchatDetail details, Commande c) {
+        this.purchaseDate = LocalDate.now();
         this.details = details;
         this.c = c;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
-    }
 
-    public Contact getSupplier() {
-        return supplier;
-    }
-
-    public AchatDetail getDetails() {
-        return details;
-    }
-
-    public Commande getC() {
-        return c;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setPurchaseDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public void setSupplier(Contact supplier) {
-        this.supplier = supplier;
-    }
-
-    public void setDetails(AchatDetail details) {
-        this.details = details;
-    }
-
-    public void setC(Commande c) {
-        this.c = c;
-    }
 }

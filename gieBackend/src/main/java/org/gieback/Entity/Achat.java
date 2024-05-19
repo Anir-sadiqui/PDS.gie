@@ -36,9 +36,8 @@ public class Achat implements Serializable {
 
     public Achat() {}
 
-    public Achat(Contact supplier, AchatDetail details, Commande c ) {
+    public Achat( AchatDetail details, Commande c ) {
         this.purchaseDate = LocalDate.now();
-        this.supplier = supplier;
         this.details=details;
         this.c=c;
     }
