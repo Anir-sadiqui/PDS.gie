@@ -30,6 +30,43 @@ public class Achat {
         this.c = c;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public String getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
+    }
+
+    public AchatDetail getDetails() {
+        return details;
+    }
+
+    public void setDetails(AchatDetail details) {
+        this.details = details;
+    }
+
+    public Commande getC() {
+        return c;
+    }
+
+    public void setC(Commande c) {
+        this.c = c;
+    }
 }

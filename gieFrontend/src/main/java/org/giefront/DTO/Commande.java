@@ -22,6 +22,37 @@ public class Commande {
 
     private EtatCommande e;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Achat> getAchats() {
+        return achats;
+    }
+
+    public void setAchats(List<Achat> achats) {
+        this.achats = achats;
+    }
+
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public EtatCommande getE() {
+        return e;
+    }
+
+    public void setE(EtatCommande e) {
+        this.e = e;
+    }
 
     @JsonCreator
     public Commande( List<Achat> achats) {
