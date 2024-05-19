@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 
+import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Personne;
 
 
@@ -33,20 +34,33 @@ public class PersonneService implements IService{
         }
         return personnes;
     }
-    public void add(Personne p){
+
+    public void add(Personne p) {
         try {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(p));
+            RequestBody requestBody = RequestBody.create(
+                    MediaType.parse("application/json"), mapper.writeValueAsString(p));
 
-            Request request = new Request.Builder().url("http://localhost:9998/personne/add").post(requestBody).build();
-            Call call = okHttpClient.newCall(request);
-            Response response = call.execute();
-            System.out.println(response.code());
-            System.out.println(response.body().toString());
+            Request request = new Request.Builder()
+                    .url("http://localhost:9998/personne/add")
+                    .post(requestBody)
+                    .build();
 
-        }catch (IOException e) {
-            throw new RuntimeException(e);
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                if (!response.isSuccessful()) {
+                    System.err.println("Failed to add person: HTTP " + response.code());
+                    if (response.body() != null) {
+                        System.err.println("Response body: " + response.body().string());
+                    }
+                } else {
+                    System.out.println("Person added successfully!");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to communicate with the server", e);
         }
     }
+
     public Personne getById (int id)  {
         Request request = new Request.Builder().url("http://localhost:9998/personne/getById/"+id).build();
         Personne personne;
@@ -155,6 +169,39 @@ public class PersonneService implements IService{
             throw new RuntimeException(e);
         }
         return personne;
+    }
+    public List<Personne> getByType(ContactType t){
+        Request request = new Request.Builder().url("http://localhost:9998/personne/GetByType/"+t).build();
+        List<Personne> personnes;
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return personnes;
+    }
+    public void addType(int id , ContactType t) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/addType/" + id + "/" + t).build();
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
+        }
+    }
+    public void deleteType (int id) throws IOException {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/deleteType/" + id ).build();
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
+        }
     }
 
 

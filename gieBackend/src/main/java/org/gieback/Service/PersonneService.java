@@ -1,18 +1,19 @@
 package org.gieback.Service;
 
+import jakarta.persistence.PersistenceException;
 import org.gieback.DAO.IEntrepriseDao;
 import org.gieback.DAO.IPersonneDao;
 import org.gieback.DAO.PersonneDao;
 import org.gieback.Entity.ContactType;
 import org.gieback.Entity.Entreprise;
 import org.gieback.Entity.Personne;
+import org.hibernate.service.spi.ServiceException;
 
 import java.util.List;
 import java.util.Map;
 
-public class PersonneService implements IPersonneService{
-    IPersonneDao personneeDao=new PersonneDao();
-
+public class PersonneService implements IPersonneService {
+    IPersonneDao personneeDao = new PersonneDao();
 
 
     @Override
@@ -20,10 +21,20 @@ public class PersonneService implements IPersonneService{
         return personneeDao.getAll();
     }
 
-    @Override
-    public void addPersonne(Personne p) {
+//    @Override
+//    public void addPersonne(Personne p) {
+//        personneeDao.add(p);
+//    }
+
+
+@Override
+public void addPersonne(Personne p) throws ServiceException {
+    try {
         personneeDao.add(p);
+    } catch (PersistenceException e) {
+        throw new ServiceException("Error adding person", e);
     }
+}
 
     @Override
     public Personne getPersonneById(int id) {
@@ -52,7 +63,7 @@ public class PersonneService implements IPersonneService{
 
     @Override
     public void modifier(String id, Map<String, String> attributs) {
-        personneeDao.modifier(id,attributs);
+        personneeDao.modifier(id, attributs);
 
     }
 
@@ -82,13 +93,4 @@ public class PersonneService implements IPersonneService{
         personneeDao.DeleteType(id);
     }
 
-    @Override
-    public List<Personne> getTypeByNom(String n, ContactType type) {
-        return personneeDao.getTypeByNom(n, type);
-    }
-
-    @Override
-    public List<Personne> getTypeByPrenom(String p, ContactType type) {
-        return personneeDao.getTypeByPrenom(p, type);
-    }
 }

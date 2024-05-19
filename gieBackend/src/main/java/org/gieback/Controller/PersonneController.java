@@ -11,6 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.*;
 import org.gieback.Service.IPersonneService;
 import org.gieback.Service.PersonneService;
+import org.hibernate.service.spi.ServiceException;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 public class PersonneController {
     IPersonneService personneService=new PersonneService();
+
     @GET
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,14 +41,28 @@ public class PersonneController {
         }
     }
 
+//    @POST
+//    @Path("/add")
+//
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public Response addPersonne(Personne p) {
+//        personneService.addPersonne(p);
+//        return Response.status(Response.Status.CREATED).build();
+//    }
+
     @POST
     @Path("/add")
-
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addPersonne(Personne p) {
-        personneService.addPersonne(p);
-        return Response.status(Response.Status.CREATED).build();
+        try {
+            personneService.addPersonne(p);
+            return Response.status(Response.Status.CREATED).build();
+        } catch (ServiceException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error adding person: " + e.getMessage()).build();
+        }
     }
+
     @GET
     @Path("GetBynom/{n}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -102,6 +118,7 @@ public class PersonneController {
     public List<Personne> getByType(@PathParam("t") ContactType type) {
         return personneService.getByType(type);
     }
+
     @PATCH
     @Path("/addType/{id}/{t}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -110,25 +127,13 @@ public class PersonneController {
         return Response.noContent().build();
     }
     @PATCH
-    @Path("/addType/{id}")
+    @Path("/deleteType/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addType(@PathParam("id") String id ){
         personneService.DeleteType(id);
         return Response.noContent().build();
     }
-    @GET
-    @Path("GetTypeBynom/{n}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getTypeByNom(@PathParam("n") String nom , @PathParam("t") ContactType type ) {
-        return personneService.getTypeByNom(nom, type);
-    }
 
-    @GET
-    @Path("getTypeByPrenom/{prenom}/{t}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Personne> getTypeByPrenom(@PathParam("prenom") String prenom , @PathParam("t") ContactType type ) {
-        return personneService.getTypeByPrenom(prenom, type);
-    }
 
 }
 

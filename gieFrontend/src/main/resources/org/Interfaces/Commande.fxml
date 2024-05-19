@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="421.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.CommandeController">
+  <children>
+    <AnchorPane fx:id="mainAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text layoutX="155.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes" textAlignment="CENTER" wrappingWidth="301.47003173828125">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Text>
+            <TableView fx:id="Tab" layoutX="35.0" layoutY="157.0" prefHeight="200.0" prefWidth="363.0">
+              <columns>
+                <TableColumn fx:id="C_id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="C_date" prefWidth="150.00003051757812" text="Date" />
+                  <TableColumn fx:id="C_Etat" prefWidth="136.6666259765625" text="Etat" />
+              </columns>
+            </TableView>
+            <TextArea fx:id="Details" layoutX="412.0" layoutY="167.0" prefHeight="138.0" prefWidth="217.0" />
+            <Button fx:id="valider" layoutX="412.0" layoutY="310.0" mnemonicParsing="false" onAction="#onVal" text="Valider" />
+            <Button fx:id="mod" layoutX="484.0" layoutY="311.0" mnemonicParsing="false" onAction="#OnMod" text="Modifier" />
+            <Button fx:id="Anuler" layoutX="560.0" layoutY="311.0" mnemonicParsing="false" onAction="#onAnnuler" text="Annuler" />
+            <Button fx:id="Ajout" layoutX="361.0" layoutY="368.0" mnemonicParsing="false" onAction="#onAjout" text="Ajouter " />
+            <ChoiceBox fx:id="CB_four" layoutX="335.0" layoutY="93.0" prefHeight="25.0" prefWidth="111.0" />
+            <Button fx:id="Aficher" layoutX="483.0" layoutY="93.0" mnemonicParsing="false" onAction="#onAfch" prefHeight="25.0" prefWidth="83.0" text="Afficher" />
+            <DatePicker fx:id="Calendrier" layoutX="107.0" layoutY="93.0" />
+            <Button fx:id="ref" layoutX="277.0" layoutY="368.0" mnemonicParsing="false" onAction="#onRef" text="refresher" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

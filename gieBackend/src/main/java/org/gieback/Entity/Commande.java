@@ -6,6 +6,7 @@ import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,17 +23,17 @@ public class Commande implements Serializable {
     private List<Achat> achats;
 
     @Column(name = "purchase_date")
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
 
     @Column(name = "Etat_Commande")
     private EtatCommande e;
 
     public Commande(){}
 
-    public Commande(List<Achat> achats, Date purchaseDate, EtatCommande e) {
+    public Commande(List<Achat> achats) {
         this.achats = achats;
-        this.purchaseDate = purchaseDate;
-        this.e=e;
+        this.purchaseDate = LocalDate.now();
+        this.e=EtatCommande.Initialise;
     }
 
 }

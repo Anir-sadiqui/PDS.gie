@@ -2,6 +2,7 @@ package org.gieback.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -22,8 +23,6 @@ public   class PersonneDao implements IPersonneDao{
     public PersonneDao() {
         entityManager = HibernateUtil.getEntityManger();
     }
-
-
 
     @Override
     public List<Personne> getAll() {
@@ -50,6 +49,23 @@ public   class PersonneDao implements IPersonneDao{
             e.printStackTrace();
         }
     }
+
+
+//    @Override
+//    public void add(Personne p) throws PersistenceException {
+//        EntityTransaction transaction = entityManager.getTransaction();
+//        try {
+//            transaction.begin();
+//            if (p.getAdresse() != null) {
+//                entityManager.persist(p.getAdresse());
+//            }
+//            entityManager.persist(p);
+//            transaction.commit();
+//        } catch (Exception e) {
+//            transaction.rollback();
+//            throw new PersistenceException("Failed to add Personne", e);
+//        }
+//    }
     @Override
     public Personne getById(int id) {
         return entityManager.find(Personne.class, id);
@@ -197,27 +213,6 @@ public   class PersonneDao implements IPersonneDao{
         else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
     }
-
-    @Override
-    public List<Personne> getTypeByNom(String n, ContactType type) {
-        String hql = "FROM Personne p WHERE p.nom = :nom AND p.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("nom", n);
-        query.setParameter("type", type);
-        List<Personne> r = query.getResultList();
-        return r;
-    }
-
-    @Override
-    public List<Personne> getTypeByPrenom(String p, ContactType type) {
-        String hql = "FROM Personne p WHERE p.prenom = :prenom AND p.contactType = :type";
-        Query query = entityManager.createQuery(hql);
-        query.setParameter("prenom", p);
-        query.setParameter("type", type);
-        List<Personne> r = query.getResultList();
-        return r;
-    }
-
 
 }
 

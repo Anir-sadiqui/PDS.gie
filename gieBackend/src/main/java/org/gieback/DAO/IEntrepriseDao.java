@@ -22,8 +22,7 @@ public interface IEntrepriseDao {
     List<Entreprise> getByType(ContactType type);
     void addType (String id, ContactType type);
     void DeleteType (String id );
-    Entreprise getTypeByRs(String raisonSocial , ContactType type);
-    List<Entreprise> getTypeByFj(String Fj, ContactType type);
+
 
 
 

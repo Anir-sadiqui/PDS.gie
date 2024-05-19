@@ -26,11 +26,11 @@ public class AchatDetail implements Serializable {
 
     public AchatDetail() {}
 
-    public AchatDetail(Achat achat, Product product, int quantity, double TotalPrice) {
+    public AchatDetail(Achat achat, Product product, int quantity) {
         this.achat = achat;
         this.product = product;
         this.quantity = quantity;
-        this.TotalPrice = TotalPrice;
+        this.TotalPrice = product.getPrix() * quantity;
     }
 
     @Override

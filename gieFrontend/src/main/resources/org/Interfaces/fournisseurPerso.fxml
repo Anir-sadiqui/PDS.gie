@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="507.0" prefWidth="776.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FourniseurPersoController">
+<AnchorPane prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FournisseurPersoController">
    <children>
       <Pane layoutX="41.0" layoutY="16.0" prefHeight="475.0" prefWidth="221.0" style="-fx-background-color: #ffffff;">
          <children>
             <ImageView fx:id="sup" fitHeight="65.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="https://cdn.iconscout.com/icon/premium/png-512-thumb/supplier-8-899150.png" />
+                  <Image url="https://icon-library.com/images/supplier-icon-png/supplier-icon-png-10.jpg" />
                </image>
             </ImageView>
             <Label layoutX="4.0" layoutY="82.0" prefHeight="16.0" prefWidth="35.0" text="Type">
@@ -33,16 +33,16 @@
             <Label layoutX="11.0" layoutY="230.0" prefHeight="16.0" prefWidth="43.0" text="Email" />
             <TextField fx:id="email" layoutX="58.0" layoutY="226.0" prefHeight="24.0" prefWidth="152.0" />
             <Label layoutX="11.0" layoutY="263.0" prefHeight="16.0" prefWidth="43.0" text="Adress" />
-            <Button fx:id="addFournisseurPerso" layoutX="128.0" layoutY="443.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="85.0" text="ADD" />
+            <Button fx:id="addFournisseurPerso" layoutX="128.0" layoutY="443.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="24.0" prefWidth="85.0" text="ADD" />
             <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="128.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="https://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/512/add-icon.png" />
+                  <Image url="https://www.downloadclipart.net/large/27475-add-button-clipart.png" />
                </image>
             </ImageView>
             <Button fx:id="clean_btn" layoutX="7.0" layoutY="443.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="85.0" text="CLEAR" />
             <ImageView fitHeight="24.0" fitWidth="22.0" layoutX="10.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="https://myignitemarketing.com/wp-content/uploads/2020/04/Dust.png" />
+                  <Image url="http://www.newdesignfile.com/postpic/2009/03/house-cleaning-services-icon_328546.png" />
                </image>
             </ImageView>
             <Button fx:id="personToEntro" layoutX="44.0" layoutY="66.0" mnemonicParsing="false" onAction="#switchToFornPerso" prefHeight="43.0" prefWidth="172.0" style="-fx-background-color: #000000;" text="Person To Entrop" textFill="WHITE" />
@@ -56,18 +56,20 @@
             </Pane>
          </children>
       </Pane>
-      <Pane layoutX="278.0" layoutY="16.0" prefHeight="475.0" prefWidth="464.0" style="-fx-background-color: #ffffff;">
+      <Pane layoutX="278.0" layoutY="16.0" prefHeight="475.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TableView fx:id="fournisseurTable" layoutX="44.0" layoutY="59.0" prefHeight="200.0" prefWidth="376.0">
+            <TableView fx:id="fournisseurTable" layoutX="44.0" layoutY="72.0" prefHeight="200.0" prefWidth="527.0">
                <columns>
+                  <TableColumn fx:id="colId" prefWidth="75.0" text="Id" />
                   <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
                   <TableColumn fx:id="colPrenom" prefWidth="75.0" text="Prenom" />
                   <TableColumn fx:id="colPhone" prefWidth="75.0" text="Phone" />
                   <TableColumn fx:id="colEmail" prefWidth="75.0" text="Email" />
-                  <TableColumn fx:id="colAddress" prefWidth="75.0" text="Address" />
+                  <TableColumn fx:id="colEdit" prefWidth="75.0" text="Edit" />
+                  <TableColumn fx:id="colDelete" prefWidth="75.0" text="Delete" />
                </columns>
             </TableView>
-            <Button fx:id="retchbtn" layoutX="44.0" layoutY="14.0" mnemonicParsing="false" onAction="#onFetch" prefHeight="29.0" prefWidth="65.0" text="Fetch" />
+            <Button fx:id="retchbtn" layoutX="44.0" layoutY="14.0" mnemonicParsing="false" onAction="#fetchFournisseurs" prefHeight="29.0" prefWidth="65.0" text="Fetch" />
          </children></Pane>
    </children>
 </AnchorPane>

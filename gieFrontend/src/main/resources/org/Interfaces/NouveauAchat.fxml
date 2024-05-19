@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1171.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.NouveauAchatController">
+    <children>
+        <Label layoutX="349.0" layoutY="22.0" prefHeight="116.0" prefWidth="461.0" style="-fx-background-color: silver;" text="  Nouveau Achat" textFill="#ba1e77">
+            <font>
+                <Font name="DejaVu Serif Bold Italic" size="46.0" />
+            </font>
+        </Label>
+        <Button fx:id="btnRetour" layoutX="958.0" layoutY="658.0" mnemonicParsing="false" onAction="#Back" prefHeight="55.0" prefWidth="140.0" style="-fx-background-color: white;" text="Retour" textFill="#1e1d1d">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnValider" layoutX="613.0" layoutY="519.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Valider" textFill="#f5f3f3">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Button>
+        <RadioButton fx:id="EntrepriseRadioButton" layoutX="55.0" layoutY="184.0" mnemonicParsing="false" onAction="#selectEntreprise" text="Entreprise">
+            <toggleGroup>
+                <ToggleGroup fx:id="Type" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="PersonneRadioButton" layoutX="196.0" layoutY="184.0" mnemonicParsing="false" onAction="#selectPersonne" prefHeight="18.0" prefWidth="100.0" text="Personne" toggleGroup="$Type" />
+        <ComboBox fx:id="FournisseurComboBox" layoutX="55.0" layoutY="236.0" onAction="#Fournisseur" prefHeight="40.0" prefWidth="220.0" promptText="Fournisseur" />
+
+        <Label layoutX="40.0" layoutY="426.0" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: orange;" text="  Quantite" textFill="#171717">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtQuantite" layoutX="205.0" layoutY="468.0" onAction="#Quantite" prefHeight="34.0" prefWidth="211.0" />
+        <ComboBox fx:id="CategorieComboBox" layoutX="203.0" layoutY="346.0" onAction="#categorie" prefHeight="40.0" prefWidth="211.0" promptText="          Categorie" />
+        <Label layoutX="40.0" layoutY="305.0" prefHeight="34.0" prefWidth="121.0" style="-fx-background-color: orange;" text="   Product" textFill="#171717">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+      <TextField fx:id="Nom" layoutX="441.0" layoutY="349.0" prefHeight="34.0" prefWidth="211.0" />
+      <Label layoutX="441.0" layoutY="297.0" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: orange;" text="NAME" textAlignment="CENTER" textFill="#171717">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="desc" layoutX="662.0" layoutY="349.0" prefHeight="34.0" prefWidth="211.0" />
+      <Label layoutX="662.0" layoutY="305.0" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: orange;" text="Description" textAlignment="CENTER" textFill="#171717">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

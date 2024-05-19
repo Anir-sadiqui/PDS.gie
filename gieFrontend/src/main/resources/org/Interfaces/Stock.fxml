@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.StockController">
+    <children>
+        <Button fx:id="Add" layoutX="474.0" layoutY="520.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="25.0" prefWidth="91.0" text="AddProduct" />
+        <TableView fx:id="C_TableProduct" layoutX="10.0" layoutY="196.0" prefHeight="269.0" prefWidth="433.0">
+            <columns>
+                <TableColumn fx:id="IdColumn" prefWidth="56.0" text="Id" />
+                <TableColumn fx:id="nameColumn" prefWidth="112.33332824707031" text="name" />
+                <TableColumn fx:id="CategoryColumn" prefWidth="118.33334350585938" text="category" />
+                <TableColumn fx:id="QuantiteColumn" prefWidth="57.33331298828125" text="Quantite" />
+                <TableColumn fx:id="Prix_unitaireColumn" prefWidth="89.33334350585938" text="Price" />
+            </columns>
+        </TableView>
+        <Label fx:id="Text_Field_S" layoutX="517.0" layoutY="124.0" prefHeight="17.0" prefWidth="98.0" text="   SearchByName" />
+        <Button fx:id="Bttn_Fetch" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#Fetch_OnAction" prefHeight="25.0" prefWidth="91.0" text="Fetch" />
+        <TextField fx:id="Text_Field_Search" layoutX="614.0" layoutY="120.0" prefHeight="25.0" prefWidth="105.0" />
+        <Label fx:id="Text_Field_C" layoutX="288.0" layoutY="124.0" prefHeight="17.0" prefWidth="112.0" text="   SearchByCategory" />
+        <ChoiceBox fx:id="ChoiceBox_SC" layoutX="401.0" layoutY="120.0" prefHeight="25.0" prefWidth="105.0" />
+        <ChoiceBox fx:id="ChoiceBox_PD" layoutX="194.0" layoutY="120.0" prefHeight="25.0" prefWidth="81.0" />
+        <Label fx:id="Text_Field_PD" layoutX="120.0" layoutY="120.0" prefHeight="25.0" prefWidth="91.0" text="PoductDisp" />
+        <TextArea fx:id="DetailsC" layoutX="461.0" layoutY="315.0" prefHeight="119.0" prefWidth="257.0" />
+        <ImageView fx:id="IconC" fitHeight="119.0" fitWidth="179.0" layoutX="501.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="modify" layoutX="491.0" layoutY="453.0" mnemonicParsing="false" onAction="#OnmodiFy" text="Modify" />
+        <Button fx:id="delete" layoutX="614.0" layoutY="453.0" mnemonicParsing="false" onAction="#OnDelete" text="Delete" />
+      <Button fx:id="refresh" layoutX="310.0" layoutY="465.0" mnemonicParsing="false" onAction="#onref" prefHeight="25.0" prefWidth="91.0" text="Refresh" />
+    </children>
+</AnchorPane>
