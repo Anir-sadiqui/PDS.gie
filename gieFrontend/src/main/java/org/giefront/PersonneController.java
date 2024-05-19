@@ -5,8 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Personne;
@@ -44,7 +47,6 @@ public class PersonneController implements Initializable {
     private Button adresse;
     @FXML
     private AnchorPane anchorepane_Adresse;
-
 
 
     private final PersonneService personneService = new PersonneService();
@@ -125,14 +127,24 @@ public class PersonneController implements Initializable {
                 !Text_Field_Po.getText().isEmpty();
     }
 
-    public void onReturn(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
-            Node node = fxmlLoader.load();
-            mainAnchor.getChildren().setAll(node);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private Stage stage;
+    private Scene scene;
+    private FXMLLoader fxmlLoader;
+
+    public void retour(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/fournisseurPerso.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
+    public void setPersonne(Personne personne) {
+        Text_Field_N.setText(personne.getNom());
+        Text_Field_P.setText(personne.getPrenom());
+        Text_Field_Email.setText(personne.getEmail());
+        Text_Field_Po.setText(personne.getPhone());
+    }
+
+
 }

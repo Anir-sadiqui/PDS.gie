@@ -116,7 +116,7 @@ public class AdvancedSearchE implements Initializable {
     public void onDelete(ActionEvent event) throws IOException {
         Entreprise selectedEntreprise = tableView_E.getSelectionModel().getSelectedItem();
         if (selectedEntreprise != null) {
-            e.deleteEntreprise(Math.toIntExact(selectedEntreprise.getId()));
+            e.deleteEntreprise((long) Math.toIntExact(selectedEntreprise.getId()));
             tableView_E.getItems().remove(selectedEntreprise);
             showAlert("Suppression reussie");
         }

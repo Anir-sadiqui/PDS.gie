@@ -6,22 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
 import org.giefront.Service.FournisseurEntroService;
-import org.giefront.Service.FournisseurPersoService;
 import org.giefront.TestFront;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FourniseurEntoContro {
@@ -40,111 +36,176 @@ public class FourniseurEntoContro {
 
     }
 
-    public void switchToFornPerso(ActionEvent event) throws IOException {
-
-        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurEntro.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
-        scene = new Scene(fxmlLoader.load()) ;
+    public void addFournisseur(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/entreprise.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+//
+//    public void switchToFornPerso(ActionEvent event) throws IOException {
+//
+//        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurEntro.fxml"));
+//        stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
+//        scene = new Scene(fxmlLoader.load()) ;
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-    @FXML
-    private TextField villeE ;
 
     @FXML
-    private TextField quartierE ;
+    private TextField formeJuridique, raisonSocial, phone, email, ville, quartier, num;
 
     @FXML
-    private TextField numE ;
+    private Button address;
 
     @FXML
-    private Button addressE;
-
-////////////////////////////////////////////////////////////////////////////////////
-@FXML
-private TableView<Entreprise> fournisseurTable;
+    private TableView<Entreprise> fournisseurTable;
 
     @FXML
-    private TableColumn<Entreprise, Long> colId = new TableColumn<>("ID");
-
-
-    @FXML
-    private TableColumn<Entreprise, String> colNom = new TableColumn<>("NOM") ;
+    private TableColumn<Entreprise, Void> colEdit, colDelete;
 
     @FXML
-    private TableColumn<Entreprise, String> colPrenom = new TableColumn<>("PRENOM");
+    private TableColumn<Entreprise, Long> colId;
 
     @FXML
-    private TableColumn<Entreprise, String> colPhone = new TableColumn<>("PHONE");
+    private TableColumn<Entreprise, String> colFormJ, colRaisonS, colPhone, colEmail;
 
-    @FXML
-    private TableColumn<Entreprise, String> colEmail = new TableColumn<>("EMAIL");
+    private FournisseurEntroService fournisseurService;
+    private Entreprise selectedFournisseur;
 
-    private FournisseurEntroService fournisseurService = new FournisseurEntroService();
+    private final Button editButton = new Button("Edit");
+    private final Button deleteButton = new Button("Delete");
 
     public FourniseurEntoContro() {
-        this.fournisseurService = new FournisseurEntroService() ;
+        this.fournisseurService = new FournisseurEntroService();
     }
 
     @FXML
     public void initialize() {
-        // Initialize the TableColumn properties
+        setupTableColumns();
+        fetchFournisseurs(null);
+        setupRowSelection();
+    }
+
+    private void setupTableColumns() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colFormJ.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+        colRaisonS.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        fournisseurTable.getColumns().setAll(colId, colNom, colPrenom, colPhone, colEmail);
+        colEdit.setCellFactory(param -> new FourniseurEntoContro.EditButtonCell());
+        colDelete.setCellFactory(param -> new FourniseurEntoContro.DeleteButtonCell());
 
-        List<Entreprise> list = new ArrayList<>() ;
-        list.add(new Entreprise() );
-        fournisseurTable.setItems(FXCollections.observableArrayList(list));
+        fournisseurTable.getColumns().setAll(colId, colFormJ, colRaisonS, colPhone, colEmail, colEdit, colDelete);
+
+        // Initially hide the Edit and Delete buttons
+        colEdit.setVisible(false);
+        colDelete.setVisible(false);
     }
 
+    private void setupRowSelection() {
+        fournisseurTable.setRowFactory(tv -> {
+            TableRow<Entreprise> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getClickCount() == 1) {
+                    Entreprise clickedRow = row.getItem();
+                    showFournisseurDetails(clickedRow);
+                }
+            });
+            return row;
+        });
+    }
 
-    @FXML
+    private void showFournisseurDetails(Entreprise fournisseur) {
+        selectedFournisseur = fournisseur;
+        colEdit.setVisible(true);
+        colDelete.setVisible(true);
+    }
+
     public List<Entreprise> fetchFournisseurs(ActionEvent event) {
-
-        TableColumn<Entreprise , Long> colId = new TableColumn<>("ID") ;
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        TableColumn<Entreprise , Long> colNom = new TableColumn<>("NOM") ;
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Entreprise , Long> colPrenom = new TableColumn<>("PRENOM") ;
-        colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-
-        TableColumn<Entreprise , Long> colPhone = new TableColumn<>("PHONE") ;
-        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-
-        TableColumn<Entreprise , Long> colEmail = new TableColumn<>("EMAIL") ;
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-
-        fournisseurTable.getColumns().setAll(colId , colNom , colPrenom , colPhone , colEmail) ;
-
-
-
-        // Fetch data from the service
         List<Entreprise> fournisseurs = fournisseurService.getAll(ContactType.FOURNISSEUR);
-
-        // Create an ObservableList to set to the TableView
         ObservableList<Entreprise> fournisseurList = FXCollections.observableArrayList(fournisseurs);
-
-        // Set the data to the TableView
         fournisseurTable.setItems(fournisseurList);
-        return fournisseurList;
+        return fournisseurs;
     }
 
+    private class EditButtonCell extends TableCell<Entreprise, Void> {
+        private final Button editButton = new Button("Edit");
 
 
-    // Method to show address fields when "Address" button is clicked
+        public EditButtonCell() {
+            editButton.setOnAction(event -> {
+                Entreprise fournisseur = getTableView().getItems().get(getIndex());
+                editFournisseur(fournisseur);
+                setGraphic(editButton);
+            });
+
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            setGraphic(empty ? null : editButton);
+        }
+    }
+
+    private class DeleteButtonCell extends TableCell<Entreprise, Void> {
+        private final Button deleteButton = new Button("Delete");
+
+        public DeleteButtonCell() {
+            deleteButton.setOnAction(event -> {
+                Entreprise fournisseur = getTableView().getItems().get(getIndex());
+                deleteFournisseur(fournisseur);
+            });
+            setGraphic(deleteButton);
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            setGraphic(empty ? null : deleteButton);
+        }
+    }
+
+    private void editFournisseur(Entreprise fournisseur) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/giefront/EntrepriseModification.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller for PersonneModification.fxml
+            EntrepriseModifController modificationController = loader.getController();
+
+            // Pass the selected Personne data to the modification controller
+            modificationController.setEntroprise(fournisseur);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteFournisseur(Entreprise fournisseur) {
+        System.out.println("Deleting fournisseur: " + fournisseur.getRaisonSocial());
+        try {
+            fournisseurService.deleteEntro(fournisseur.getId()); // Assuming getId() returns the ID of the fournisseur
+            fetchFournisseurs(null); // Refresh the table after deletion
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
     @FXML
     private void showAddressFields() {
-        quartierE.setVisible(true);
-        villeE.setVisible(true);
-        numE.setVisible(true);
+        quartier.setVisible(true);
+        ville.setVisible(true);
+        num.setVisible(true);
     }
 
 

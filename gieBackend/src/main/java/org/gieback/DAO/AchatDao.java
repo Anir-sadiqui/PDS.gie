@@ -64,7 +64,7 @@ public class AchatDao implements IAchatDao {
 
     @Override
     public void modifier(String id, Map<String, Integer> attributs) {
-        entityManager.getTransaction().begin();
+        /*entityManager.getTransaction().begin();
         Achat p = entityManager.find(Achat.class, id);
         if (p != null) {
             for (Map.Entry<String, Integer> entry : attributs.entrySet()) {
@@ -85,7 +85,7 @@ public class AchatDao implements IAchatDao {
         }
         else { System.out.println("id incorrect");}
         entityManager.getTransaction().commit();
-
+*/
 
     }
     @Override
