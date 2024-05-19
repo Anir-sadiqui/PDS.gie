@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="792.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.AchatController">
+<Pane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="649.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.AchatController">
    <children>
-      <Button fx:id="show" layoutX="493.0" layoutY="222.0" mnemonicParsing="false" onAction="#onshow" prefHeight="32.0" prefWidth="123.0" text="Afficher achat(s)" />
-      <ChoiceBox fx:id="CB" layoutX="668.0" layoutY="148.0" prefHeight="25.0" prefWidth="115.0" />
-      <Text layoutX="672.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer par fornisseur" />
+      <Button fx:id="show" layoutX="283.0" layoutY="209.0" mnemonicParsing="false" onAction="#onshow" prefHeight="32.0" prefWidth="123.0" text="Afficher achat(s)" />
+      <ChoiceBox fx:id="CB" layoutX="494.0" layoutY="148.0" prefHeight="25.0" prefWidth="115.0" />
+      <Text layoutX="498.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrer par fornisseur" />
       <Button fx:id="Ajout" layoutX="258.0" layoutY="571.0" mnemonicParsing="false" onAction="#onADD" text="Ajouter achat" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c4d6dd" height="100.0" layoutX="42.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
       <Text fill="#2c2626" layoutX="81.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-background-color: red;" text="Achat">
@@ -18,11 +17,6 @@
             <Font name="System Bold Italic" size="75.0" />
          </font>
       </Text>
-      <ImageView fitHeight="107.0" fitWidth="116.0" layoutX="371.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@2157277-200.png" />
-         </image>
-      </ImageView>
       <TableView fx:id="Tab" layoutX="12.0" layoutY="254.0" prefHeight="310.0" prefWidth="339.0">
         <columns>
           <TableColumn fx:id="C_id" prefWidth="91.0" text="ID" />
@@ -32,12 +26,12 @@
       </TableView>
       <Text layoutX="35.0" layoutY="629.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Clicker seulement sur &quot;Afficher achat(s)&quot; pour afficher tous les achats." wrappingWidth="570.205078125" />
       <Text layoutX="35.0" layoutY="658.0" strokeType="OUTSIDE" strokeWidth="0.0" text="* Utiliser un des filtre puis cliquer sur &quot;Afficher achat(s)&quot; pour afficher des achats spécifiques." wrappingWidth="733.2958984375" />
-      <DatePicker fx:id="calendrier" layoutX="461.0" layoutY="148.0" />
-      <Text layoutX="478.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter par date" />
-      <Button fx:id="mod" layoutX="404.0" layoutY="550.0" mnemonicParsing="false" onAction="#onMod" prefHeight="25.0" prefWidth="87.0" text="Modifier" />
-      <Button fx:id="del" layoutX="592.0" layoutY="550.0" mnemonicParsing="false" onAction="#onDel" prefHeight="25.0" prefWidth="87.0" text="Suprimer" />
-      <TextArea fx:id="Details" layoutX="400.0" layoutY="336.0" prefHeight="206.0" prefWidth="314.0" />
-      <Button fx:id="ref" layoutX="648.0" layoutY="225.0" mnemonicParsing="false" onAction="#onRef" text="refresher" />
+      <DatePicker fx:id="calendrier" layoutX="309.0" layoutY="148.0" />
+      <Text layoutX="345.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter par date" />
+      <Button fx:id="mod" layoutX="371.0" layoutY="538.0" mnemonicParsing="false" onAction="#onMod" prefHeight="25.0" prefWidth="87.0" text="Modifier" />
+      <Button fx:id="del" layoutX="493.0" layoutY="538.0" mnemonicParsing="false" onAction="#onDel" prefHeight="25.0" prefWidth="87.0" text="Suprimer" />
+      <TextArea fx:id="Details" layoutX="363.0" layoutY="322.0" prefHeight="206.0" prefWidth="231.0" />
+      <Button fx:id="ref" layoutX="462.0" layoutY="213.0" mnemonicParsing="false" onAction="#onRef" text="refresher" />
       <Button fx:id="Retour" layoutX="29.0" layoutY="583.0" mnemonicParsing="false" onAction="#onRet" text="Retour" />
    </children>
 </Pane>

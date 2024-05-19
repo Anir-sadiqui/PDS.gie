@@ -122,7 +122,7 @@ public class DashboardController implements Initializable {
     @FXML
     public void onAchatBtnClick (ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Achat.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Commande.fxml"));
             Parent content = loader.load();
 
             // Ajoute le contenu du bouton CRM à votre interface principale
