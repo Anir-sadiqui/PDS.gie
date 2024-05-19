@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Personne;
+import org.giefront.PersonneModificationController;
 
 import java.io.IOException;
 

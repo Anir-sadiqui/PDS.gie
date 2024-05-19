@@ -18,5 +18,5 @@ public interface ICommandeDao {
     List<Commande> getAllCom();
 
 
-    List<Commande> getAllCom();
+
 }

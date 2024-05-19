@@ -177,7 +177,7 @@ public class FourniseurEntoContro {
             Parent root = loader.load();
 
             // Get the controller for PersonneModification.fxml
-            EntrepriseModifController modificationController = loader.getController();
+            org.giefront.controller.EntrepriseModifController modificationController = loader.getController();
 
             // Pass the selected Personne data to the modification controller
             modificationController.setEntroprise(fournisseur);

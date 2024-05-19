@@ -1,4 +1,4 @@
-package org.giefront.controller;
+package org.giefront;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Personne;
+import org.giefront.PersonneModificationController;
 import org.giefront.Service.FournisseurPersoService;
 import org.giefront.DTO.ContactType;
 

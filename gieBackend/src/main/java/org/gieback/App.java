@@ -98,9 +98,9 @@ public class App extends ResourceConfig {
 //        System.out.println(cs.getAllCom());
 //        cs.addComm(c);
 //        cs.deleteComm(5);
-        Achat a = new Achat();
-        AchatService as = new AchatService();
-        as.addPurchase(a);
+//        Achat a = new Achat();
+//        AchatService as = new AchatService();
+//        as.addPurchase(a);
 
 
 
