@@ -33,8 +33,8 @@ public class CommandeDao implements ICommandeDao{
     public void validerComm(int id) {
         entityManager.getTransaction().begin();
         Commande c = entityManager.find(Commande.class,id);
-        if (c.getE()== EtatCommande.En_Cours){
-            c.setE(EtatCommande.Livre);
+        if (c.getE()== EtatCommande.In_Preparation){
+            c.setE(EtatCommande.Delivered);
             entityManager.merge(c);
         }
         System.out.println("Commande deja validee");

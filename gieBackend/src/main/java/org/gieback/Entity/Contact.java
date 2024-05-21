@@ -43,7 +43,7 @@ public class Contact implements Serializable{
     @Column(name = "email")
     private String email;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "adresse_id")
     private Adresse adresse;
 
@@ -51,37 +51,7 @@ public class Contact implements Serializable{
     @Column(name = "contact_type")
     private ContactType contactType; // The new field
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
 
 
 

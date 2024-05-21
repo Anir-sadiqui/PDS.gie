@@ -16,7 +16,7 @@ public class Achat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
 
@@ -36,10 +36,11 @@ public class Achat implements Serializable {
 
     public Achat() {}
 
-    public Achat( AchatDetail details, Commande c ) {
+    public Achat( AchatDetail details, Commande c, Contact supplier ) {
         this.purchaseDate = LocalDate.now();
         this.details=details;
         this.c=c;
+        this.supplier=supplier;
     }
 
     @Override

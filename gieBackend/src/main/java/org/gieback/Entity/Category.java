@@ -1,5 +1,4 @@
 package org.gieback.Entity;
-
 public enum Category {
     ACCESSORIES,
     Laptops,
@@ -11,7 +10,7 @@ public enum Category {
     Software,
     NetworkEquipment,
     SecurityAndSurveillance,
-   Smartphones,
+    Smartphones,
     COMPUTERS,
 
 }

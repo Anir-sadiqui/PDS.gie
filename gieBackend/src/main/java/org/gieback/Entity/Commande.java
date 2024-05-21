@@ -2,12 +2,10 @@ package org.gieback.Entity;
 
 
 import jakarta.persistence.*;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,7 +31,7 @@ public class Commande implements Serializable {
     public Commande(List<Achat> achats) {
         this.achats = achats;
         this.purchaseDate = LocalDate.now();
-        this.e=EtatCommande.Initialise;
+        this.e=EtatCommande.Initialised;
     }
 
 }

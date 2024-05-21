@@ -1,9 +1,9 @@
 package org.gieback.Entity;
 
 public enum EtatCommande {
-    En_Cours,
-    Livre,
-    Initialise,
-    Anulee
+    In_Preparation,
+    Delivered,
+    Initialised,
+    Canceled
 
 }

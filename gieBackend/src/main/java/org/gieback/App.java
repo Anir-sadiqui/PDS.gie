@@ -26,11 +26,14 @@ public class App extends ResourceConfig {
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
         System.out.println("server launched Successfully ");
 
-    Product p = new Product("Iphone 11","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
-        Product phone1 = new Product("iPhone 12", "Noir 256Go", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
-        Product laptop1 = new Product("MacBook Pro 13 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
+    Product p = new Product("Iphone X","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
+        Product phone1 = new Product("apple watch", "Noir ", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
+        Product laptop1 = new Product("MacBook Pro 15 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
         Product mouse1 = new Product("Logitech MX Master 3", "Souris sans fil avancée", Category.ACCESSORIES, 99.99, "https://example.com/mxmaster3.jpg");
         ProductService ps = new ProductService();
+        p.setQ(17);
+        phone1.setQ(10);
+        laptop1.setQ(22);
         ps.add(phone1);
         ps.add(laptop1 );
         ps.add(mouse1);

@@ -1,7 +1,7 @@
 package org.gieback.Entity;
 
 public enum EtatStock {
-    Disponible,
-    Epuise
+    Available,
+    Out_of_Stock
 
 }

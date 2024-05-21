@@ -21,12 +21,12 @@ public class ProductDao implements IProductDao{
     @Override
     public  List<Product> isAvailable(String t) {
         List<Product> p = new ArrayList<>();
-        if (t.equals(EtatStock.Disponible.name())){
+        if (t.equals(EtatStock.Available.name())){
             String hql = "FROM Product WHERE q>0";
             Query query = entityManager.createQuery(hql);
              p = query.getResultList();
         }
-        else if (t.equals(EtatStock.Epuise.name())) {
+        else if (t.equals(EtatStock.Out_of_Stock.name())) {
             String hql = "FROM Product WHERE q=0";
             Query query = entityManager.createQuery(hql);
              p = query.getResultList();
