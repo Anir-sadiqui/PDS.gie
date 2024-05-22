@@ -13,8 +13,8 @@ public interface ICommandeDao {
     List<Commande> getComByDate(LocalDate d);
     void validerComm(int id);
     List<Commande> getByEtat (EtatCommande e);
-   void deleteComm(int id );
-   void addComm(Commande c);
+    void deleteComm(int id);
+    void addComm(Commande c);
     List<Commande> getAllCom();
 
 

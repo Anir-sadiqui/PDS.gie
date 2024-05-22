@@ -46,7 +46,8 @@ public class Achat implements Serializable {
     @Override
     public String toString() {
         return "Id: " + id + '\n' +
-                "Purchase Date: " + purchaseDate + '\n';
+                "Purchase Date: " + purchaseDate + '\n'+
+                "Details : " + "\n" + details.toString();
     }
 
 

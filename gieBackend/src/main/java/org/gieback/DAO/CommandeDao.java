@@ -37,7 +37,13 @@ public class CommandeDao implements ICommandeDao{
             c.setE(EtatCommande.Delivered);
             entityManager.merge(c);
         }
-        System.out.println("Commande deja validee");
+        else if (c.getE()== EtatCommande.Initialised) {
+            c.setE(EtatCommande.In_Preparation);
+            entityManager.merge(c);
+        }
+        else {
+            System.out.println("Commande deja validee");
+        }
         entityManager.getTransaction().commit();
     }
 
@@ -45,7 +51,7 @@ public class CommandeDao implements ICommandeDao{
     public List<Commande> getByEtat(EtatCommande e) {
         String hql = "FROM Commande c WHERE c.e = :e";
         Query query = entityManager.createQuery(hql);
-        query.setParameter("e", e.name());
+        query.setParameter("e", e);
         List<Commande> c = query.getResultList();
         return c;
     }

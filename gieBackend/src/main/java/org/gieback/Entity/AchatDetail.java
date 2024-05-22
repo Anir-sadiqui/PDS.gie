@@ -36,7 +36,8 @@ public class AchatDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "Id: " + achat + '\n' +
+        return "Product: " + achat + '\n' +
+                "Category: " + product.getCategory() + "\n"+
                 "Quantity: " + quantity + '\n' +
                 "Total Price: " + TotalPrice + '\n';
     }

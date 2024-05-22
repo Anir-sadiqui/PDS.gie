@@ -41,8 +41,8 @@ public class CommandeController {
     @GET
     @Path("/CommandeByEtat/{e}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByEtat(@PathParam("e") EtatCommande e) {
-        return cs.getByEtat(e);
+    public List<Commande> getByEtat(@PathParam("e") String e) {
+        return cs.getByEtat(EtatCommande.valueOf(e));
     }
 
     @DELETE

@@ -1,17 +1,19 @@
 package org.gieback.Service;
 import org.gieback.Entity.Achat;
 import org.gieback.Entity.AchatDetail;
+import org.gieback.Entity.Commande;
 import org.gieback.Entity.Contact;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public interface IAchatService {
-    List<Achat> getAllPurchases();
-    void addPurchase(Achat achat);
-    void deletePurchaseById(int id);
-    void modifier(String id, Map<String, Integer> attributs);
-    List<Achat> searchPurchasesByDate(Date date);
-    List<Achat> searchPurchasesById(int id);
-    List<Achat> searchPurchasesBySupplier(int idf);
+    List<Achat> getAll(Commande c);
+    void add(Achat achat);
+    void deleteById(int id);
+    void modifier(String id, Map<String, String> attributs);
+    List<Achat> chercherParDate(LocalDate date);
+    List<Achat> chercherParFournisseur(int idf);
 }
