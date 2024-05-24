@@ -6,6 +6,8 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.gieback.Entity.*;
 import org.gieback.HibernateUtility.HibernateUtil;
+import org.gieback.Service.EntrepriseService;
+import org.gieback.Service.PersonneService;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -71,12 +73,20 @@ public class AchatDao implements IAchatDao {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 switch (key) {
+                    case "Product":
+                        p.getDetails().getProduct().setDescription(value);
+                        break;
                     case "Quantite":
                         p.getDetails().setQuantity(Integer.parseInt(value));
                         p.getDetails().setTotalPrice(Integer.parseInt(value) * p.getDetails().getProduct().getPrix() );
                         break;
-                    case "Fournisseur":
-                        p.getSupplier().setId(Long.valueOf(value));
+                    case "FournisseurE":
+                        EntrepriseService es = new EntrepriseService();
+                        p.setSupplier(es.getEnterpriseById(Integer.parseInt(value)));
+                        break;
+                    case "FournisseurP":
+                        PersonneService ps = new PersonneService();
+                        p.setSupplier(ps.getPersonneById(Integer.parseInt(value)));
                         break;
 
                 }

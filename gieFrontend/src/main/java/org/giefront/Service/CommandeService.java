@@ -3,11 +3,13 @@ package org.giefront.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
+import org.giefront.DTO.Achat;
 import org.giefront.DTO.Commande;
 import org.giefront.DTO.EtatCommande;
 import org.giefront.DTO.Product;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class CommandeService {
@@ -69,6 +71,68 @@ public class CommandeService {
             throw new RuntimeException(e);
         }
     }
+    public void validerComm(int id){
+        try {
+            Request request = new Request.Builder().url("http://localhost:9998/Commande/validerComm/"+id).build();
+            Response response = okHttpClient.newCall(request).execute();
+            assert response.body() != null;
+            System.out.println(response.body().string());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public List<Commande> getByDate(LocalDate date){
+
+        Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByDate/?date="+date).build();
+        List<Commande> commandes;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            commandes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return commandes;
+    }
+
+    public List<Achat> getAllAchats(int id){
+        Request request = new Request.Builder().url("http://localhost:9998/Commande/achats/"+id).build();
+        List<Achat> achats;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            achats = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return achats;
+    }
+
+    public List<Commande> getByEtat (String e1){
+        Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByDate/?e="+e1).build();
+        List<Commande> commandes;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            commandes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return commandes;
+    }
+
+
+
 
 }
 

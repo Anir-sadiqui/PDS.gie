@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,8 +23,10 @@ public class Product implements Serializable {
     @Column(name = "category")
     private Category category;
 
+
     @Column(name = "Quantite_stock")
     private int q;
+
     @Column(name ="Prix_unitaire")
     private double prix;
 

@@ -15,11 +15,11 @@ public class AchatDetail {
 
     private double TotalPrice;
 
-    public AchatDetail(Achat achat, Product product, int quantity, double totalPrice) {
+    public AchatDetail(Achat achat, Product product, int quantity) {
         this.achat = achat;
         this.product = product;
         this.quantity = quantity;
-        TotalPrice = totalPrice;
+        this.TotalPrice = product.getPrix() * quantity;
     }
 
     public AchatDetail() {

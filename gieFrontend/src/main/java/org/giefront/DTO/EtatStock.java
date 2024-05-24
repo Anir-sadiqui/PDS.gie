@@ -1,6 +1,6 @@
 package org.giefront.DTO;
 
 public enum EtatStock {
-    Disponible,
-    Epuise
+    Available,
+    Out_of_Stock
 }

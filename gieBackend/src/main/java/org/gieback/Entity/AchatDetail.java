@@ -11,6 +11,7 @@ import java.util.List;
 public class AchatDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "purchase_id")
     private Achat achat;

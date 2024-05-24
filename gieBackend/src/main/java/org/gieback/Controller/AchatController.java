@@ -19,13 +19,13 @@ import org.gieback.Service.IAchatService;
 public class AchatController{
     IAchatService achatService = new AchatService();
 
-    @GET
-    @Path("/getAll")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    public List<Achat> getAllPurchases(Commande c ) {
-        return achatService.getAll(c);
-    }
+//    @GET
+//    @Path("/getAll")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    public List<Achat> getAllPurchases(Commande c ) {
+//        return achatService.getAll(c);
+//    }
 
     @POST
     @Path("/ajouter")

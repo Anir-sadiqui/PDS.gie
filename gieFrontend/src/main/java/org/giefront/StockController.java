@@ -193,7 +193,7 @@ public class StockController implements Initializable {
                 remplirTAb(products2);
             }
             else {
-                showMessage("Veuillez remplir un champs");
+                getAll();
             }
         }
 

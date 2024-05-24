@@ -58,7 +58,7 @@ public class Commande {
     public Commande( List<Achat> achats) {
         this.achats = achats;
         this.purchaseDate=LocalDate.now();
-        this.e=EtatCommande.Initialise;
+        this.e=EtatCommande.Initialised;
     }
     public Commande(){}
 

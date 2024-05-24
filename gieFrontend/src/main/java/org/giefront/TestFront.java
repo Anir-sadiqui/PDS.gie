@@ -5,14 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 
 public class TestFront extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         stage.initStyle(StageStyle.UNDECORATED);
-        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/Stock.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/Commande.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setHeight(600);
         stage.setWidth(900);

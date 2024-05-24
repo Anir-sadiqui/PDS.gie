@@ -39,4 +39,10 @@ public class Personne extends Contact implements Serializable {
     public Personne() {
 
     }
+
+    @Override
+    public String toString() {
+        return  nom + '\''+ prenom + '\'' ;
+
+    }
 }

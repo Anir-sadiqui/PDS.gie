@@ -39,9 +39,9 @@ public class CommandeController {
     }
 
     @GET
-    @Path("/CommandeByEtat/{e}")
+    @Path("/CommandeByEtat")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByEtat(@PathParam("e") String e) {
+    public List<Commande> getByEtat(@QueryParam("e") String e) {
         return cs.getByEtat(EtatCommande.valueOf(e));
     }
 

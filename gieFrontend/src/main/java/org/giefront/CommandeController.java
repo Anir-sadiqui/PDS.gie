@@ -55,7 +55,7 @@ public class CommandeController implements Initializable{
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
                     Commande clickedRow = row.getItem();
-                    showAction(clickedRow);
+                    showDetails(clickedRow);
                     cmd=row.getItem();
                 }
             });
@@ -63,11 +63,11 @@ public class CommandeController implements Initializable{
         });
         getAll();
         Details.setEditable(false);
-        loadEntreprises();
-        loadPersonnes();
+        loadE();
+
     }
 
-    private void showAction(Commande clickedRow) {
+    private void showDetails(Commande clickedRow) {
         for (Achat a : clickedRow.getAchats()) {
             String s = "Achat :" + " " + a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity();
 
@@ -79,38 +79,73 @@ public class CommandeController implements Initializable{
 
 
     public void onAfch(ActionEvent event) {
+        if( CB_four.getValue() != null){
+            ObservableList<Commande> commandes =FXCollections.observableList(cs.getByEtat((String) CB_four.getValue()));
+            if (Calendrier.getValue()==null){
+                remlirTab(commandes);
+            }
+            else {
+                List<Commande> commandes1 = cs.getByDate(Calendrier.getValue());
+                for (Commande c : commandes1){
+                   if(c.getE()!=CB_four.getValue()){
+                       commandes1.remove(c);
+                   }
+                }
+                remlirTab(FXCollections.observableList(commandes1));
+            }
+        }
+        else {
+            if (Calendrier.getValue()!=null){
+                ObservableList<Commande> commandes = FXCollections.observableList(cs.getByDate(Calendrier.getValue()));
+                remlirTab(commandes);
+            }
+            else {
+                getAll();
+            }
+        }
     }
 
     public void onAjout(ActionEvent event) {
         List<Achat> achats = new ArrayList<>();
         Commande c = new Commande(achats);
         cs.addCom(c);
-        showMessage("Votre commande vient d'etre initialise veuillez ajouter vos achats en modifiant votre comm");
+        showMessage("Your command has been initialised. You can add purchases by modifying it  ");
     }
 
     public void onAnnuler(ActionEvent event) throws IOException {
         Commande cmd = (Commande) Tab.getSelectionModel().getSelectedItem();
-        if (cmd.getE()== EtatCommande.Initialise || cmd.getE()== EtatCommande.En_Cours){
+        if (cmd.getE()== EtatCommande.Initialised || cmd.getE()== EtatCommande.In_Preparation){
             cs.deleteComm(Math.toIntExact(cmd.getId()));
-            showMessage("Votre comm a ete annulee");
+            showMessage("This Command has been canceled");
         }
-        else showMessage("Impossible d'annuler cette commande");
+        else showMessage("Impossible to cancel this command");
     }
 
     public void OnMod(ActionEvent event) {
         c= (Commande) Tab.getSelectionModel().getSelectedItem();
-        try {
-            FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
-            Node n = f.load();
-            mainAnchor.getChildren().setAll(n);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (c.getE()==EtatCommande.Initialised || c.getE()==EtatCommande.In_Preparation) {
+            try {
+                FXMLLoader f = new FXMLLoader();
+                f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
+                Node n = f.load();
+                mainAnchor.getChildren().setAll(n);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            showMessage("Impossible to modify this command");
         }
     }
 
     public void onVal(ActionEvent event) {
-
+        Commande c = (Commande) Tab.getSelectionModel().getSelectedItem();
+        if(c.getE()==EtatCommande.Initialised || c.getE()==EtatCommande.In_Preparation) {
+            cs.validerComm(Math.toIntExact(c.getId()));
+        }
+        else {
+            showMessage("Impossible to validate this command");
+        }
     }
 
     public void onRef(ActionEvent event) {
@@ -136,30 +171,16 @@ public class CommandeController implements Initializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private void loadEntreprises() {
-        EntrepriseService ps = new EntrepriseService();
-        List<String> personneNames = new ArrayList<>();
-        for (Entreprise p : ps.getAll()){
-            if (p.getContactType()== ContactType.FOURNISSEUR){
-                personneNames.add(p.getRaisonSocial() );
-                int id = Math.toIntExact(p.getId());
-            }
+    private void loadE() {
+        List<String> e = new ArrayList<>();
+        for (EtatCommande etat : EtatCommande.values()){
+            e.add(etat.name());
         }
-        CB_four.getItems().addAll(personneNames);
+        CB_four.getItems().addAll(e);
 
     }
 
 
-    private void loadPersonnes() {
-        PersonneService ps = new PersonneService();
-        List<String> personneNames = new ArrayList<>();
-        for (Personne p : ps.getAll()){
-            if (p.getContactType()== ContactType.FOURNISSEUR){
-                personneNames.add(p.getNom() + " " + p.getPrenom());
-                int id = Math.toIntExact(p.getId());
-            }
-        }
-        CB_four.getItems().addAll(personneNames);
-    }
+
 }
 

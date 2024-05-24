@@ -13,7 +13,7 @@ public class Achat {
     private LocalDate purchaseDate;
 
 
-    private String supplier;
+    private Contact supplier;
 
 
     private AchatDetail details ;
@@ -24,10 +24,11 @@ public class Achat {
     public Achat(){}
 
 
-    public Achat( AchatDetail details, Commande c) {
+    public Achat( AchatDetail details, Commande c, Contact supplier ) {
         this.purchaseDate = LocalDate.now();
-        this.details = details;
-        this.c = c;
+        this.details=details;
+        this.c=c;
+        this.supplier=supplier;
     }
 
     public Long getId() {
@@ -46,11 +47,12 @@ public class Achat {
         this.purchaseDate = purchaseDate;
     }
 
-    public String getSupplier() {
+
+    public Contact getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(String supplier) {
+    public void setSupplier(Contact supplier) {
         this.supplier = supplier;
     }
 

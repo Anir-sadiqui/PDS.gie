@@ -67,6 +67,11 @@ public class Entreprise  extends Contact implements Serializable {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return  raisonSocial ;
+    }
+
     public Entreprise() {
 
     }

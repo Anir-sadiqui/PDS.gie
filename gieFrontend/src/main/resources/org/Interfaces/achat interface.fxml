@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="649.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.AchatController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="649.0" style="-fx-background-color: Lavender;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.AchatController">
    <children>
       <Button fx:id="show" layoutX="283.0" layoutY="209.0" mnemonicParsing="false" onAction="#onshow" prefHeight="32.0" prefWidth="123.0" text="Afficher achat(s)" />
       <ChoiceBox fx:id="CB" layoutX="494.0" layoutY="148.0" prefHeight="25.0" prefWidth="115.0" />
@@ -34,4 +34,4 @@
       <Button fx:id="ref" layoutX="462.0" layoutY="213.0" mnemonicParsing="false" onAction="#onRef" text="refresher" />
       <Button fx:id="Retour" layoutX="29.0" layoutY="583.0" mnemonicParsing="false" onAction="#onRet" text="Retour" />
    </children>
-</Pane>
+</AnchorPane>

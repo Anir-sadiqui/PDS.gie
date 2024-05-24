@@ -57,18 +57,27 @@ public class CommandeDao implements ICommandeDao{
     }
     @Override
     public void deleteComm(int id) {
-        String hql = "delete from Commande where id =:id";
-        try {
-            entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery(hql);
-            query.setParameter("id", id);
-            query.executeUpdate();
-            entityManager.getTransaction().commit();
-
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            System.out.println(e);
+//        String hql = "delete from Commande where id =:id";
+//        try {
+//            entityManager.getTransaction().begin();
+//            Query query = entityManager.createQuery(hql);
+//            query.setParameter("id", id);
+//            query.executeUpdate();
+//            entityManager.getTransaction().commit();
+//
+//        } catch (Exception e) {
+//            entityManager.getTransaction().rollback();
+//            System.out.println(e);
+//        }
+        entityManager.getTransaction().begin();
+        Commande c = entityManager.find(Commande.class,id);
+        if (c != null){
+            c.setE(EtatCommande.Canceled);
+            entityManager.merge(c);
+        } else {
+            System.out.println("id incorrect");
         }
+        entityManager.getTransaction().commit();
     }
 
     @Override
