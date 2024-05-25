@@ -71,17 +71,30 @@ public class CommandeService {
             throw new RuntimeException(e);
         }
     }
-    public void validerComm(int id){
-        try {
-            Request request = new Request.Builder().url("http://localhost:9998/Commande/validerComm/"+id).build();
-            Response response = okHttpClient.newCall(request).execute();
-            assert response.body() != null;
-            System.out.println(response.body().string());
+    public void validerComm(int id) throws IOException {
+        // Définir le corps de la requête, ici on utilise un corps vide
+        RequestBody requestBody = RequestBody.create(new byte[0]);
+
+        Request request = new Request.Builder()
+                .url("http://localhost:9998/Commande/validerComm/" + id)
+                .patch(requestBody)
+                .build();
+
+        System.out.println("Sending request to: " + request.url());
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            System.out.println("Received response: " + response);
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Request failed: " + e.getMessage());
+            throw e;
         }
 
+
     }
+
     public List<Commande> getByDate(LocalDate date){
 
         Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByDate/?date="+date).build();

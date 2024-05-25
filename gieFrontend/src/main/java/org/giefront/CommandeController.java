@@ -138,15 +138,17 @@ public class CommandeController implements Initializable{
         }
     }
 
-    public void onVal(ActionEvent event) {
+    public void onVal(ActionEvent event)  throws IOException {
         Commande c = (Commande) Tab.getSelectionModel().getSelectedItem();
-        if(c.getE()==EtatCommande.Initialised || c.getE()==EtatCommande.In_Preparation) {
+        if(c.getE().equals(EtatCommande.Initialised) || c.getE().equals(EtatCommande.In_Preparation)) {
             cs.validerComm(Math.toIntExact(c.getId()));
+            showMessage("The command has been validated");
         }
-        else {
+        else  {
             showMessage("Impossible to validate this command");
         }
     }
+
 
     public void onRef(ActionEvent event) {
         getAll();
