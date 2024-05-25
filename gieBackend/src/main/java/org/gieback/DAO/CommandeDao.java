@@ -36,6 +36,13 @@ public class CommandeDao implements ICommandeDao{
         if (c.getE()== EtatCommande.In_Preparation){
             c.setE(EtatCommande.Delivered);
             entityManager.merge(c);
+            if (c.getAchats() != null) {
+                for (Achat a : c.getAchats()) {
+                    int quant = a.getDetails().getProduct().getQ() + a.getDetails().getQuantity();
+                    a.getDetails().getProduct().setQ(quant);
+                    entityManager.merge(a.getDetails().getProduct());
+                }
+            }
         }
         else if (c.getE()== EtatCommande.Initialised) {
             c.setE(EtatCommande.In_Preparation);
@@ -48,9 +55,10 @@ public class CommandeDao implements ICommandeDao{
     }
 
     @Override
-    public List<Commande> getByEtat(EtatCommande e) {
+    public List<Commande> getByEtat(String e1) {
         String hql = "FROM Commande c WHERE c.e = :e";
         Query query = entityManager.createQuery(hql);
+        EtatCommande e = EtatCommande.valueOf(e1);
         query.setParameter("e", e);
         List<Commande> c = query.getResultList();
         return c;

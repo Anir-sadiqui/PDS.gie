@@ -129,7 +129,7 @@ public class CommandeService {
     }
 
     public List<Commande> getByEtat (String e1){
-        Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByDate/?e="+e1).build();
+        Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByEtat/"+e1).build();
         List<Commande> commandes;
         try {
             Response response = okHttpClient.newCall(request).execute();

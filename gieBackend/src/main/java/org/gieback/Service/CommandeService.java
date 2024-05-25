@@ -29,7 +29,7 @@ public class CommandeService implements ICommandeService{
     }
 
     @Override
-    public List<Commande> getByEtat(EtatCommande e) {
+    public List<Commande> getByEtat(String e) {
         return cdao.getByEtat(e);
     }
 

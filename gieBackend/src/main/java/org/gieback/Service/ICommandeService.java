@@ -12,7 +12,7 @@ public interface ICommandeService {
     List<Achat> getAllachats(int id);
     List<Commande> getComByDate(LocalDate d);
     void validerComm(int id);
-    List<Commande> getByEtat (EtatCommande e);
+    List<Commande> getByEtat (String e);
     void deleteComm(int id );
     void addComm(Commande c);
     List<Commande> getAllCom();

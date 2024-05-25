@@ -86,12 +86,13 @@ public class CommandeController implements Initializable{
             }
             else {
                 List<Commande> commandes1 = cs.getByDate(Calendrier.getValue());
+                List<Commande> commandes2 = new ArrayList<>();
                 for (Commande c : commandes1){
-                   if(c.getE()!=CB_four.getValue()){
-                       commandes1.remove(c);
+                   if(c.getE().name()==CB_four.getValue()){
+                       commandes2.add(c);
                    }
                 }
-                remlirTab(FXCollections.observableList(commandes1));
+                remlirTab(FXCollections.observableList(commandes2));
             }
         }
         else {
