@@ -1,4 +1,4 @@
-package org.giefront;
+package org.giefront.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
-import org.giefront.DTO.Personne;
 import org.giefront.Service.FournisseurEntroService;
 import org.giefront.TestFront;
 
@@ -28,7 +27,7 @@ public class FourniseurEntoContro {
 
     public void switchToFornEntro(ActionEvent event) throws IOException {
 
-        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/fournisseurPerso.fxml"));
+        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurPerso.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
         scene = new Scene(fxmlLoader.load()) ;
         stage.setScene(scene);
@@ -37,7 +36,7 @@ public class FourniseurEntoContro {
     }
 
     public void addFournisseur(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/entreprise.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/giefront/entreprise.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -45,6 +44,14 @@ public class FourniseurEntoContro {
     }
 
 
+//    public void switchToFornPerso(ActionEvent event) throws IOException {
+//
+//        fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/giefront/fournisseurEntro.fxml"));
+//        stage = (Stage) ((Node)event.getSource()).getScene().getWindow() ;
+//        scene = new Scene(fxmlLoader.load()) ;
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @FXML
@@ -89,8 +96,8 @@ public class FourniseurEntoContro {
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        colEdit.setCellFactory(param -> new EditButtonCell());
-        colDelete.setCellFactory(param -> new DeleteButtonCell());
+        colEdit.setCellFactory(param -> new FourniseurEntoContro.EditButtonCell());
+        colDelete.setCellFactory(param -> new FourniseurEntoContro.DeleteButtonCell());
 
         fournisseurTable.getColumns().setAll(colId, colFormJ, colRaisonS, colPhone, colEmail, colEdit, colDelete);
 
@@ -124,16 +131,6 @@ public class FourniseurEntoContro {
         fournisseurTable.setItems(fournisseurList);
         return fournisseurs;
     }
-
-    public void OnReturnAction(ActionEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 
     private class EditButtonCell extends TableCell<Entreprise, Void> {
         private final Button editButton = new Button("Edit");
@@ -174,23 +171,8 @@ public class FourniseurEntoContro {
     }
 
     private void editFournisseur(Entreprise fournisseur) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/EntrepriseModification.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller for PersonneModification.fxml
-            EntrepriseModifController modificationController = loader.getController();
-
-            // Pass the selected Personne data to the modification controller
-            modificationController.setEntroprise(fournisseur);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Editing fournisseur: " + fournisseur.getRaisonSocial());
+        // Load the fournisseur data into the input fields and enable editing
     }
 
     private void deleteFournisseur(Entreprise fournisseur) {

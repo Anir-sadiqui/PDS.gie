@@ -1,5 +1,4 @@
 package org.giefront;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.Entreprise;
-import org.giefront.DTO.Personne;
+import org.giefront.controller.EntropriseModificationController;
 
 import java.io.IOException;
 
@@ -19,7 +18,7 @@ public class EditDeleteCellEnt extends TableCell<Entreprise, Void> {
 
     @FXML
     private TableView<Entreprise> fournisseurTable;
-
+//    private TableView<Entreprise> ContactTable;
     private final Button editButton = new Button("Edit");
     private final Button deleteButton = new Button("Delete");
 
@@ -54,7 +53,7 @@ public class EditDeleteCellEnt extends TableCell<Entreprise, Void> {
             Parent root = fxmlLoader.load();
 
             // Get the controller and pass the data
-            EntrepriseModifController modificationController = fxmlLoader.getController();
+            EntropriseModificationController modificationController = fxmlLoader.getController();
             modificationController.setEntroprise(entreprise);
 
             stage = (Stage) fournisseurTable.getScene().getWindow();
@@ -79,4 +78,7 @@ public class EditDeleteCellEnt extends TableCell<Entreprise, Void> {
             setGraphic(pane);
         }
     }
+
+
+
 }

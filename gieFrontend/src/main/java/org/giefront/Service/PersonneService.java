@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PersonneService implements IService{
+public class PersonneService {
     private OkHttpClient okHttpClient = new OkHttpClient();
-     ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper();
 
-    @Override
-    public List<Personne> getAll() {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/getAll").build();
+
+    public List<Personne> getAll(ContactType t) {
+        Request request = new Request.Builder().url("http://localhost:9998/personne/GetByType/"+t).build();
         List<Personne> personnes;
         try {
             Response response = okHttpClient.newCall(request).execute();
@@ -34,47 +34,20 @@ public class PersonneService implements IService{
         }
         return personnes;
     }
-//    public void add(Personne p){
-//        try {
-//            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(p));
-//
-//            Request request = new Request.Builder().url("http://localhost:9998/personne/add").post(requestBody).build();
-//            Call call = okHttpClient.newCall(request);
-//            Response response = call.execute();
-//            System.out.println(response.code());
-//            System.out.println(response.body().toString());
-//
-//        }catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
-    public void add(Personne p) {
+    public void add(Personne p ){
         try {
-            RequestBody requestBody = RequestBody.create(
-                    MediaType.parse("application/json"), mapper.writeValueAsString(p));
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(p));
 
-            Request request = new Request.Builder()
-                    .url("http://localhost:9998/personne/add")
-                    .post(requestBody)
-                    .build();
+            Request request = new Request.Builder().url("http://localhost:9998/personne/add").post(requestBody).build();
+            Call call = okHttpClient.newCall(request);
+            Response response = call.execute();
+            System.out.println(response.code());
+            System.out.println(response.body().toString());
 
-            try (Response response = okHttpClient.newCall(request).execute()) {
-                if (!response.isSuccessful()) {
-                    System.err.println("Failed to add person: HTTP " + response.code());
-                    if (response.body() != null) {
-                        System.err.println("Response body: " + response.body().string());
-                    }
-                } else {
-                    System.out.println("Person added successfully!");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to communicate with the server", e);
+        }catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
-
     public Personne getById (int id)  {
         Request request = new Request.Builder().url("http://localhost:9998/personne/getById/"+id).build();
         Personne personne;
@@ -217,8 +190,6 @@ public class PersonneService implements IService{
             throw new IOException("Erreur lors de l'exécution de la requête HTTP", e);
         }
     }
-
-
 
 
 }
