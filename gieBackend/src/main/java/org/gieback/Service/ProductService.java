@@ -44,7 +44,7 @@ public class ProductService implements IProductService{
     }
 
     @Override
-    public List<Product> getByName(String nom) {
+    public Product getByName(String nom) {
         return pdao.getByName(nom);
     }
 

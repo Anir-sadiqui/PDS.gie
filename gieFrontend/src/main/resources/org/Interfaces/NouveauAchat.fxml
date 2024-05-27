@@ -21,21 +21,21 @@
                 <Font size="20.0" />
             </font>
         </Button>
-        <RadioButton fx:id="EntrepriseRadioButton" layoutX="55.0" layoutY="184.0" mnemonicParsing="false"  text="Entreprise">
+        <RadioButton fx:id="EntrepriseRadioButton" layoutX="55.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadE" text="Entreprise">
             <toggleGroup>
                 <ToggleGroup fx:id="Type" />
             </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="PersonneRadioButton" layoutX="196.0" layoutY="184.0" mnemonicParsing="false"  prefHeight="18.0" prefWidth="100.0" text="Personne" toggleGroup="$Type" />
-        <ComboBox fx:id="FournisseurComboBox" layoutX="55.0" layoutY="236.0"  prefHeight="40.0" prefWidth="220.0" promptText="Fournisseur" />
+        <RadioButton fx:id="PersonneRadioButton" layoutX="196.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadP" prefHeight="18.0" prefWidth="100.0" text="Personne" toggleGroup="$Type" />
+        <ComboBox fx:id="FournisseurComboBox" layoutX="55.0" layoutY="236.0" prefHeight="40.0" prefWidth="220.0" promptText="Fournisseur" />
 
         <Label layoutX="40.0" layoutY="426.0" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: orange;" text="  Quantite" textFill="#171717">
             <font>
                 <Font size="19.0" />
             </font>
         </Label>
-        <TextField fx:id="txtQuantite" layoutX="205.0" layoutY="468.0"  prefHeight="34.0" prefWidth="211.0" />
-        <ComboBox fx:id="CategorieComboBox" layoutX="203.0" layoutY="346.0"  prefHeight="40.0" prefWidth="211.0" promptText="          Categorie" />
+        <TextField fx:id="txtQuantite" layoutX="205.0" layoutY="468.0" prefHeight="34.0" prefWidth="211.0" />
+        <ComboBox fx:id="CategorieComboBox" layoutX="203.0" layoutY="346.0" onAction="#nameP" prefHeight="40.0" prefWidth="211.0" promptText="          Categorie" />
         <Label layoutX="40.0" layoutY="305.0" prefHeight="34.0" prefWidth="121.0" style="-fx-background-color: orange;" text="   Product" textFill="#171717">
             <font>
                 <Font size="19.0" />
@@ -46,12 +46,6 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="662.0" layoutY="296.0" prefHeight="34.0" prefWidth="140.0" style="-fx-background-color: orange;" text="Description" textAlignment="CENTER" textFill="#171717">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0" onAction="#nameP" prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
-      <ComboBox fx:id="CB_D" layoutX="662.0" layoutY="346.0" onAction="#Desc" prefHeight="40.0" prefWidth="211.0" promptText="Description" />
+      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0"  prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
     </children>
 </AnchorPane>

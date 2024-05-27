@@ -16,8 +16,7 @@ public class CommandeDao implements ICommandeDao{
     @Override
     public List<Achat> getAllachats(int id) {
         Commande c = entityManager.find(Commande.class,id);
-        List<Achat> a = c.getAchats();
-        return a;
+        return c.getAchats();
     }
 
     @Override

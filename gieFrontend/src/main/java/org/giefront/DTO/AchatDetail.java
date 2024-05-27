@@ -3,8 +3,9 @@ package org.giefront.DTO;
 
 
 public class AchatDetail {
+    private long id;
 
-    private Achat achat;
+
 
 
     private Product product;
@@ -15,8 +16,7 @@ public class AchatDetail {
 
     private double TotalPrice;
 
-    public AchatDetail(Achat achat, Product product, int quantity) {
-        this.achat = achat;
+    public AchatDetail( Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
         this.TotalPrice = product.getPrix() * quantity;
@@ -26,9 +26,7 @@ public class AchatDetail {
 
     }
 
-    public Achat getAchat() {
-        return achat;
-    }
+
 
     public Product getProduct() {
         return product;
@@ -42,9 +40,6 @@ public class AchatDetail {
         return TotalPrice;
     }
 
-    public void setAchat(Achat achat) {
-        this.achat = achat;
-    }
 
     public void setProduct(Product product) {
         this.product = product;
@@ -56,5 +51,14 @@ public class AchatDetail {
 
     public void setTotalPrice(double totalPrice) {
         TotalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "AchatDetail{" +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                ", TotalPrice=" + TotalPrice +
+                '}';
     }
 }

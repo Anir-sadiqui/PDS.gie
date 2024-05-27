@@ -52,7 +52,7 @@ public class ProductController {
     @GET
     @Path("/getByName/{na}")
     @Produces (MediaType.APPLICATION_JSON)
-    public List<Product> getByName(@PathParam("na")String na) {return ps.getByName(na);}
+    public Product getByName(@PathParam("na")String na) {return ps.getByName(na);}
 
 
     @GET

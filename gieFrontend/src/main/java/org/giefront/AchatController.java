@@ -55,7 +55,6 @@ public class AchatController implements Initializable {
     private ChoiceBox CB ;
     Commande c = CommandeController.c;
     AchatService as = new AchatService();
-    CommandeService cs = new CommandeService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,7 +75,7 @@ public class AchatController implements Initializable {
     }
 
     private void getAll() {
-        remlirTab(FXCollections.observableList(cs.getAllAchats(Math.toIntExact(c.getId()))));
+        remlirTab(FXCollections.observableList(as.getByComm(Math.toIntExact(c.getId()))));
 
     }
 

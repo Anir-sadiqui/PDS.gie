@@ -2,6 +2,7 @@ package org.giefront.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.*;
 import org.giefront.DTO.Achat;
 import org.giefront.DTO.Commande;
@@ -16,8 +17,12 @@ import java.util.Map;
 
 public class AchatService{
     private OkHttpClient okHttpClient = new OkHttpClient();
-     ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper();
 
+    public AchatService() {
+        this.mapper = new ObjectMapper();
+        this.mapper.registerModule(new JavaTimeModule());
+    }
     public void ajouter(Achat achat){
         try {
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(achat));
@@ -32,21 +37,7 @@ public class AchatService{
             throw new RuntimeException(e);
         }
     }
-//    public List<Achat> getAll() {
-//        Request request = new Request.Builder().url("http://localhost:9998/achat/getAll").build();
-//        List<Achat> personnes;
-//        try {
-//            Response response = okHttpClient.newCall(request).execute();
-//            if (!response.isSuccessful()) {
-//                throw new IOException(String.valueOf(response));
-//            }
-//            personnes = mapper.readValue(response.body().charStream(), new TypeReference<>() {
-//            });
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return personnes;
-//    }
+
     public void deleteById(int id){
         try {
             Request request = new Request.Builder().url("http://localhost:9998/achat/Supprimer/"+id).delete().build();
@@ -92,6 +83,22 @@ public class AchatService{
                 throw new IOException(String.valueOf(response));
             }
             p = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return p;
+    }
+
+    public List<Achat> getByComm(int idf){
+        Request request = new Request.Builder().url("http://localhost:9998/achat/getByComm/"+idf).build();
+        List<Achat> p;
+        try {
+            Response response = okHttpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new IOException(String.valueOf(response));
+            }
+            p = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+            });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

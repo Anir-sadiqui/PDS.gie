@@ -44,4 +44,9 @@ public class AchatService implements IAchatService {
     public List<Achat> chercherParFournisseur(int idf) {
         return achatDao.chercherParFournisseur(idf);
     }
+
+    @Override
+    public List<Achat> getByCommande(int idC) {
+        return achatDao.getByCommande(idC);
+    }
 }

@@ -8,10 +8,6 @@ import org.gieback.Entity.EtatStock;
 import org.gieback.Entity.Product;
 import org.gieback.HibernateUtility.HibernateUtil;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -116,11 +112,11 @@ public class ProductDao implements IProductDao{
     }
 
     @Override
-    public List<Product> getByName(String nom) {
+    public Product getByName(String nom) {
         String hql = "FROM Product p WHERE p.name = :nom";
         Query query = entityManager.createQuery(hql);
         query.setParameter("nom", nom);
-        List<Product> p = query.getResultList();
+        Product p = (Product) query.getSingleResult();
         return p;
     }
 

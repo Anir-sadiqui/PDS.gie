@@ -22,10 +22,7 @@ import org.giefront.Service.ProductService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -175,7 +172,7 @@ public class StockController implements Initializable {
 
         else if (ChoiceBox_SC.getValue() == null) {
             if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() == null){
-                ObservableList<Product> products =FXCollections.observableList(productService.getbyname(Text_Field_Search.getText()));
+                ObservableList<Product> products =FXCollections.observableList(Collections.singletonList(productService.getbyname(Text_Field_Search.getText())));
                 remplirTAb(products);
             }
             else if (!Text_Field_Search.getText().isEmpty() && ChoiceBox_PD.getValue() != null) {

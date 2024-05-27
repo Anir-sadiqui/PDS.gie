@@ -25,7 +25,7 @@ public class Achat {
 
 
     public Achat( AchatDetail details, Commande c, Contact supplier ) {
-        this.purchaseDate = LocalDate.now();
+        this.purchaseDate = c.getPurchaseDate();
         this.details=details;
         this.c=c;
         this.supplier=supplier;
@@ -70,5 +70,16 @@ public class Achat {
 
     public void setC(Commande c) {
         this.c = c;
+    }
+
+    @Override
+    public String toString() {
+        return "Achat{" +
+                "id=" + id +
+                ", purchaseDate=" + purchaseDate +
+                ", supplier=" + supplier +
+                ", details=" + details +
+                ", c=" + c +
+                '}';
     }
 }

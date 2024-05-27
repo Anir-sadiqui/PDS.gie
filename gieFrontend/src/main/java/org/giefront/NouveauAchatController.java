@@ -71,8 +71,6 @@ public class NouveauAchatController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadPersonnes();
-        loadEntreprises();
         remplirCat();
     }
 
@@ -83,23 +81,18 @@ public class NouveauAchatController implements Initializable {
         if (FournisseurComboBox.getValue() == null ||
                 CategorieComboBox.getValue() == null ||
                 txtQuantite.getText().isEmpty() ||
-                desc.getText().isEmpty() ||
-                CB_N.getValue()== null ||
-                CB_D.getValue() == null ) {
+                CB_N.getValue()== null){
             showAlert("Please fill all fields!");
             return;
         }
+//        int idP = extractID((String) CB_N.getValue());
+//        Product p = new Product();
+//        p.setCategory(Category.valueOf(CategorieComboBox.getValue()));
+//        p.setName((String) CB_N.getValue());
+//        p.setDescription((String) CB_D.getValue());
+        ProductService productService = new ProductService();
         Achat na = new Achat();
-        AchatDetail d = new AchatDetail();
-        Product p = new Product();
-        p.setCategory(Category.valueOf(CategorieComboBox.getValue()));
-        p.setName((String) CB_N.getValue());
-        p.setDescription((String) CB_D.getValue());
-        d.setProduct(p);
-        d.setAchat(AchatController.a);
-        d.setQuantity(Integer.parseInt(txtQuantite.getText()));
         na.setC(CommandeController.c);
-        na.setDetails(d);
         int id = extractID(FournisseurComboBox.getValue());
         if (EntrepriseRadioButton.isSelected()){
             EntrepriseService es = new EntrepriseService();
@@ -109,7 +102,14 @@ public class NouveauAchatController implements Initializable {
             PersonneService es = new PersonneService();
             na.setSupplier(es.getById(id));
         }
+        AchatDetail d = new AchatDetail();
+        d.setProduct(productService.getbyname((String) CB_N.getValue()));
+//        d.setAchat(na);
+        d.setQuantity(Integer.parseInt(txtQuantite.getText()));
+        na.setDetails(d);
         as.ajouter(na);
+        System.out.println(na.getDetails());
+        System.out.println(na);
 
 
     }
@@ -122,10 +122,18 @@ public class NouveauAchatController implements Initializable {
         alert.showAndWait();
     }
     public int extractID(String text) {
+        if (text == null || text.isEmpty()) {
+            throw new IllegalArgumentException("Input text is null or empty.");
+        }
+
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(text);
 
-        return Integer.parseInt(matcher.group());
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        } else {
+            throw new IllegalArgumentException("No numeric value found in the input text: " + text);
+        }
     }
 
 
@@ -137,7 +145,7 @@ public class NouveauAchatController implements Initializable {
         List<String> personneNames = new ArrayList<>();
         for (Entreprise p : ps.getAll()){
             if (p.getContactType()== ContactType.FOURNISSEUR){
-                personneNames.add(p.getRaisonSocial() + " (" +p.getId()+")");
+                personneNames.add(p.getRaisonSocial() + " " +p.getId());
             }
         }
         if (EntrepriseRadioButton.isSelected()) {
@@ -152,7 +160,7 @@ public class NouveauAchatController implements Initializable {
         List<String> personneNames = new ArrayList<>();
        for (Personne p : ps.getAll()){
            if (p.getContactType()== ContactType.FOURNISSEUR){
-               personneNames.add(p.getNom() + " " + p.getPrenom() + " (" +p.getId()+")" );
+               personneNames.add(p.getNom() + " " + p.getPrenom() + " " +p.getId() );
            }
        }
        if (PersonneRadioButton.isSelected()) {
@@ -165,19 +173,25 @@ public class NouveauAchatController implements Initializable {
             CategorieComboBox.getItems().add(cat.name());
         }
     }
+//    public String extractStrings(String input) {
+//        if (input == null) {
+//            return "";
+//        }
+//        // Utiliser une expression régulière pour garder uniquement les lettres
+//        return input.replaceAll("[^a-zA-Z]", "");
+//    }
 
 
 
-
-    public void Desc(ActionEvent event) {
-        String p = (String) CB_N.getValue();
-        if (p != null) {
-            ProductService ps = new ProductService();
-            for (Product prod : ps.getbyname(p)){
-                CB_D.getItems().add(prod.getDescription());
-            }
-        }
-    }
+//    public void Desc(ActionEvent event) {
+//        String p =  extractStrings((String) CB_N.getValue());
+//        if (p != null) {
+//            ProductService ps = new ProductService();
+//            for (Product prod : ps.getbyname(p)){
+//                CB_D.getItems().add(prod.getDescription());
+//            }
+//        }
+//    }
 
     public void Back(ActionEvent event) {
         try {
@@ -196,8 +210,18 @@ public class NouveauAchatController implements Initializable {
         if (cat != null){
             ProductService ps = new ProductService();
             for (Product p : ps.getbyCat(cat)){
-                CB_N.getItems().add(p.getName());
+                CB_N.getItems().add(p.getName() );
             }
         }
+    }
+
+    public void loadP(ActionEvent event) {
+        FournisseurComboBox.getItems().removeAll(FournisseurComboBox.getItems());
+        loadPersonnes();
+    }
+
+    public void loadE(ActionEvent event) {
+        FournisseurComboBox.getItems().removeAll(FournisseurComboBox.getItems());
+        loadEntreprises();
     }
 }

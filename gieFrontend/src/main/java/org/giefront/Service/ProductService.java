@@ -87,9 +87,9 @@ public class ProductService   {
                 }
         }
 
-        public List<Product> getbyname(String name) {
+        public Product getbyname(String name) {
             Request request = new Request.Builder().url("http://localhost:9998/Product/getByName/"+name).build();
-            List<Product> p;
+            Product p;
             try (Response response = okHttpClient.newCall(request).execute()) {
                 if (!response.isSuccessful()) {
                     throw new IOException(String.valueOf(response));

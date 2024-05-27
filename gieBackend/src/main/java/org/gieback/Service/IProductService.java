@@ -14,6 +14,6 @@ public interface  IProductService {
     List<Product> getbyCat(String cat);
     List<Product> getAllProd();
     void deleteProduct(int id);
-    List<Product> getByName (String nom);
+    Product getByName (String nom);
 
 }

@@ -62,5 +62,13 @@ public class Commande {
     }
     public Commande(){}
 
-
+    @Override
+    public String toString() {
+        return "Commande{" +
+                "id=" + id +
+                ", achats=" + achats +
+                ", purchaseDate=" + purchaseDate +
+                ", e=" + e +
+                '}';
+    }
 }

@@ -1,7 +1,5 @@
 package org.gieback.DAO;
 
-import org.gieback.Entity.Category;
-import org.gieback.Entity.EtatStock;
 import org.gieback.Entity.Product;
 
 import java.util.List;
@@ -14,7 +12,7 @@ public interface IProductDao {
      List<Product> getbyCat(String cat);
      List<Product> getAllProd();
      void deleteProduct(int id);
-     List<Product> getByName (String nom);
+     Product getByName (String nom);
 
 
 

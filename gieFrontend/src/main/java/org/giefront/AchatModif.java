@@ -45,7 +45,7 @@ public class AchatModif implements Initializable {
         loadEntreprises();
         loadPersonnes();
         initTypeF();
-        desc();
+//        desc();
     }
 
     public int extractID(String text) {
@@ -116,14 +116,5 @@ public class AchatModif implements Initializable {
         }
     }
 
-    public void desc() {
-        String p =  Text_Field_N.getText();
-        if (p != null) {
-            ProductService ps = new ProductService();
-            for (Product prod : ps.getbyname(p)){
-                CB_D.getItems().add(prod.getDescription());
-            }
-        }
-    }
 
 }

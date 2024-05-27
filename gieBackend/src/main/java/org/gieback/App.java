@@ -26,7 +26,7 @@ public class App extends ResourceConfig {
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
         System.out.println("server launched Successfully ");
 
-//    Product p = new Product("Iphone X","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
+//        Product p = new Product("Iphone X","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
 //        Product phone1 = new Product("apple watch", "Noir ", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
 //        Product laptop1 = new Product("MacBook Pro 15 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
 //        Product mouse1 = new Product("Logitech MX Master 3", "Souris sans fil avancée", Category.ACCESSORIES, 99.99, "https://example.com/mxmaster3.jpg");
@@ -38,12 +38,12 @@ public class App extends ResourceConfig {
 //        ps.add(laptop1 );
 //        ps.add(mouse1);
 //        ps.add(p);
-//      Adresse adresse1 = new Adresse();
-//      adresse1.setQuartier("123 Avenue Allal ELfassi");
-//      adresse1.setVille("Rabat");
+//       Adresse adresse1 = new Adresse();
+//       adresse1.setQuartier("123 Avenue Allal ELfassi");
+//       adresse1.setVille("Rabat");
 //       adresse1.setNumero("N1");
 
-//        Adresse adresse2 = new Adresse();
+//       Adresse adresse2 = new Adresse();
 //       adresse2.setQuartier("456 Avenue Agdal");
 //       adresse2.setVille("Rabat");
 //       adresse2.setNumero("N2");
@@ -53,16 +53,16 @@ public class App extends ResourceConfig {
         adresse3.setQuartier("123 Rue de la Paix");
         adresse3.setVille("Paris");
         adresse3.setNumero("N1");
-//
+
 //
 //        Adresse adresse4 = new Adresse();
 //        adresse1.setQuartier("123 Avenue france");
 //        adresse1.setVille("Paris");
 //        adresse1.setNumero("N2");
 //
-//       Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse2,"Entreprise 1","Apple", ContactType.FOURNISSEUR);
-        Personne p1 = new Personne("1234567890", "entreprise1@gmail.com",adresse3,"Ayoub","mah", ContactType.FOURNISSEUR);
-        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse3,"Entreprise 2","SA");
+//        Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse2,"Entreprise 1","Apple", ContactType.FOURNISSEUR);
+//        Personne p1 = new Personne("1234567890", "entreprise1@gmail.com",adresse3,"Ayoub","mah", ContactType.FOURNISSEUR);
+//        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse3,"Entreprise 2","SA");
 
 //
 //        EntrepriseService entrepriseService = new EntrepriseService();
@@ -83,12 +83,12 @@ public class App extends ResourceConfig {
 //        p.addPersonne(personne2);
 //        e.addEnterprise(entreprise1);
 //
-//       Map<String, String> attributs = new HashMap<>();
+//        Map<String, String> attributs = new HashMap<>();
 //        attributs.put("Nom","Said");
-//       attributs.put("email","said@gmail.com");
+//        attributs.put("email","said@gmail.com");
 //        p.modifier("103",attributs);
 //        p.modifier("2",attributs);
-//       a.addAdresse(adresse1);
+//        a.addAdresse(adresse1);
 //        a.modifierAdresse(2,attributs);
 //        System.out.println(a.sortByVille("desc"));
 //        System.out.println(entreprise2);
@@ -96,11 +96,11 @@ public class App extends ResourceConfig {
 //        EntrepriseService e = new EntrepriseService();
 //        System.out.println(e.getByEmail("anirsadiqui2@gmail.com"));
 //        e.addEnterprise(entreprise2);
-//       PersonneService fs = new PersonneService();
-//       fs.DeleteType(String.valueOf(52));
+//        PersonneService fs = new PersonneService();
+//        fs.DeleteType(String.valueOf(52));
 //        Product p = new Product("Iphone 11","noir 256go ",Category.CATEGORY1,18900.00);
 //        ProductService ps = new ProductService();
-////        ps.add(p);
+//        ps.add(p);
 //        String c = Category.CATEGORY1.name();
 //        System.out.println( ps.isAvailable(EtatStock.Epuise.name()));
 //        List<Achat> a = new ArrayList<>();
@@ -112,11 +112,14 @@ public class App extends ResourceConfig {
 //        Achat a = new Achat();
 //        AchatService as = new AchatService();
 //        as.addPurchase(a);
-//        PersonneService ps = new PersonneService();
-//       ps.addPersonne(p1);
-//       EntrepriseService es = new EntrepriseService();
-////       es.addEnterprise(entreprise2);
+//        PersonneService pse = new PersonneService();
+//        pse.addPersonne(p1);
+//        EntrepriseService es = new EntrepriseService();
+//        es.addEnterprise(entreprise2);
 //        es.addType("2",ContactType.FOURNISSEUR);
+//        AchatService as = new AchatService();
+//        System.out.println(as.getByCommande(1));
+
 
 
 

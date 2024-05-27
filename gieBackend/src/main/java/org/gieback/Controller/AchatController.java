@@ -58,12 +58,12 @@ public class AchatController{
         return achatService.chercherParDate(localDate);
     }
 
-//    @GET
-//    @Path("/chercherParId/{id}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Achat> searchPurchasesById(@PathParam("id") int id) {
-//        return achatService.(id);
-//    }
+    @GET
+    @Path("/getByComm/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Achat> getByComm(@PathParam("id") int id) {
+        return achatService.getByCommande(id);
+    }
 
     @GET
     @Path("/chercherParFournisseur/{idf}")

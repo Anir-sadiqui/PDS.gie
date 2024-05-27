@@ -111,6 +111,7 @@ public class CommandeController implements Initializable{
         Commande c = new Commande(achats);
         cs.addCom(c);
         showMessage("Your command has been initialised. You can add purchases by modifying it  ");
+        System.out.println(c);
     }
 
     public void onAnnuler(ActionEvent event) throws IOException {
@@ -137,6 +138,7 @@ public class CommandeController implements Initializable{
         else {
             showMessage("Impossible to modify this command");
         }
+        System.out.println(c);
     }
 
     public void onVal(ActionEvent event)  throws IOException {

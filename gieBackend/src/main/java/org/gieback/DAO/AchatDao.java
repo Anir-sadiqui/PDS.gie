@@ -30,11 +30,16 @@ public class AchatDao implements IAchatDao {
     }
 
     @Override
-    public void add(Achat achat) {
+    public void add(Achat p) {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            entityManager.persist(achat);
+            System.out.println(p.getDetails());
+            if (p.getDetails() != null ) {
+                entityManager.persist(p.getDetails());
+                p.setDetails(p.getDetails());
+            }
+            entityManager.persist(p);
             entityManager.flush();
             transaction.commit();
         } catch (Exception e) {
@@ -112,6 +117,13 @@ public class AchatDao implements IAchatDao {
     public List<Achat> chercherParFournisseur(int idf) {
         Query query = entityManager.createQuery("FROM Achat a WHERE a.supplier.id = :idf", Achat.class);
         query.setParameter("idf", idf);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Achat> getByCommande(int idC) {
+        Query query = entityManager.createQuery("FROM Achat a WHERE a.c.id = :idC", Achat.class);
+        query.setParameter("idC",idC);
         return query.getResultList();
     }
 }
