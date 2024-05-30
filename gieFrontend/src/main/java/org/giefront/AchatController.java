@@ -11,15 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.giefront.DTO.*;
 import org.giefront.DTO.EtatCommande;
-import org.giefront.Service.AchatService;
-import org.giefront.Service.CommandeService;
-import org.giefront.Service.EntrepriseService;
-import org.giefront.Service.PersonneService;
+import org.giefront.Service.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,14 +28,28 @@ import java.util.ResourceBundle;
 
 public class AchatController implements Initializable {
 
+    @FXML
+    private ImageView img;
+    @FXML
+    private TextArea Details;
+    @FXML
+    private TableColumn C_f111;
+    @FXML
+    private TableColumn C_f11;
+    @FXML
+    private TableColumn C_f1;
+    @FXML
+    private ChoiceBox CB1 ;
+    @FXML
+    private ChoiceBox CB2  ;
+
     public static Achat a;
 
     @FXML
     private Pane mainAnchor;
     @FXML
     private  TableColumn C_P ;
-    @FXML
-    private TextArea Details;
+
     @FXML
     private DatePicker calendrier;
     @FXML
@@ -68,53 +81,85 @@ public class AchatController implements Initializable {
             });
             return row;
         });
-        getAll();
         Details.setEditable(false);
+        img.setVisible(false);
+        Details.setVisible(false);
+        getAll();
         loadEntreprises();
         loadPersonnes();
+        remplirCat();
+    }
+    private void showAction(Achat clickedRow) {
+        Details.setText("Produit achete :" + clickedRow.getDetails().getProduct().getName() + "\n " + "Quantite :" + clickedRow.getDetails().getQuantity() + "\n" + "Prix Achat:" + clickedRow.getDetails().getTotalPrice());
+        Details.setVisible(true);
+        img.setImage(new Image(clickedRow.getDetails().getProduct().getImagePath()));
     }
 
     private void getAll() {
-        remlirTab(FXCollections.observableList(as.getByComm(Math.toIntExact(c.getId()))));
-
+        List<Achat> achats = as.getByComm(Math.toIntExact(c.getId()));
+        remlirTab(FXCollections.observableList(achats));
     }
 
     private void remlirTab(ObservableList<Achat> achats) {
         C_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        C_date.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
         C_f.setCellValueFactory(new PropertyValueFactory<>("supplier"));
         Tab.setItems(achats);
     }
-
-    private void showAction(Achat clickedRow) {
-        Details.setText("Produit achete :" + clickedRow.getDetails().getProduct().getName() + "\n " + "Quantite :" + clickedRow.getDetails().getQuantity() + "\n" + "Prix Achat:" + clickedRow.getDetails().getTotalPrice());
-
-    }
-
-
-
-
     public void onshow(ActionEvent event) {
-        if( CB.getValue() != null){
+        if (CB.getValue() != null) {
             Contact four = (Contact) CB.getValue();
-            ObservableList<Achat> achats =FXCollections.observableList(as.chercherParFournisseur(Math.toIntExact(four.getId())));
-            if (calendrier.getValue()==null){
-                remlirTab(achats);
-            }
-            else {
-                List<Achat> achats1 = as.chercherParDate(calendrier.getValue());
-                for (Achat a : achats1){
-                    if(a.getSupplier()!=four){
-                        achats1.remove(a);
+            ObservableList<Achat> achats = FXCollections.observableList(as.getByComm(Math.toIntExact(c.getId())));
+            if (CB1.getValue() == null) {
+                List<Achat> achats1 = new ArrayList<>();
+                for (Achat a : achats) {
+                    if (a.getSupplier().equals(four)) {
+                        achats1.add(a);
                     }
                 }
                 remlirTab(FXCollections.observableList(achats1));
             }
+            else {
+                if (CB2.getValue() == null) {
+                    List<Achat> achats1 = new ArrayList<>();
+                    for (Achat a : achats) {
+                        if (a.getDetails().getProduct().getCategory().name() == CB1.getValue()) {
+                            achats1.add(a);
+                        }
+                    }
+                    remlirTab(FXCollections.observableList(achats1));
+                }
+                else {
+                    List<Achat> achats1 = new ArrayList<>();
+                    for (Achat a : achats) {
+                        if (a.getDetails().getProduct().getName().equals(CB2.getValue())) {
+                            achats1.add(a);
+                        }
+                    }
+                    remlirTab(FXCollections.observableList(achats1));
+                }
+            }
         }
         else {
-            if (calendrier.getValue()!=null){
-                ObservableList<Achat> achats1 = FXCollections.observableList(as.chercherParDate(calendrier.getValue()));
-                remlirTab(achats1);
+            if (CB1.getValue() != null) {
+                if (CB2.getValue() == null) {
+                    List<Achat> achats1 = new ArrayList<>();
+                    List<Achat>achats = as.getByComm(Math.toIntExact(c.getId()));
+                    for (Achat a : achats) {
+                        if (a.getDetails().getProduct().getCategory().name() == CB1.getValue()) {
+                            achats1.add(a);
+                        }
+                    }
+                    remlirTab(FXCollections.observableList(achats1));
+                }
+                else {
+                    List<Achat> achats1 = new ArrayList<>();
+                    for (Achat a : as.getByComm(Math.toIntExact(c.getId()))) {
+                        if (a.getDetails().getProduct().getName().equals(CB2.getValue())) {
+                            achats1.add(a);
+                        }
+                    }
+                        remlirTab(FXCollections.observableList(achats1));
+                }
             }
             else {
                 getAll();
@@ -154,7 +199,8 @@ public class AchatController implements Initializable {
     public void onRef(ActionEvent event) {
         getAll();
         CB.setValue(null);
-        calendrier.setValue(null);
+        CB2.setValue(null);
+        CB1.setValue(null);
     }
 
     public void onRet(ActionEvent event) {
@@ -197,5 +243,22 @@ public class AchatController implements Initializable {
             }
         }
         CB.getItems().addAll(personneNames);
+    }
+
+    public void remplirCat(){
+        for (Category cat : Category.values()){
+            CB1.getItems().add(cat.name());
+        }
+    }
+
+    public void ajouProd(ActionEvent event) {
+        String cat = (String) CB1.getValue();
+        CB2.getItems().removeAll(CB2.getItems());
+        if (cat != null){
+            ProductService ps = new ProductService();
+            for (Product p : ps.getbyCat(cat)){
+                CB2.getItems().add(p.getName() );
+            }
+        }
     }
 }

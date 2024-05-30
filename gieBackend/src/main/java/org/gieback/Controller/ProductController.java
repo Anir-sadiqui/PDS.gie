@@ -68,6 +68,13 @@ public class ProductController {
         ps.deleteProduct(id);
     }
 
+    @PATCH
+    @Path("/ajouterQ/{q}/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void ajoutQ(@PathParam("q")int q , @PathParam("id") int id){
+        ps.ajoutQ(q,id);
+    }
+
 
 
 

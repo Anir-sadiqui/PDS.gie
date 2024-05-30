@@ -34,16 +34,20 @@ public class AchatDao implements IAchatDao {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+
             System.out.println(p.getDetails());
-            if (p.getDetails() != null ) {
-                entityManager.persist(p.getDetails());
-                p.setDetails(p.getDetails());
+
+            if (p.getDetails() != null) {
+                // Utiliser merge au lieu de persist pour gérer les entités détachées
+                p.setDetails(entityManager.merge(p.getDetails()));
             }
-            entityManager.persist(p);
-            entityManager.flush();
+
+            // Utiliser merge au lieu de persist pour l'entité Achat
+            entityManager.merge(p);
+
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
             e.printStackTrace();

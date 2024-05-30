@@ -130,6 +130,26 @@ public class ProductService   {
             }
             return personnes;
         }
+        public void ajoutQ(int q , int id) throws IOException {
+            RequestBody requestBody = RequestBody.create(new byte[0]);
+
+            Request request = new Request.Builder()
+                    .url("http://localhost:9998/Product/ajouterQ/" + q+"/"+id)
+                    .patch(requestBody)
+                    .build();
+
+            System.out.println("Sending request to: " + request.url());
+
+            try (Response response = okHttpClient.newCall(request).execute()) {
+                System.out.println("Received response: " + response);
+                if (!response.isSuccessful()) {
+                    throw new IOException("Unexpected code " + response);
+                }
+            } catch (IOException e) {
+                System.err.println("Request failed: " + e.getMessage());
+                throw e;
+            }
+        }
 }
 
 

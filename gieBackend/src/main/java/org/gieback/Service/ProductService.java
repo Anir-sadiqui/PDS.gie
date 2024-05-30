@@ -48,4 +48,9 @@ public class ProductService implements IProductService{
         return pdao.getByName(nom);
     }
 
+    @Override
+    public void ajoutQ(int nq, int id) {
+        pdao.ajoutQ(nq,id);
+    }
+
 }

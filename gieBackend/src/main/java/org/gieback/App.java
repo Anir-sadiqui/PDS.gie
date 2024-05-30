@@ -26,11 +26,11 @@ public class App extends ResourceConfig {
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
         System.out.println("server launched Successfully ");
 
-//        Product p = new Product("Iphone X","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
-//        Product phone1 = new Product("apple watch", "Noir ", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
-//        Product laptop1 = new Product("MacBook Pro 15 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
-//        Product mouse1 = new Product("Logitech MX Master 3", "Souris sans fil avancée", Category.ACCESSORIES, 99.99, "https://example.com/mxmaster3.jpg");
-//        ProductService ps = new ProductService();
+        Product p = new Product("Iphone X","noir 256go ",Category.Smartphones,18900.00,"https://example.com/iphone11.jpg");
+        Product phone1 = new Product("apple watch", "Noir ", Category.Smartphones, 899.99, "https://example.com/iphone12.jpg");
+        Product laptop1 = new Product("MacBook Pro 15 pouces", "M1, 16Go RAM, 512Go SSD", Category.COMPUTERS, 1499.99, "https://example.com/macbook.jpg");
+        Product mouse1 = new Product("Logitech MX Master 3", "Souris sans fil avancée", Category.ACCESSORIES, 99.99, "https://example.com/mxmaster3.jpg");
+        ProductService ps = new ProductService();
 //        p.setQ(17);
 //        phone1.setQ(10);
 //        laptop1.setQ(22);
@@ -61,8 +61,8 @@ public class App extends ResourceConfig {
 //        adresse1.setNumero("N2");
 //
 //        Entreprise entreprise1 = new Entreprise("1234567890", "entreprise1@gmail.com",adresse2,"Entreprise 1","Apple", ContactType.FOURNISSEUR);
-//        Personne p1 = new Personne("1234567890", "entreprise1@gmail.com",adresse3,"Ayoub","mah", ContactType.FOURNISSEUR);
-//        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse3,"Entreprise 2","SA");
+        Personne p1 = new Personne("1234567890", "entreprise1@gmail.com",adresse3,"Ayoub","mah", ContactType.FOURNISSEUR);
+        Entreprise entreprise2 = new Entreprise("0987654321", "anirsadiqui2@gmail.com",adresse3,"Entreprise 2","SA");
 
 //
 //        EntrepriseService entrepriseService = new EntrepriseService();
@@ -114,9 +114,9 @@ public class App extends ResourceConfig {
 //        as.addPurchase(a);
 //        PersonneService pse = new PersonneService();
 //        pse.addPersonne(p1);
-//        EntrepriseService es = new EntrepriseService();
+        EntrepriseService es = new EntrepriseService();
 //        es.addEnterprise(entreprise2);
-//        es.addType("2",ContactType.FOURNISSEUR);
+//        es.addType(String.valueOf(entreprise2.getId()),ContactType.FOURNISSEUR);
 //        AchatService as = new AchatService();
 //        System.out.println(as.getByCommande(1));
 

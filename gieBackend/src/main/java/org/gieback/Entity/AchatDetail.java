@@ -11,10 +11,7 @@ import java.util.List;
 public class AchatDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "purchase_id")
-//    private Achat achat;
+    private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
@@ -29,7 +26,6 @@ public class AchatDetail implements Serializable {
     public AchatDetail() {}
 
     public AchatDetail( Product product, int quantity) {
-//        this.achat = achat;
         this.product = product;
         this.quantity = quantity;
         this.TotalPrice = product.getPrix() * quantity;

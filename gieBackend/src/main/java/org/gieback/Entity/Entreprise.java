@@ -1,5 +1,8 @@
 package org.gieback.Entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -12,7 +15,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@DiscriminatorValue("entreprise")
+@JsonTypeName("entreprise")
 public class Entreprise extends Contact  implements Serializable {
     @Column(name = "formeJuridique")
 
@@ -21,11 +24,11 @@ public class Entreprise extends Contact  implements Serializable {
 
     private String raisonSocial;
 
-    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial , ContactType contactType) {
-        super(phone, email,adresse , contactType );
-        this.formeJuridique = formeJuridique;
-        this.raisonSocial = raisonSocial;
-    }
+//    public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial , ContactType contactType) {
+//        super(phone, email,adresse , contactType );
+//        this.formeJuridique = formeJuridique;
+//        this.raisonSocial = raisonSocial;
+//    }
     public Entreprise(String phone, String email, Adresse adresse,String formeJuridique, String raisonSocial ){
         super(phone, email,adresse );
         this.formeJuridique = formeJuridique;
@@ -34,6 +37,19 @@ public class Entreprise extends Contact  implements Serializable {
 
     public Entreprise() {
 
+    }
+    @JsonCreator
+    public Entreprise(
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("adresse") Adresse adresse,
+            @JsonProperty("formeJuridique") String formeJuridique,
+            @JsonProperty("raisonSocial") String raisonSocial,
+            @JsonProperty("contactType") ContactType contactType
+    ) {
+        super(phone, email, adresse, contactType);
+        this.formeJuridique = formeJuridique;
+        this.raisonSocial = raisonSocial;
     }
 
     @Override

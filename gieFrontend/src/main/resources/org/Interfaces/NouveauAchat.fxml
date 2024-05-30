@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="924.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.NouveauAchatController">
+<AnchorPane fx:id="mainAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="924.0" style="-fx-background-color: yellow;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.NouveauAchatController">
     <children>
         <Label layoutX="349.0" layoutY="22.0" prefHeight="116.0" prefWidth="461.0" style="-fx-background-color: silver;" text="  Nouveau Achat" textFill="#ba1e77">
             <font>
@@ -46,6 +51,7 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0"  prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
+      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0" prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
+      <Button layoutX="55.0" layoutY="547.0" mnemonicParsing="false" onAction="#onRet" prefHeight="25.0" prefWidth="121.0" text="Return" />
     </children>
 </AnchorPane>

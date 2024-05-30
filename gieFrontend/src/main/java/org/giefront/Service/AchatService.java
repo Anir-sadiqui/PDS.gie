@@ -2,12 +2,11 @@ package org.giefront.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.*;
-import org.giefront.DTO.Achat;
-import org.giefront.DTO.Commande;
-import org.giefront.DTO.Personne;
-import org.giefront.DTO.Product;
+import org.giefront.DTO.*;
 
 
 import java.io.IOException;
@@ -22,6 +21,9 @@ public class AchatService{
     public AchatService() {
         this.mapper = new ObjectMapper();
         this.mapper.registerModule(new JavaTimeModule());
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(Contact.class, new ContactDeserializer());
+        mapper.registerModule(module);
     }
     public void ajouter(Achat achat){
         try {

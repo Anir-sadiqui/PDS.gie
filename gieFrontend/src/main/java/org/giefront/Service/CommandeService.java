@@ -112,21 +112,7 @@ public class CommandeService {
         return commandes;
     }
 
-//    public List<Achat> getAllAchats(int id){
-//        Request request = new Request.Builder().url("http://localhost:9998/Commande/achats/"+id).build();
-//        List<Achat> achats;
-//        try {
-//            Response response = okHttpClient.newCall(request).execute();
-//            if (!response.isSuccessful()) {
-//                throw new IOException(String.valueOf(response));
-//            }
-//            achats = mapper.readValue(response.body().charStream(), new TypeReference<>() {
-//            });
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return achats;
-//    }
+
 
     public List<Commande> getByEtat (String e1){
         Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByEtat/"+e1).build();

@@ -1,5 +1,8 @@
 package org.gieback.Entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -12,14 +15,14 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@DiscriminatorValue("personne")
+@JsonTypeName("personne")
 
 public class Personne extends Contact implements Serializable {
-    public Personne(String phone, String email, Adresse adresse, String nom, String prenom , ContactType contactType) {
-        super(phone, email, adresse , contactType);
-        this.nom = nom;
-        this.prenom = prenom;
-    }
+//    public Personne(String phone, String email, Adresse adresse, String nom, String prenom , ContactType contactType) {
+//        super(phone, email, adresse , contactType);
+//        this.nom = nom;
+//        this.prenom = prenom;
+//    }
 
     public Personne(String phone, String email, Adresse adresse, String nom, String prenom){
         super(phone, email, adresse );
@@ -37,6 +40,19 @@ public class Personne extends Contact implements Serializable {
 
     public Personne() {
 
+    }
+    @JsonCreator
+    public Personne(
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("adresse") Adresse adresse,
+            @JsonProperty("nom") String nom,
+            @JsonProperty("prenom") String prenom,
+            @JsonProperty("contactType") ContactType contactType
+    ) {
+        super(phone, email, adresse, contactType);
+        this.nom = nom;
+        this.prenom = prenom;
     }
 
     @Override

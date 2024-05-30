@@ -34,14 +34,6 @@ public class CommandeDao implements ICommandeDao{
         Commande c = entityManager.find(Commande.class,id);
         if (c.getE()== EtatCommande.In_Preparation){
             c.setE(EtatCommande.Delivered);
-            entityManager.merge(c);
-            if (c.getAchats() != null) {
-                for (Achat a : c.getAchats()) {
-                    int quant = a.getDetails().getProduct().getQ() + a.getDetails().getQuantity();
-                    a.getDetails().getProduct().setQ(quant);
-                    entityManager.merge(a.getDetails().getProduct());
-                }
-            }
         }
         else if (c.getE()== EtatCommande.Initialised) {
             c.setE(EtatCommande.In_Preparation);
@@ -64,18 +56,6 @@ public class CommandeDao implements ICommandeDao{
     }
     @Override
     public void deleteComm(int id) {
-//        String hql = "delete from Commande where id =:id";
-//        try {
-//            entityManager.getTransaction().begin();
-//            Query query = entityManager.createQuery(hql);
-//            query.setParameter("id", id);
-//            query.executeUpdate();
-//            entityManager.getTransaction().commit();
-//
-//        } catch (Exception e) {
-//            entityManager.getTransaction().rollback();
-//            System.out.println(e);
-//        }
         entityManager.getTransaction().begin();
         Commande c = entityManager.find(Commande.class,id);
         if (c != null){

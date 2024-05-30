@@ -7,6 +7,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import org.giefront.DTO.*;
+import org.giefront.Service.AchatService;
 import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.PersonneService;
 import org.giefront.Service.ProductService;
@@ -26,7 +27,7 @@ public class AchatModif implements Initializable {
     @FXML
     private RadioButton PersonneRadioButton;
     @FXML
-    private  ChoiceBox CB_F  ;
+    private  ChoiceBox <String> CB_F  ;
     @FXML
     private  ChoiceBox CB_D  ;
     @FXML
@@ -37,33 +38,42 @@ public class AchatModif implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        CB_F.setValue(a.getSupplier());
-        CB_D.setValue(a.getDetails().getProduct().getDescription());
+        if (a.getSupplier() instanceof Personne){
+            CB_F.getItems().setAll(((Personne) a.getSupplier()).getNom() + " " + ((Personne) a.getSupplier()).getPrenom()+ " " +a.getSupplier().getId());
+        }
+        if (a.getSupplier() instanceof  Entreprise){
+            CB_F.getItems().setAll(((Entreprise) a.getSupplier()).getRaisonSocial()+ " " +a.getSupplier().getId());
+        }
         Text_Field_N.setText(a.getDetails().getProduct().getName());
         Text_Field_Q.setText(String.valueOf(a.getDetails().getQuantity()));
         Text_Field_N.setEditable(false);
         loadEntreprises();
         loadPersonnes();
         initTypeF();
-//        desc();
     }
 
     public int extractID(String text) {
+        if (text == null || text.isEmpty()) {
+            throw new IllegalArgumentException("Input text is null or empty.");
+        }
+
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(text);
 
-        return Integer.parseInt(matcher.group());
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group());
+        } else {
+            throw new IllegalArgumentException("No numeric value found in the input text: " + text);
+        }
     }
 
 
 
     public void OnBtnPClick(ActionEvent event) throws IOException {
         Map<String, String> attributs = new HashMap<>();
-        if (CB_D.getValue() != null){
-            attributs.put("Product",(String) CB_D.getValue());
-        }
+        AchatService as = new AchatService();
         if (CB_F.getValue() != null) {
-            int id = extractID((String) CB_F.getValue());
+            int id = extractID(CB_F.getValue());
             if (EntrepriseRadioButton.isSelected()) {
                 EntrepriseService es = new EntrepriseService();
                 attributs.put("FournisseurE", String.valueOf(id));
@@ -76,6 +86,9 @@ public class AchatModif implements Initializable {
         if (!Text_Field_Q.getText().isEmpty()){
             attributs.put("Quantite",Text_Field_Q.getText());
         }
+        as.modifier(String.valueOf(a.getId()),attributs);
+        AchatController ac = new AchatController();
+        as.getByComm(Math.toIntExact(ac.c.getId()));
     }
 
 
@@ -85,7 +98,7 @@ public class AchatModif implements Initializable {
         List<String> personneNames = new ArrayList<>();
         for (Entreprise p : ps.getAll()){
             if (p.getContactType()== ContactType.FOURNISSEUR){
-                personneNames.add(p.getRaisonSocial() + " (" +p.getId()+")");
+                personneNames.add(p.getRaisonSocial() + " " +p.getId());
             }
         }
         if (EntrepriseRadioButton.isSelected()) {
@@ -100,7 +113,7 @@ public class AchatModif implements Initializable {
         List<String> personneNames = new ArrayList<>();
         for (Personne p : ps.getAll()){
             if (p.getContactType()== ContactType.FOURNISSEUR){
-                personneNames.add(p.getNom() + " " + p.getPrenom() + " (" +p.getId()+")" );
+                personneNames.add(p.getNom() + " " + p.getPrenom() + " " +p.getId() );
             }
         }
         if (PersonneRadioButton.isSelected()) {

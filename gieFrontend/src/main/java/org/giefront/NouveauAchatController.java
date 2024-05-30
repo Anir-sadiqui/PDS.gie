@@ -85,11 +85,6 @@ public class NouveauAchatController implements Initializable {
             showAlert("Please fill all fields!");
             return;
         }
-//        int idP = extractID((String) CB_N.getValue());
-//        Product p = new Product();
-//        p.setCategory(Category.valueOf(CategorieComboBox.getValue()));
-//        p.setName((String) CB_N.getValue());
-//        p.setDescription((String) CB_D.getValue());
         ProductService productService = new ProductService();
         Achat na = new Achat();
         na.setC(CommandeController.c);
@@ -104,12 +99,13 @@ public class NouveauAchatController implements Initializable {
         }
         AchatDetail d = new AchatDetail();
         d.setProduct(productService.getbyname((String) CB_N.getValue()));
-//        d.setAchat(na);
         d.setQuantity(Integer.parseInt(txtQuantite.getText()));
+        d.setTotalPrice((d.getQuantity()*d.getProduct().getPrix()));
         na.setDetails(d);
         as.ajouter(na);
-        System.out.println(na.getDetails());
-        System.out.println(na);
+//        System.out.println(na.getDetails());
+//        System.out.println(na);
+//        System.out.println(na.getDetails().getTotalPrice());
 
 
     }
@@ -173,25 +169,6 @@ public class NouveauAchatController implements Initializable {
             CategorieComboBox.getItems().add(cat.name());
         }
     }
-//    public String extractStrings(String input) {
-//        if (input == null) {
-//            return "";
-//        }
-//        // Utiliser une expression régulière pour garder uniquement les lettres
-//        return input.replaceAll("[^a-zA-Z]", "");
-//    }
-
-
-
-//    public void Desc(ActionEvent event) {
-//        String p =  extractStrings((String) CB_N.getValue());
-//        if (p != null) {
-//            ProductService ps = new ProductService();
-//            for (Product prod : ps.getbyname(p)){
-//                CB_D.getItems().add(prod.getDescription());
-//            }
-//        }
-//    }
 
     public void Back(ActionEvent event) {
         try {
@@ -223,5 +200,16 @@ public class NouveauAchatController implements Initializable {
     public void loadE(ActionEvent event) {
         FournisseurComboBox.getItems().removeAll(FournisseurComboBox.getItems());
         loadEntreprises();
+    }
+
+    public void onRet(ActionEvent event) {
+        try {
+            FXMLLoader f = new FXMLLoader();
+            f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
+            Node n = f.load();
+            mainAnchor.getChildren().setAll(n);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

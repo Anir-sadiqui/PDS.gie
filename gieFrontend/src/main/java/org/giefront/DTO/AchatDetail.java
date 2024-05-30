@@ -5,9 +5,6 @@ package org.giefront.DTO;
 public class AchatDetail {
     private long id;
 
-
-
-
     private Product product;
 
 
@@ -51,6 +48,14 @@ public class AchatDetail {
 
     public void setTotalPrice(double totalPrice) {
         TotalPrice = totalPrice;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

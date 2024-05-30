@@ -13,6 +13,7 @@ public interface IProductDao {
      List<Product> getAllProd();
      void deleteProduct(int id);
      Product getByName (String nom);
+     void ajoutQ (int nq, int id);
 
 
 

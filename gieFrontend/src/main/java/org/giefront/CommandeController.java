@@ -13,9 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.*;
 import org.giefront.DTO.EtatCommande;
-import org.giefront.Service.CommandeService;
-import org.giefront.Service.EntrepriseService;
-import org.giefront.Service.PersonneService;
+import org.giefront.Service.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +44,7 @@ public class CommandeController implements Initializable{
     private TableColumn C_Etat;
 
     private CommandeService cs = new CommandeService();
+    ProductService ps = new ProductService();
     Commande cmd = new Commande();
 
     @Override
@@ -68,8 +67,9 @@ public class CommandeController implements Initializable{
     }
 
     private void showDetails(Commande clickedRow) {
-        for (Achat a : clickedRow.getAchats()) {
-            String s = "Achat :" + " " + a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity();
+        AchatService as = new AchatService();
+        for (Achat a : as.getByComm(Math.toIntExact(clickedRow.getId()))) {
+            String s = "Achat :" + " " + a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity() + "pieces";
 
             Details.setText("Commande effectue le :" + " " + clickedRow.getPurchaseDate() + "\n"
                     + "Contenant :" + "\n" + s);
@@ -112,6 +112,7 @@ public class CommandeController implements Initializable{
         cs.addCom(c);
         showMessage("Your command has been initialised. You can add purchases by modifying it  ");
         System.out.println(c);
+        getAll();
     }
 
     public void onAnnuler(ActionEvent event) throws IOException {
@@ -119,13 +120,14 @@ public class CommandeController implements Initializable{
         if (cmd.getE()== EtatCommande.Initialised || cmd.getE()== EtatCommande.In_Preparation){
             cs.deleteComm(Math.toIntExact(cmd.getId()));
             showMessage("This Command has been canceled");
+            getAll();
         }
         else showMessage("Impossible to cancel this command");
     }
 
     public void OnMod(ActionEvent event) {
         c= (Commande) Tab.getSelectionModel().getSelectedItem();
-        if (c.getE()==EtatCommande.Initialised || c.getE()==EtatCommande.In_Preparation) {
+        if (c.getE()==EtatCommande.Initialised ) {
             try {
                 FXMLLoader f = new FXMLLoader();
                 f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
@@ -136,20 +138,46 @@ public class CommandeController implements Initializable{
             }
         }
         else {
-            showMessage("Impossible to modify this command");
+            showMessage("Impossible to modify this command, the command has already been sent");
         }
         System.out.println(c);
     }
 
     public void onVal(ActionEvent event)  throws IOException {
         Commande c = (Commande) Tab.getSelectionModel().getSelectedItem();
-        if(c.getE().equals(EtatCommande.Initialised) || c.getE().equals(EtatCommande.In_Preparation)) {
+        AchatService as = new AchatService();
+        List<Achat> achats = as.getByComm(Math.toIntExact(c.getId()));
+        if(c.getE().equals(EtatCommande.Initialised)) {
+            if (!achats.isEmpty()) {
+                cs.validerComm(Math.toIntExact(c.getId()));
+                showMessage("The command has been validated and sent successfully");
+                getAll();
+            }
+            else {
+                showMessage("Please fill this command with purchases");
+            }
+        }
+        else if (c.getE().equals(EtatCommande.In_Preparation)){
+            majQ(c);
             cs.validerComm(Math.toIntExact(c.getId()));
-            showMessage("The command has been validated");
+            showMessage("The command has been delivered");
+            getAll();
         }
         else  {
             showMessage("Impossible to validate this command");
         }
+    }
+    public void majQ(Commande c) throws IOException {
+        AchatService as = new AchatService();
+        List<Achat> achats = as.getByComm(Math.toIntExact(c.getId()));
+
+            for (Achat a : achats) {
+                int q = a.getDetails().getQuantity();
+                int id = Math.toIntExact(a.getDetails().getProduct().getId());
+                ps.ajoutQ(q, id);
+                System.out.println(a.getDetails().getProduct().getQ());
+                System.out.println(a);
+            }
     }
 
 

@@ -119,6 +119,18 @@ public class ProductDao implements IProductDao{
         Product p = (Product) query.getSingleResult();
         return p;
     }
+    @Override
+    public void ajoutQ (int nq, int id){
+        entityManager.getTransaction().begin();
+        Product E = entityManager.find(Product.class, id);
+        if (E != null) {
+            E.setQ(E.getQ()+nq);
+            entityManager.merge(E);
+        } else {
+            System.out.println("id incorrect");
+        }
+        entityManager.getTransaction().commit();
+    }
 
 
 }
