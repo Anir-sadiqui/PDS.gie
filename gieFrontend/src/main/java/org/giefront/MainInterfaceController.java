@@ -376,17 +376,17 @@ public class MainInterfaceController implements Initializable {
         try {
             if ("Personne".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("personne.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/personne.fxml"));
                 Node node = fxmlLoader.load();
                 mainAnchor.getChildren().setAll(node);
             } else if ("Entreprise".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("entreprise.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/entreprise.fxml"));
                 Node node = fxmlLoader.load();
                 mainAnchor.getChildren().setAll(node);
             }
             else {
-                showMessage("Veuillez selectionner un type pour la création");
+                showMessage("Please choose a creation type");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -415,7 +415,7 @@ public class MainInterfaceController implements Initializable {
         if(typeChoiceBox.getValue().equals("Entreprise")){
             try {
                 FXMLLoader f = new FXMLLoader();
-                f.setLocation(getClass().getResource("AdvancedSearchE.fxml"));
+                f.setLocation(getClass().getResource("/org/Interfaces/AdvancedSearchE.fxml"));
                 Node n = f.load();
                 mainAnchor.getChildren().setAll(n);
             } catch (IOException e) {
@@ -425,7 +425,7 @@ public class MainInterfaceController implements Initializable {
         else if (typeChoiceBox.getValue().equals("Personne")){
             try {
                 FXMLLoader f = new FXMLLoader();
-                f.setLocation(getClass().getResource("AdvancedSearchP.fxml"));
+                f.setLocation(getClass().getResource("/org/Interfaces/AdvancedSearchP.fxml"));
                 Node n = f.load();
                 mainAnchor.getChildren().setAll(n);
             } catch (IOException e) {
@@ -438,7 +438,7 @@ public class MainInterfaceController implements Initializable {
     public void onDeco(ActionEvent event) {
         try {
             FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("Login.fxml"));
+            f.setLocation(getClass().getResource("/org/Interfaces/Login.fxml"));
             Node n = f.load();
             mainAnchor.getChildren().setAll(n);
         } catch (IOException e) {
@@ -449,7 +449,7 @@ public class MainInterfaceController implements Initializable {
     public void onMess(ActionEvent event) {
         try {
             FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("Messagerie.fxml"));
+            f.setLocation(getClass().getResource("/org/Interfaces/Messagerie.fxml"));
             Node n = f.load();
             mainAnchor.getChildren().setAll(n);
         } catch (IOException e) {

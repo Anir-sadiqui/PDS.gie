@@ -42,7 +42,7 @@ public class FourniseurEntoContro {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Does this Entreprise already exists");
+        alert.setContentText("Does this company already exists");
         ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
         ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);

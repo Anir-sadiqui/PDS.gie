@@ -198,7 +198,8 @@ public class PersonneService implements IService{
         return personnes;
     }
     public void addType(int id , ContactType t) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/addType/" + id + "/" + t).build();
+        RequestBody requestBody = RequestBody.create(new byte[0]);
+        Request request = new Request.Builder().url("http://localhost:9998/personne/addType/" + id + "/" + t).patch(requestBody).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
