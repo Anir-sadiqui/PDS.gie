@@ -19,12 +19,14 @@ import org.giefront.TestFront;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class FourniseurEntoContro {
 
     private Stage stage ;
     private Scene scene ;
     private FXMLLoader fxmlLoader ;
+
 
     public void switchToFornEntro(ActionEvent event) throws IOException {
 
@@ -37,12 +39,34 @@ public class FourniseurEntoContro {
     }
 
     public void addFournisseur(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/entreprise.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Does this Entreprise already exists");
+        ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/Interfaces/FEex.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/entreprise.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,7 +150,6 @@ public class FourniseurEntoContro {
     }
 
     public void OnReturnAction(ActionEvent event) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -209,6 +232,7 @@ public class FourniseurEntoContro {
         ville.setVisible(true);
         num.setVisible(true);
     }
+
 
 
 

@@ -65,25 +65,34 @@ public class ProductController implements Initializable {
                 Product product = new Product();
                 product.setDescription(Text_Field_D.getText());
                 product.setName(Text_Field_N.getText());
-                product.setPrix(Double.parseDouble(Text_Field_Q.getText())); // Convertir en double
+                product.setPrix(Double.parseDouble(Text_Field_Q.getText()));
                 product.setImagePath(imagePath);
                 product.setCategory(Category.valueOf(choiceBox.getValue()));
-                productService.add(product);
-
-
-                System.out.println("Product added successfully!");
-            } else {
-                System.out.println("Product addition cancelled.");
+                if (productService.getbyname(Text_Field_N.getText()).equals(null)){
+                    productService.add(product);
+                    showMessage("Product added successfully!");
+                }
+                else {
+                    showMessage("Product Already exists!");
+                }
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Incomplete Fields");
-            alert.setHeaderText(null);
-            alert.setContentText("Please fill in all fields!");
-            alert.showAndWait();
+            else {
+                showMessage("Product addition cancelled.");
+            }
+        }
+        else {
+            showMessage("Please fill in all fields!");
         }
     }
 
+
+    private void showMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 
     private boolean areFieldsFilled() {
@@ -98,20 +107,7 @@ public class ProductController implements Initializable {
 
 
 
-    @FXML
-    void onReturn(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de l'interface principale
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Stock.fxml"));
-            AnchorPane mainInterface = fxmlLoader.load();
 
-            // Remplacer le contenu actuel par l'interface principale chargée
-            Pane mainAnchor = new Pane();
-            mainAnchor.getChildren().setAll(mainInterface);
-        } catch (IOException e) {
-            e.printStackTrace(); // Gérer l'exception de chargement du fichier FXML
-        }
-    }
 
     @FXML
     void Addimg(ActionEvent event) {

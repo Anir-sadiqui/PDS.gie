@@ -227,7 +227,7 @@ public class StockController implements Initializable {
         }
     }
 
-    // Method to display a message
+
     private void showMessage(String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -236,13 +236,6 @@ public class StockController implements Initializable {
         alert.showAndWait();
     }
 
-//    private void showMessage(String message) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information");
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
 
     public void OnBtnPClick(ActionEvent event) {
         try {
