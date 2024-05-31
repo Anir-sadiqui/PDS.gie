@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,12 +17,7 @@
                 <Font name="DejaVu Serif Bold Italic" size="46.0" />
             </font>
         </Label>
-        <Button fx:id="btnRetour" layoutX="958.0" layoutY="658.0" mnemonicParsing="false" onAction="#Back" prefHeight="55.0" prefWidth="140.0" style="-fx-background-color: white;" text="Retour" textFill="#1e1d1d">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Button>
-        <Button fx:id="btnValider" layoutX="613.0" layoutY="519.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Valider" textFill="#f5f3f3">
+        <Button fx:id="btnValider" layoutX="613.0" layoutY="544.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="55.0" prefWidth="220.0" style="-fx-background-color: blue;" text="Valider" textFill="#f5f3f3">
             <font>
                 <Font size="20.0" />
             </font>
@@ -51,7 +47,8 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0" prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
+      <ComboBox fx:id="CB_N" layoutX="432.0" layoutY="346.0" onAction="#imgLoad" prefHeight="40.0" prefWidth="211.0" promptText="          Name" />
       <Button layoutX="55.0" layoutY="547.0" mnemonicParsing="false" onAction="#onRet" prefHeight="25.0" prefWidth="121.0" text="Return" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="673.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </AnchorPane>

@@ -46,6 +46,7 @@ public class CommandeController implements Initializable{
     private CommandeService cs = new CommandeService();
     ProductService ps = new ProductService();
     Commande cmd = new Commande();
+    private double prixTot = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,6 +55,7 @@ public class CommandeController implements Initializable{
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
                     Commande clickedRow = row.getItem();
+                    prixTot = calculPT(clickedRow);
                     showDetails(clickedRow);
                     cmd=row.getItem();
                 }
@@ -68,12 +70,21 @@ public class CommandeController implements Initializable{
 
     private void showDetails(Commande clickedRow) {
         AchatService as = new AchatService();
+        String s = "";
         for (Achat a : as.getByComm(Math.toIntExact(clickedRow.getId()))) {
-            String s = "Achat :" + " " + a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity() + "pieces";
-
-            Details.setText("Commande effectue le :" + " " + clickedRow.getPurchaseDate() + "\n"
-                    + "Contenant :" + "\n" + s);
+             s +=  a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity() + "pieces" + "\n";
         }
+            Details.setText("Command made on :" + " " + clickedRow.getPurchaseDate() + "\n"
+                    + "Contains :" + "\n" + s + "\n" +"Total Price :" + prixTot + "\n" + "Has been :"+ clickedRow.getE() );
+
+    }
+    private double calculPT(Commande c){
+        double p = 0 ;
+        List <Achat> achats = c.getAchats();
+        for (Achat a : achats){
+            p += a.getDetails().getTotalPrice();
+        }
+        return p;
     }
 
 

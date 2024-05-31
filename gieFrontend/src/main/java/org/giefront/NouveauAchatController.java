@@ -13,6 +13,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.*;
 import org.giefront.Service.AchatService;
@@ -33,6 +35,8 @@ import java.util.stream.Collectors;
 public class NouveauAchatController implements Initializable {
 
 
+    @FXML
+    private ImageView img;
     @FXML
     private AnchorPane mainAnchor;
     @FXML
@@ -170,18 +174,6 @@ public class NouveauAchatController implements Initializable {
         }
     }
 
-    public void Back(ActionEvent event) {
-        try {
-            FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("/org/Interfaces/achat interface.fxml"));
-            Node n = f.load();
-            mainAnchor.getChildren().setAll(n);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     public void nameP(ActionEvent event) {
         String cat =(CategorieComboBox.getValue());
         if (cat != null){
@@ -211,5 +203,14 @@ public class NouveauAchatController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void imgLoad(ActionEvent event) {
+        String name = (String) CB_N.getValue();
+        if (name != null){
+            ProductService ps = new ProductService();
+            img.setImage(new Image(ps.getbyname(name).getImagePath()));
+        }
+
     }
 }

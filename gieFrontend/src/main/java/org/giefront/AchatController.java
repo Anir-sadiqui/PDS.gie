@@ -76,13 +76,13 @@ public class AchatController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
                     Achat clickedRow = row.getItem();
+                    img.setImage(new Image(clickedRow.getDetails().getProduct().getImagePath()));
                     showAction(clickedRow);
                 }
             });
             return row;
         });
         Details.setEditable(false);
-        img.setVisible(false);
         Details.setVisible(false);
         getAll();
         loadEntreprises();
@@ -92,7 +92,6 @@ public class AchatController implements Initializable {
     private void showAction(Achat clickedRow) {
         Details.setText("Produit achete :" + clickedRow.getDetails().getProduct().getName() + "\n " + "Quantite :" + clickedRow.getDetails().getQuantity() + "\n" + "Prix Achat:" + clickedRow.getDetails().getTotalPrice());
         Details.setVisible(true);
-        img.setImage(new Image(clickedRow.getDetails().getProduct().getImagePath()));
     }
 
     private void getAll() {
