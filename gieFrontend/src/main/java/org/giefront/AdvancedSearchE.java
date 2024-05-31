@@ -105,7 +105,12 @@ public class AdvancedSearchE implements Initializable {
 
     private void showEDetails(Entreprise clickedRow) {
         IconeC.setVisible(true);
-        IconeC.setImage(new Image("https://cdn-icons-png.flaticon.com/512/5343/5343441.png"));
+        if (clickedRow.getImagePath() != null){
+            IconeC.setImage(new Image(clickedRow.getImagePath()));
+        }
+        else {
+            IconeC.setImage(new Image("https://e7.pngegg.com/pngimages/92/319/png-clipart-computer-icons-person-name-miscellaneous-computer-wallpaper.png"));
+        }
         detailsC.setVisible(true);
         detailsC.setEditable(false);
         detailsC.setText("Raison social: " + clickedRow.getRaisonSocial() + '\n' + "Email: " + clickedRow.getEmail() + '\n' + "Num de tel: " + clickedRow.getPhone() + '\n' + "Forme Juridique: " + clickedRow.getFormeJuridique());
@@ -141,7 +146,7 @@ public class AdvancedSearchE implements Initializable {
     public void onModify(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("EntrepriseModification.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/EntrepriseModification.fxml"));
             Node node = fxmlLoader.load();
             mainAnchor.getChildren().setAll(node);
             Entreprise selectedEntr = tableView_E.getSelectionModel().getSelectedItem();
@@ -157,7 +162,7 @@ public class AdvancedSearchE implements Initializable {
     private void onReturn(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/MainInterface.fxml"));
             Node node = fxmlLoader.load();
             mainAnchor.getChildren().setAll(node);
         } catch (IOException e) {

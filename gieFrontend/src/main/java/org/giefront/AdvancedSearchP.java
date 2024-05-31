@@ -95,7 +95,12 @@ public class AdvancedSearchP implements Initializable {
 
     private void showPDetails(Personne clickedRow) {
         IconeC.setVisible(true);
-        IconeC.setImage(new Image("https://e7.pngegg.com/pngimages/92/319/png-clipart-computer-icons-person-name-miscellaneous-computer-wallpaper.png"));
+        if (clickedRow.getImagePath() != null){
+            IconeC.setImage(new Image(clickedRow.getImagePath()));
+        }
+        else {
+            IconeC.setImage(new Image("https://e7.pngegg.com/pngimages/92/319/png-clipart-computer-icons-person-name-miscellaneous-computer-wallpaper.png"));
+        }
         detailsC.setVisible(true);
         detailsC.setEditable(false);
         detailsC.setText("Nom et Prenom: " + clickedRow.getNom() + " " + clickedRow.getPrenom() + '\n' + "Email: " + clickedRow.getEmail() + '\n' + "Num de tel: " + clickedRow.getPhone() + '\n');
@@ -109,7 +114,7 @@ public class AdvancedSearchP implements Initializable {
     private void onReturn(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/MainInterface.fxml"));
             Node node = fxmlLoader.load();
             mainAnchor.getChildren().setAll(node);
         } catch (IOException e) {
@@ -136,7 +141,7 @@ public class AdvancedSearchP implements Initializable {
     public void onModify(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("PersonneModification.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/PersonneModification.fxml"));
             Node node = fxmlLoader.load();
             mainAnchor.getChildren().setAll(node);
             Personne selectedPerson = tableView_P.getSelectionModel().getSelectedItem();

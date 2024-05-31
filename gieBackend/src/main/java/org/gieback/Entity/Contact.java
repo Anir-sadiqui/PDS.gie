@@ -36,6 +36,8 @@ public class Contact implements Serializable {
     @Column(name = "contact_type")
     private ContactType contactType;
 
+    private String imagePath;
+
     public Contact() {
     }
 

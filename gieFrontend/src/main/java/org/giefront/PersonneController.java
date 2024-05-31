@@ -8,13 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.giefront.DTO.Adresse;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Personne;
 import org.giefront.Service.PersonneService;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -25,6 +28,8 @@ public class PersonneController implements Initializable {
     private AnchorPane mainAnchor;
     @FXML
     private Button Return;
+    @FXML
+    private Button BtnImage;
     @FXML
     private Button BtnAddP;
     @FXML
@@ -47,7 +52,7 @@ public class PersonneController implements Initializable {
     private Button adresse;
     @FXML
     private AnchorPane anchorepane_Adresse;
-
+    private String imagePath ;
 
     private final PersonneService personneService = new PersonneService();
 
@@ -67,7 +72,7 @@ public class PersonneController implements Initializable {
                 personne.setPrenom(Text_Field_P.getText());
                 personne.setPhone(Text_Field_Po.getText());
                 personne.setContactType(choiceBox.getValue());
-
+                personne.setImagePath(imagePath);
                 Adresse a = new Adresse();
                 a.setVille(Text_Field_N1.getText());
                 a.setNumero(Text_Field_N111.getText());
@@ -147,4 +152,15 @@ public class PersonneController implements Initializable {
     }
 
 
+    @FXML
+    void Addimg(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(BtnImage.getScene().getWindow()); // Utiliser la fenêtre du bouton comme parent
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            imagePath = selectedFile.toURI().toString(); // Enregistrer le chemin de l'image
+        }
+    }
 }

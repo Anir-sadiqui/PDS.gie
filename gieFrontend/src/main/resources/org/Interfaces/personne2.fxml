@@ -51,5 +51,6 @@
       <Button fx:id="addPerson" layoutX="197.0" layoutY="405.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="50.0" prefWidth="77.0" text="Add" visible="true" />
       <Label layoutX="16.0" layoutY="177.0" prefHeight="18.0" prefWidth="50.0" text="Type" />
       <ChoiceBox fx:id="choiceBox" layoutX="83.0" layoutY="174.0" prefHeight="24.0" prefWidth="156.0" />
+      <Button fx:id="BtnImage" layoutX="320.0" layoutY="173.0" mnemonicParsing="false" onAction="#Addimg" text="Add image" />
    </children>
 </AnchorPane>

@@ -28,7 +28,7 @@ public class MessagerieController implements Initializable {
     public void onSend(ActionEvent event) {
         try {
             FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("Notifier.fxml"));
+            f.setLocation(getClass().getResource("/org/Interfaces/Notifier.fxml"));
             Node n = f.load();
             mainAnchor.getChildren().setAll(n);
         } catch (IOException e) {
@@ -38,7 +38,7 @@ public class MessagerieController implements Initializable {
 
     public void onReturn(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("MainInterface.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/MainInterface.fxml"));
         Node node = null;
         try {
             node = fxmlLoader.load();

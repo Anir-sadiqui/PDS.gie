@@ -153,7 +153,12 @@ public class MainInterfaceController implements Initializable {
 
     private void showPDetails(Personne clickedRow) {
         IconeC.setVisible(true);
-        IconeC.setImage(new Image("https://e7.pngegg.com/pngimages/92/319/png-clipart-computer-icons-person-name-miscellaneous-computer-wallpaper.png"));
+        if (clickedRow.getImagePath() != null){
+            IconeC.setImage(new Image(clickedRow.getImagePath()));
+        }
+        else {
+            IconeC.setImage(new Image("https://e7.pngegg.com/pngimages/92/319/png-clipart-computer-icons-person-name-miscellaneous-computer-wallpaper.png"));
+        }
         detailsC.setVisible(true);
         detailsC.setEditable(false);
         detailsC.setText("Nom et Prenom: " + clickedRow.getNom() + " " + clickedRow.getPrenom() + '\n' + "Email: " + clickedRow.getEmail() + '\n' + "Num de tel: " + clickedRow.getPhone() + '\n');

@@ -53,7 +53,7 @@ public class NotifierController implements Initializable {
 
     public void OnReturn(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("Messagerie.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/Messagerie.fxml"));
         Node node = null;
         try {
             node = fxmlLoader.load();
