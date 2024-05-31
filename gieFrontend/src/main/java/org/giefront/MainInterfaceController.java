@@ -376,12 +376,12 @@ public class MainInterfaceController implements Initializable {
         try {
             if ("Personne".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/personne.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/personne2.fxml"));
                 Node node = fxmlLoader.load();
                 mainAnchor.getChildren().setAll(node);
             } else if ("Entreprise".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/entreprise.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/entreprise2.fxml"));
                 Node node = fxmlLoader.load();
                 mainAnchor.getChildren().setAll(node);
             }
@@ -450,6 +450,17 @@ public class MainInterfaceController implements Initializable {
         try {
             FXMLLoader f = new FXMLLoader();
             f.setLocation(getClass().getResource("/org/Interfaces/Messagerie.fxml"));
+            Node n = f.load();
+            mainAnchor.getChildren().setAll(n);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void returnBTN(ActionEvent event) {
+        try {
+            FXMLLoader f = new FXMLLoader();
+            f.setLocation(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
             Node n = f.load();
             mainAnchor.getChildren().setAll(n);
         } catch (IOException e) {
