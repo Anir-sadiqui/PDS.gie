@@ -39,7 +39,7 @@ public class App extends ResourceConfig {
 //      adresse1.setQuartier("123 Avenue Allal ELfassi");
 //      adresse1.setVille("Rabat");
 //       adresse1.setNumero("N1");
-
+//
 //        Adresse adresse2 = new Adresse();
 //       adresse2.setQuartier("456 Avenue Agdal");
 //       adresse2.setVille("Rabat");
@@ -97,7 +97,7 @@ public class App extends ResourceConfig {
 //       fs.DeleteType(String.valueOf(52));
 //        Product p = new Product("Iphone 11","noir 256go ",Category.CATEGORY1,18900.00);
 //        ProductService ps = new ProductService();
-////        ps.add(p);
+//        ps.add(p);
 //        String c = Category.CATEGORY1.name();
 //        System.out.println( ps.isAvailable(EtatStock.Epuise.name()));
 //        List<Achat> a = new ArrayList<>();
