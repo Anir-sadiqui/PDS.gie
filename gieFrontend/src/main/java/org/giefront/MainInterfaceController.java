@@ -8,12 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import lombok.Data;
 import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
@@ -108,6 +111,17 @@ public class MainInterfaceController implements Initializable {
     public TableView<Entreprise> tableView_E;
     @FXML
     public TableView<Personne> tableView_P;
+
+
+    @FXML
+    public Button closeBtn;
+
+    @FXML
+    public Button maximizeBtn;
+
+    @FXML
+    public Button minimizeBtn;
+
 
     EntrepriseService e = new EntrepriseService();
     PersonneService p = new PersonneService();
@@ -471,5 +485,41 @@ public class MainInterfaceController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+//    @FXML
+//    private void minimize(ActionEvent event) {
+//        ((Stage)((Button)event.getSource()).getScene().getWindow()).setIconified(true);
+//    }
+//
+//    // Method to handle maximize button action
+//    @FXML
+//    private void maximize(ActionEvent event) {
+//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+//        if (stage.isFullScreen()) {
+//            stage.setFullScreen(false);
+//        } else {
+//            stage.setFullScreen(true);
+//        }
+//    }
+//
+//    // Method to handle close button action
+//    @FXML
+//    private void close(ActionEvent event) {
+//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+//        stage.close();
+//    }
+
+    private Stage stage;
+    private Scene scene;
+    private FXMLLoader fxmlLoader;
+
+    public void OnReturnAction(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

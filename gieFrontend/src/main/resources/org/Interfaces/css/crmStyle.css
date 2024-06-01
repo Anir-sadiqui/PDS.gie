@@ -1,0 +1,17 @@
+.window-button {
+    -fx-background-color: transparent;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.minimize-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.maximize-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.close-button:hover {
+    -fx-background-color: #ff6b6b;
+}
