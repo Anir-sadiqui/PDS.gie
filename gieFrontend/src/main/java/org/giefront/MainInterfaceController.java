@@ -487,28 +487,6 @@ public class MainInterfaceController implements Initializable {
         }
     }
 
-//    @FXML
-//    private void minimize(ActionEvent event) {
-//        ((Stage)((Button)event.getSource()).getScene().getWindow()).setIconified(true);
-//    }
-//
-//    // Method to handle maximize button action
-//    @FXML
-//    private void maximize(ActionEvent event) {
-//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//        if (stage.isFullScreen()) {
-//            stage.setFullScreen(false);
-//        } else {
-//            stage.setFullScreen(true);
-//        }
-//    }
-//
-//    // Method to handle close button action
-//    @FXML
-//    private void close(ActionEvent event) {
-//        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//        stage.close();
-//    }
 
     private Stage stage;
     private Scene scene;

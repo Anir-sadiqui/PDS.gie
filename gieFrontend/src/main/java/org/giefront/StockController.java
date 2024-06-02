@@ -119,6 +119,7 @@ public class StockController implements Initializable {
     private void getAll() {
        remplirTAb(FXCollections.observableList(productService.getAll()));
     }
+
     private void remplirType() {
         ObservableList<String> options = FXCollections.observableArrayList();
         ObservableList<String> options2 = FXCollections.observableArrayList();

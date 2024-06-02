@@ -7,57 +7,45 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" prefHeight="999.0" prefWidth="1959.0" styleClass="dashboard" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.DashboardController">
+<AnchorPane fx:id="mainAnchor" prefHeight="1000.0" prefWidth="2200.0" styleClass="dashboard" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.DashboardController">
    <stylesheets>
       <URL value="@css/dashboard.css" />
    </stylesheets>
    <children>
-      <BorderPane fx:id="dashboardBorderPane" layoutX="79.0" layoutY="96.0" prefHeight="900.0" prefWidth="1101.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="dashboardBorderPane" layoutX="0.0" layoutY="0.0" prefHeight="1000.0" prefWidth="2200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <AnchorPane maxHeight="84.0" minHeight="3.0" prefHeight="40.0" prefWidth="1946.0" styleClass="top-bar">
-               <children>
-                  <HBox layoutX="10.0" layoutY="2.0" spacing="5.0">
-                     <children>
-                        <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #ff5f57; -fx-background-radius: 50%;" />
-
-                        <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #ffbd2e; -fx-background-radius: 50%;" />
-
-                        <Button fx:id="maximizeBtn" mnemonicParsing="false" onAction="#maximize" prefHeight="15.0" prefWidth="15.0" style="-fx-background-color: #28c840; -fx-background-radius: 50%;" />
-                     </children>
-                  </HBox>
-               </children>
+            <AnchorPane maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="2200.0" styleClass="top-bar">
+               <!-- Removed buttons from here -->
             </AnchorPane>
          </top>
          <left>
-            <VBox prefHeight="920.0" prefWidth="211.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <VBox prefHeight="1000.0" prefWidth="200.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="69.0" layoutY="117.0" styleClass="welcome-label" text="Welcome" textFill="#1b1a1a">
+                  <Label styleClass="welcome-label" text="Welcome" textFill="#1b1a1a">
                      <font>
                         <Font name="Tahoma" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="username" alignment="CENTER" layoutX="9.0" layoutY="138.0" prefHeight="23.0" prefWidth="194.0" styleClass="username-label" text="The Admin ">
+                  <Label fx:id="username" alignment="CENTER" prefHeight="23.0" prefWidth="200.0" styleClass="username-label" text="The Admin">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
                   <Line endX="69.0" layoutX="121.0" layoutY="178.0" startX="-100.0" styleClass="separator-line" />
-                  <VBox layoutX="15.0" layoutY="213.0" prefHeight="283.0" prefWidth="182.0" spacing="25.0">
+                  <VBox layoutX="15.0" layoutY="213.0" prefHeight="283.0" prefWidth="200.0" spacing="25.0">
                      <padding>
                         <Insets top="20" />
                      </padding>
                      <children>
-                        <Button fx:id="CRM_BTTN" mnemonicParsing="false" onAction="#onCRMBtnClick" prefHeight="40.0" prefWidth="177.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="CRM" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="AchatBtn" mnemonicParsing="false" onAction="#onAchatBtnClick" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="ACHAT" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="StockBtn" mnemonicParsing="false" onAction="#onStockButtonclick" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="STOCK" VBox.vgrow="ALWAYS" />
-                        <Button fx:id="VenteBtn" mnemonicParsing="false" onAction="#onVenteBtnClick" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="VENTE" />
-                        <Button fx:id="FrBtn" mnemonicParsing="false" onAction="#FRBtnClick" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="FOURNISSEUR" />
-                        <Button fx:id="ClientBtn" mnemonicParsing="false" onAction="#ClientBtnClick" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="Command" />
+                        <Button fx:id="CRM_BTTN" mnemonicParsing="false" onAction="#onCRMBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="CRM" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="ClientBtn" mnemonicParsing="false" onAction="#ClientBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="Command" />
+                        <Button fx:id="StockBtn" mnemonicParsing="false" onAction="#onStockButtonclick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="STOCK" VBox.vgrow="ALWAYS" />
+                        <Button fx:id="VenteBtn" mnemonicParsing="false" onAction="#onVenteBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="VENTE" />
+                        <Button fx:id="FrBtn" mnemonicParsing="false" onAction="#FRBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="FOURNISSEUR" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="SW_RESIZE" />
@@ -67,7 +55,7 @@
             </VBox>
          </left>
          <center>
-            <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="959.0" prefWidth="1710.0" styleClass="content-pane" BorderPane.alignment="CENTER" />
+            <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="900.0" prefWidth="1990.0" styleClass="content-pane" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>
