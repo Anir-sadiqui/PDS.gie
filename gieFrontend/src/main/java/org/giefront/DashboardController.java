@@ -1,16 +1,12 @@
 package org.giefront;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +18,7 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
-    public Button AchatBtn; // Modifier la visibilité en public
+    public Button AchatBtn;
 
     @FXML
     public Button CRM_BTTN;
@@ -55,113 +51,65 @@ public class DashboardController implements Initializable {
     public Button minimizeBtn;
 
     @FXML
-    public Label username;
+    public void ClientBtnClick(ActionEvent event) {
+        loadUI("/org/Interfaces/Commande.fxml");
+    }
 
     @FXML
-    public void ClientBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Commande.fxml"));
-            Parent content = loader.load();
+    public void FRBtnClick(ActionEvent event) {
+        loadUI("/org/Interfaces/fournisseurPerso.fxml");
+    }
 
-            // Ajoute le contenu du bouton CRM à votre interface principale
+    @FXML
+    public void onCRMBtnClick(ActionEvent event) {
+        loadUI("/org/Interfaces/MainInterface.fxml");
+    }
+
+    @FXML
+    public void onStockButtonclick(ActionEvent event) {
+        loadUI("/org/Interfaces/Stock.fxml");
+    }
+
+    @FXML
+    public void onVenteBtnClick(ActionEvent event) {
+        // Add functionality if needed
+    }
+
+    @FXML
+    public void onAchatBtnClick(ActionEvent event) {
+        loadUI("/org/Interfaces/achat interface.fxml");
+    }
+
+    private void loadUI(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent content = loader.load();
             dashboardBorderPane.setCenter(content);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-    }    @FXML
-            public void FRBtnClick (ActionEvent event){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Initialization logic if needed
+    }
 
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/fournisseurPerso.fxml"));
-                    Parent content = loader.load();
+    @FXML
+    public void close() {
+        System.exit(0);
+    }
 
-                    // Ajoute le contenu du bouton CRM à votre interface principale
-                    dashboardBorderPane.setCenter(content);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+    @FXML
+    public void maximize(ActionEvent event) {
+        Stage stage = (Stage) dashboardBorderPane.getScene().getWindow();
+        Boolean maximized = stage.isMaximized();
+        stage.setMaximized(!maximized);
+    }
 
-
-            @FXML
-            public void onCRMBtnClick (ActionEvent event){
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/MainInterface.fxml"));
-                    Parent content = loader.load();
-
-                    // Ajoute le contenu du bouton CRM à votre interface principale
-                    dashboardBorderPane.setCenter(content);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @FXML
-            public void onStockButtonclick (ActionEvent event){
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(getClass().getResource("/org/giefront/Stock.fxml"));
-//            ScrollPane flowPane = fxmlLoader.load();
-//            AnchorPane bedPane = fxmlLoader.getController();
-//            bedPane.getScene();
-//            dashboardBorderPane.setCenter(flowPane);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Stock.fxml"));
-                    Parent content = loader.load();
-
-                    // Ajoute le contenu du bouton CRM à votre interface principale
-                    dashboardBorderPane.setCenter(content);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-            @FXML
-            public void onVenteBtnClick (ActionEvent event){
-
-            }
-
-            @FXML
-            public void onAchatBtnClick (ActionEvent event){
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/Interfaces/Commande.fxml"));
-                    Parent content = loader.load();
-
-                    // Ajoute le contenu du bouton CRM à votre interface principale
-                    dashboardBorderPane.setCenter(content);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            @Override
-            public void initialize (URL url, ResourceBundle resourceBundle){
-
-            }
-
-
-            @FXML
-            public void close () {
-                System.exit(0);
-            }
-
-            @FXML
-            public void maximize (ActionEvent event){
-                Stage stage = (Stage) dashboardBorderPane.getScene().getWindow();
-                Boolean maximized = stage.isMaximized();
-                stage.setMaximized(!maximized);
-            }
-
-            @FXML
-            public void minimize (ActionEvent event){
-                Stage stage = (Stage) mainAnchor.getScene().getWindow();
-                stage.setIconified(true);
-            }
-
-        }
+    @FXML
+    public void minimize(ActionEvent event) {
+        Stage stage = (Stage) mainAnchor.getScene().getWindow();
+        stage.setIconified(true);
+    }
+}
