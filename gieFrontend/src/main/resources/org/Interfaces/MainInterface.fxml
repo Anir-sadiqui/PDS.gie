@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.Image?>
-<AnchorPane fx:id="mainAnchor" prefHeight="672.0" prefWidth="1065.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.MainInterfaceController">
+<AnchorPane fx:id="mainAnchor" prefHeight="672.0" prefWidth="1065.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.MainInterfaceController">
     <children>
         <!-- Adding top bar for window controls -->
         <AnchorPane layoutX="-1.0" layoutY="-2.0" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="1089.0" style="-fx-background-color: #343a40;">
@@ -46,12 +38,8 @@
         <!-- Profile Image -->
         <ImageView fx:id="profileImageView" fitHeight="35.0" fitWidth="35.0" layoutX="1022.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
 
-        <!-- ChoiceBox for Sorting -->
-        <ChoiceBox fx:id="sortChoiceBox" layoutX="250.0" layoutY="200.0" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" value="By Id ↘">
-        </ChoiceBox>
-
         <!-- ChoiceBox for Personnes/Entreprises -->
-        <ChoiceBox fx:id="typeChoiceBox" layoutX="20.0" layoutY="200.0" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" value="Personne">
+        <ChoiceBox fx:id="typeChoiceBox" layoutX="20.0" layoutY="200.0" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" value="Person">
         </ChoiceBox>
 
         <TableView fx:id="tableView_E" layoutX="20.0" layoutY="250.0" prefHeight="200.0" prefWidth="437.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da;">
@@ -68,15 +56,14 @@
         <TableView fx:id="tableView_P" layoutX="20.0" layoutY="250.0" prefHeight="200.0" prefWidth="437.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da;" visible="true">
             <columns>
                 <TableColumn fx:id="C_ID_P" prefWidth="50.0" text="ID" />
-                <TableColumn fx:id="C_Nom_P" prefWidth="76.0" text="Nom" />
-                <TableColumn fx:id="C_Prenom_P" prefWidth="74.0" text="Prenom" />
-                <TableColumn fx:id="c_Email_P" prefWidth="82.0" text="Email" />
-                <TableColumn fx:id="C_Phone_P" prefWidth="81.0" text="Phone" />
-                <TableColumn fx:id="C_Adresse_P" prefWidth="71.0" text="Adresse ID" />
+                <TableColumn fx:id="C_Nom_P" prefWidth="76.0" text="Name" />
+                <TableColumn fx:id="C_Prenom_P" prefWidth="74.0" text="Surname" />
+                <TableColumn fx:id="c_Email_P" prefWidth="113.33331298828125" text="Email" />
+                <TableColumn fx:id="C_Phone_P" prefWidth="122.66668701171875" text="Phone" />
             </columns>
         </TableView>
 
-        <TextArea fx:id="detailsC" layoutX="465.0" layoutY="150.0" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" />
+        <TextArea fx:id="detailsC" layoutX="489.0" layoutY="350.0" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" />
 
         <Button fx:id="adresse" layoutX="572.0" layoutY="478.0" mnemonicParsing="false" onAction="#onAdress" style="-fx-background-color: #007bff; -fx-text-fill: #ffffff; -fx-border-radius: 5;" text="Adresse">
          <graphic>
@@ -85,11 +72,11 @@
 
         <TextArea fx:id="adresseDetails" layoutX="457.0" layoutY="536.0" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da; -fx-border-radius: 5;" />
 
-        <ImageView fx:id="IconeC" fitHeight="150.0" fitWidth="200.0" layoutX="507.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="IconeC" fitHeight="150.0" fitWidth="200.0" layoutX="507.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
 
         <Button fx:id="returnBtn" layoutX="20.0" layoutY="485.0" mnemonicParsing="false" onAction="#OnReturnAction" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #6c757d; -fx-text-fill: #ffffff; -fx-border-radius: 5;" text="Back">
          <graphic>
-             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                  <image>
                      <Image url="https://cdn-icons-png.flaticon.com/512/3114/3114883.png" />
                  </image>
@@ -98,7 +85,7 @@
 
         <Button fx:id="searchButton" layoutX="132.0" layoutY="483.0" mnemonicParsing="false" onAction="#onSearchButtonClicked" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #28a745; -fx-text-fill: #ffffff; -fx-border-radius: 5;" text="Fetch">
          <graphic>
-             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                  <image>
                      <Image url="https://static.thenounproject.com/png/256152-200.png" />
                  </image>
@@ -107,7 +94,7 @@
 
         <Button fx:id="advancedsearchBtn" layoutX="20.0" layoutY="531.0" mnemonicParsing="false" onAction="#onAdvancedSearch" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #ffc107; -fx-text-fill: #ffffff; -fx-border-radius: 5;" text="Recherche avancée">
          <graphic>
-             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                  <image>
                      <Image url="https://png.pngtree.com/png-clipart/20190921/original/pngtree-search-icon-png-image_4699282.jpg" />
                  </image>
@@ -116,7 +103,7 @@
 
         <Button fx:id="createBtn" layoutX="132.0" layoutY="532.0" mnemonicParsing="false" onAction="#onCreateBtnClick" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #17a2b8; -fx-text-fill: #ffffff; -fx-border-radius: 5;" text="Creer">
          <graphic>
-             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" >
+             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                  <image>
                      <Image url="https://cdn-icons-png.flaticon.com/512/3658/3658756.png" />
                  </image>

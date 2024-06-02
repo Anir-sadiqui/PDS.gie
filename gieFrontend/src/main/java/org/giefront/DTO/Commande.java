@@ -16,8 +16,8 @@ public class Commande {
 
     private List<Achat> achats;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate purchaseDate;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private String purchaseDate;
 
 
     private EtatCommande e;
@@ -38,11 +38,11 @@ public class Commande {
         this.achats = achats;
     }
 
-    public LocalDate getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
@@ -57,7 +57,7 @@ public class Commande {
     @JsonCreator
     public Commande( List<Achat> achats) {
         this.achats = achats;
-        this.purchaseDate=LocalDate.now();
+        this.purchaseDate=String.valueOf(LocalDate.now());
         this.e=EtatCommande.Initialised;
     }
     public Commande(){}

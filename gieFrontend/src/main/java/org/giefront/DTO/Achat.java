@@ -10,7 +10,7 @@ public class Achat {
     private Long id;
 
 
-    private LocalDate purchaseDate;
+    private String purchaseDate;
 
 
     private Contact supplier;
@@ -39,11 +39,11 @@ public class Achat {
         this.id = id;
     }
 
-    public LocalDate getPurchaseDate() {
+    public String getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 

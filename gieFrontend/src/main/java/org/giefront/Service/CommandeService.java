@@ -72,7 +72,6 @@ public class CommandeService {
         }
     }
     public void validerComm(int id) throws IOException {
-        // Définir le corps de la requête, ici on utilise un corps vide
         RequestBody requestBody = RequestBody.create(new byte[0]);
 
         Request request = new Request.Builder()

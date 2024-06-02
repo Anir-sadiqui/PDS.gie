@@ -135,9 +135,8 @@ public class MainInterfaceController implements Initializable {
         IconeC.setVisible(false);
         adresse.setVisible(false);
         adresseDetails.setVisible(false);
-        remplirMenu();
-        remplirFilters();
         remplirType();
+        getAllP();
         importIcon();
         tableView_P.setRowFactory(tv -> {
             TableRow<Personne> row = new TableRow<>();
@@ -160,8 +159,6 @@ public class MainInterfaceController implements Initializable {
             });
             return row;
         });
-
-
     }
 
 
@@ -188,31 +185,12 @@ public class MainInterfaceController implements Initializable {
         detailsC.setEditable(false);
         detailsC.setText("Raison social: " + clickedRow.getRaisonSocial() + '\n' + "Email: " + clickedRow.getEmail() + '\n' + "Num de tel: " + clickedRow.getPhone() + '\n' + "Forme Juridique: " + clickedRow.getFormeJuridique());
         adresse.setVisible(true);
-
-
-
-    }
-
-
-    private void remplirMenu() {
-        ObservableList<String> options = FXCollections.observableArrayList();
-        options.add("Gestion du Stock");
-        options.add("Ventes");
-        menuChoiceBox.setItems(options);
-    }
-
-    private void remplirFilters() {
-        ObservableList<String> options = FXCollections.observableArrayList(
-                "By Id ↗", "By Id ↘",
-                "Raison Social ↗", "Raison Social ↘",
-                "By Name ↗", "By Name ↘", "None");
-        sortChoiceBox.setItems(options);
     }
 
     private void remplirType() {
         ObservableList<String> options = FXCollections.observableArrayList();
-        options.add("Entreprise");
-        options.add("Personne");
+        options.add("Enterprise");
+        options.add("Person");
         typeChoiceBox.setItems(options);
     }
 
@@ -225,160 +203,37 @@ public class MainInterfaceController implements Initializable {
     private void onSearchButtonClicked(ActionEvent event) throws IOException {
         String selectedType = typeChoiceBox.getValue();
         switch (selectedType) {
-            case "Personne":
-                ObservableList<Personne> personneObservableList = FXCollections.observableList(p.getAll());
-                C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-                c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-                C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                tableView_P.setItems(personneObservableList);
-                tableView_P.setVisible(true);
-                tableView_E.setVisible(false);
+            case "Person":
+                getAllP();
                 break;
-            case "Entreprise":
-                ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getAll());
-                C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-                C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-                C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                tableView_E.setItems(entrepriseObservableList);
-                tableView_E.setVisible(true);
-                tableView_P.setVisible(false);
-                break;
-
-        }
-        applyFilter();
-
-    }
-
-    private void applyFilter() throws IOException {
-        String filter = sortChoiceBox.getValue();
-        String selectedType = typeChoiceBox.getValue();
-        switch (filter) {
-            case "By Id ↗":
-                if ("Personne".equals(selectedType)) {
-                    ObservableList<Personne> personneObservableList = FXCollections.observableList(p.sortById("asc"));
-                    C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                    C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                    C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_P.setItems(personneObservableList);
-                    tableView_P.setVisible(true);
-                    tableView_E.setVisible(false);
-                } else if ("Entreprise".equals(selectedType)) {
-
-                    ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.sortById("asc"));
-                    C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                    C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_E.setItems(entrepriseObservableList);
-                    tableView_E.setVisible(true);
-                    tableView_P.setVisible(false);
-                }
-                break;
-            case "By Id ↘":
-                if ("Personne".equals(selectedType)) {
-                    ObservableList<Personne> personneObservableList = FXCollections.observableList(p.sortById("desc"));
-                    C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                    C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                    C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_P.setItems(personneObservableList);
-                    tableView_P.setVisible(true);
-                    tableView_E.setVisible(false);
-
-                } else if ("Entreprise".equals(selectedType)) {
-
-                    ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.sortById("desc"));
-                    C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                    C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_E.setItems(entrepriseObservableList);
-                    tableView_E.setVisible(true);
-                    tableView_P.setVisible(false);
-                }
-                break;
-            case "Raison Social ↘":
-                if ("Entreprise".equals(selectedType)) {
-                    ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.sortByRs("desc"));
-                    C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                    C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_E.setItems(entrepriseObservableList);
-                    tableView_E.setVisible(true);
-                    tableView_P.setVisible(false);
-                } else {
-                    showMessage("Impossible d'effectuer cette action");
-                }
-                break;
-            case "Raison Social ↗":
-                if ("Entreprise".equals(selectedType)) {
-                    ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.sortByRs("asc"));
-                    C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
-                    C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-                    C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_E.setItems(entrepriseObservableList);
-                    tableView_E.setVisible(true);
-                    tableView_P.setVisible(false);
-                } else {
-                    showMessage("Impossible d'effectuer cette action");
-                }
-                break;
-            case "By Name ↘":
-                if ("Personne".equals(selectedType)) {
-                    ObservableList<Personne> personneObservableList = FXCollections.observableList(p.sortBynom("desc"));
-                    C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                    C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                    C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_P.setItems(personneObservableList);
-                    tableView_P.setVisible(true);
-                    tableView_E.setVisible(false);
-
-                } else {
-                    showMessage("Impossible d'effectuer cette action");
-                }
-                break;
-            case "By Name ↗":
-                if ("Personne".equals(selectedType)) {
-                    ObservableList<Personne> personneObservableList = FXCollections.observableList(p.sortBynom("asc"));
-                    C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
-                    c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
-                    C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
-                    C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
-                    C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                    C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
-                    tableView_P.setItems(personneObservableList);
-                    tableView_P.setVisible(true);
-                    tableView_E.setVisible(false);
-                } else {
-                    showMessage("Impossible d'effectuer cette action");
-                }
+            case "Enterprise":
+               getAllE();
                 break;
         }
     }
+    public void getAllP(){
+        ObservableList<Personne> personneObservableList = FXCollections.observableList(p.getAll());
+        C_ID_P.setCellValueFactory(new PropertyValueFactory<>("id"));
+        c_Email_P.setCellValueFactory(new PropertyValueFactory<>("email"));
+        C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        tableView_P.setItems(personneObservableList);
+        tableView_P.setVisible(true);
+        tableView_E.setVisible(false);
+    }
+    public void getAllE(){
+        ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getAll());
+        C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
+        C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
+        C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
+        C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
+        tableView_E.setItems(entrepriseObservableList);
+        tableView_E.setVisible(true);
+        tableView_P.setVisible(false);
+    }
+
 
     private void showMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -393,12 +248,12 @@ public class MainInterfaceController implements Initializable {
     public void onCreateBtnClick(ActionEvent event) {
         String selectedType = typeChoiceBox.getValue();
         try {
-            if ("Personne".equals(selectedType)) {
+            if ("Person".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/personne2.fxml"));
                 Node node = fxmlLoader.load();
                 mainAnchor.getChildren().setAll(node);
-            } else if ("Entreprise".equals(selectedType)) {
+            } else if ("Enterprise".equals(selectedType)) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/org/Interfaces/entreprise2.fxml"));
                 Node node = fxmlLoader.load();
@@ -418,12 +273,12 @@ public class MainInterfaceController implements Initializable {
         if (tableView_P.isVisible()) {
             Personne selectedPerson = tableView_P.getSelectionModel().getSelectedItem();
             if (selectedPerson != null) {
-                adresseDetails.setText("Numero: " + selectedPerson.getAdresse().getNumero() + '\n' + "Quartier: " + selectedPerson.getAdresse().getQuartier() + '\n' + "Ville: " + selectedPerson.getAdresse().getVille());
+                adresseDetails.setText("Num: " + selectedPerson.getAdresse().getNumero() + '\n' + "Quartier: " + selectedPerson.getAdresse().getQuartier() + '\n' + "Ville: " + selectedPerson.getAdresse().getVille());
             }
         } else if (tableView_E.isVisible()) {
             Entreprise selectedEntreprise = tableView_E.getSelectionModel().getSelectedItem();
             if (selectedEntreprise != null) {
-                adresseDetails.setText("Numero: " + selectedEntreprise.getAdresse().getNumero() + '\n' + "Quartier: " + selectedEntreprise.getAdresse().getQuartier() + '\n' + "Ville: " + selectedEntreprise.getAdresse().getVille());
+                adresseDetails.setText("Num: " + selectedEntreprise.getAdresse().getNumero() + '\n' + "Quartier: " + selectedEntreprise.getAdresse().getQuartier() + '\n' + "Ville: " + selectedEntreprise.getAdresse().getVille());
             }
 
         }
@@ -431,7 +286,7 @@ public class MainInterfaceController implements Initializable {
 
 
     public void onAdvancedSearch(ActionEvent event) {
-        if(typeChoiceBox.getValue().equals("Entreprise")){
+        if(typeChoiceBox.getValue().equals("Enterprise")){
             try {
                 FXMLLoader f = new FXMLLoader();
                 f.setLocation(getClass().getResource("/org/Interfaces/AdvancedSearchE.fxml"));
@@ -441,7 +296,7 @@ public class MainInterfaceController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-        else if (typeChoiceBox.getValue().equals("Personne")){
+        else if (typeChoiceBox.getValue().equals("Person")){
             try {
                 FXMLLoader f = new FXMLLoader();
                 f.setLocation(getClass().getResource("/org/Interfaces/AdvancedSearchP.fxml"));
