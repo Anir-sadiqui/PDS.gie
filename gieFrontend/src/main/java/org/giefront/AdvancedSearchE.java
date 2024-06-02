@@ -19,12 +19,16 @@ import org.giefront.Service.FournisseurPersoService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdvancedSearchE implements Initializable {
 
     public static Entreprise entr;
+    @FXML
+    private ChoiceBox F_J;
     @FXML
     private Button Search;
 
@@ -103,6 +107,14 @@ public class AdvancedSearchE implements Initializable {
 
     }
 
+    public void remplirF_J(){
+        ObservableList<String> s = FXCollections.observableArrayList();
+        s.add("SA");
+        s.add("SARL");
+        s.add("EURL");
+        F_J.setItems(s);
+    }
+
     private void showEDetails(Entreprise clickedRow) {
         IconeC.setVisible(true);
         if (clickedRow.getImagePath() != null){
@@ -178,7 +190,6 @@ public class AdvancedSearchE implements Initializable {
             C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
             C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
             C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
             tableView_E.setItems(entrObservableList);
             tableView_E.setVisible(true);
         }
@@ -189,18 +200,16 @@ public class AdvancedSearchE implements Initializable {
             C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
             C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
             C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
             tableView_E.setItems(entrObservableList);
             tableView_E.setVisible(true);
         }
-        else if (!Text_FJ.getText().isEmpty() && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
-            ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getByFj(Text_FJ.getText()));
+        else if (F_J.getValue() != null && Text_id.getText().isEmpty() && Text_RS.getText().isEmpty()){
+            ObservableList<Entreprise> entrepriseObservableList = FXCollections.observableList(e.getByFj((String) F_J.getValue()));
             C_ID_E.setCellValueFactory(new PropertyValueFactory<>("id"));
             C_Email_E.setCellValueFactory(new PropertyValueFactory<>("email"));
             C_Phone_E.setCellValueFactory(new PropertyValueFactory<>("phone"));
             C_FJ_E.setCellValueFactory(new PropertyValueFactory<>("formeJuridique"));
             C_RS_E.setCellValueFactory(new PropertyValueFactory<>("raisonSocial"));
-            C_Adresse_E.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
             tableView_E.setItems(entrepriseObservableList);
             tableView_E.setVisible(true);
         }

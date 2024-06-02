@@ -323,7 +323,7 @@ public class MainInterfaceController implements Initializable {
     public void onMess(ActionEvent event) {
         try {
             FXMLLoader f = new FXMLLoader();
-            f.setLocation(getClass().getResource("/org/Interfaces/Messagerie.fxml"));
+            f.setLocation(getClass().getResource("/org/Interfaces/Notifier.fxml"));
             Node n = f.load();
             mainAnchor.getChildren().setAll(n);
         } catch (IOException e) {
