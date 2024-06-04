@@ -2,9 +2,12 @@ package org.gieback.Controller;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.gieback.DTO.AchatDTO;
+import org.gieback.DTO.CommandeDTO;
 import org.gieback.Entity.Achat;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,19 +22,12 @@ import org.gieback.Service.IAchatService;
 public class AchatController{
     IAchatService achatService = new AchatService();
 
-//    @GET
-//    @Path("/getAll")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    public List<Achat> getAllPurchases(Commande c ) {
-//        return achatService.getAll(c);
-//    }
 
     @POST
     @Path("/ajouter")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addPurchase(Achat achat) {
-        achatService.add(achat);
+    public Response addPurchase(AchatDTO achat) {
+        achatService.add(toAEntity(achat));
         return Response.status(Response.Status.CREATED).build();
     }
 
@@ -70,6 +66,28 @@ public class AchatController{
     @Produces(MediaType.APPLICATION_JSON)
     public List<Achat> searchPurchasesBySupplier(@PathParam("idf") int idf) {
         return achatService.chercherParFournisseur(idf);
+    }
+
+    public Achat toAEntity(AchatDTO dto) {
+        CommandeController cc = new CommandeController();
+        Achat achat = new Achat();
+        achat.setId(dto.getId());
+        achat.setDetails(dto.getDetails());
+        achat.setPurchaseDate(LocalDate.parse(dto.getPurchaseDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        achat.setSupplier(dto.getSupplier());
+        achat.setC(cc.toEntity(dto.getC()));
+        return achat;
+    }
+
+    public AchatDTO toADTO(Achat achat) {
+        AchatDTO dto = new AchatDTO();
+        CommandeController cc = new CommandeController();
+        dto.setId(achat.getId());
+        dto.setDetails(achat.getDetails());
+        dto.setPurchaseDate(achat.getPurchaseDate().toString());
+        dto.setSupplier(achat.getSupplier());
+        dto.setC(cc.toDTO(achat.getC()));
+        return dto;
     }
 
 

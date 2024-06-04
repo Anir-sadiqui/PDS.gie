@@ -3,13 +3,11 @@ package org.giefront.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
-import org.giefront.DTO.Achat;
-import org.giefront.DTO.Commande;
-import org.giefront.DTO.EtatCommande;
-import org.giefront.DTO.Product;
+import org.giefront.DTO.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandeService {
@@ -18,23 +16,23 @@ public class CommandeService {
     ObjectMapper mapper = new ObjectMapper();
     public CommandeService() {
         this.mapper = new ObjectMapper();
-        this.mapper.registerModule(new JavaTimeModule());
     }
 
         public List<Commande> getAll() {
-            Request request = new Request.Builder()
-                    .url("http://localhost:9998/Commande/Commandes")
-                    .build();
-
-            try (Response response = okHttpClient.newCall(request).execute()) {
+            Request request = new Request.Builder().url("http://localhost:9998/Commande/Commandes").build();
+            List<Commande> c;
+            try {
+                Response response = okHttpClient.newCall(request).execute();
                 if (!response.isSuccessful()) {
-                    throw new IOException("Unexpected code " + response);
+                    throw new IOException(String.valueOf(response));
                 }
-
-                return mapper.readValue(response.body().string(), mapper.getTypeFactory().constructCollectionType(List.class, Commande.class));
+                c = mapper.readValue(response.body().charStream(), new TypeReference<>() {
+                });
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            return c;
         }
 
         public void addCom(Commande c){
