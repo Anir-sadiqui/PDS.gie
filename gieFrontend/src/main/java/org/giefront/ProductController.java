@@ -68,7 +68,7 @@ public class ProductController implements Initializable {
                 product.setPrix(Double.parseDouble(Text_Field_Q.getText()));
                 product.setImagePath(imagePath);
                 product.setCategory(Category.valueOf(choiceBox.getValue()));
-                if (productService.getbyname(Text_Field_N.getText()).equals(null)){
+                if (productService.getbyname(Text_Field_N.getText())==null){
                     productService.add(product);
                     showMessage("Product added successfully!");
                 }

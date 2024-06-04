@@ -88,17 +88,27 @@ public class ProductService   {
         }
 
         public Product getbyname(String name) {
-            Request request = new Request.Builder().url("http://localhost:9998/Product/getByName/"+name).build();
-            Product p;
+            Request request = new Request.Builder()
+                    .url("http://localhost:9998/Product/getByName/" + name)
+                    .build();
+            Product product = null;
+
             try (Response response = okHttpClient.newCall(request).execute()) {
                 if (!response.isSuccessful()) {
-                    throw new IOException(String.valueOf(response));
+                    throw new IOException("Unexpected response code: " + response.code() + " - " + response.message());
                 }
-                p = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
+
+                if (response.body() == null) {
+                    throw new IOException("Response body is null");
+                }
+
+                product = mapper.readValue(response.body().charStream(), new TypeReference<>() {});
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                return null;
             }
-            return p;
+
+            return product;
+
         }
 
 

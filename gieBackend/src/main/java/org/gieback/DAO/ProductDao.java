@@ -2,6 +2,7 @@ package org.gieback.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import org.gieback.Entity.Category;
 import org.gieback.Entity.EtatStock;
@@ -116,8 +117,11 @@ public class ProductDao implements IProductDao{
         String hql = "FROM Product p WHERE p.name = :nom";
         Query query = entityManager.createQuery(hql);
         query.setParameter("nom", nom);
-        Product p = (Product) query.getSingleResult();
-        return p;
+        try {
+            return (Product) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     @Override
     public void ajoutQ (int nq, int id){
