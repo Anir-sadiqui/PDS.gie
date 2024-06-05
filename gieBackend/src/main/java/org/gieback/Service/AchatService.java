@@ -36,11 +36,6 @@ public class AchatService implements IAchatService {
     }
 
     @Override
-    public List<Achat> chercherParDate(LocalDate date) {
-        return achatDao.chercherParDate(date);
-    }
-
-    @Override
     public List<Achat> chercherParFournisseur(int idf) {
         return achatDao.chercherParFournisseur(idf);
     }

@@ -7,12 +7,12 @@
    <children>
       <Label layoutX="17.0" layoutY="177.0" prefWidth="82.0" text="Quantity" textAlignment="CENTER" />
       <Label layoutX="14.0" layoutY="125.0" prefHeight="18.0" prefWidth="76.0" text="Fournisseur" />
-      <RadioButton fx:id="EntrepriseRadioButton" layoutX="105.0" layoutY="83.0" mnemonicParsing="false" text="Entreprise">
+      <RadioButton fx:id="EntrepriseRadioButton" layoutX="105.0" layoutY="83.0" onAction="#loadEntreprises" mnemonicParsing="false" text="Entreprise">
          <toggleGroup>
             <ToggleGroup fx:id="Type" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="PersonneRadioButton" layoutX="217.0" layoutY="81.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="100.0" text="Personne" toggleGroup="$Type" />
+      <RadioButton fx:id="PersonneRadioButton" layoutX="217.0" onAction="#loadPersonnes" layoutY="81.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="100.0" text="Personne" toggleGroup="$Type" />
       <TextField fx:id="Text_Field_Q" layoutX="111.0" layoutY="174.0" prefHeight="18.0" prefWidth="150.0" />
       <Button fx:id="BtnAddP" layoutX="279.0" layoutY="262.0" mnemonicParsing="false" onAction="#OnBtnPClick" prefHeight="25.0" prefWidth="76.0" text="Modify" />
       <ChoiceBox fx:id="CB_F" layoutX="111.0" layoutY="120.0" prefWidth="150.0" />

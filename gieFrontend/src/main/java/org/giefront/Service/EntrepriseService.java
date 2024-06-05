@@ -181,7 +181,8 @@ public List<Entreprise> getByFj(String fj) {
         return e1;
     }
     public void addType(int id , ContactType t) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/addType/" + id + "/" + t).build();
+        RequestBody requestBody = RequestBody.create(new byte[0]);
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/addType/" + id + "/" + t).patch(requestBody).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Échec de la requête : " + response.code() + " " + response.message());
@@ -191,7 +192,8 @@ public List<Entreprise> getByFj(String fj) {
         }
     }
     public void deleteType (int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/entreprise/deleteType/" + id ).build();
+        RequestBody requestBody = RequestBody.create(new byte[0]);
+        Request request = new Request.Builder().url("http://localhost:9998/entreprise/deleteType/" + id ).patch(requestBody).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Échec de la requête : " + response.code() + " " + response.message());

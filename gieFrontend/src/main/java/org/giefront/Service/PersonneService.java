@@ -196,7 +196,8 @@ public class PersonneService implements IService{
         }
     }
     public void deleteType (int id) throws IOException {
-        Request request = new Request.Builder().url("http://localhost:9998/personne/deleteType/" + id ).build();
+        RequestBody requestBody = RequestBody.create(new byte[0]);
+        Request request = new Request.Builder().url("http://localhost:9998/personne/deleteType/" + id ).patch(requestBody).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException("Échec de la requête : " + response.code() + " " + response.message());

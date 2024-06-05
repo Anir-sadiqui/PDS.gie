@@ -14,7 +14,6 @@ public interface IAchatService {
     void add(Achat achat);
     void deleteById(int id);
     void modifier(String id, Map<String, String> attributs);
-    List<Achat> chercherParDate(LocalDate date);
     List<Achat> chercherParFournisseur(int idf);
     List<Achat> getByCommande (int idC);
 }

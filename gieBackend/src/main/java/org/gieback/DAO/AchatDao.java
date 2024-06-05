@@ -107,13 +107,7 @@ public class AchatDao implements IAchatDao {
 
 
     }
-    @Override
-    public List<Achat> chercherParDate(LocalDate date) {
-        Query query = entityManager.createQuery("FROM Achat a WHERE a.purchaseDate = :date", Achat.class);
-        query.setParameter("date", date);
-        List <Achat> a = query.getResultList();
-        return a;
-    }
+
 
 
 

@@ -11,9 +11,6 @@ public class AchatDTO {
     private Long id;
 
 
-    private String purchaseDate;
-
-
     private Contact supplier;
 
 

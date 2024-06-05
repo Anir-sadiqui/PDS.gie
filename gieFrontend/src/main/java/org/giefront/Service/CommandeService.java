@@ -92,7 +92,7 @@ public class CommandeService {
 
     }
 
-    public List<Commande> getByDate(LocalDate date){
+    public List<Commande> getByDate(String date){
 
         Request request = new Request.Builder().url("http://localhost:9998/Commande/CommandeByDate/?date="+date).build();
         List<Commande> commandes;

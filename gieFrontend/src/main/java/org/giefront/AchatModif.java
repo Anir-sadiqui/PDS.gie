@@ -47,8 +47,7 @@ public class AchatModif implements Initializable {
         Text_Field_N.setText(a.getDetails().getProduct().getName());
         Text_Field_Q.setText(String.valueOf(a.getDetails().getQuantity()));
         Text_Field_N.setEditable(false);
-        loadEntreprises();
-        loadPersonnes();
+        remplType();
         initTypeF();
     }
 
@@ -91,8 +90,18 @@ public class AchatModif implements Initializable {
         as.getByComm(Math.toIntExact(ac.c.getId()));
     }
 
+    private void remplType(){
+        if (EntrepriseRadioButton.isSelected()){
+            loadEntreprises();
+        }
+        if (PersonneRadioButton.isSelected()){
+            loadPersonnes();
+        }
+    }
 
 
+
+    @FXML
     private void loadEntreprises() {
         EntrepriseService ps = new EntrepriseService();
         List<String> personneNames = new ArrayList<>();
@@ -101,13 +110,14 @@ public class AchatModif implements Initializable {
                 personneNames.add(p.getRaisonSocial() + " " +p.getId());
             }
         }
-        if (EntrepriseRadioButton.isSelected()) {
-            CB_F.getItems().addAll(personneNames);
-        }
+        CB_F.getItems().removeAll(CB_F.getItems());
+        CB_F.getItems().addAll(personneNames);
+
 
     }
 
 
+    @FXML
     private void loadPersonnes() {
         PersonneService ps = new PersonneService();
         List<String> personneNames = new ArrayList<>();
@@ -116,9 +126,8 @@ public class AchatModif implements Initializable {
                 personneNames.add(p.getNom() + " " + p.getPrenom() + " " +p.getId() );
             }
         }
-        if (PersonneRadioButton.isSelected()) {
-            CB_F.getItems().addAll(personneNames);
-        }
+        CB_F.getItems().removeAll(CB_F.getItems());
+        CB_F.getItems().addAll(personneNames);
     }
 
     private void initTypeF(){

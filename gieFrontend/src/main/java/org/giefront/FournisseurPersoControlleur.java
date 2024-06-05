@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import org.giefront.DTO.Personne;
 import org.giefront.Service.FournisseurPersoService;
 import org.giefront.DTO.ContactType;
+import org.giefront.Service.PersonneService;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -124,7 +126,11 @@ public class FournisseurPersoControlleur {
 
             deleteButton.setOnAction(event -> {
                 Personne fournisseur = getTableView().getItems().get(getIndex());
-                deleteFournisseur(fournisseur);
+                try {
+                    deleteFournisseur(fournisseur);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
 
@@ -149,14 +155,12 @@ public class FournisseurPersoControlleur {
         }
     }
 
-    private void deleteFournisseur(Personne fournisseur) {
+    private void deleteFournisseur(Personne fournisseur) throws IOException {
         System.out.println("Deleting fournisseur: " + fournisseur.getNom());
-        try {
-            fournisseurService.deletePersonne(fournisseur.getId());
-            fetchFournisseurs(null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PersonneService ps =new PersonneService();
+        ps.deleteType(Math.toIntExact(fournisseur.getId()));
+        fetchFournisseurs(null);
+
     }
 
     private Stage stage;

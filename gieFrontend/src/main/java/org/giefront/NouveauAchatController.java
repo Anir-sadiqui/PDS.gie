@@ -17,10 +17,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.giefront.DTO.*;
-import org.giefront.Service.AchatService;
-import org.giefront.Service.EntrepriseService;
-import org.giefront.Service.PersonneService;
-import org.giefront.Service.ProductService;
+import org.giefront.DTO.EtatCommande;
+import org.giefront.Service.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -102,16 +100,30 @@ public class NouveauAchatController implements Initializable {
             na.setSupplier(es.getById(id));
         }
         AchatDetail d = new AchatDetail();
-        d.setProduct(productService.getbyname((String) CB_N.getValue()));
         d.setQuantity(Integer.parseInt(txtQuantite.getText()));
+        d.setProduct(productService.getbyname((String) CB_N.getValue()));
         d.setTotalPrice((d.getQuantity()*d.getProduct().getPrix()));
         na.setDetails(d);
-        as.ajouter(na);
-//        System.out.println(na.getDetails());
-//        System.out.println(na);
-//        System.out.println(na.getDetails().getTotalPrice());
-
-
+        CommandeService cs = new CommandeService();
+        List<Commande> commandes = cs.getByEtat(EtatCommande.Initialised.name());
+        List<Achat> achats = new ArrayList<>();
+        for (Commande c : commandes){
+            achats.addAll(as.getByComm(Math.toIntExact(c.getId())));
+        }
+        List<AchatDetail> details = new ArrayList<>();
+        for (Achat a : achats){
+            details.add(a.getDetails());
+        }
+        List<Product> products = new ArrayList<>();
+        for (AchatDetail ad : details){
+            products.add(ad.getProduct());
+        }
+        if (!products.contains(productService.getbyname((String) CB_N.getValue()))) {
+            as.ajouter(na);
+        }
+        else {
+            showAlert("This product has already been purchased.");
+        }
     }
 
     private void showAlert(String message) {

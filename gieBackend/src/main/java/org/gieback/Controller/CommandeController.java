@@ -37,9 +37,11 @@ public class CommandeController {
     @GET
     @Path("/CommandeByDate")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByDate(@QueryParam("date") String date) {
+    public List<CommandeDTO> getByDate(@QueryParam("date") String date) {
         LocalDate localDate = LocalDate.parse(date);
-        return cs.getComByDate(localDate);
+        List<Commande> commandes = cs.getComByDate(localDate);
+        List<CommandeDTO> commandeDTOs = commandes.stream().map(this::toDTO).collect(Collectors.toList());
+        return commandeDTOs;
     }
 
     @PATCH
@@ -52,8 +54,10 @@ public class CommandeController {
     @GET
     @Path("/CommandeByEtat/{e}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Commande> getByEtat(@PathParam("e") String e) {
-        return cs.getByEtat(e);
+    public List<CommandeDTO> getByEtat(@PathParam("e") String e) {
+        List<Commande> commandes = cs.getByEtat(e);
+        List<CommandeDTO> commandeDTOs = commandes.stream().map(this::toDTO).collect(Collectors.toList());
+        return commandeDTOs;
     }
 
     @DELETE

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.giefront.DTO.ContactType;
 import org.giefront.DTO.Entreprise;
 import org.giefront.DTO.Personne;
+import org.giefront.Service.EntrepriseService;
 import org.giefront.Service.FournisseurEntroService;
 import org.giefront.TestFront;
 
@@ -184,7 +185,11 @@ public class FourniseurEntoContro {
         public DeleteButtonCell() {
             deleteButton.setOnAction(event -> {
                 Entreprise fournisseur = getTableView().getItems().get(getIndex());
-                deleteFournisseur(fournisseur);
+                try {
+                    deleteFournisseur(fournisseur);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
             setGraphic(deleteButton);
         }
@@ -216,14 +221,13 @@ public class FourniseurEntoContro {
         }
     }
 
-    private void deleteFournisseur(Entreprise fournisseur) {
+    private void deleteFournisseur(Entreprise fournisseur) throws IOException {
         System.out.println("Deleting fournisseur: " + fournisseur.getRaisonSocial());
-        try {
-            fournisseurService.deleteEntro(fournisseur.getId()); // Assuming getId() returns the ID of the fournisseur
+
+            EntrepriseService es = new EntrepriseService();
+            es.deleteType(Math.toIntExact(fournisseur.getId()));
             fetchFournisseurs(null); // Refresh the table after deletion
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }
+
     }
 
     @FXML

@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.gieback.Entity.Commande;
 import org.gieback.Entity.Contact;
@@ -46,26 +47,23 @@ public class AchatController{
         return Response.noContent().build();
     }
 
-    @GET
-    @Path("/chercherParDate")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesByDate( @QueryParam("date") String date) {
-        LocalDate localDate = LocalDate.parse(date);
-        return achatService.chercherParDate(localDate);
-    }
 
     @GET
     @Path("/getByComm/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> getByComm(@PathParam("id") int id) {
-        return achatService.getByCommande(id);
+    public List<AchatDTO> getByComm(@PathParam("id") int id) {
+        List<Achat> achats = achatService.getByCommande(id);
+        List<AchatDTO> achatDTOs = achats.stream().map(this::toADTO).collect(Collectors.toList());
+        return achatDTOs;
     }
 
     @GET
     @Path("/chercherParFournisseur/{idf}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Achat> searchPurchasesBySupplier(@PathParam("idf") int idf) {
-        return achatService.chercherParFournisseur(idf);
+    public List<AchatDTO> searchPurchasesBySupplier(@PathParam("idf") int idf) {
+        List<Achat> achats = achatService.chercherParFournisseur(idf);
+        List<AchatDTO> achatDTOs = achats.stream().map(this::toADTO).collect(Collectors.toList());
+        return achatDTOs;
     }
 
     public Achat toAEntity(AchatDTO dto) {
@@ -73,7 +71,6 @@ public class AchatController{
         Achat achat = new Achat();
         achat.setId(dto.getId());
         achat.setDetails(dto.getDetails());
-        achat.setPurchaseDate(LocalDate.parse(dto.getPurchaseDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         achat.setSupplier(dto.getSupplier());
         achat.setC(cc.toEntity(dto.getC()));
         return achat;
@@ -84,7 +81,6 @@ public class AchatController{
         CommandeController cc = new CommandeController();
         dto.setId(achat.getId());
         dto.setDetails(achat.getDetails());
-        dto.setPurchaseDate(achat.getPurchaseDate().toString());
         dto.setSupplier(achat.getSupplier());
         dto.setC(cc.toDTO(achat.getC()));
         return dto;

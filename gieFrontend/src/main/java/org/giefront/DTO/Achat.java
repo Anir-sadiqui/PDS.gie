@@ -10,9 +10,6 @@ public class Achat {
     private Long id;
 
 
-    private String purchaseDate;
-
-
     private Contact supplier;
 
 
@@ -25,7 +22,6 @@ public class Achat {
 
 
     public Achat( AchatDetail details, Commande c, Contact supplier ) {
-        this.purchaseDate = c.getPurchaseDate();
         this.details=details;
         this.c=c;
         this.supplier=supplier;
@@ -37,14 +33,6 @@ public class Achat {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
     }
 
 
@@ -76,7 +64,6 @@ public class Achat {
     public String toString() {
         return "Achat{" +
                 "id=" + id +
-                ", purchaseDate=" + purchaseDate +
                 ", supplier=" + supplier +
                 ", details=" + details +
                 ", c=" + c +

@@ -19,10 +19,6 @@ public class Achat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "purchase_date")
-    private LocalDate purchaseDate;
-
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Contact supplier;
@@ -40,7 +36,6 @@ public class Achat implements Serializable {
     public Achat() {}
 
     public Achat( AchatDetail details, Commande c, Contact supplier ) {
-        this.purchaseDate = LocalDate.now();
         this.details=details;
         this.c=c;
         this.supplier=supplier;
@@ -49,7 +44,6 @@ public class Achat implements Serializable {
     @Override
     public String toString() {
         return "Id: " + id + '\n' +
-                "Purchase Date: " + purchaseDate + '\n'+
                 "Details : " + "\n" + details.toString();
     }
 

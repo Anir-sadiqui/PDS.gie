@@ -55,7 +55,7 @@ public class CommandeController implements Initializable{
             row.setOnMouseClicked(event -> {
                 if (!row.isEmpty() && event.getClickCount() == 1) {
                     Commande clickedRow = row.getItem();
-                    prixTot = calculPT(clickedRow);
+//                    prixTot = calculPT(clickedRow);
                     showDetails(clickedRow);
                     cmd=row.getItem();
                 }
@@ -75,14 +75,17 @@ public class CommandeController implements Initializable{
              s +=  a.getDetails().getProduct().getName() + " :" + a.getDetails().getQuantity() + "pieces" + "\n";
         }
             Details.setText("Command made on :" + " " + clickedRow.getPurchaseDate() + "\n"
-                    + "Contains :" + "\n" + s + "\n" +"Total Price :" + prixTot + "\n" + "Has been :"+ clickedRow.getE() );
+                    + "Contains :" + "\n" + s + "\n" +"Total Price :" + calculPT(clickedRow) + "\n" + "Has been :"+ clickedRow.getE() );
 
     }
     private double calculPT(Commande c){
         double p = 0 ;
-        List <Achat> achats = c.getAchats();
-        for (Achat a : achats){
-            p += a.getDetails().getTotalPrice();
+        AchatService as = new AchatService();
+        List <Achat> achats =  as.getByComm(Math.toIntExact(c.getId()));
+        if (!achats.isEmpty()) {
+            for (Achat a : achats) {
+                p += a.getDetails().getTotalPrice();
+            }
         }
         return p;
     }
@@ -96,7 +99,7 @@ public class CommandeController implements Initializable{
                 remlirTab(commandes);
             }
             else {
-                List<Commande> commandes1 = cs.getByDate(Calendrier.getValue());
+                List<Commande> commandes1 = cs.getByDate(String.valueOf(Calendrier.getValue()));
                 List<Commande> commandes2 = new ArrayList<>();
                 for (Commande c : commandes1){
                    if(c.getE().name()==CB_four.getValue()){
@@ -108,7 +111,7 @@ public class CommandeController implements Initializable{
         }
         else {
             if (Calendrier.getValue()!=null){
-                ObservableList<Commande> commandes = FXCollections.observableList(cs.getByDate(Calendrier.getValue()));
+                ObservableList<Commande> commandes = FXCollections.observableList(cs.getByDate(String.valueOf(Calendrier.getValue())));
                 remlirTab(commandes);
             }
             else {
