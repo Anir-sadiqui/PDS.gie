@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="672.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.CommandVController">
+  <children>
+    <AnchorPane fx:id="mainAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Text layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commandes" textAlignment="CENTER" wrappingWidth="301.47003173828125">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Text>
+            <TableView fx:id="Tab" layoutX="35.0" layoutY="157.0" prefHeight="271.0" prefWidth="365.0">
+              <columns>
+                <TableColumn fx:id="C_id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="C_date" prefWidth="150.00003051757812" text="Date" />
+                  <TableColumn fx:id="C_Etat" prefWidth="136.6666259765625" text="State" />
+              </columns>
+            </TableView>
+            <TextArea fx:id="Details" layoutX="471.0" layoutY="157.0" prefHeight="225.0" prefWidth="355.0" />
+            <Button fx:id="valider" layoutX="471.0" layoutY="416.0" mnemonicParsing="false" onAction="#onVal" text="Validate">
+               <graphic>
+                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="https://www.iconpacks.net/icons/5/free-green-check-mark-circular-validation-icon-16213-thumb.png" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+            <Button fx:id="mod" layoutX="615.0" layoutY="416.0" mnemonicParsing="false" onAction="#OnMod" text="Edit">
+               <graphic>
+                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="https://static.thenounproject.com/png/3082134-200.png" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+            <Button fx:id="Anuler" layoutX="728.0" layoutY="416.0" mnemonicParsing="false" onAction="#onAnnuler" text="Cancel">
+               <graphic>
+                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="https://p1.hiclipart.com/preview/393/978/399/bin-icon-cancel-icon-close-icon-cross-icon-delete-icon-exit-icon-minus-icon-remove-icon-trash-icon-red-png-clipart.jpg" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+            <Button fx:id="Ajout" layoutX="250.0" layoutY="449.0" mnemonicParsing="false" onAction="#onAjout" prefHeight="38.0" prefWidth="102.0" text="Add">
+               <graphic>
+                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="https://icon-library.com/images/add-icon/add-icon-0.jpg" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+            <ChoiceBox fx:id="CB_four" layoutX="374.0" layoutY="94.0" prefHeight="25.0" prefWidth="130.0" />
+            <Button fx:id="Aficher" layoutX="35.0" layoutY="87.0" mnemonicParsing="false" onAction="#onAfch" prefHeight="38.0" prefWidth="97.0" text="Fetch">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
+            <DatePicker fx:id="Calendrier" layoutX="374.0" layoutY="52.0" prefHeight="24.0" prefWidth="130.0" promptText="cal" />
+            <Button fx:id="ref" layoutX="100.0" layoutY="449.0" mnemonicParsing="false" onAction="#onRef" text="Refresh">
+               <graphic>
+                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                           <Image url="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-refresh-512.png" />
+                       </image>
+                   </ImageView>
+               </graphic></Button>
+            <Text layoutX="302.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

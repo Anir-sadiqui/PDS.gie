@@ -18,4 +18,5 @@ public interface  IProductService {
     void ajoutQ (int nq, int id);
 
 
+    void retirerQ(int q, int id);
 }

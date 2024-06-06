@@ -2,34 +2,33 @@ package org.giefront.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.*;
-import org.giefront.DTO.*;
-
+import org.giefront.DTO.Ventes;
+import org.giefront.DTO.Contact;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class AchatService{
+public class VentesService {
     private OkHttpClient okHttpClient = new OkHttpClient();
     ObjectMapper mapper = new ObjectMapper();
 
-    public AchatService() {
+    public VentesService() {
         this.mapper = new ObjectMapper();
         this.mapper.registerModule(new JavaTimeModule());
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Contact.class, new ContactDeserializer());
         mapper.registerModule(module);
     }
-    public void ajouter(Achat achat){
+    public void ajouter(Ventes Ventes){
         try {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(achat));
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),mapper.writeValueAsString(Ventes));
 
-            Request request = new Request.Builder().url("http://localhost:9998/achat/ajouter").post(requestBody).build();
+            Request request = new Request.Builder().url("http://localhost:9998/Ventes/ajouter").post(requestBody).build();
             Call call = okHttpClient.newCall(request);
             Response response = call.execute();
             System.out.println(response.code());
@@ -42,7 +41,7 @@ public class AchatService{
 
     public void deleteById(int id){
         try {
-            Request request = new Request.Builder().url("http://localhost:9998/achat/Supprimer/"+id).delete().build();
+            Request request = new Request.Builder().url("http://localhost:9998/Ventes/Supprimer/"+id).delete().build();
             Response response = okHttpClient.newCall(request).execute();
             System.out.println(response.body().string());
         } catch (IOException e) {
@@ -54,7 +53,7 @@ public class AchatService{
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String json = mapper.writeValueAsString(attributs);
         RequestBody body = RequestBody.create(json, JSON);
-        Request request = new Request.Builder().url("http://localhost:9998/achat/modifier/" + id).patch(body).build();
+        Request request = new Request.Builder().url("http://localhost:9998/Ventes/modifier/" + id).patch(body).build();
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -62,9 +61,9 @@ public class AchatService{
         }
     }
 
-    public List<Achat> chercherParFournisseur(int idf){
-        Request request = new Request.Builder().url("http://localhost:9998/achat/chercherParFournisseur/"+idf).build();
-        List<Achat> p;
+    public List<Ventes> chercherParFournisseur(int idf){
+        Request request = new Request.Builder().url("http://localhost:9998/Ventes/chercherParFournisseur/"+idf).build();
+        List<Ventes> p;
         try (Response response = okHttpClient.newCall(request).execute()) {
             if (!response.isSuccessful()) {
                 throw new IOException(String.valueOf(response));
@@ -76,9 +75,9 @@ public class AchatService{
         return p;
     }
 
-    public List<Achat> getByComm(int idf){
-        Request request = new Request.Builder().url("http://localhost:9998/achat/getByComm/"+idf).build();
-        List<Achat> p;
+    public List<Ventes> getByComm(int idf){
+        Request request = new Request.Builder().url("http://localhost:9998/Ventes/getByComm/"+idf).build();
+        List<Ventes> p;
         try {
             Response response = okHttpClient.newCall(request).execute();
             if (!response.isSuccessful()) {
@@ -91,6 +90,5 @@ public class AchatService{
         }
         return p;
     }
-
 
 }

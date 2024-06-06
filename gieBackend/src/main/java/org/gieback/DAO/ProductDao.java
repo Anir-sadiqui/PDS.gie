@@ -136,5 +136,19 @@ public class ProductDao implements IProductDao{
         entityManager.getTransaction().commit();
     }
 
+    @Override
+    public void retirerQ(int q, int id) {
+        entityManager.getTransaction().begin();
+        Product E = entityManager.find(Product.class, id);
+        if (E != null) {
+            E.setQ(E.getQ()-q);
+            entityManager.merge(E);
+        } else {
+            System.out.println("id incorrect");
+        }
+        entityManager.getTransaction().commit();
+
+    }
+
 
 }

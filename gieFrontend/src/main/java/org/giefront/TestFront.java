@@ -12,7 +12,7 @@ public class TestFront extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Object root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
+        Object root = FXMLLoader.load(getClass().getResource("/org/Interfaces/CommandV.fxml"));
         Scene scene = new Scene((Parent) root, 1300, 1000);
         primaryStage.setTitle("Dashboard");
         primaryStage.setScene(scene);

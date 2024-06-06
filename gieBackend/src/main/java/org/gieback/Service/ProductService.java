@@ -53,4 +53,9 @@ public class ProductService implements IProductService{
         pdao.ajoutQ(nq,id);
     }
 
+    @Override
+    public void retirerQ(int q, int id) {
+        pdao.retirerQ(q,id);
+    }
+
 }

@@ -75,6 +75,13 @@ public class ProductController {
         ps.ajoutQ(q,id);
     }
 
+    @PATCH
+    @Path("/retirerQ/{q}/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void retirerQ(@PathParam("q")int q , @PathParam("id") int id){
+        ps.retirerQ(q,id);
+    }
+
 
 
 

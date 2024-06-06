@@ -25,11 +25,11 @@ public class AchatDetail implements Serializable {
 
     public AchatDetail() {}
 
-    public AchatDetail( Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-        this.TotalPrice = product.getPrix() * quantity;
-    }
+//    public AchatDetail( Product product, int quantity) {
+//        this.product = product;
+//        this.quantity = quantity;
+//        this.TotalPrice = product.getPrix() * quantity;
+//    }
 
     @Override
     public String toString() {
