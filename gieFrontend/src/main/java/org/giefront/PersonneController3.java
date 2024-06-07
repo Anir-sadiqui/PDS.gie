@@ -23,13 +23,13 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PersonneController implements Initializable {
+public class PersonneController3 implements Initializable {
+    @FXML
+    private Button BtnImage;
     @FXML
     private AnchorPane mainAnchor;
     @FXML
     private Button Return;
-    @FXML
-    private Button BtnImage;
     @FXML
     private Button BtnAddP;
     @FXML
@@ -53,6 +53,7 @@ public class PersonneController implements Initializable {
     @FXML
     private AnchorPane anchorepane_Adresse;
     private String imagePath ;
+
 
     private final PersonneService personneService = new PersonneService();
 
@@ -137,7 +138,7 @@ public class PersonneController implements Initializable {
     private FXMLLoader fxmlLoader;
 
     public void retour(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/fournisseurPerso.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/Interfaces/ClientPerson.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -163,5 +164,4 @@ public class PersonneController implements Initializable {
             imagePath = selectedFile.toURI().toString(); // Enregistrer le chemin de l'image
         }
     }
-
 }

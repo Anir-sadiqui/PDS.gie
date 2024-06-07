@@ -46,6 +46,9 @@
                         <Button fx:id="StockBtn" mnemonicParsing="false" onAction="#onStockButtonclick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="STOCK" VBox.vgrow="ALWAYS" />
                         <Button fx:id="VenteBtn" mnemonicParsing="false" onAction="#onVenteBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="VENTE" />
                         <Button fx:id="FrBtn" mnemonicParsing="false" onAction="#FRBtnClick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="FOURNISSEUR" />
+                        <Button fx:id="clientsBtn" mnemonicParsing="false" onAction="#onClientsButtonclick" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="Clients" />
+                        <Button fx:id="factureBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="Facturation" />
+                        <Button fx:id="statisticBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #808B96;" styleClass="nav-button" text="Statistique" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="SW_RESIZE" />

@@ -36,6 +36,9 @@ public class DashboardController implements Initializable {
     public Button VenteBtn;
 
     @FXML
+    public Button clientsBtn ;
+
+    @FXML
     public Button closeBtn;
 
     @FXML
@@ -68,6 +71,13 @@ public class DashboardController implements Initializable {
     @FXML
     public void onStockButtonclick(ActionEvent event) {
         loadUI("/org/Interfaces/Stock.fxml");
+    }
+
+
+
+    @FXML
+    public void onClientsButtonclick(ActionEvent event) {
+        loadUI("/org/Interfaces/ClientPerson.fxml");
     }
 
     @FXML

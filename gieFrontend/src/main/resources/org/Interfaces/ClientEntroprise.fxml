@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="anchoMain" prefHeight="721.0" prefWidth="998.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.FourniseurEntoContro">
+<AnchorPane fx:id="anchoMain" prefHeight="721.0" prefWidth="998.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ClientEntroController">
     <children>
         <Pane fx:id="pane1" layoutX="10.0" layoutY="-4.0" prefHeight="736.0" prefWidth="235.0" style="-fx-background-color: #343a40; -fx-background-size: cover; -fx-background-position: center;">
             <children>
                 <ImageView fx:id="sup" fitHeight="65.0" fitWidth="67.0" layoutX="84.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="https://cdn1.iconfinder.com/data/icons/global-business-4/64/headquarter-1024.png" />
+                        <Image url="https://cdn-icons-png.flaticon.com/512/993/993928.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="entroToPerso" layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#switchToFornEntro" prefHeight="43.0" prefWidth="204.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Switch TO Person" textFill="WHITE" />
+                <Button fx:id="entroToPerso" layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#switchToClientPerso" prefHeight="43.0" prefWidth="204.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Switch TO Person" textFill="WHITE" />
                 <Button fx:id="OnReturn" layoutX="31.0" layoutY="500.0" mnemonicParsing="false" onAction="#OnReturnAction" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Back" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="26.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
@@ -34,7 +34,7 @@
             <children>
                 <HBox layoutX="0.0" layoutY="0.0" prefHeight="50.0" prefWidth="751.0" style="-fx-background-color: #007bff;">
                     <children>
-                        <Button fx:id="closeButton" mnemonicParsing="false"  style="-fx-background-color: transparent;">
+                        <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -43,7 +43,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="minimizeButton" mnemonicParsing="false"  style="-fx-background-color: transparent;">
+                        <Button fx:id="minimizeButton" mnemonicParsing="false" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -52,7 +52,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="maximizeButton" mnemonicParsing="false"  style="-fx-background-color: transparent;">
+                        <Button fx:id="maximizeButton" mnemonicParsing="false" style="-fx-background-color: transparent;">
                             <graphic>
                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -63,7 +63,7 @@
                         </Button>
                     </children>
                 </HBox>
-                <TableView fx:id="fournisseurTable" layoutX="20.0" layoutY="99.0" prefHeight="516.0" prefWidth="682.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da;">
+                <TableView fx:id="clientTable" layoutX="20.0" layoutY="99.0" prefHeight="516.0" prefWidth="682.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da;">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="57.0" text="Id" />
                         <TableColumn fx:id="colRaisonS" prefWidth="110.0" text="RaisonSocial" />
@@ -74,7 +74,7 @@
                         <TableColumn fx:id="colDelete" prefWidth="90.0" text="Delete" />
                     </columns>
                 </TableView>
-                <Button fx:id="addFournisseurPerso" layoutX="519.0" layoutY="56.0" mnemonicParsing="false" onAction="#addFournisseur" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Add a new Fournisseur" textFill="WHITE">
+                <Button fx:id="addFournisseurPerso" layoutX="519.0" layoutY="56.0" mnemonicParsing="false" onAction="#addClient" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Add a new Fournisseur" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -83,7 +83,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="retchbtn" layoutX="27.0" layoutY="56.0" mnemonicParsing="false" onAction="#fetchFournisseurs" prefHeight="37.0" prefWidth="44.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" textFill="WHITE">
+                <Button fx:id="retchbtn" layoutX="27.0" layoutY="56.0" mnemonicParsing="false" onAction="#fetchClient" prefHeight="37.0" prefWidth="44.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" textFill="WHITE">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                             <image>

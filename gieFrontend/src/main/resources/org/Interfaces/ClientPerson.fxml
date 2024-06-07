@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="anchoMain" prefHeight="721.0" prefWidth="998.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.giefront.ClientPersoController">
+    <children>
+        <Pane fx:id="pane1" layoutX="10.0" layoutY="-4.0" prefHeight="736.0" prefWidth="235.0" style="-fx-background-color: #343a40; -fx-background-size: cover; -fx-background-position: center;">
+            <children>
+                <ImageView fx:id="sup" fitHeight="65.0" fitWidth="67.0" layoutX="99.5" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="personToEntro" layoutX="15.0" layoutY="109.0" mnemonicParsing="false" onAction="#switchToClientEntro" prefHeight="43.0" prefWidth="204.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Switch TO Entropris" textFill="WHITE" />
+                <Button fx:id="OnReturn" layoutX="31.0" layoutY="500.0" mnemonicParsing="false" onAction="#OnReturnAction" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Back" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="https://st4.depositphotos.com/18657574/22401/v/1600/depositphotos_224012624-stock-illustration-return-icon-trendy-design-style.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </Pane>
+        <Pane fx:id="pane2" layoutX="247.0" layoutY="3.0" prefHeight="721.0" prefWidth="751.0" style="-fx-background-color: #ffffff; -fx-background-size: cover; -fx-background-position: center;">
+            <children>
+                <TableView fx:id="clientTable" layoutX="20.0" layoutY="99.0" prefHeight="516.0" prefWidth="682.0" style="-fx-background-color: #ffffff; -fx-border-color: #ced4da;">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="57.0" text="Id" />
+                        <TableColumn fx:id="colNom" prefWidth="110.0" text="Nom" />
+                        <TableColumn fx:id="colPrenom" prefWidth="110.0" text="Prenom" />
+                        <TableColumn fx:id="colPhone" prefWidth="110.0" text="Phone" />
+                        <TableColumn fx:id="colEmail" prefWidth="110.0" text="Email" />
+                        <TableColumn fx:id="colEdit" prefWidth="90.0" text="Edit" />
+                        <TableColumn fx:id="colDelete" prefWidth="90.0" text="Delete" />
+                    </columns>
+                </TableView>
+                <Button fx:id="addFournisseurPerso" layoutX="524.0" layoutY="24.0" mnemonicParsing="false" onAction="#addClient" prefHeight="37.0" prefWidth="172.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" text="Add a new Client" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="https://www.downloadclipart.net/large/27475-add-button-clipart.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="retchbtn1" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#fetchClient" prefHeight="37.0" prefWidth="44.0" style="-fx-background-color: #007bff; -fx-background-radius: 5;" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="https://cdn-icons-png.freepik.com/512/860/860820.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
