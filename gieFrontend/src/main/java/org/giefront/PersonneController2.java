@@ -62,8 +62,8 @@ public class PersonneController2 implements Initializable {
         if (areFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir ajouter cette personne ?");
-            confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
+            confirmationAlert.setHeaderText("Are you sure you want to add this person?");
+            confirmationAlert.setContentText("Click OK to confirm.");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -82,25 +82,26 @@ public class PersonneController2 implements Initializable {
 
                 personneService.add(personne);
 
-                System.out.println("Personne ajoutée avec succès!");
+                System.out.println("Person added successfully!");
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Ajout réussi");
+                successAlert.setTitle("Addition Successful");
                 successAlert.setHeaderText(null);
-                successAlert.setContentText("La personne a été ajoutée avec succès.");
+                successAlert.setContentText("The person has been added successfully.");
                 successAlert.showAndWait();
 
                 clearFields();
             } else {
-                System.out.println("L'ajout de la personne a été annulé.");
+                System.out.println("Adding the person was canceled.");
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Champs incomplets");
+            alert.setTitle("Incomplete Fields");
             alert.setHeaderText(null);
-            alert.setContentText("Veuillez remplir tous les champs !");
+            alert.setContentText("Please fill in all fields!");
             alert.showAndWait();
         }
     }
+
 
     private void clearFields() {
         Text_Field_Email.clear();
