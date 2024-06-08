@@ -12,8 +12,8 @@ public class TestFront extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Object root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Commande.fxml"));
-        Scene scene = new Scene((Parent) root, 1300, 1000);
+        Object root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
+        Scene scene = new Scene((Parent) root, 1400, 700);
         primaryStage.setTitle("Dashboard");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);

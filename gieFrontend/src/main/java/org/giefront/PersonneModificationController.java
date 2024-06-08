@@ -71,14 +71,13 @@ public class PersonneModificationController implements Initializable {
             }
         }
     }
-
     @FXML
     public void OnMod(ActionEvent event) {
         if (areFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette personne ?");
-            confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
+            confirmationAlert.setHeaderText("Are you sure you want to modify this person?");
+            confirmationAlert.setContentText("Click OK to confirm.");
 
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -118,12 +117,13 @@ public class PersonneModificationController implements Initializable {
                     throw new RuntimeException(e);
                 }
 
-                System.out.println("Client modifie avec succès!");
+                System.out.println("Person modified successfully!"); // Message changed to English
             } else {
-                System.out.println("La modification de la personne a été annulé.");
+                System.out.println("Modifying the person was canceled."); // Message changed to English
             }
         }
     }
+
 
     @FXML
     void onClick_Adresse(ActionEvent event) {

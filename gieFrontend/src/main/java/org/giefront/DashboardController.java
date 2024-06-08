@@ -95,20 +95,18 @@ public class DashboardController implements Initializable {
         // Initialization logic if needed
     }
 
-    @FXML
-    public void close() {
-        System.exit(0);
-    }
+    public void Close_OnAction(ActionEvent event) {
+            System.exit(0);
+        }
 
-    @FXML
-    public void maximize(ActionEvent event) {
+
+    public void Maximise_Action(ActionEvent event) {
         Stage stage = (Stage) dashboardBorderPane.getScene().getWindow();
         Boolean maximized = stage.isMaximized();
         stage.setMaximized(!maximized);
     }
 
-    @FXML
-    public void minimize(ActionEvent event) {
+    public void Minimise_OnAction(ActionEvent event) {
         Stage stage = (Stage) mainAnchor.getScene().getWindow();
         stage.setIconified(true);
     }

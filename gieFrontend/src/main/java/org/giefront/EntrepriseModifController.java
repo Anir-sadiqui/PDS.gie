@@ -81,8 +81,8 @@ public class EntrepriseModifController implements Initializable {
         if (areEntrFieldsFilled()) {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir modifier cette entreprise ?");
-            confirmationAlert.setContentText("Cliquez sur OK pour confirmer.");
+            confirmationAlert.setHeaderText("Are you sure you want to modify this company?");
+            confirmationAlert.setContentText("Click OK to confirm.");
             Optional<ButtonType> result = confirmationAlert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 EntrepriseService entrepriseService = new EntrepriseService();
@@ -119,13 +119,14 @@ public class EntrepriseModifController implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("Entreprise modifiee avec succès!");
+                System.out.println("Company modified successfully!"); // Message changed to English
             } else {
-                System.out.println("La modification de l'entreprise a été annulé.");
+                System.out.println("Modifying the company was canceled."); // Message changed to English
             }
 
         }
     }
+
 
     @FXML
     void onClick_Adresse() {

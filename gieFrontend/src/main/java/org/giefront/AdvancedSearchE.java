@@ -19,10 +19,7 @@ import org.giefront.Service.FournisseurPersoService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AdvancedSearchE implements Initializable {
 
@@ -134,11 +131,21 @@ public class AdvancedSearchE implements Initializable {
     public void onDelete(ActionEvent event) throws IOException {
         Entreprise selectedEntreprise = tableView_E.getSelectionModel().getSelectedItem();
         if (selectedEntreprise != null) {
-            e.deleteEntreprise((long) Math.toIntExact(selectedEntreprise.getId()));
-            tableView_E.getItems().remove(selectedEntreprise);
-            showAlert("Suppression reussie");
+            // Confirmation message before deletion
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure you want to delete this company?");
+            confirmationAlert.setContentText("Click OK to confirm.");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                e.deleteEntreprise((long) Math.toIntExact(selectedEntreprise.getId()));
+                tableView_E.getItems().remove(selectedEntreprise);
+                showAlert("Deletion successful"); // Message changed to English
+            }
         }
     }
+
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

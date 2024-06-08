@@ -18,10 +18,7 @@ import org.giefront.Service.PersonneService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AdvancedSearchP implements Initializable {
 
@@ -124,11 +121,21 @@ public class AdvancedSearchP implements Initializable {
     public void onDelete(ActionEvent event) throws IOException {
         Personne selectedPerson =  tableView_P.getSelectionModel().getSelectedItem();
         if (selectedPerson != null) {
-            ps.deletePersonne((long) Math.toIntExact(selectedPerson.getId()));
-            tableView_P.getItems().remove(selectedPerson);
-            showAlert("Suppression reussie");
+            // Confirmation message before deletion
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure you want to delete this person?");
+            confirmationAlert.setContentText("Click OK to confirm.");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                ps.deletePersonne((long) Math.toIntExact(selectedPerson.getId()));
+                tableView_P.getItems().remove(selectedPerson);
+                showAlert("Deletion successful"); // Message changed to English
+            }
         }
     }
+
 
     private void showAlert(String m) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
