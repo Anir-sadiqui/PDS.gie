@@ -189,7 +189,6 @@ public class AdvancedSearchP implements Initializable {
             C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
             C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
             C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
             tableView_P.setItems(personneObservableList);
             tableView_P.setVisible(true);
         }
@@ -201,7 +200,6 @@ public class AdvancedSearchP implements Initializable {
                 C_Phone_P.setCellValueFactory(new PropertyValueFactory<>("phone"));
                 C_Nom_P.setCellValueFactory(new PropertyValueFactory<>("nom"));
                 C_Prenom_P.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-                C_Adresse_P.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAdresse().toString()));
                 tableView_P.setItems(personneObservableList);
                 tableView_P.setVisible(true);
             }

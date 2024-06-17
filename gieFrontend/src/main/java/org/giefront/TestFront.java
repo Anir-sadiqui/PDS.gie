@@ -11,13 +11,17 @@ import java.io.IOException;
 public class TestFront extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Object root = FXMLLoader.load(getClass().getResource("/org/Interfaces/Dashbord.fxml"));
-        Scene scene = new Scene((Parent) root, 1300, 1000);
-        primaryStage.setTitle("Dashboard");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        stage.initStyle(StageStyle.UNDECORATED);
+        FXMLLoader fxmlLoader = new FXMLLoader(TestFront.class.getResource("/org/Interfaces/Dashbord.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setHeight(600);
+        stage.setWidth(900);
+        stage.setResizable(true);
+        stage.setTitle("Test");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     public static void main(String[] args) {

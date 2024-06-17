@@ -109,6 +109,7 @@ public class PersonneController implements Initializable {
         Text_Field_N111.clear();
         Text_Field_P.clear();
         Text_Field_Po.clear();
+        imagePath = null;
     }
 
     @FXML

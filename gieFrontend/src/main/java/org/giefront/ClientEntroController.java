@@ -45,8 +45,8 @@ public class ClientEntroController {
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
         alert.setContentText("Does this company already exists");
-        ButtonType buttonTypeYes = new ButtonType("Oui", ButtonBar.ButtonData.YES);
-        ButtonType buttonTypeNo = new ButtonType("Non", ButtonBar.ButtonData.NO);
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
 
